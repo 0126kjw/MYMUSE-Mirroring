@@ -11,6 +11,10 @@ export default function Home() {
 				<li>
 					<Link href='/sub'>/pages/sub/index.js</Link>
 				</li>
+				<li>
+					<Link href='/sub/crawling'>/pages/sub/crawling.js</Link>
+				</li>
+
 				{/* <li><Link href='/sub/1'>/pages/sub/[id].js</Link></li> */}
 				{/* <li><Link href='/sub/2'>/pages/sub/[id].js</Link></li> */}
 			</ul>
