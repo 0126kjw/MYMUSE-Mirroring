@@ -1,19 +1,38 @@
 import Link from 'next/link'
-// import Head from 'next/head'
-// import Image from 'next/image'
-// import styles from '../styles/Home.module.css'
+import styled from '@emotion/styled'
+
+const NavBarLayout = styled.div`
+    ul{
+        margin:0px;
+        
+        padding-left:0px;
+        display:flex;
+        justify-content: space-around;
+        background-color:#404048;
+        height:50px;
+        line-height:50px;
+        
+        span{
+            color:#FFFFFF;
+        }
+        li{
+            list-style:none;
+            &:hover{
+                cursor: pointer
+            }
+        }
+    }
+
+`
 
 export default function NavBar() {
 	return (
-		<div>
-            <hr></hr>
+		<NavBarLayout>
 			<ul>
-                <h3>nav 바</h3>
-				<li><Link href='/'>홈</Link></li>
-				<li><Link href='/sub/search'> 검색 </Link></li>
-				<li><Link href='/sub/zido'> 테스트페이지 </Link></li>
+				<li><Link href='/'><span>Home</span></Link></li>
+				<li><Link href='/sub/search'> <span>Search</span> </Link></li>
+				<li><Link href='/sub/zido'> <span>지도로 검색</span> </Link></li>
 			</ul>
-            <hr></hr>
-		</div>
+		</NavBarLayout>
 	)
 }
