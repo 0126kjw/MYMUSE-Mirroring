@@ -1,4 +1,8 @@
 import Link from 'next/link'
+import NavBar from '../component/navBar'
+import SearchBoxMain from '../component/searchBoxMain'
+import AiBot from '../component/aiBot'
+
 // import Head from 'next/head'
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
@@ -6,14 +10,11 @@ import Link from 'next/link'
 export default function Home() {
 	return (
 		<div>
-			<h1>/pages/index.js</h1>
-			<ul>
-				<li>
-					<Link href='/sub'>/pages/sub/index.js</Link>
-				</li>
-				{/* <li><Link href='/sub/1'>/pages/sub/[id].js</Link></li> */}
-				{/* <li><Link href='/sub/2'>/pages/sub/[id].js</Link></li> */}
-			</ul>
+			<h1>MyMuse</h1>
+            <NavBar></NavBar>
+            <SearchBoxMain></SearchBoxMain>
+            <h3>슬라이더</h3>
+            <AiBot></AiBot>
 		</div>
 	)
 }

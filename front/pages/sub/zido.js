@@ -43,13 +43,13 @@ const markers = [
 	{ markerOffset: 15, name: '강서', coordinates: [126.825, 37.57] },
 ]
 
-export default function SubIndex() {
+export default function Zido() {
 	const [tooltipName, setTooltipName] = useState('')
 	const mapState = { zoom: 2 }
 
 	return (
 		<>
-			<h1>/pages/sub/index.js</h1>
+			<h1> 서울시 지도</h1>
 			<Link href='/'>/pages/index.js</Link>
 
 			{/* <ReactTooltip type='light'>{tooltipName}</ReactTooltip> */}

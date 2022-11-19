@@ -11,9 +11,11 @@
 		"format:fix": "prettier --write --ignore-path .gitignore ."
 	},
 	"dependencies": {
+		"cheerio": "^1.0.0-rc.12",
 		"eslint": "8.27.0",
 		"eslint-config-next": "13.0.3",
 		"next": "13.0.3",
+		"puppeteer": "^19.2.2",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"react-simple-maps": "^3.0.0",
@@ -21,5 +23,10 @@
 	},
 	"devDependencies": {
 		"prettier": "2.7.1"
+	},
+	"browser": {
+		"fs": false,
+		"path": false,
+		"os": false
 	}
 }
