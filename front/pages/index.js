@@ -10,7 +10,6 @@ import styled from '@emotion/styled'
 
 const IndexLayout = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
-
     margin:0px auto;
     main{
         text-align:center;

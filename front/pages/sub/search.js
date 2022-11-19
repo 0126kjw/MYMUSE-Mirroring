@@ -23,8 +23,6 @@ const SearchpageLayout = styled.div`
     max-width:1600px;
 `
 
-
-
 export default function Search() {
 
 	return (

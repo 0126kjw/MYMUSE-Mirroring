@@ -31,7 +31,8 @@ export default function NavBar() {
 			<ul>
 				<li><Link href='/'><span>Home</span></Link></li>
 				<li><Link href='/sub/search'> <span>Search</span> </Link></li>
-				<li><Link href='/sub/zido'> <span>지도로 검색</span> </Link></li>
+				<li><Link href='/sub/zido'> <span>SeoulMap</span> </Link></li>
+				<li><Link href='/sub/rank'> <span>Ranking</span> </Link></li>
 			</ul>
 		</NavBarLayout>
 	)

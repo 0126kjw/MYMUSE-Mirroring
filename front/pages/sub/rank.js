@@ -1,14 +1,12 @@
 
 import Header from '../../component/header'
-import SeoulZido from '../../component/seoulZido'
+import Ranking from '../../component/ranking'
 import AiBot from '../../component/aiBot'
 import Footer from '../../component/footer'
 import styled from '@emotion/styled'
-
-import Link from 'next/link'
 import Head from 'next/head'
 
-const ZidoSearchLayout = styled.div`
+const RankLayout = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
     margin:0px auto;
     main{
@@ -21,19 +19,20 @@ const ZidoSearchLayout = styled.div`
     background-color:black;
 `
 
-export default function Zido() {
+export default function Rank() {
 
 	return (
-        <ZidoSearchLayout>
+        <RankLayout>
             <Head>
                 <link rel="preconnect" href="https://fonts.googleapis.com"></link>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
                 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet"></link>
             </Head>
+            
             <Header/>
-            <SeoulZido/>
+            <Ranking/>
             <Footer/>
             <AiBot/>
-        </ZidoSearchLayout>
+        </RankLayout>
 	)
 }
