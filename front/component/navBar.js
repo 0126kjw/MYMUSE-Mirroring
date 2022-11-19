@@ -11,6 +11,7 @@ export default function NavBar() {
                 <h3>nav 바</h3>
 				<li><Link href='/'>홈</Link></li>
 				<li><Link href='/sub/search'> 검색 </Link></li>
+				<li><Link href='/sub/zido'> 테스트페이지 </Link></li>
 			</ul>
             <hr></hr>
 		</div>
