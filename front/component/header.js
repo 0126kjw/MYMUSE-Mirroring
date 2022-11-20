@@ -22,6 +22,7 @@ const HeaderLayout = styled.div`
         &:hover{
             cursor: pointer
         }
+
     }
 
     .bgImg{
@@ -30,11 +31,13 @@ const HeaderLayout = styled.div`
         height:200px;
         filter: brightness(50%); 
         z-index:1;
+        &:hover{
+            cursor: pointer
+        }
     }
 `
 
 export default function Header() {
-
 
     const bgImgSrc = "https://images.unsplash.com/photo-1491156855053-9cdff72c7f85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2456&q=80"
 
@@ -57,6 +60,7 @@ export default function Header() {
 
                 <div className='bgImg'>
                     <Image
+                        onClick={()=>router.push('/')}
                         src={bgImgSrc}
                         alt="wallpaper"
                         layout='fill'

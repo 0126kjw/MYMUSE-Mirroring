@@ -28,7 +28,6 @@ export default function Rank() {
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
                 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet"></link>
             </Head>
-            
             <Header/>
             <Ranking/>
             <Footer/>
