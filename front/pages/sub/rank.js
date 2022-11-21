@@ -1,0 +1,37 @@
+
+import Header from '../../component/header'
+import Ranking from '../../component/ranking'
+import AiBot from '../../component/aiBot'
+import Footer from '../../component/footer'
+import styled from '@emotion/styled'
+import Head from 'next/head'
+
+const RankLayout = styled.div`
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+    margin:0px auto;
+    main{
+        text-align:center;
+    }
+    font-family: 'Noto serif KR', sans-serif;
+    font-weight : bold;
+    font-size:25px;
+    max-width:1600px;
+    background-color:black;
+`
+
+export default function Rank() {
+
+	return (
+        <RankLayout>
+            <Head>
+                <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
+                <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet"></link>
+            </Head>
+            <Header/>
+            <Ranking/>
+            <Footer/>
+            <AiBot/>
+        </RankLayout>
+	)
+}
