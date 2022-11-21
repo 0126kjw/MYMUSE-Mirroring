@@ -1,13 +1,11 @@
-// component
-// import SearchBar from '../component/searchBar'
-// import Slider from '../component/slider'
-// import { Header, Footer, NavBar, AiBot } from 'Component/common'
-
-import Main from './main'
-import Head from 'next/head'
+import Header from '../../component/common/header'
+import Ranking from '../../component/ranking'
+import AiBot from '../../component/common/aiBot'
+import Footer from '../../component/common/footer'
 import styled from '@emotion/styled'
+import Head from 'next/head'
 
-const IndexLayout = styled.div`
+const RankLayout = styled.div`
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 	margin: 0px auto;
 	main {
@@ -17,11 +15,12 @@ const IndexLayout = styled.div`
 	font-weight: bold;
 	font-size: 25px;
 	max-width: 1600px;
+	background-color: black;
 `
 
-export default function Home() {
+export default function Rank() {
 	return (
-		<>
+		<RankLayout>
 			<Head>
 				<link
 					rel='preconnect'
@@ -37,9 +36,10 @@ export default function Home() {
 					rel='stylesheet'
 				></link>
 			</Head>
-			<IndexLayout>
-				<Main />
-			</IndexLayout>
-		</>
+			{/* <Header/> */}
+			<Ranking />
+			{/* <Footer/>
+            <AiBot/> */}
+		</RankLayout>
 	)
 }

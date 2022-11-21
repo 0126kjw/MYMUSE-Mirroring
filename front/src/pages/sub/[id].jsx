@@ -1,13 +1,12 @@
-// component
-// import SearchBar from '../component/searchBar'
-// import Slider from '../component/slider'
-// import { Header, Footer, NavBar, AiBot } from 'Component/common'
-
-import Main from './main'
-import Head from 'next/head'
+import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
+import Head from 'next/head'
+import Header from '../../component/common/header'
+import AiBot from '../../component/common/aiBot'
+import Footer from '../../component/common/footer'
+import Details from '../../component/details'
 
-const IndexLayout = styled.div`
+const DetailLayout = styled.div`
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 	margin: 0px auto;
 	main {
@@ -17,11 +16,17 @@ const IndexLayout = styled.div`
 	font-weight: bold;
 	font-size: 25px;
 	max-width: 1600px;
+	background-color: black;
+
+	color: white;
 `
 
-export default function Home() {
+export default function About() {
+	const router = useRouter()
+	const id = Number(router.query.id)
+
 	return (
-		<>
+		<DetailLayout>
 			<Head>
 				<link
 					rel='preconnect'
@@ -37,9 +42,11 @@ export default function Home() {
 					rel='stylesheet'
 				></link>
 			</Head>
-			<IndexLayout>
-				<Main />
-			</IndexLayout>
-		</>
+
+			<Header />
+			<Details id={id} />
+			<Footer />
+			<AiBot />
+		</DetailLayout>
 	)
 }
