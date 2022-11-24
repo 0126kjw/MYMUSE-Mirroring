@@ -30,7 +30,7 @@ module.exports = {
 	 * true: (;)를 추가함
 	 * false: (;)를 지움
 	 */
-	semi: false,
+	semi: true,
 
 	/**
 	 * @template: singleQuote: <bool>
