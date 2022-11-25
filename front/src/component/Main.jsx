@@ -20,6 +20,7 @@ import {
 	AiBubble,
 	SearchBarLayout,
 } from 'styles/pageStyles/mainStyle';
+import logo from '../../public/images/siteLogo.png';
 
 // component
 import Slider from './Slider';
@@ -29,7 +30,25 @@ const Main = () => {
 	return (
 		<>
 			<MainContainer>
-				<MainTitleContainer>메인타이틀 섹션</MainTitleContainer>
+				<Section color={cssUnit.backgroundColors.Black} size={'150px'}>
+					<Wrap>
+						<MainTitleContainer>
+							{/* old legacy */}
+							<div className='logoImg'>
+								<Image
+									src={logo}
+									alt='logo'
+									objectFit='contain'
+									unoptimized={true}
+									width={300}
+									height={80}
+								/>
+							</div>
+							<span>한곳에서 보는 온라인 AI 전시정보 팜플렛</span>
+						</MainTitleContainer>
+					</Wrap>
+				</Section>
+
 				<Section color={cssUnit.backgroundColors.White}>
 					<Wrap>
 						<WrapTitle>

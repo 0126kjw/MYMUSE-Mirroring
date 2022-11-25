@@ -15,8 +15,14 @@ export const Section = styled.section`
 
 	min-width: 1200px;
 	height: 850px;
+	height: ${(props) => {
+		return props.size ? props.size : '850px';
+	}};
 
-	background-color: ${(props) => props.color};
+	/* background-color: ${(props) => props.color}; */
+	background-color: ${(props) => {
+		return props.color ? props.color : '';
+	}}; ;
 `;
 //common Wrap
 export const Wrap = styled.article`
@@ -40,15 +46,33 @@ export const WrapTitle = styled.h2`
 	}};
 `;
 
-//containers
+/*containers*/
+//logo
 export const MainTitleContainer = styled.div`
-	width: auto;
-	height: auto;
+	//for logo
+	position: relative;
 
-	min-height: 250px;
+	display: flex;
+	flex-direction: row;
 
-	background-color: ${cssUnit.backgroundColors.Black};
+	width: 950px;
+	height: 80px;
+
+	margin: 0px auto;
+
+	.logoImg {
+		padding-left: 40px;
+		width: 300px;
+		height: 80px;
+	}
+	span {
+		padding-top: 40px;
+
+		color: white;
+	}
 `;
+
+//		border: 3px solid rgba(255, 255, 255, 0.6);
 
 export const SilderContainer = styled.div`
 	width: 900px;
