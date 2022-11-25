@@ -125,6 +125,7 @@ const SliderLayout = styled.div`
 
 const Slider = () => {
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const slideLength = sliderData.length;
 	// slideLength = 1 2 3 4 5 6 7 8
 	// currentSlide = 0 1 2 3 4 5 6 7
 
