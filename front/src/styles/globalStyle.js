@@ -1,8 +1,5 @@
 import { css, Global } from '@emotion/react';
-import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
-
-const font = css``;
 
 export const GlobalStyles = (
 	<Global
