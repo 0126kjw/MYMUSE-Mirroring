@@ -1,10 +1,10 @@
-import { useRouter } from 'next/router'
-import styled from '@emotion/styled'
-import Head from 'next/head'
-import Header from '../../component/common/header'
-import AiBot from '../../component/common/aiBot'
-import Footer from '../../component/common/footer'
-import Details from '../../component/details'
+import { useRouter } from 'next/router';
+import styled from '@emotion/styled';
+import Head from 'next/head';
+import Header from '../../component/common/Header';
+import AiBot from '../../component/common/AiBot';
+import Footer from '../../component/common/Footer';
+import Details from '../../component/details';
 
 const DetailLayout = styled.div`
 	@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
@@ -19,11 +19,11 @@ const DetailLayout = styled.div`
 	background-color: black;
 
 	color: white;
-`
+`;
 
 export default function About() {
-	const router = useRouter()
-	const id = Number(router.query.id)
+	const router = useRouter();
+	const id = Number(router.query.id);
 
 	return (
 		<DetailLayout>
@@ -48,5 +48,5 @@ export default function About() {
 			<Footer />
 			<AiBot />
 		</DetailLayout>
-	)
+	);
 }

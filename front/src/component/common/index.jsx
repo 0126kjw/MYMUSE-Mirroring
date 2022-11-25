@@ -1,6 +1,6 @@
-import Header from './header'
-import Footer from './footer'
-import NavBar from './navBar'
-import AiBot from './aiBot'
+import Header from './Header';
+import Footer from './Footer';
+import NavBar from './NavBar';
+import AiBot from './AiBot';
 
-export { Header, Footer, NavBar, AiBot }
+export { Header, Footer, NavBar, AiBot };

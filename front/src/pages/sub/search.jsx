@@ -2,7 +2,7 @@
 import styled from '@emotion/styled';
 import { UnderDevSection } from 'styles/pageStyles/underDev';
 // components
-import SearchBar from '../../component/searchBar';
+import SearchBar from '../../component/SearchBar';
 
 const SearchpageLayout = styled.div`
 	margin: 0px auto;
