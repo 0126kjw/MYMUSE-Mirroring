@@ -2,13 +2,10 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import cssUnit from 'lib/cssUnit';
 //styling
+import { Section, Wrap, WrapTitle } from 'styles/common';
 import {
-	Section,
-	Wrap,
-	WrapTitle,
 	MainContainer,
 	MainTitleContainer,
-	Logosection,
 	SilderContainer,
 	MapContainer,
 	AiContainer,

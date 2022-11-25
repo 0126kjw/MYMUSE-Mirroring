@@ -1,13 +1,11 @@
-//components
-import PopularList from '../../component/PopularList';
-//styling
 import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
 //for page common section
 import { Section, Wrap, WrapTitle } from 'styles/common';
 import { UnderDevSection } from 'styles/compoStyles/underDev';
 
-const PopularLayout = styled.div`
+//wrap all
+const ZidoContainer = styled.div`
 	width: auto;
 	height: auto;
 
@@ -23,17 +21,37 @@ const PopularLayout = styled.div`
 		text-align: center;
 	}
 `;
+const ZidoSearchLayout = styled.div`
+	.guideText {
+		display: flex;
+		justify-content: center;
+		margin: 0px auto;
+		padding-top: 50px;
+		color: white;
+	}
+	.outerZido {
+		display: flex;
+		justify-content: center;
+		margin: 0px auto;
+		width: 90%;
+		// height: 1000px;
+		padding-top: 50px;
+		padding-bottom: 50px;
+		color: white;
+	}
+`;
 
-const Popular = () => {
+export default function Zido() {
 	return (
-		<PopularLayout>
+		<ZidoContainer>
 			<Section color={cssUnit.backgroundColors.Black} size={100}>
 				<Wrap>
 					<WrapTitle color={cssUnit.colors.White}>
-						인기 유료 전시회
+						지도에서 박물관 검색
 					</WrapTitle>
 				</Wrap>
 			</Section>
+			<Section size={900}></Section>
 			<Section color={cssUnit.backgroundColors.White} size={900}>
 				<Wrap>
 					<UnderDevSection>
@@ -41,8 +59,13 @@ const Popular = () => {
 					</UnderDevSection>
 				</Wrap>
 			</Section>
-		</PopularLayout>
+			{/* <ZidoSearchLayout>
+				<div className='outerZido'>
+					<UnderDevSection>
+						<h1>개발중 입니다</h1>
+					</UnderDevSection>
+				</div>
+			</ZidoSearchLayout> */}
+		</ZidoContainer>
 	);
-};
-
-export default Popular;
+}

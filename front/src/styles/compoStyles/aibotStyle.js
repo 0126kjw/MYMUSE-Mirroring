@@ -14,7 +14,7 @@ const AiBotLayout = styled.div`
 		height: 100px;
 
 		background-color: ${cssUnit.colors.DarkGold};
-		border: solid 0.5px;
+		/* border: solid 0.5px; */
 		border-radius: 50%;
 
 		line-height: 100px;
@@ -22,6 +22,9 @@ const AiBotLayout = styled.div`
 
 		font-size: ${cssUnit.fontSize.medium};
 		font-weight: bold;
+
+		//footer issue
+		z-index: 1;
 
 		&:hover {
 			cursor: pointer;

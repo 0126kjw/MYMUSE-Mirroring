@@ -39,7 +39,7 @@ export const HeaderWraper = styled.div`
 `;
 export const HeaderUpper = styled.div`
 	width: 100%;
-	height: 00px;
+	height: 100px;
 
 	position: relative;
 
@@ -59,7 +59,7 @@ export const HeaderUpper = styled.div`
 
 export const HeaderLower = styled.div`
 	width: 100%;
-	height: 200px;
+	height: 100px;
 `;
 
 export const HeaderTitleBox = styled.div``;

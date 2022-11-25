@@ -53,7 +53,7 @@ const NavBar = () => {
 						</Link>
 					</li>
 					<li>
-						<Link href='/sub/zido'>
+						<Link href='/sub/map'>
 							{' '}
 							<span>Map</span>{' '}
 						</Link>
