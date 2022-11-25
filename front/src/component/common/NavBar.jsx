@@ -7,6 +7,7 @@ const NaviContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
 	width: 100%;
 	height: 50px;
 
@@ -15,14 +16,18 @@ const NaviContainer = styled.div`
 
 const NavBarLayout = styled.div`
 	ul {
-		margin: 0px;
-		width: 1200px;
-
-		padding-left: 0px;
 		display: flex;
 		justify-content: space-around;
-		background-color: ${cssUnit.backgroundColors.Black};
+
+		width: 1200px;
 		height: 50px;
+
+		margin: 0px;
+
+		padding-left: 0px;
+
+		background-color: ${cssUnit.backgroundColors.Black};
+
 		line-height: 50px;
 
 		span {
