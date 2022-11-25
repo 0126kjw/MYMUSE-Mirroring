@@ -63,7 +63,7 @@ export default function MainZido() {
 		// 	height: '100%',
 		// }}
 		>
-			<ReactTooltip type='light'>{tooltipName}</ReactTooltip>
+			{/* <ReactTooltip type='light'>{tooltipName}</ReactTooltip> */}
 			<div
 				style={{
 					backgroundColor: 'transparent',

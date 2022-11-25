@@ -258,7 +258,7 @@ export default function SeoulZido() {
 			</div>
 			{mapState.currentView == 'inner' && (
 				<>
-					{/* <LeftArrow
+					<LeftArrow
 						onClick={() => {
 							setMapState({
 								currentView: 'outer',
@@ -273,7 +273,7 @@ export default function SeoulZido() {
 						}}
 					>
 						⬅
-					</LeftArrow> */}
+					</LeftArrow>
 				</>
 			)}
 		</div>
