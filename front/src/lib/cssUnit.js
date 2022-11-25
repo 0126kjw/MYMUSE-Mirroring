@@ -31,6 +31,7 @@ const cssUnit = {
 	backgroundColors: {
 		Black: '#222222',
 		LightBlack: '#2D2D2D',
+		Gray: '#CCCCCC',
 
 		White: '#FAFAFA',
 	},

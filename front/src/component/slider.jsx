@@ -6,7 +6,8 @@ import styled from '@emotion/styled';
 const SliderLayout = styled.div`
 	.slider {
 		width: 100%;
-		height: 60vh;
+		/* height: 60vh; */
+		height: 400px;
 		position: relative;
 		overflow: hidden;
 	}

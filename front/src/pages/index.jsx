@@ -3,7 +3,7 @@
 // import Slider from '../component/slider'
 // import { Header, Footer, NavBar, AiBot } from 'Component/common'
 
-import Main from '../component/main';
+import Main from '../component/Main';
 import Head from 'next/head';
 import styled from '@emotion/styled';
 

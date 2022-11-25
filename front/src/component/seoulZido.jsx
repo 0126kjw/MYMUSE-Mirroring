@@ -57,12 +57,17 @@ export default function SeoulZido() {
 	});
 
 	return (
-		<div>
+		<div
+		// style={{
+		// 	width: '100%',
+		// 	height: '100%',
+		// }}
+		>
 			<ReactTooltip type='light'>{tooltipName}</ReactTooltip>
 			<div
 				style={{
 					backgroundColor: 'beige',
-					width: '1000px',
+					width: '100%',
 				}}
 			>
 				<ComposableMap

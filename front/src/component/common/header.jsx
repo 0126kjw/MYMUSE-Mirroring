@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import NavBar from './navBar'
+import NavBar from './NavBar'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 // import asdf from '/front/public/images/wallpaper.png'
