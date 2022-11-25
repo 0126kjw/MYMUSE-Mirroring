@@ -25,7 +25,7 @@ export class ExhibitionService {
 
   @Cron('59 59 23 * * *')
   async handleCron() {
-    const list = exhibitionList();
+    const list = await exhibitionList();
     const deleted = await this.exhibitionModel.deleteMany();
 
     if (!deleted) {
