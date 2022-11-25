@@ -1,5 +1,11 @@
 //styled
-import { HeaderContainer } from 'styles/compoStyles/headerStyle';
+import {
+	HeaderContainer,
+	HeaderWraper,
+	HeaderUpper,
+	HeaderTitleBox,
+	HeaderLower,
+} from 'styles/compoStyles/headerStyle';
 import NavBar from './NavBar';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -14,30 +20,32 @@ const Header = () => {
 	return (
 		<>
 			<HeaderContainer>
-				{/* <Image src={logo} art='logo' /> */}
-				{/* old legacy */}
-				<div className='logoImg'>
-					<Image
-						onClick={() => router.push('/')}
-						src={logo}
-						alt='logo'
-						layout='fill'
-						objectFit='contain'
-						unoptimized={true}
-					/>
-				</div>
-
-				<div className='bgImg'>
-					<Image
-						onClick={() => router.push('/')}
-						src={bgImgSrc}
-						alt='wallpaper'
-						layout='fill'
-						objectFit='none'
-						unoptimized={true}
-					/>
-				</div>
-
+				<HeaderWraper>
+					<div className='bgImg'>
+						<Image
+							onClick={() => router.push('/')}
+							src={bgImgSrc}
+							alt='wallpaper'
+							layout='fill'
+							objectFit='none'
+							unoptimized={true}
+						/>
+						<HeaderUpper>
+							{/* <Image src={logo} art='logo' /> */}
+							<div className='logoImg'>
+								<Image
+									onClick={() => router.push('/')}
+									src={logo}
+									alt='logo'
+									layout='fill'
+									objectFit='contain'
+									unoptimized={true}
+								/>
+							</div>
+						</HeaderUpper>
+						<HeaderLower />
+					</div>
+				</HeaderWraper>
 				<NavBar />
 			</HeaderContainer>
 		</>

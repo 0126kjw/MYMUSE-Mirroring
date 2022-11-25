@@ -69,6 +69,8 @@ export const MainTitleContainer = styled.div`
 		padding-top: 40px;
 
 		color: white;
+		font-family: 'Gothic A1';
+		font-weight: 600;
 	}
 `;
 
@@ -228,6 +230,8 @@ export const AiChatButton = styled.button`
 
 	font-size: ${cssUnit.fontSize.medium};
 	color: ${cssUnit.colors.White};
+
+	font-family: 'Noto serif KR', sans-serif;
 	font-weight: 400;
 
 	&:hover {
