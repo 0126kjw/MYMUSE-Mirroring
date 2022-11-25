@@ -1,6 +1,5 @@
-import SeoulZido from '../../component/seoulZido';
 import styled from '@emotion/styled';
-import Head from 'next/head';
+import { UnderDevSection } from 'styles/pageStyles/underDev';
 
 const ZidoSearchLayout = styled.div`
 	margin: 0px auto;
@@ -35,26 +34,13 @@ const ZidoSearchLayout = styled.div`
 export default function Zido() {
 	return (
 		<ZidoSearchLayout>
-			<Head>
-				<link
-					rel='preconnect'
-					href='https://fonts.googleapis.com'
-				></link>
-				<link
-					rel='preconnect'
-					href='https://fonts.gstatic.com'
-					crossorigin
-				></link>
-				<link
-					href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap'
-					rel='stylesheet'
-				></link>
-			</Head>
 			<div className='guideText'>
 				<p>지도에서 박물관 검색</p>
 			</div>
 			<div className='outerZido'>
-				<SeoulZido />
+				<UnderDevSection>
+					<h1>개발중 입니다</h1>
+				</UnderDevSection>
 			</div>
 		</ZidoSearchLayout>
 	);

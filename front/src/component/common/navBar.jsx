@@ -1,14 +1,27 @@
-import Link from 'next/link'
-import styled from '@emotion/styled'
+import Link from 'next/link';
+import styled from '@emotion/styled';
+import cssUnit from 'lib/cssUnit';
+
+const NaviContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 50px;
+
+	background-color: ${cssUnit.backgroundColors.Black};
+`;
 
 const NavBarLayout = styled.div`
 	ul {
 		margin: 0px;
+		width: 1200px;
 
 		padding-left: 0px;
 		display: flex;
 		justify-content: space-around;
-		background-color: #404048;
+		background-color: ${cssUnit.backgroundColors.Black};
 		height: 50px;
 		line-height: 50px;
 
@@ -22,31 +35,39 @@ const NavBarLayout = styled.div`
 			}
 		}
 	}
-`
+`;
 
 export default function NavBar() {
 	return (
-		<NavBarLayout>
-			<ul>
-				<li>
-					<Link href='/'>
-						<span>Home</span>
-					</Link>
-				</li>
-				<li>
-					<Link href='/sub/search'>
-						{' '}
-						<span>Search</span>{' '}
-					</Link>
-				</li>
-				{/* <li><Link href='/sub/zido'> <span>SeoulMap</span> </Link></li> */}
-				<li>
-					<Link href='/sub/rank'>
-						{' '}
-						<span>Ranking</span>{' '}
-					</Link>
-				</li>
-			</ul>
-		</NavBarLayout>
-	)
+		<NaviContainer>
+			<NavBarLayout>
+				<ul>
+					<li>
+						<Link href='/'>
+							<span>Home</span>
+						</Link>
+					</li>
+					<li>
+						<Link href='/sub/zido'>
+							{' '}
+							<span>Map</span>{' '}
+						</Link>
+					</li>
+					<li>
+						<Link href='/sub/search'>
+							{' '}
+							<span>Search</span>{' '}
+						</Link>
+					</li>
+
+					<li>
+						<Link href='/sub/rank'>
+							{' '}
+							<span>Popular</span>{' '}
+						</Link>
+					</li>
+				</ul>
+			</NavBarLayout>
+		</NaviContainer>
+	);
 }

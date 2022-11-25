@@ -7,7 +7,7 @@ const SliderLayout = styled.div`
 	.slider {
 		width: 100%;
 		/* height: 60vh; */
-		height: 400px;
+		height: 600px;
 		position: relative;
 		overflow: hidden;
 	}

@@ -1,13 +1,14 @@
-import styled from '@emotion/styled'
-import NavBar from './NavBar'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
+import styled from '@emotion/styled';
+import NavBar from './NavBar';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 // import asdf from '/front/public/images/wallpaper.png'
-import logo from '../../../public/images/siteLogo.png'
+import logo from '../../../public/images/siteLogo.png';
+import cssUnit from 'lib/cssUnit';
 
 const HeaderLayout = styled.div`
 	position: relative;
-	background-color: #ffffd0;
+	background-color: ${cssUnit.backgroundColors.Black};
 	border: solid 1px;
 	width: 100%;
 	height: 250px;
@@ -33,13 +34,13 @@ const HeaderLayout = styled.div`
 			cursor: pointer;
 		}
 	}
-`
+`;
 
 export default function Header() {
 	const bgImgSrc =
-		'https://images.unsplash.com/photo-1491156855053-9cdff72c7f85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2456&q=80'
+		'https://images.unsplash.com/photo-1491156855053-9cdff72c7f85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2456&q=80';
 
-	const router = useRouter()
+	const router = useRouter();
 
 	return (
 		<>
@@ -69,5 +70,5 @@ export default function Header() {
 				<NavBar />
 			</HeaderLayout>
 		</>
-	)
+	);
 }

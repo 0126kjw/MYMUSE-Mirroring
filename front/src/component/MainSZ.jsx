@@ -37,7 +37,7 @@ const LeftArrow = styled.div`
 //   }
 // `;
 
-export default function SeoulZido() {
+export default function MainZido() {
 	let mapData = undefined;
 	let pinData = undefined;
 
@@ -66,7 +66,7 @@ export default function SeoulZido() {
 			<ReactTooltip type='light'>{tooltipName}</ReactTooltip>
 			<div
 				style={{
-					backgroundColor: 'beige',
+					backgroundColor: 'transparent',
 					width: '100%',
 				}}
 			>
