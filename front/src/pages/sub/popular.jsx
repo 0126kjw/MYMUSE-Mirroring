@@ -1,9 +1,10 @@
-import Ranking from '../../component/ranking';
+//components
+import PopularList from '../../component/PopularList';
 //styling
 import styled from '@emotion/styled';
 import { UnderDevSection } from 'styles/pageStyles/underDev';
 
-const RankLayout = styled.div`
+const PopularLayout = styled.div`
 	margin: 0px auto;
 	main {
 		text-align: center;
@@ -15,13 +16,20 @@ const RankLayout = styled.div`
 	background-color: black;
 `;
 
-export default function Rank() {
+const PopularTitle = styled.div`
+	padding: 30px;
+	color: white;
+`;
+
+const Popular = () => {
 	return (
-		<RankLayout>
-			<Ranking />
+		<PopularLayout>
+			<PopularTitle />
 			<UnderDevSection>
 				<h1>개발중 입니다</h1>
 			</UnderDevSection>
-		</RankLayout>
+		</PopularLayout>
 	);
-}
+};
+
+export default Popular;

@@ -1,7 +1,8 @@
+//styled
+import styled from '@emotion/styled';
+import { UnderDevSection } from 'styles/pageStyles/underDev';
 // components
 import SearchBar from '../../component/searchBar';
-import { UnderDevSection } from 'styles/pageStyles/underDev';
-import styled from '@emotion/styled';
 
 const SearchpageLayout = styled.div`
 	margin: 0px auto;
@@ -15,7 +16,7 @@ const SearchpageLayout = styled.div`
 	background-color: black;
 `;
 
-export default function Search() {
+const Search = () => {
 	return (
 		<SearchpageLayout>
 			<SearchBar />
@@ -24,4 +25,6 @@ export default function Search() {
 			</UnderDevSection>
 		</SearchpageLayout>
 	);
-}
+};
+
+export default Search;

@@ -11,8 +11,7 @@ const FooterLayout = styled.div`
 	width: 100%;
 	height: 200px;
 `;
-
-export default function Footer() {
+const Footer = () => {
 	return (
 		<>
 			<FooterLayout>
@@ -20,4 +19,6 @@ export default function Footer() {
 			</FooterLayout>
 		</>
 	);
-}
+};
+
+export default Footer;

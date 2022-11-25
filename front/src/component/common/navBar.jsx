@@ -37,7 +37,7 @@ const NavBarLayout = styled.div`
 	}
 `;
 
-export default function NavBar() {
+const NavBar = () => {
 	return (
 		<NaviContainer>
 			<NavBarLayout>
@@ -61,7 +61,7 @@ export default function NavBar() {
 					</li>
 
 					<li>
-						<Link href='/sub/rank'>
+						<Link href='/sub/popular'>
 							{' '}
 							<span>Popular</span>{' '}
 						</Link>
@@ -70,4 +70,6 @@ export default function NavBar() {
 			</NavBarLayout>
 		</NaviContainer>
 	);
-}
+};
+
+export default NavBar;

@@ -36,7 +36,7 @@ const HeaderLayout = styled.div`
 	}
 `;
 
-export default function Header() {
+const Header = () => {
 	const bgImgSrc =
 		'https://images.unsplash.com/photo-1491156855053-9cdff72c7f85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2456&q=80';
 
@@ -71,4 +71,6 @@ export default function Header() {
 			</HeaderLayout>
 		</>
 	);
-}
+};
+
+export default Header;

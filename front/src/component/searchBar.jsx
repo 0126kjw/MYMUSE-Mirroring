@@ -8,7 +8,7 @@ const SearchBarLayout = styled.div`
 	background-color: black;
 	color: white;
 `;
-export default function SearchBar() {
+const SearchBar = () => {
 	return (
 		<SearchBarLayout>
 			<label htmlFor='name'> 검색 : &nbsp;</label>
@@ -16,4 +16,6 @@ export default function SearchBar() {
 			<button>🔍</button>
 		</SearchBarLayout>
 	);
-}
+};
+
+export default SearchBar;
