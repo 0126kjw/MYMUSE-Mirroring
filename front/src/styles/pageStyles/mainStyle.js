@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
+import cssUnit from 'lib/cssUnit';
 
-const bgImgSrc =
-	'https://images.unsplash.com/photo-1491156855053-9cdff72c7f85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2456&q=80';
-
-export const MainContainer = styled.body`
+export const MainContainer = styled.div`
+	display: flex;
+	flex-direction: column;
 	width: auto !important;
 	height: auto !important;
 
@@ -19,8 +19,17 @@ export const MainTitleContainer = styled.div`
 	width: auto;
 	height: auto;
 
-	max-width: 1200px;
 	min-height: 250px;
 	/* background-image: bgImgSrc; */
-	background-color: aquamarine;
+	background-color: ${cssUnit.backgroundColors.Black};
+`;
+
+export const Logosection = styled.div`
+	width: 131px;
+	height: 450px;
+	top: 90px;
+	z-index: 2;
+	&:hover {
+		cursor: pointer;
+	}
 `;

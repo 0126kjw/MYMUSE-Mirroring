@@ -1,17 +1,14 @@
 import '../styles/globals.css';
-import { Header, Footer, AiBot } from 'Component/common';
+import AppLayout from 'component/common/AppLayout';
 import { GlobalStyles } from 'styles/globalStyle';
 
 function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			{GlobalStyles}
-			<Header />
-			<>
+			<AppLayout>
 				<Component {...pageProps} />
-			</>
-			<Footer />
-			<AiBot />
+			</AppLayout>
 		</>
 	);
 }
