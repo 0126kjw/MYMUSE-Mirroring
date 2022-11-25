@@ -3,6 +3,9 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  const PORT = process.env.SERVER_PORT;
+  console.log(PORT);
+  console.log(process.env.MONGODB_URL);
+  await app.listen(PORT);
 }
 bootstrap();
