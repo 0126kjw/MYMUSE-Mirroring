@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { UnderDevSection } from 'styles/pageStyles/underDev';
+import SeoulZidoSub from 'component/SeoulZidoSub';
 
 const ZidoSearchLayout = styled.div`
 	margin: 0px auto;
@@ -24,7 +25,7 @@ const ZidoSearchLayout = styled.div`
 		justify-content: center;
 		margin: 0px auto;
 		width: 90%;
-		// height: 1000px;
+		height: 1000px;
 		padding-top: 50px;
 		padding-bottom: 50px;
 		color: white;
@@ -39,7 +40,7 @@ export default function Zido() {
 			</div>
 			<div className='outerZido'>
 				<UnderDevSection>
-					<h1>개발중 입니다</h1>
+					<SeoulZidoSub />
 				</UnderDevSection>
 			</div>
 		</ZidoSearchLayout>

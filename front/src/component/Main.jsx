@@ -27,7 +27,7 @@ import {
 
 // component
 import Slider from './Slider';
-import MainZido from './MainSZ';
+import SeoulZidoMain from './SeoulZidoMain';
 
 const Main = () => {
 	return (
@@ -52,7 +52,7 @@ const Main = () => {
 							지도에 표시하며 살펴보세요
 						</SectionTitle>
 						<MapContainer>
-							<MainZido />
+							<SeoulZidoMain />
 						</MapContainer>
 					</MapWrap>
 				</MapSection>
