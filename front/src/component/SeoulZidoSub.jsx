@@ -48,18 +48,27 @@ const SubZidoLayout = styled.div`
 	}
 
 	.pinListUps {
+		margin: 0px;
 		background-color: gray;
 		margin-top: 40px;
 		margin-bottom: 40px;
 		padding-top: 20px;
 		padding-bottom: 20px;
+		ul {
+			margin: 0px;
+			padding-left: 30px;
+			li {
+				margin-bottom: 20px;
+			}
+		}
 
 		.basic {
 			position: relative;
 			width: 700px;
 			background-color: aliceblue;
 			list-style: none;
-			list-style: none;
+			border: solid 10px aliceblue;
+			margin: 10px;
 
 			&:hover {
 				background-color: pink;
@@ -68,24 +77,56 @@ const SubZidoLayout = styled.div`
 			}
 		}
 
-		.active {
+		.borderRed {
 			position: relative;
 			width: 700px;
 			background-color: aliceblue;
 			list-style: none;
-			background-color: pink;
-			font-weight: bold;
+			border: solid 10px red;
+			margin: 10px;
+
+			&:hover {
+				background-color: pink;
+				font-weight: bold;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.circlePinViewer {
+		position: absolute;
+		text-align: left;
+		top: 682px;
+		width: 10px;
+		z-index: 999;
+		// background-color: green;
+		margin-top: 40px;
+		margin-bottom: 40px;
+
+		padding-top: 20px;
+		padding-bottom: 20px;
+
+		ul {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		li {
 			list-style: none;
-			cursor: pointer;
 		}
 	}
 
 	.guideText {
+		position: relative;
 		background-color: gray;
 		margin-top: 40px;
 		margin-bottom: 40px;
 		padding-top: 20px;
 		padding-bottom: 20px;
+	}
+	.tooltipStyle {
+		color: red;
+		font-size: 25px;
 	}
 `;
 
@@ -152,7 +193,9 @@ export default function SeoulZido() {
 		<>
 			{isMounted ? (
 				<SubZidoLayout>
-					<ReactTooltip type='light'>{tooltipName}</ReactTooltip>
+					<ReactTooltip className='tooltipStyle' type='light'>
+						{tooltipName}
+					</ReactTooltip>
 					<div className='react-simple-maps'>
 						{selectedMapState.mapKind == 'inner' && (
 							<>
@@ -247,7 +290,7 @@ export default function SeoulZido() {
 									</Geographies>
 								) : null}
 
-								{selectedMapState.mapKind == 'outer'
+								{selectedMapState.mapKind == 'outer' && isMounted
 									? markers.map(({ name, coordinates, markerOffset }) => (
 											<Marker key={name} coordinates={coordinates}>
 												<text
@@ -268,6 +311,7 @@ export default function SeoulZido() {
 
 								{selectedMapState.mapKind == 'inner'
 									? pins &&
+									  isMounted &&
 									  pins.map(({ name, coordinates, _id }) => (
 											<Marker
 												key={name}
@@ -341,18 +385,14 @@ export default function SeoulZido() {
 							</>
 						)}
 					</div>
+
 					{selectedMapState.mapKind == 'inner' && pins && pins.length > 0 && (
 						<div className='pinListUps'>
 							<ul>
 								{pins.map((x) => {
 									return (
-										<div className={x._id == hoverPin ? 'active' : 'basic'}>
-											<li
-												key={x._id}
-												onClick={() => {
-													alert(x.name);
-												}}
-											>
+										<div className={x._id != hoverPin ? 'basic' : 'borderRed'}>
+											<li key={x._id}>
 												<p>{x.name}</p>
 												<p>{x.address}</p>
 											</li>
@@ -362,15 +402,25 @@ export default function SeoulZido() {
 							</ul>
 						</div>
 					)}
+
 					{selectedMapState.mapKind == 'inner' && pins && pins.length == 0 && (
 						<div className='guideText'>
 							<p>{selectedMapState.name} 박물관은 찾을 수 없습니다</p>
 						</div>
 					)}
 
+					{selectedMapState.mapKind == 'inner' && (
+						<div className='guideText'>
+							<p>
+								박물관 위치가 겹치는 경우 ,<br></br> 지도에서 확인이 어려울 수
+								있습니다.
+							</p>
+						</div>
+					)}
+
 					{selectedMapState.mapKind == 'outer' && (
 						<div className='guideText'>
-							<p> 박물관 목록에서 상세 페이지로 이동할 수 있습니다.</p>
+							<p>박물관 목록에서 상세 페이지로 이동할 수 있습니다.</p>
 						</div>
 					)}
 				</SubZidoLayout>
