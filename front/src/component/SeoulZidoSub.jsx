@@ -1,11 +1,5 @@
 // library
-import {
-	ComposableMap,
-	Geographies,
-	Geography,
-	Marker,
-	ZoomableGroup,
-} from 'react-simple-maps';
+import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
 import { useRecoilState } from 'recoil';
 import SelectedMapState from '../state/selectedMap';
 import styled from '@emotion/styled';
@@ -82,7 +76,16 @@ const SubZidoLayout = styled.div`
 			background-color: pink;
 			font-weight: bold;
 			list-style: none;
+			cursor: pointer;
 		}
+	}
+
+	.guideText {
+		background-color: gray;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		padding-top: 20px;
+		padding-bottom: 20px;
 	}
 `;
 
@@ -93,8 +96,7 @@ export default function SeoulZido() {
 	const [pins, setPins] = useState([]);
 	const [hoverPin, setHoverPin] = useState('');
 
-	const [selectedMapState, setSelectedMapState] =
-		useRecoilState(SelectedMapState);
+	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 
 	const [mapState, setMapState] = useState({
 		map: outerMap,
@@ -117,9 +119,7 @@ export default function SeoulZido() {
 			} else {
 				let mapData = undefined;
 				let pinData = undefined;
-				const foundGu = guId.find(
-					(v) => v.name === selectedMapState.name,
-				);
+				const foundGu = guId.find((v) => v.name === selectedMapState.name);
 				if (foundGu != '') {
 					try {
 						mapData = await axios.get(
@@ -156,9 +156,7 @@ export default function SeoulZido() {
 					<div className='react-simple-maps'>
 						{selectedMapState.mapKind == 'inner' && (
 							<>
-								<div className='subLocationName'>
-									{selectedMapState.name}
-								</div>
+								<div className='subLocationName'>{selectedMapState.name}</div>
 							</>
 						)}
 						{selectedMapState.mapKind == 'outer' && (
@@ -189,21 +187,12 @@ export default function SeoulZido() {
 													<Geography
 														fill={'cornflowerblue'}
 														stroke={'#F5F5F5'}
-														strokeWidth={
-															mapState.isZoom
-																? 0
-																: 0.4
-														}
+														strokeWidth={mapState.isZoom ? 0 : 0.4}
 														onClick={() => {
-															setSelectedMapState(
-																{
-																	mapKind:
-																		'inner',
-																	name: geo
-																		.properties
-																		.name,
-																},
-															);
+															setSelectedMapState({
+																mapKind: 'inner',
+																name: geo.properties.name,
+															});
 														}}
 														key={geo.rsmKey}
 														geography={geo}
@@ -236,11 +225,7 @@ export default function SeoulZido() {
 													<Geography
 														fill={'cornflowerblue'}
 														stroke={'#F5F5F5'}
-														strokeWidth={
-															mapState.isZoom
-																? 0
-																: 0.4
-														}
+														strokeWidth={mapState.isZoom ? 0 : 0.4}
 														key={geo.rsmKey}
 														geography={geo}
 														style={{
@@ -263,32 +248,22 @@ export default function SeoulZido() {
 								) : null}
 
 								{selectedMapState.mapKind == 'outer'
-									? markers.map(
-											({
-												name,
-												coordinates,
-												markerOffset,
-											}) => (
-												<Marker
-													key={name}
-													coordinates={coordinates}
+									? markers.map(({ name, coordinates, markerOffset }) => (
+											<Marker key={name} coordinates={coordinates}>
+												<text
+													textAnchor='middle'
+													y={markerOffset}
+													style={{
+														fontFamily: 'system-ui',
+														fontSize: '8',
+														fontWeight: 'bold',
+														cursor: 'default',
+													}}
 												>
-													<text
-														textAnchor='middle'
-														y={markerOffset}
-														style={{
-															fontFamily:
-																'system-ui',
-															fontSize: '8',
-															fontWeight: 'bold',
-															cursor: 'default',
-														}}
-													>
-														{name}
-													</text>
-												</Marker>
-											),
-									  )
+													{name}
+												</text>
+											</Marker>
+									  ))
 									: null}
 
 								{selectedMapState.mapKind == 'inner'
@@ -298,8 +273,7 @@ export default function SeoulZido() {
 												key={name}
 												coordinates={coordinates}
 												onClick={() => {
-													// setTooltipName('')
-													// 박물관 detail page로 이동
+													alert('박물관 page로 이동');
 												}}
 												onMouseEnter={() => {
 													setTooltipName(name);
@@ -307,7 +281,7 @@ export default function SeoulZido() {
 												}}
 												onMouseLeave={() => {
 													setTooltipName('');
-													setHoverPin('');
+													// setHoverPin('');
 												}}
 												style={{
 													default: {
@@ -367,52 +341,38 @@ export default function SeoulZido() {
 							</>
 						)}
 					</div>
-					<div className='pinListUps'>
-						<ul>
-							{pins ? (
-								<>
-									{pins.length > 0 ? (
-										<>
-											{pins.map((x, i) => {
-												return (
-													<div
-														className={
-															x._id == hoverPin
-																? 'active'
-																: 'basic'
-														}
-													>
-														<li
-															key={x._id}
-															onClick={() => {
-																alert(x.name);
-															}}
-														>
-															<p>{x.name}</p>
-															<p>{x.address}</p>
-														</li>
-													</div>
-												);
-											})}
-										</>
-									) : (
-										<>
-											<p>
-												{selectedMapState.name}에서는
-												박물관을 찾을 수 없습니다
-											</p>
-										</>
-									)}
-								</>
-							) : (
-								<p>
-									{' '}
-									박물관 목록에서 상세 페이지로 이동할 수
-									있습니다.
-								</p>
-							)}
-						</ul>
-					</div>
+					{selectedMapState.mapKind == 'inner' && pins && pins.length > 0 && (
+						<div className='pinListUps'>
+							<ul>
+								{pins.map((x) => {
+									return (
+										<div className={x._id == hoverPin ? 'active' : 'basic'}>
+											<li
+												key={x._id}
+												onClick={() => {
+													alert(x.name);
+												}}
+											>
+												<p>{x.name}</p>
+												<p>{x.address}</p>
+											</li>
+										</div>
+									);
+								})}
+							</ul>
+						</div>
+					)}
+					{selectedMapState.mapKind == 'inner' && pins && pins.length == 0 && (
+						<div className='guideText'>
+							<p>{selectedMapState.name} 박물관은 찾을 수 없습니다</p>
+						</div>
+					)}
+
+					{selectedMapState.mapKind == 'outer' && (
+						<div className='guideText'>
+							<p> 박물관 목록에서 상세 페이지로 이동할 수 있습니다.</p>
+						</div>
+					)}
 				</SubZidoLayout>
 			) : null}
 		</>
