@@ -5,7 +5,7 @@ export const UnderDevSection = styled.section`
 	position: relative;
 
 	min-width: 1200px;
-	height: 600px;
+	min-height: 600px;
 
 	background-color: ${cssUnit.backgroundColors.Gray};
 `;
