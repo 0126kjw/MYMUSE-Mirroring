@@ -60,18 +60,28 @@ const SubZidoLayout = styled.div`
 		padding-top: 20px;
 		padding-bottom: 20px;
 
-		.listBox {
+		.basic {
 			position: relative;
 			width: 700px;
-
 			background-color: aliceblue;
+			list-style: none;
+			list-style: none;
+
 			&:hover {
-				background-color: red;
+				background-color: pink;
+				font-weight: bold;
 				cursor: pointer;
 			}
-			li {
-				list-style: none;
-			}
+		}
+
+		.active {
+			position: relative;
+			width: 700px;
+			background-color: aliceblue;
+			list-style: none;
+			background-color: pink;
+			font-weight: bold;
+			list-style: none;
 		}
 	}
 `;
@@ -80,7 +90,8 @@ export default function SeoulZido() {
 	// useState
 	const [tooltipName, setTooltipName] = useState('');
 	const [isMounted, setIsMounted] = useState(false); // Need this for the react-tooltip
-	const [pins, setPins] = useState(undefined);
+	const [pins, setPins] = useState([]);
+	const [hoverPin, setHoverPin] = useState('');
 
 	const [selectedMapState, setSelectedMapState] =
 		useRecoilState(SelectedMapState);
@@ -117,6 +128,8 @@ export default function SeoulZido() {
 						pinData = await axios.get(
 							`https://qrcavwxubm.us16.qoddiapp.com/map/${foundGu._id}/pins`,
 						);
+						console.log('pinData.data.pins', pinData.data.pins);
+						console.log('pinsLength', pinData.data.pins.length);
 						setPins(pinData.data.pins);
 					} catch {
 						alert('failed to load data');
@@ -168,14 +181,6 @@ export default function SeoulZido() {
 								minZoom={mapState.zoom}
 								maxZoom={mapState.zoom}
 							>
-								{/* {isMounted && (
-							<ReactTooltip id={'mytip'} effect={'solid'} />
-						)}
-
-						<span data-tip={'Tip Here'} data-for={'mytip'}>
-							Hover me
-						</span> */}
-
 								{selectedMapState.mapKind == 'outer' ? (
 									<Geographies geography={mapState.map}>
 										{({ geographies }) =>
@@ -288,7 +293,7 @@ export default function SeoulZido() {
 
 								{selectedMapState.mapKind == 'inner'
 									? pins &&
-									  pins.map(({ name, coordinates }) => (
+									  pins.map(({ name, coordinates, _id }) => (
 											<Marker
 												key={name}
 												coordinates={coordinates}
@@ -298,9 +303,11 @@ export default function SeoulZido() {
 												}}
 												onMouseEnter={() => {
 													setTooltipName(name);
+													setHoverPin(_id);
 												}}
 												onMouseLeave={() => {
 													setTooltipName('');
+													setHoverPin('');
 												}}
 												style={{
 													default: {
@@ -309,7 +316,7 @@ export default function SeoulZido() {
 													hover: {
 														fill: 'rgba(172, 232, 207, .9)',
 														outline: 'white',
-														stroke: 'red',
+														stroke: 'pink',
 														strokeWidth: 0.1,
 														cursor: 'pointer',
 													},
@@ -360,22 +367,46 @@ export default function SeoulZido() {
 							</>
 						)}
 					</div>
-					{/* const [pins, setPins] = useState(undefined); */}
 					<div className='pinListUps'>
 						<ul>
 							{pins ? (
-								pins.map((x, i) => {
-									return (
-										<div className='listBox'>
-											<li key={x._id}>
-												<p>{x.name}</p>
-												<p>{x.address}</p>
-											</li>
-										</div>
-									);
-								})
+								<>
+									{pins.length > 0 ? (
+										<>
+											{pins.map((x, i) => {
+												return (
+													<div
+														className={
+															x._id == hoverPin
+																? 'active'
+																: 'basic'
+														}
+													>
+														<li
+															key={x._id}
+															onClick={() => {
+																alert(x.name);
+															}}
+														>
+															<p>{x.name}</p>
+															<p>{x.address}</p>
+														</li>
+													</div>
+												);
+											})}
+										</>
+									) : (
+										<>
+											<p>
+												{selectedMapState.name}에서는
+												박물관을 찾을 수 없습니다
+											</p>
+										</>
+									)}
+								</>
 							) : (
 								<p>
+									{' '}
 									박물관 목록에서 상세 페이지로 이동할 수
 									있습니다.
 								</p>
