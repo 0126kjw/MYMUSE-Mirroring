@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import cssUnit from 'lib/cssUnit';
 //components
-import { Header, Footer, AiBot } from './index';
+import { Header, Footer, AiBot } from './common/index';
 
 //styling
 const AppContainer = css`

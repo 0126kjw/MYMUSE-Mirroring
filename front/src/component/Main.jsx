@@ -1,21 +1,14 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import cssUnit from 'lib/cssUnit';
 //styling
+import { Section, Wrap, WrapTitle } from 'styles/common';
 import {
 	MainContainer,
 	MainTitleContainer,
-	Logosection,
-	SlideSection,
-	MapSection,
-	AiSection,
-	SilderWrap,
 	SilderContainer,
 	MapContainer,
-	SectionTitle,
-	MapWrap,
-	AiWrap,
 	AiContainer,
-	SectionTitleW,
 	AiExContainer,
 	SerachBarContainer,
 	AiChatRoomBox,
@@ -24,6 +17,7 @@ import {
 	AiBubble,
 	SearchBarLayout,
 } from 'styles/pageStyles/mainStyle';
+import logo from '../../public/images/siteLogo.png';
 
 // component
 import Slider from './Slider';
@@ -33,46 +27,60 @@ const Main = () => {
 	return (
 		<>
 			<MainContainer>
-				<MainTitleContainer>메인타이틀 섹션</MainTitleContainer>
-				<SlideSection>
-					<SilderWrap>
-						<SectionTitle>
+				<Section color={cssUnit.backgroundColors.Black} size={'150px'}>
+					<Wrap>
+						<MainTitleContainer>
+							{/* old legacy */}
+							<div className='logoImg'>
+								<Image
+									src={logo}
+									alt='logo'
+									objectFit='contain'
+									unoptimized={true}
+									width={300}
+									height={80}
+								/>
+							</div>
+							<span>한곳에서 보는 온라인 AI 전시정보 팜플렛</span>
+						</MainTitleContainer>
+					</Wrap>
+				</Section>
+
+				<Section color={cssUnit.backgroundColors.White}>
+					<Wrap>
+						<WrapTitle>
 							대표적인 박물관과 미술관들을 둘러보세요
-						</SectionTitle>
+						</WrapTitle>
 						<SilderContainer>
 							<Slider />
 						</SilderContainer>
-					</SilderWrap>
-				</SlideSection>
-				<MapSection>
-					<MapWrap>
-						<SectionTitle>
+					</Wrap>
+				</Section>
+				<Section color={cssUnit.backgroundColors.Gray}>
+					<Wrap>
+						<WrapTitle>
 							내 주변에 어떤 박물관/미술관이 있을까?
 							<br />
 							지도에 표시하며 살펴보세요
-						</SectionTitle>
+						</WrapTitle>
 						<MapContainer>
 							<SeoulZidoMain />
 						</MapContainer>
-					</MapWrap>
-				</MapSection>
-				<AiSection>
-					<AiWrap>
-						<SectionTitleW>
+					</Wrap>
+				</Section>
+				<Section color={cssUnit.backgroundColors.LightBlack}>
+					<Wrap>
+						<WrapTitle color={cssUnit.colors.White}>
 							직접 검색하거나
 							<br />
 							Ai에게 물어볼 수 있어요
-						</SectionTitleW>
+						</WrapTitle>
 						<AiContainer>
 							<SerachBarContainer>
 								<SearchBarLayout>
 									<div>
 										<input
-											type='text'
-											id='name'
-											name='name'
-											size='20'
-											width='100'
+											value='국립중앙박물관'
 											disabled
 										/>
 										<span>🔍︎</span>
@@ -82,8 +90,8 @@ const Main = () => {
 							<AiExContainer>
 								<AiChatRoomBox>
 									<HumanBubble>
-										☆☆! 12월에 국중박에서는 어떤 전시가
-										열려?
+										☆☆! 12월에 국립중앙박물관에서는 어떤
+										전시가 열려?
 									</HumanBubble>
 									<AiBubble>
 										<p align='left'>
@@ -107,8 +115,8 @@ const Main = () => {
 								</AiChatButton>
 							</AiExContainer>
 						</AiContainer>
-					</AiWrap>
-				</AiSection>
+					</Wrap>
+				</Section>
 			</MainContainer>
 		</>
 	);

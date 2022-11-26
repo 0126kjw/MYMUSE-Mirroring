@@ -23,13 +23,13 @@ import { markers } from '../data/basicMarkers';
 const SubZidoLayout = styled.div`
 	background-color: ${cssUnit.backgroundColors.Gray};
 	margin: 0px auto;
+	width: 800px;
 
 	.subLocation {
 		position: absolute;
-		text-align: center;
 		top: 30px;
+		right: 30px;
 		width: 1200px;
-		// height: 300px;
 		z-index: 999;
 		color: brown;
 		font-size: 40px;
@@ -38,7 +38,7 @@ const SubZidoLayout = styled.div`
 
 const LeftArrow = styled.div`
 	position: absolute;
-	top: 750px;
+	top: 470px;
 	left: 30px;
 	font-size: 100px;
 	color: black;

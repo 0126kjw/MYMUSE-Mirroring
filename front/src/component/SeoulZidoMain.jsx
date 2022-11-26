@@ -65,7 +65,7 @@ export default function SeoulZido() {
 															.name,
 													});
 													await router.push(
-														'/sub/zido',
+														'/sub/map',
 													);
 												}
 											}}
