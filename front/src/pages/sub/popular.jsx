@@ -28,8 +28,7 @@ const PopularLayout = styled.div`
 `;
 
 const Popular = () => {
-	const [selectedMapState, setSelectedMapState] =
-		useRecoilState(SelectedMapState);
+	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 	useEffect(() => {
 		setSelectedMapState({
 			mapKind: 'outer',
@@ -41,9 +40,7 @@ const Popular = () => {
 		<PopularLayout>
 			<Section color={cssUnit.backgroundColors.Black} size={100}>
 				<Wrap>
-					<WrapTitle color={cssUnit.colors.White}>
-						인기 유료 전시회
-					</WrapTitle>
+					<WrapTitle color={cssUnit.colors.White}>인기 유료 전시회</WrapTitle>
 				</Wrap>
 			</Section>
 			<Section color={cssUnit.backgroundColors.White} size={900}>

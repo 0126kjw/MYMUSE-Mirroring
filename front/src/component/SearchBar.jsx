@@ -11,13 +11,43 @@ const SearchBarLayout = styled.div`
 	background-color: transparent;
 
 	color: ${cssUnit.colors.White};
+
+	button {
+		margin-top: 10px;
+		height: 26px;
+		line-height: 26px;
+	}
 `;
-const SearchBar = () => {
+
+const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes }) => {
+	const onChange = (e) => {
+		setSearchVal(e.target.value);
+	};
+	const onSubmit = (e) => {
+		e.preventDefault();
+		setSearchRes(searchVal);
+		setSearchVal('');
+	};
+	const onClick = () => {
+		setSearchRes(searchVal);
+		setSearchVal('');
+	};
+
 	return (
 		<SearchBarLayout>
-			<label htmlFor='name'> 검색 : &nbsp;</label>
-			<input type='text' id='name' name='name' size='40' />
-			<button>🔍</button>
+			<form onSubmit={onSubmit}>
+				<label htmlFor='name'> 검색 : &nbsp;</label>
+				<input
+					type='text'
+					id='name'
+					name='name'
+					size='40'
+					value={searchVal}
+					onChange={onChange}
+					autocomplete='off'
+				/>
+			</form>
+			<button onClick={onClick}>🔍</button>
 		</SearchBarLayout>
 	);
 };

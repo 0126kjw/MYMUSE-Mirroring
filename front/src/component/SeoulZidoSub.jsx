@@ -412,7 +412,7 @@ export default function SeoulZido() {
 					{selectedMapState.mapKind == 'inner' && (
 						<div className='guideText'>
 							<p>
-								박물관 위치가 겹치는 경우 ,<br></br> 지도에서 확인이 어려울 수
+								박물관 위치가 겹치는 경우<br></br> 지도에서 확인이 어려울 수
 								있습니다.
 							</p>
 						</div>

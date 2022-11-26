@@ -9,7 +9,7 @@ import SearchBar from '../../component/SearchBar';
 
 import { useRecoilState } from 'recoil';
 import SelectedMapState from 'state/selectedMap';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const SearchpageLayout = styled.div`
 	width: auto;
@@ -29,8 +29,10 @@ const SearchpageLayout = styled.div`
 `;
 
 const Search = () => {
-	const [selectedMapState, setSelectedMapState] =
-		useRecoilState(SelectedMapState);
+	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
+	const [searchVal, setSearchVal] = useState('');
+	const [searchRes, setSearchRes] = useState('');
+
 	useEffect(() => {
 		setSelectedMapState({
 			mapKind: 'outer',
@@ -42,10 +44,13 @@ const Search = () => {
 		<SearchpageLayout>
 			<Section color={cssUnit.backgroundColors.Black} size={50}>
 				<Wrap>
-					<WrapTitle color={cssUnit.colors.White}>
-						박물관/전시관 검색
-					</WrapTitle>
-					<SearchBar />
+					<WrapTitle color={cssUnit.colors.White}>박물관/전시관 검색</WrapTitle>
+					<SearchBar
+						searchVal={searchVal}
+						setSearchVal={setSearchVal}
+						searchRes={searchRes}
+						setSearchRes={setSearchRes}
+					/>
 				</Wrap>
 			</Section>
 
@@ -53,6 +58,7 @@ const Search = () => {
 				<Wrap>
 					<UnderDevSection>
 						<h1>개발중 입니다</h1>
+						<h1>검색결과 : {searchRes} </h1>
 					</UnderDevSection>
 				</Wrap>
 			</Section>
