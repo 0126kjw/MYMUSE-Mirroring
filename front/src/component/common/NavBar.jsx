@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
+//for get url
+import { useRouter } from 'next/router';
 
 const NaviContainer = styled.div`
 	display: flex;
@@ -45,6 +47,8 @@ const NavBarLayout = styled.div`
 `;
 
 const NavBar = () => {
+	const router = useRouter();
+	console.log(router.pathname);
 	return (
 		<NaviContainer>
 			<NavBarLayout>

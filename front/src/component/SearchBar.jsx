@@ -44,7 +44,7 @@ const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes }) => {
 					size='40'
 					value={searchVal}
 					onChange={onChange}
-					autocomplete='off'
+					autoComplete='off'
 				/>
 			</form>
 			<button onClick={onClick}>🔍</button>
