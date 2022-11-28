@@ -169,9 +169,7 @@ export default function SeoulZido() {
 						pinData = await axios.get(
 							`https://qrcavwxubm.us16.qoddiapp.com/map/${foundGu._id}/pins`,
 						);
-						console.log('pinData.data.pins', pinData.data.pins);
-						console.log('pinsLength', pinData.data.pins.length);
-						setPins(pinData.data.pins);
+						setPins(pinData.data);
 					} catch {
 						alert('failed to load data');
 					}

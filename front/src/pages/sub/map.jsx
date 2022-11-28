@@ -9,11 +9,9 @@ import SeoulZidoSub from 'component/SeoulZidoSub';
 const ZidoContainer = styled.div`
 	width: auto;
 	height: auto;
-
 	margin: 0px auto;
 
 	background-color: ${cssUnit.colors.White};
-
 	font-family: 'Noto serif KR', sans-serif;
 	font-weight: bold;
 	font-size: 25px;
@@ -35,7 +33,6 @@ const ZidoSearchLayout = styled.div`
 		justify-content: center;
 		margin: 0px auto;
 		width: 90%;
-		// height: 1000px;
 		padding-top: 50px;
 		padding-bottom: 50px;
 		color: white;
@@ -47,9 +44,7 @@ export default function Zido() {
 		<ZidoContainer>
 			<Section color={cssUnit.backgroundColors.Black} size={100}>
 				<Wrap>
-					<WrapTitle color={cssUnit.colors.White}>
-						지도에서 박물관 검색
-					</WrapTitle>
+					<WrapTitle color={cssUnit.colors.White}>지도에서 박물관 검색</WrapTitle>
 				</Wrap>
 			</Section>
 			<Section size={900}></Section>
@@ -60,13 +55,6 @@ export default function Zido() {
 					</UnderDevSection>
 				</Wrap>
 			</Section>
-			{/* <ZidoSearchLayout>
-				<div className='outerZido'>
-					<UnderDevSection>
-						<SeoulZidoSub />
-					</UnderDevSection>
-				</div>
-			</ZidoSearchLayout> */}
 		</ZidoContainer>
 	);
 }
