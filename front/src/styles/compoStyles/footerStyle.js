@@ -39,10 +39,8 @@ export const FooterTitleBox = styled.div`
 	width: 100%;
 	height: 50px;
 
-	margin: auto;
-
 	.logoImg {
-		position: absolute;
+		position: relative;
 
 		width: 300px;
 		height: 100px;

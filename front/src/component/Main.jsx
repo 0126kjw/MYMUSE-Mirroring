@@ -30,15 +30,13 @@ const Main = () => {
 				<Section color={cssUnit.backgroundColors.Black} size={'150px'}>
 					<Wrap>
 						<MainTitleContainer>
-							{/* old legacy */}
 							<div className='logoImg'>
 								<Image
 									src={logo}
 									alt='logo'
-									objectFit='contain'
-									unoptimized={true}
 									width={300}
 									height={80}
+									style={{ objectFit: 'contain', layout: 'fill' }}
 								/>
 							</div>
 							<span>한곳에서 보는 온라인 AI 전시정보 팜플렛</span>
@@ -48,9 +46,7 @@ const Main = () => {
 
 				<Section color={cssUnit.backgroundColors.White}>
 					<Wrap>
-						<WrapTitle>
-							대표적인 박물관과 미술관들을 둘러보세요
-						</WrapTitle>
+						<WrapTitle>대표적인 박물관과 미술관들을 둘러보세요</WrapTitle>
 						<SilderContainer>
 							<Slider />
 						</SilderContainer>
@@ -79,10 +75,7 @@ const Main = () => {
 							<SerachBarContainer>
 								<SearchBarLayout>
 									<div>
-										<input
-											value='국립중앙박물관'
-											disabled
-										/>
+										<input value='국립중앙박물관' disabled />
 										<span>🔍︎</span>
 									</div>
 								</SearchBarLayout>
@@ -90,8 +83,7 @@ const Main = () => {
 							<AiExContainer>
 								<AiChatRoomBox>
 									<HumanBubble>
-										☆☆! 12월에 국립중앙박물관에서는 어떤
-										전시가 열려?
+										☆☆! 12월에 국립중앙박물관에서는 어떤 전시가 열려?
 									</HumanBubble>
 									<AiBubble>
 										<p align='left'>
@@ -110,9 +102,7 @@ const Main = () => {
 										</p>
 									</AiBubble>
 								</AiChatRoomBox>
-								<AiChatButton>
-									Ai 안내데스크 바로가기
-								</AiChatButton>
+								<AiChatButton>Ai 안내데스크 바로가기</AiChatButton>
 							</AiExContainer>
 						</AiContainer>
 					</Wrap>

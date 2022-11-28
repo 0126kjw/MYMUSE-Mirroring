@@ -12,6 +12,8 @@ const NaviContainer = styled.div`
 	height: 50px;
 
 	background-color: ${cssUnit.backgroundColors.Black};
+
+	border-top: 0.1px soild #111111;
 `;
 
 const NavBarLayout = styled.div`

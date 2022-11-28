@@ -49,9 +49,7 @@ const ErrorPage = () => {
 			<ErrorPageLayout>
 				<Section color={cssUnit.backgroundColors.Black}>
 					<Wrap>
-						<WrapTitle color={cssUnit.colors.White}>
-							Error
-						</WrapTitle>
+						<WrapTitle color={cssUnit.colors.White}>Error</WrapTitle>
 						<ErrorMessage>에러가 발생했습니다</ErrorMessage>
 						<ErrorClick href='/'>홈으로 돌아가기</ErrorClick>
 					</Wrap>

@@ -1,36 +1,45 @@
 import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
 //		border: 3px solid rgba(255, 255, 255, 0.6);
+
 export const HeaderContainer = styled.header`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
-	width: 100%;
-	height: 300px;
-
-	background-color: ${cssUnit.backgroundColors.Black};
-`;
-
-export const HeaderWraper = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	//for bgImg
 	position: relative;
 
 	width: 100%;
-	height: 300px;
+	height: 290px;
+
+	background-color: ${cssUnit.backgroundColors.DeepBlack};
+`;
+
+export const ImageWraper = styled.div`
+	width: 100vw;
+	height: 250px;
+
+	position: static;
 
 	.bgImg {
-		position: relative;
-		width: 100%;
-		height: 250px;
-		filter: brightness(50%);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 
-		z-index: 1;
+		position: static;
+		//object-position: 100px 200px;
+		object-position: 50% 50%;
+		overflow: hidden;
+
+		width: 100%;
+		height: 240px;
+
+		background-color: ${cssUnit.backgroundColors.DeepBlack};
+		border: 0.1px solid #111111;
+
+		filter: brightness(50%) blur(0.5px);
 
 		&:hover {
 			cursor: pointer;
@@ -38,16 +47,29 @@ export const HeaderWraper = styled.div`
 	}
 `;
 export const HeaderUpper = styled.div`
-	width: 100%;
-	height: 100px;
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	align-items: left;
 
 	position: relative;
 
-	.logoImg {
-		position: absolute;
+	width: 100%;
+	height: 0;
+	//height: 50px;
 
-		width: 300px;
-		height: 100px;
+	margin-left: 20px;
+
+	z-index: 2;
+
+	background-color: transparent;
+	//border: 0.1em solid red;
+
+	.logoImg {
+		position: relative;
+
+		width: 100px;
+		height: 10px;
 
 		z-index: 2;
 
@@ -61,5 +83,3 @@ export const HeaderLower = styled.div`
 	width: 100%;
 	height: 100px;
 `;
-
-export const HeaderTitleBox = styled.div``;

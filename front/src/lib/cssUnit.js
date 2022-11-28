@@ -17,6 +17,7 @@ const cssUnit = {
 	},
 
 	colors: {
+		DeepBlack: '#111111',
 		Black: '#222222',
 		LightBlack: '#2D2D2D',
 
@@ -29,6 +30,7 @@ const cssUnit = {
 	},
 
 	backgroundColors: {
+		DeepBlack: '#111111',
 		Black: '#222222',
 		LightBlack: '#2D2D2D',
 		Gray: '#CCCCCC',

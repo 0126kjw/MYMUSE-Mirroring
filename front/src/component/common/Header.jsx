@@ -1,11 +1,5 @@
 //styled
-import {
-	HeaderContainer,
-	HeaderWraper,
-	HeaderUpper,
-	HeaderTitleBox,
-	HeaderLower,
-} from 'styles/compoStyles/headerStyle';
+import { HeaderContainer, ImageWraper, HeaderUpper } from 'styles/compoStyles/headerStyle';
 import NavBar from './NavBar';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -20,32 +14,30 @@ const Header = () => {
 	return (
 		<>
 			<HeaderContainer>
-				<HeaderWraper>
+				<ImageWraper className='imageWrapper'>
+					<HeaderUpper className='upper'>
+						<div className='logoImg'>
+							<Image
+								onClick={() => router.push('/')}
+								src={logo}
+								alt='logo'
+								width={200}
+								height={50}
+								style={{ objectFit: 'cover', layout: 'fill' }}
+							/>
+						</div>
+					</HeaderUpper>
 					<div className='bgImg'>
 						<Image
 							onClick={() => router.push('/')}
 							src={bgImgSrc}
 							alt='wallpaper'
-							layout='fill'
-							objectFit='none'
-							unoptimized={true}
+							width={1600}
+							height={1200}
+							style={{ objectFit: 'cover', layout: 'fill' }}
 						/>
-						<HeaderUpper>
-							{/* <Image src={logo} art='logo' /> */}
-							<div className='logoImg'>
-								<Image
-									onClick={() => router.push('/')}
-									src={logo}
-									alt='logo'
-									layout='fill'
-									objectFit='contain'
-									unoptimized={true}
-								/>
-							</div>
-						</HeaderUpper>
-						<HeaderLower />
 					</div>
-				</HeaderWraper>
+				</ImageWraper>
 				<NavBar />
 			</HeaderContainer>
 		</>
