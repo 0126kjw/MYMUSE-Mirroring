@@ -34,7 +34,12 @@ const Header = () => {
 							alt='wallpaper'
 							width={1600}
 							height={1200}
-							style={{ objectFit: 'cover', layout: 'fill' }}
+							style={{
+								width: 'auto',
+								height: 'auto',
+								objectFit: 'cover',
+								layout: 'fill',
+							}}
 						/>
 					</div>
 				</ImageWraper>

@@ -1,82 +1,57 @@
-import Link from 'next/link';
-import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
 //for get url
 import { useRouter } from 'next/router';
+//for link
+import Link from 'next/link';
+//styling
+import { NaviContainer, NavBarLayout, LinkButton } from 'styles/compoStyles/navBarStyle';
+import { css } from '@emotion/react';
 
-const NaviContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	width: 100%;
-	height: 50px;
-
-	background-color: ${cssUnit.backgroundColors.Black};
-
-	border-top: 0.1px soild #111111;
-`;
-
-const NavBarLayout = styled.div`
-	ul {
-		display: flex;
-		justify-content: space-around;
-
-		width: 1200px;
-		height: 50px;
-
-		margin: 0px;
-
-		padding-left: 0px;
-
-		background-color: ${cssUnit.backgroundColors.Black};
-
-		line-height: 50px;
-
-		span {
-			color: #ffffff;
-		}
-		li {
-			list-style: none;
-			&:hover {
-				cursor: pointer;
-			}
-		}
-	}
-`;
+import { useState, useEffect } from 'react';
 
 const NavBar = () => {
 	const router = useRouter();
-	console.log(router.pathname);
+	let currentLoc = router.pathname;
+
+	const [page, setPage] = useState(currentLoc);
+
+	useEffect(() => {
+		switch (currentLoc) {
+			case '/':
+				setPage('Home');
+				break;
+			case '/sub/map':
+				setPage('Map');
+				break;
+			case '/sub/search':
+				setPage('Search');
+				break;
+			case '/sub/popular':
+				setPage('Popular');
+				break;
+		}
+	}, []);
+	console.log(page);
+
 	return (
 		<NaviContainer>
 			<NavBarLayout>
 				<ul>
-					<li>
-						<Link href='/'>
-							<span>Home</span>
-						</Link>
-					</li>
-					<li>
-						<Link href='/sub/map'>
-							{' '}
-							<span>Map</span>{' '}
-						</Link>
-					</li>
-					<li>
-						<Link href='/sub/search'>
-							{' '}
-							<span>Search</span>{' '}
-						</Link>
-					</li>
-
-					<li>
-						<Link href='/sub/popular'>
-							{' '}
-							<span>Popular</span>{' '}
-						</Link>
-					</li>
+					<div className='leftEnd' />
+					<LinkButton href='/' style={{ textDecoration: 'none' }}>
+						<span>Home</span>
+					</LinkButton>
+					<LinkButton href='/sub/map' style={{ textDecoration: 'none' }}>
+						{' '}
+						<span>Map</span>{' '}
+					</LinkButton>
+					<LinkButton href='/sub/search' style={{ textDecoration: 'none' }}>
+						{' '}
+						<span>Search</span>{' '}
+					</LinkButton>
+					<LinkButton href='/sub/popular' style={{ textDecoration: 'none' }}>
+						{' '}
+						<span>Popular</span>{' '}
+					</LinkButton>
 				</ul>
 			</NavBarLayout>
 		</NaviContainer>

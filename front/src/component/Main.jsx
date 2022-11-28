@@ -27,7 +27,7 @@ const Main = () => {
 	return (
 		<>
 			<MainContainer>
-				<Section color={cssUnit.backgroundColors.Black} size={'150px'}>
+				<Section color={cssUnit.backgroundColors.DeepBlack} size={'150px'}>
 					<Wrap>
 						<MainTitleContainer>
 							<div className='logoImg'>
