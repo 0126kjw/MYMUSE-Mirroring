@@ -1,4 +1,4 @@
-;[
+const InterPark = [
 	{
 		title: '화중서가(畵中抒歌) 환기의 노래, 그림이 되다',
 		imgSrc: 'http://ticketimage.interpark.com/rz/image/play/goods/poster/22/22013787_p_s.jpg',
@@ -699,4 +699,6 @@
 		place: '아지동 테마파크 2층 한국 스토리 뮤지엄',
 		period: ['2022.10.25', '2022.12.31'],
 	},
-]
+];
+
+export default InterPark;

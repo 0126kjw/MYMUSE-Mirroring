@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Exhibition } from './exhibition.schema';
+import { Exhibition } from './schemas/exhibition.schema';
 import { Cron } from '@nestjs/schedule';
 import { exhibitionList } from '../crawlings/crawlings.interpark_exhibition_rank';
 
