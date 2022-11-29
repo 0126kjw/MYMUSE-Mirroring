@@ -1,7 +1,7 @@
 import React from 'react';
-import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { atom } from 'recoil';
 
-const currentLoc = atom({
+export const currentLoc = atom({
 	key: 'currentPage',
-	default: '/',
+	default: 'none',
 });

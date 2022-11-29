@@ -1,56 +1,75 @@
-//for get url
-import { useRouter } from 'next/router';
-//for link
-import Link from 'next/link';
-//styling
-import { NaviContainer, NavBarLayout, LinkButton } from 'styles/compoStyles/navBarStyle';
-import { css } from '@emotion/react';
+import { useState, useEffect } from 'react';
 //recoil
 import { useRecoilValue } from 'recoil';
-
-import { useState, useEffect } from 'react';
+//recoil atom
+import { currentLoc } from 'recoil/navibar';
+//styling
+import { NaviContainer, NavBarLayout, LinkButton } from 'styles/compoStyles/navBarStyle';
 
 const NavBar = () => {
-	const router = useRouter();
-	let currentLoc = router.pathname;
-
-	const [page, setPage] = useState(currentLoc);
-
+	//atom only using value
+	const loc = useRecoilValue(currentLoc);
+	//navibar's current menu
+	const [currentMenu, setcurrentMenu] = useState(loc);
+	//setting currentMenu
 	useEffect(() => {
-		switch (currentLoc) {
+		switch (loc) {
+			case 'none':
+				setcurrentMenu('default');
 			case '/':
-				setPage('Home');
+				setcurrentMenu('Home');
 				break;
 			case '/sub/map':
-				setPage('Map');
+				setcurrentMenu('Map');
 				break;
 			case '/sub/search':
-				setPage('Search');
+				setcurrentMenu('Search');
 				break;
 			case '/sub/popular':
-				setPage('Popular');
+				setcurrentMenu('Popular');
 				break;
+			default:
+				//details, or others...
+				setcurrentMenu('test');
+			//throw new error('UI: NavBar Error');
 		}
-	}, []);
-	console.log(page);
+	}, [loc]);
+	//console.log('currentMenu: ', currentMenu);
 
 	return (
 		<NaviContainer>
 			<NavBarLayout>
 				<ul>
 					<div className='leftEnd' />
-					<LinkButton href='/' style={{ textDecoration: 'none' }}>
+					<LinkButton
+						selected={currentMenu === 'Home'}
+						href='/'
+						style={{ textDecoration: 'none' }}
+					>
 						<span>Home</span>
 					</LinkButton>
-					<LinkButton href='/sub/map' style={{ textDecoration: 'none' }}>
+
+					<LinkButton
+						selected={currentMenu === 'Map'}
+						href='/sub/map'
+						style={{ textDecoration: 'none' }}
+					>
 						{' '}
 						<span>Map</span>{' '}
 					</LinkButton>
-					<LinkButton href='/sub/search' style={{ textDecoration: 'none' }}>
+					<LinkButton
+						selected={currentMenu === 'Search'}
+						href='/sub/search'
+						style={{ textDecoration: 'none' }}
+					>
 						{' '}
 						<span>Search</span>{' '}
 					</LinkButton>
-					<LinkButton href='/sub/popular' style={{ textDecoration: 'none' }}>
+					<LinkButton
+						href='/sub/popular'
+						selected={currentMenu === 'Popular'}
+						style={{ textDecoration: 'none' }}
+					>
 						{' '}
 						<span>Popular</span>{' '}
 					</LinkButton>

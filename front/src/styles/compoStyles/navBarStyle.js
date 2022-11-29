@@ -1,9 +1,9 @@
-import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
-
 //for link
 import Link from 'next/link';
-
+//for style
+import styled from '@emotion/styled';
+import cssUnit from 'lib/cssUnit';
+//Navibar full container
 export const NaviContainer = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -17,7 +17,7 @@ export const NaviContainer = styled.div`
 
 	border-top: 0.1px soild #111111;
 `;
-
+//navibar basic layout
 export const NavBarLayout = styled.div`
 	ul {
 		display: flex;
@@ -39,45 +39,18 @@ export const NavBarLayout = styled.div`
 			color: ${cssUnit.colors.White};
 			text-decoration: none;
 		}
-		li {
-			display: inline-block;
-			list-style: none;
 
-			&:hover {
-				cursor: pointer;
-				background-color: ${cssUnit.backgroundColors.DeepBlack};
-				border: ${cssUnit.backgroundColors.Black};
-			}
-
-			width: 300px;
-			height: 50px;
-
-			border-right: 0.005em solid ${cssUnit.colors.DarkGray};
-			border-left: 0.005em solid ${cssUnit.colors.DarkGray};
-
-			//border-top: 0.2px solid ${cssUnit.colors.DarkGray};
-			//border-bottom: 0.2px solid ${cssUnit.colors.DarkGray};
-		}
-
-		.Home {
-		}
-		.Map {
-		}
-		.Search {
-		}
-		.Popular {
-		}
-		.leftEnd {
+		/* .leftEnd {
 			border-right: 0.005em solid ${cssUnit.colors.DarkGray};
 			border-left: none;
 		}
 		.rightEnd {
 			border-right: none;
 			border-left: 0.005em solid ${cssUnit.colors.DarkGray};
-		}
+		} */
 	}
 `;
-
+//styling Link/next
 export const LinkButton = styled(Link)`
 	display: inline-block;
 	list-style: none;
@@ -91,6 +64,10 @@ export const LinkButton = styled(Link)`
 	width: 300px;
 	height: 50px;
 
-	border-right: 0.005em solid ${cssUnit.colors.DarkGray};
-	border-left: 0.005em solid ${cssUnit.colors.DarkGray};
+	//border-right: 0.005em solid ${cssUnit.colors.DarkGray};
+	//border-left: 0.005em solid ${cssUnit.colors.DarkGray};
+
+	background-color: ${(prop) => {
+		return prop.selected ? `${cssUnit.backgroundColors.DeepBlack}` : '';
+	}};
 `;

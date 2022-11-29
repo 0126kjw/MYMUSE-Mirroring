@@ -13,14 +13,15 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			{GlobalStyles}
+
 			<ErrorBoundary>
-				<Suspense faillback={<Loading />}>
-					<RecoilRoot>
+				<RecoilRoot>
+					<Suspense faillback={<Loading />}>
 						<AppLayout>
 							<Component {...pageProps} />
 						</AppLayout>
-					</RecoilRoot>
-				</Suspense>
+					</Suspense>
+				</RecoilRoot>
 			</ErrorBoundary>
 		</>
 	);

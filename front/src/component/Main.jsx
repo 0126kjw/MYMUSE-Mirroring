@@ -23,11 +23,12 @@ import logo from '../../public/images/siteLogo.png';
 import Slider from './Slider';
 import SeoulZidoMain from './zido/SeoulZidoMain';
 
+import TitleSection from './common/TitleSection';
 const Main = () => {
 	return (
 		<>
 			<MainContainer>
-				<Section color={cssUnit.backgroundColors.DeepBlack} size={'150px'}>
+				<TitleSection color={cssUnit.backgroundColors.DeepBlack} size={'150px'}>
 					<Wrap>
 						<MainTitleContainer>
 							<div className='logoImg'>
@@ -42,7 +43,7 @@ const Main = () => {
 							<span>한곳에서 보는 온라인 AI 전시정보 팜플렛</span>
 						</MainTitleContainer>
 					</Wrap>
-				</Section>
+				</TitleSection>
 
 				<Section color={cssUnit.backgroundColors.White}>
 					<Wrap>

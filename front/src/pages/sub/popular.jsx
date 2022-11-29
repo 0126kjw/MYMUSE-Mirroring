@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
 //for page common section
 import { Section, Wrap, WrapTitle } from 'styles/common';
+import TitleSection from 'component/common/TitleSection';
 import { UnderDevSection } from 'styles/compoStyles/underDev';
 import { useRecoilState } from 'recoil';
 import { useState, useEffect } from 'react';
@@ -138,11 +139,11 @@ const Popular = () => {
 
 	return (
 		<PopularLayout>
-			<Section color={cssUnit.backgroundColors.Black} size={100}>
+			<TitleSection color={cssUnit.backgroundColors.Black} size={100}>
 				<Wrap>
 					<WrapTitle color={cssUnit.colors.White}>인기 유료 전시회</WrapTitle>
 				</Wrap>
-			</Section>
+			</TitleSection>
 			<Section color={cssUnit.backgroundColors.White} size={900}>
 				<Wrap>
 					<UnderDevSection>

@@ -12,6 +12,7 @@ import SelectedMapState from 'state/selectedMap';
 import { useState, useEffect } from 'react';
 import axios from '../../../node_modules/axios/index';
 import Image from 'next/legacy/image';
+import TitleSection from 'component/common/TitleSection';
 
 const SearchpageLayout = styled.div`
 	background-color: ${cssUnit.colors.White};
@@ -144,7 +145,7 @@ const Search = () => {
 
 	return (
 		<SearchpageLayout>
-			<Section color={cssUnit.backgroundColors.Black} size={50}>
+			<TitleSection color={cssUnit.backgroundColors.Black} size={50}>
 				<Wrap>
 					<WrapTitle color={cssUnit.colors.White}>박물관/전시관 검색</WrapTitle>
 					<SearchBar
@@ -154,11 +155,11 @@ const Search = () => {
 						setSearchRes={setSearchRes}
 					/>
 				</Wrap>
-			</Section>
+			</TitleSection>
 
 			<Section color={cssUnit.backgroundColors.White} size={900}>
 				<Wrap>
-					<UnderDevSection>
+					{/* <UnderDevSection>
 						<div className='subTitle'>subTitle</div>
 						<ul className='allLists'>
 							{list &&
@@ -196,7 +197,7 @@ const Search = () => {
 								})}
 						</ul>
 						<button onClick={getMoreList}>더 불러오기</button>
-					</UnderDevSection>
+					</UnderDevSection> */}
 				</Wrap>
 			</Section>
 		</SearchpageLayout>
