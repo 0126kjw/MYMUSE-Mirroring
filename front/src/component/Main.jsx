@@ -21,7 +21,7 @@ import logo from '../../public/images/siteLogo.png';
 
 // component
 import Slider from './Slider';
-import SeoulZidoMain from './SeoulZidoMain';
+import SeoulZidoMain from './zido/SeoulZidoMain';
 
 const Main = () => {
 	return (
@@ -48,9 +48,7 @@ const Main = () => {
 
 				<Section color={cssUnit.backgroundColors.White}>
 					<Wrap>
-						<WrapTitle>
-							대표적인 박물관과 미술관들을 둘러보세요
-						</WrapTitle>
+						<WrapTitle>대표적인 박물관과 미술관들을 둘러보세요</WrapTitle>
 						<SilderContainer>
 							<Slider />
 						</SilderContainer>
@@ -79,10 +77,7 @@ const Main = () => {
 							<SerachBarContainer>
 								<SearchBarLayout>
 									<div>
-										<input
-											value='국립중앙박물관'
-											disabled
-										/>
+										<input value='국립중앙박물관' disabled />
 										<span>🔍︎</span>
 									</div>
 								</SearchBarLayout>
@@ -90,8 +85,7 @@ const Main = () => {
 							<AiExContainer>
 								<AiChatRoomBox>
 									<HumanBubble>
-										☆☆! 12월에 국립중앙박물관에서는 어떤
-										전시가 열려?
+										☆☆! 12월에 국립중앙박물관에서는 어떤 전시가 열려?
 									</HumanBubble>
 									<AiBubble>
 										<p align='left'>
@@ -110,9 +104,7 @@ const Main = () => {
 										</p>
 									</AiBubble>
 								</AiChatRoomBox>
-								<AiChatButton>
-									Ai 안내데스크 바로가기
-								</AiChatButton>
+								<AiChatButton>Ai 안내데스크 바로가기</AiChatButton>
 							</AiExContainer>
 						</AiContainer>
 					</Wrap>

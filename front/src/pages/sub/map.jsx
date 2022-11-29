@@ -3,7 +3,7 @@ import cssUnit from 'lib/cssUnit';
 //for page common section
 import { Section, Wrap, WrapTitle } from 'styles/common';
 import { UnderDevSection } from 'styles/compoStyles/underDev';
-import SeoulZidoSub from 'component/SeoulZidoSub';
+import SeoulZidoSub from 'component/zido/SeoulZidoSub';
 
 //wrap all
 const ZidoContainer = styled.div`
@@ -44,7 +44,7 @@ export default function Zido() {
 		<ZidoContainer>
 			<Section color={cssUnit.backgroundColors.Black} size={100}>
 				<Wrap>
-					<WrapTitle color={cssUnit.colors.White}>지도에서 박물관 검색</WrapTitle>
+					<WrapTitle color={cssUnit.colors.White}>서울 지도에서 박물관 검색</WrapTitle>
 				</Wrap>
 			</Section>
 			<Section size={900}></Section>
