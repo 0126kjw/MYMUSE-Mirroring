@@ -5,6 +5,8 @@ import Link from 'next/link';
 //styling
 import { NaviContainer, NavBarLayout, LinkButton } from 'styles/compoStyles/navBarStyle';
 import { css } from '@emotion/react';
+//recoil
+import { useRecoilValue } from 'recoil';
 
 import { useState, useEffect } from 'react';
 
