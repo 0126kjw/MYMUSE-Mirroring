@@ -21,7 +21,7 @@ import logo from '../../public/images/siteLogo.png';
 
 // component
 import Slider from './Slider';
-import SeoulZidoMain from './SeoulZidoMain';
+import SeoulZidoMain from './zido/SeoulZidoMain';
 
 const Main = () => {
 	return (
