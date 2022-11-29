@@ -159,7 +159,7 @@ const Search = () => {
 
 			<Section color={cssUnit.backgroundColors.White} size={900}>
 				<Wrap>
-					{/* <UnderDevSection>
+					<UnderDevSection>
 						<div className='subTitle'>subTitle</div>
 						<ul className='allLists'>
 							{list &&
@@ -197,7 +197,7 @@ const Search = () => {
 								})}
 						</ul>
 						<button onClick={getMoreList}>더 불러오기</button>
-					</UnderDevSection> */}
+					</UnderDevSection>
 				</Wrap>
 			</Section>
 		</SearchpageLayout>
