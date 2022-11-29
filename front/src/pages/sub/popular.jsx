@@ -153,7 +153,12 @@ const Popular = () => {
 								list.map((x, i) => {
 									return (
 										<li key={x._id}>
-											<a target='_blank' href={x.href}>
+											<a
+												target='_blank'
+												href={
+													'https://tickets.interpark.com/goods/' + x.href
+												}
+											>
 												<div className='eachImg'>
 													<Image
 														src={x.imgSrc}
