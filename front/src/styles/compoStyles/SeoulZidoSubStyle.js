@@ -110,6 +110,16 @@ const SubZidoLayout = styled.div`
 		padding-top: 20px;
 		padding-bottom: 20px;
 	}
+	.guideText2 {
+		position: relative;
+		background-color: gray;
+		color: aqua;
+		// font-weight: 500;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
 	.tooltipStyle {
 		color: red;
 		font-size: 25px;
