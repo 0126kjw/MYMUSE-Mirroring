@@ -6,18 +6,13 @@ export const FooterContainer = styled.footer`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
 	position: relative;
-
-	bottom: 0;
 
 	width: 100%;
 	height: 150px;
-
 	padding-top: 30px;
 
 	background-color: ${cssUnit.backgroundColors.Black};
-
 	color: ${cssUnit.colors.White};
 `;
 export const FooterWrapper = styled.div`
@@ -26,7 +21,8 @@ export const FooterWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	width: 950px;
+	width: 100%;
+	max-width: 950px;
 `;
 export const FooterTitleBox = styled.div`
 	display: flex;

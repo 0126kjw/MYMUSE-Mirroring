@@ -2,44 +2,47 @@ import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
 
 export const MainContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+
 	width: auto !important;
 	height: auto !important;
 `;
 
+/*containers*/
+//logo
 export const MainTitleContainer = styled.div`
+	//for logo
 	position: relative;
+
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 
-	height: 200px;
+	width: 950px;
+	height: 80px;
+
 	margin: 0px auto;
-	margin-top: 20px;
-	margin-bottom: 20px;
 
-	// MY MUSE
 	.logoImg {
-		// position: absolute;
-		height: 60px;
-	}
-
-	// 한곳에서 보는 온라인 AI 전시정보 팜플렛
-	.logoText {
+		padding-left: 40px;
+		width: 300px;
 		height: 80px;
-		line-height: 30px;
+	}
+	span {
+		padding-top: 40px;
 
 		color: white;
 		font-family: 'Gothic A1';
 		font-weight: 600;
-		font-size: 20px;
 	}
 `;
 
-export const SilderContainer = styled.div`
-	width: 100%;
-	height: 100%;
+//		border: 3px solid rgba(255, 255, 255, 0.6);
 
-	max-width: 900px;
-	max-height: 600px;
+export const SilderContainer = styled.div`
+	width: 900px;
+	max-width: 850px;
+	height: 600px;
 
 	margin: 0;
 	padding: 0px;
@@ -47,7 +50,6 @@ export const SilderContainer = styled.div`
 
 export const MapContainer = styled.div`
 	width: 600px;
-	width: 100%;
 	max-width: 850px;
 	height: 50.5%;
 
@@ -55,16 +57,15 @@ export const MapContainer = styled.div`
 	padding: 0px;
 `;
 
-// 챗봇 모형
 export const AiContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 
-	// width: 100%;
-	// max-width: 850px;
-	// height: 600px;
+	width: 600px;
+	max-width: 850px;
+	height: 600px;
 
 	margin: 0 auto;
 	padding: 0px;
@@ -76,32 +77,45 @@ export const SerachBarContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	width: 100%;
+	width: 500px;
 	height: 100px;
 `;
 
 export const SearchBarLayout = styled.div`
+	top: 10px;
+	right: 50px;
+
 	margin: 0px;
+
 	z-index: 10;
 
 	div {
-		width: 100%;
-		padding: 2px;
+		width: 300px;
+		height: 50px;
+
 		margin: 0px;
 
-		border-radius: 10px;
+		border-radius: 15px;
 		background-color: #f6f6f6;
 
 		input {
-			width: 150px;
-			padding: 10px;
+			width: 200px;
+			height: 30px;
+
+			margin-right: 5px;
+			margin-top: 5px;
+
 			border-radius: 15px;
 			border: solid rgba(255, 255, 255, 0);
 			background-color: transparent;
 		}
 
 		span {
+			top: 5px;
+			right: 10px;
+
 			cursor: pointer;
+
 			&:hover {
 				cursor: pointer;
 			}
@@ -114,8 +128,7 @@ export const AiExContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	width: 100%;
-	max-width: 500px;
+	width: 500px;
 	height: 500px;
 
 	background-color: white;
@@ -130,52 +143,48 @@ export const AiChatRoomBox = styled.div`
 	justify-content: center;
 	background-color: white;
 
-	width: 100%;
-	max-width: 500px;
-	// height: 400px;
+	width: 500px;
+	height: 400px;
 
 	background-color: ${cssUnit.colors.Gray};
 `;
 
 export const HumanBubble = styled.div`
-	width: 80%;
-	max-width: 400px;
-	// : 60px;
-	font-size: 10rem;
+	width: 400px;
+	height: 60px;
 
-	margin: 4% 2% 4% 14%;
+	margin: 20px 5px 20px 70px;
 
-	// left: 10%;
-	// top: 317px;
+	left: 392px;
+	top: 317px;
 
 	background-color: ${cssUnit.colors.White};
 
 	font-size: ${cssUnit.fontSize.small};
-	// line-height: 60px;
-	padding: 10px;
+	line-height: 60px;
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 export const AiBubble = styled.div`
 	display: table;
-	width: 80%;
-	max-width: 350px;
-	// height: 250px;
 
-	margin: 4% 14% 4% 6%;
-	padding: 0 0 0 10px;
+	width: 350px;
+	height: 250px;
 
-	// left: 793px;
-	// top: 420px;
+	margin: 20px 70px 20px 30px;
+	padding: 0 0 0 50px;
+
+	left: 793px;
+	top: 420px;
+
 	background-color: ${cssUnit.colors.White};
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 export const AiChatButton = styled.button`
-	width: 100%;
-	max-width: 500px;
+	width: 500px;
 	height: 100px;
 
 	background-color: ${cssUnit.colors.DarkGold};
@@ -196,7 +205,7 @@ export const AiChatButton = styled.button`
 //sections
 export const Logosection = styled.section`
 	width: 131px;
-	// height: 450px;
+	height: 450px;
 
 	top: 90px;
 	z-index: 2;

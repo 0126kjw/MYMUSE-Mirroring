@@ -1,7 +1,8 @@
 //styled
 import { HeaderContainer, ImageWraper, HeaderUpper } from 'styles/compoStyles/headerStyle';
 import NavBar from './NavBar';
-import Image from 'next/image';
+// import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { useRouter } from 'next/router';
 import logo from '../../../public/images/siteLogo.png';
 
@@ -21,9 +22,8 @@ const Header = () => {
 								onClick={() => router.push('/')}
 								src={logo}
 								alt='logo'
-								width={200}
-								height={50}
-								style={{ objectFit: 'cover', layout: 'fill' }}
+								layout='fill'
+								objectFit='cover'
 							/>
 						</div>
 					</HeaderUpper>
@@ -32,14 +32,8 @@ const Header = () => {
 							onClick={() => router.push('/')}
 							src={bgImgSrc}
 							alt='wallpaper'
-							width={1600}
-							height={1200}
-							style={{
-								width: 'auto',
-								height: 'auto',
-								objectFit: 'cover',
-								layout: 'fill',
-							}}
+							layout='fill'
+							objectFit='cover'
 						/>
 					</div>
 				</ImageWraper>

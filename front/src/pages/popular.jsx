@@ -1,5 +1,5 @@
 //components
-import PopularList from '../../component/PopularList';
+import PopularList from 'component/PopularList';
 //styling
 import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
@@ -11,7 +11,7 @@ import { useRecoilState } from 'recoil';
 import { useState, useEffect } from 'react';
 import SelectedMapState from 'state/selectedMap';
 import Image from 'next/legacy/image';
-import axios from '../../../node_modules/axios/index';
+import axios from '../../node_modules/axios/index';
 
 const PopularLayout = styled.div`
 	background-color: ${cssUnit.colors.White};
@@ -178,9 +178,7 @@ const Popular = () => {
 													<div className='sub'>{x.title}</div>
 												</div>
 												<div className='div2'>
-													<div className='sub'>
-														{x.period[0]} ~ {x.period[1]}
-													</div>
+													<div className='sub'>{x.period[0]}</div>
 												</div>
 												<div className='div3'>
 													<div className='sub'>{x.place}</div>

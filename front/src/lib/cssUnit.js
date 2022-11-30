@@ -1,7 +1,3 @@
-// fontSize, color unit
-// import 해서 사용
-//ex) //background-color: ${cssUnit.colors.DarkGold};
-
 const cssUnit = {
 	fontSize: {
 		title: '40px',

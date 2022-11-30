@@ -8,8 +8,8 @@ import SeoulZidoSub from 'component/zido/SeoulZidoSub';
 
 //wrap all
 const ZidoContainer = styled.div`
-	width: auto;
-	height: auto;
+	width: 100%;
+	// height: auto;
 	margin: 0px auto;
 
 	background-color: ${cssUnit.colors.White};
