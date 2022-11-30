@@ -66,18 +66,14 @@ const DetailSlider = () => {
 	const slideLength = sliderData.length;
 
 	const nextSlide = () => {
-		setCurrentSlide(
-			currentSlide === slideLength - 1 ? 0 : currentSlide + 1,
-		);
+		setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
 	};
 	const prevSlide = () => {
-		setCuttentSlide(
-			currentSlide === 0 ? slideLength - 1 : currentSlide - 1,
-		);
+		setCuttentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
 	};
 
 	useEffect(() => {
-		setCuttentSlide(0);
+		setCurrentSlide(0);
 	}, []);
 
 	return (
@@ -88,11 +84,7 @@ const DetailSlider = () => {
 				{sliderData.map((slide, index) => {
 					return (
 						<div
-							className={
-								index === currentSlide
-									? 'slide current'
-									: 'slide'
-							}
+							className={index === currentSlide ? 'slide current' : 'slide'}
 							key={index}
 						>
 							{index === currentSlide && (
