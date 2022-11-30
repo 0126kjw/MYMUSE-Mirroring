@@ -5,12 +5,12 @@ import cssUnit from 'lib/cssUnit';
 import { Section, Wrap, WrapTitle } from 'styles/common';
 import { UnderDevSection } from 'styles/compoStyles/underDev';
 // components
-import SearchBar from '../../component/SearchBar';
+import SearchBar from 'component/SearchBar';
 
 import { useRecoilState } from 'recoil';
 import SelectedMapState from 'state/selectedMap';
 import { useState, useEffect } from 'react';
-import axios from '../../../node_modules/axios/index';
+import axios from '../../node_modules/axios/index';
 import Image from 'next/legacy/image';
 import TitleSection from 'component/common/TitleSection';
 
@@ -159,7 +159,7 @@ const Search = () => {
 
 			<Section color={cssUnit.backgroundColors.White} size={900}>
 				<Wrap>
-					<UnderDevSection>
+					{/* <UnderDevSection>
 						<div className='subTitle'>subTitle</div>
 						<ul className='allLists'>
 							{list &&
@@ -197,7 +197,7 @@ const Search = () => {
 								})}
 						</ul>
 						<button onClick={getMoreList}>더 불러오기</button>
-					</UnderDevSection>
+					</UnderDevSection> */}
 				</Wrap>
 			</Section>
 		</SearchpageLayout>

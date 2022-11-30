@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import cssUnit from 'lib/cssUnit';
 //styling
-import { Section, Wrap, WrapTitle } from 'styles/common';
+import { Section, Wrap, WrapTop, WrapTitle } from 'styles/common';
 import {
 	MainContainer,
 	MainTitleContainer,
@@ -29,20 +29,22 @@ const Main = () => {
 		<>
 			<MainContainer>
 				<TitleSection color={cssUnit.backgroundColors.DeepBlack} size={'150px'}>
-					<Wrap>
+					<WrapTop>
 						<MainTitleContainer>
 							<div className='logoImg'>
 								<Image
 									src={logo}
 									alt='logo'
-									width={300}
-									height={80}
+									width={150}
+									height={70}
 									style={{ objectFit: 'contain', layout: 'fill' }}
 								/>
 							</div>
-							<span>한곳에서 보는 온라인 AI 전시정보 팜플렛</span>
+							<div className='logoText'>
+								한 곳에서 보는 <br></br> 온라인 AI 전시정보 팜플렛
+							</div>
 						</MainTitleContainer>
-					</Wrap>
+					</WrapTop>
 				</TitleSection>
 
 				<Section color={cssUnit.backgroundColors.White}>
@@ -53,6 +55,7 @@ const Main = () => {
 						</SilderContainer>
 					</Wrap>
 				</Section>
+
 				<Section color={cssUnit.backgroundColors.Gray}>
 					<Wrap>
 						<WrapTitle>
@@ -65,6 +68,7 @@ const Main = () => {
 						</MapContainer>
 					</Wrap>
 				</Section>
+
 				<Section color={cssUnit.backgroundColors.LightBlack}>
 					<Wrap>
 						<WrapTitle color={cssUnit.colors.White}>
@@ -84,13 +88,12 @@ const Main = () => {
 							<AiExContainer>
 								<AiChatRoomBox>
 									<HumanBubble>
-										☆☆! 12월에 국립중앙박물관에서는 어떤 전시가 열려?
+										12월 국립중앙박물관에서는 어떤 전시가 열려?
 									</HumanBubble>
 									<AiBubble>
 										<p align='left'>
 											<br />
-											22년 12월 국립중앙박물관의
-											<br /> 전시 일정을 찾으셨나요?
+											22년 12월 국립중앙박물관의 전시 일정을 찾으셨나요?
 											<br />
 											합스부르크 600년, 매혹의 걸작들
 											<br />

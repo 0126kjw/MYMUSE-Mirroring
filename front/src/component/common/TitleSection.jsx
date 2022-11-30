@@ -6,7 +6,7 @@ import cssUnit from 'lib/cssUnit';
 import { Section } from 'styles/common';
 //recoil
 import { useSetRecoilState } from 'recoil';
-import { currentLoc } from 'recoil/navibar';
+import { currentLoc } from 'state/navibar';
 
 const TitleSection = ({ children }) => {
 	//recoil atom

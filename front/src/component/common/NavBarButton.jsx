@@ -1,7 +1,7 @@
 import { NaviContainer, NavBarLayout, LinkButton } from 'styles/compoStyles/navBarStyle';
 //recoil
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { currentLoc } from 'recoil/navibar';
+import { currentLoc } from 'state/navibar';
 import { useState, useEffect } from 'react';
 
 const NavBarButton = () => {
@@ -16,7 +16,6 @@ const NavBarButton = () => {
 			case '/':
 				setcurrentMenu('Home');
 				break;
-				setcurrentMenu;
 			case '/sub/map':
 				console.log('loc is changed');
 				setcurrentMenu('Map');
