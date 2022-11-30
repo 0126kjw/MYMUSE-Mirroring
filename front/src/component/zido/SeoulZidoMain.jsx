@@ -51,7 +51,7 @@ export default function SeoulZido() {
 														mapKind: 'inner',
 														name: geo.properties.name,
 													});
-													await router.push('/sub/map');
+													await router.push('/map');
 												}
 											}}
 											key={geo.rsmKey}

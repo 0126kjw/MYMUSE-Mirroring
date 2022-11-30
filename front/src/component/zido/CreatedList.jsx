@@ -22,8 +22,8 @@ export default function CreatedList({ pins, selectedMapState, hoverPin }) {
 			)}
 
 			{selectedMapState.mapKind == 'inner' && pins && pins.length == 0 && (
-				<div className='guideText'>
-					<p>{selectedMapState.name} 박물관은 찾을 수 없습니다</p>
+				<div className='guideText2'>
+					<p>{selectedMapState.name}는 등록된 박물관이 없습니다.</p>
 				</div>
 			)}
 

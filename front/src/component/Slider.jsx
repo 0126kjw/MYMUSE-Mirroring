@@ -6,8 +6,7 @@ import styled from '@emotion/styled';
 const SliderLayout = styled.div`
 	.slider {
 		width: 100%;
-		/* height: 60vh; */
-		height: 600px;
+		height: 60vh;
 		position: relative;
 		overflow: hidden;
 	}
@@ -23,14 +22,8 @@ const SliderLayout = styled.div`
 		transition: all 0.5s ease;
 	}
 
-	@media screen and (min-width: 600px) {
-		.slide img {
-			width: 100%;
-			height: 100%;
-		}
-	}
-
 	.slide img {
+		width: 100%;
 		height: 100%;
 	}
 
@@ -46,7 +39,7 @@ const SliderLayout = styled.div`
 		animation: slide-up 1s ease 0.5s;
 		-webkit-animation-fill-mode: forwards;
 		animation-fill-mode: forwards;
-		//   visibility: hidden;
+		visibility: hidden;
 	}
 
 	@-webkit-keyframes slide-up {
@@ -68,12 +61,6 @@ const SliderLayout = styled.div`
 		100% {
 			visibility: visible;
 			top: 17rem;
-		}
-	}
-
-	@media screen and (max-width: 600px) {
-		.content {
-			width: 80%;
 		}
 	}
 
@@ -134,15 +121,11 @@ const Slider = () => {
 	let intervalTime = 6000;
 
 	const nextSlide = () => {
-		setCurrentSlide(
-			currentSlide === slideLength - 1 ? 0 : currentSlide + 1,
-		);
+		setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
 	};
 
 	const prevSlide = () => {
-		setCurrentSlide(
-			currentSlide === 0 ? slideLength - 1 : currentSlide - 1,
-		);
+		setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
 	};
 
 	function auto() {
@@ -163,35 +146,27 @@ const Slider = () => {
 	return (
 		<SliderLayout>
 			<div className='slider'>
-				<AiOutlineArrowLeft
-					className='arrow prev'
-					onClick={prevSlide}
-				/>
-				<AiOutlineArrowRight
-					className='arrow next'
-					onClick={nextSlide}
-				/>
+				<AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
+				<AiOutlineArrowRight className='arrow next' onClick={nextSlide} />
 
 				{sliderData.map((slide, index) => {
 					return (
 						<div
-							className={
-								index === currentSlide
-									? 'slide current'
-									: 'slide'
-							}
+							className={index === currentSlide ? 'slide current' : 'slide'}
 							key={index}
 						>
 							{index === currentSlide && (
 								<>
-									<img src={slide.image} alt='slide' />
+									<img
+										src={slide.image}
+										alt='slide'
+										style={{ objectFit: 'cover' }}
+									/>
 									<div className='content'>
 										<h2>{slide.heading}</h2>
 										<p>{slide.desc}</p>
 										<hr />
-										<button className='--btn --btn-primary'>
-											Get Started
-										</button>
+										<button className='--btn --btn-primary'>Get Started</button>
 									</div>
 								</>
 							)}
