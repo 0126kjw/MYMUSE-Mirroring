@@ -33,6 +33,7 @@ const NavBar = () => {
 				setcurrentMenu('test');
 			//throw new error('UI: NavBar Error');
 		}
+		console.log(currentMenu);
 	}, [loc]);
 	//console.log('currentMenu: ', currentMenu);
 

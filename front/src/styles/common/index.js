@@ -1,22 +1,6 @@
 import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
 
-//logo trying
-// import { Logo } from 'styles/common/index';
-
-import Image from 'next/image';
-import logo from '../../../public/images/siteLogo.png';
-
-// //logo trying
-// export const Logo = styled.Image.attrs({
-// 	src: logo,
-// 	alt: 'logo_image',
-// })`
-// 	cursor: pointer;
-// 	width: 131px;
-// 	height: 450px;
-// `;
-
 /**Styling */
 
 //sections

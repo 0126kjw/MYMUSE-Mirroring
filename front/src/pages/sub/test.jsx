@@ -1,28 +1,23 @@
 //Dummy Test Page
 //styling
-import { Section, Wrap, WrapTitle } from 'styles/common';
-import {
-	MainContainer,
-	MainTitleContainer,
-	SilderContainer,
-	MapContainer,
-	AiContainer,
-	AiExContainer,
-	SerachBarContainer,
-	AiChatRoomBox,
-	AiChatButton,
-	HumanBubble,
-	AiBubble,
-	SearchBarLayout,
-} from 'styles/pageStyles/mainStyle';
+import cssUnit from 'lib/cssUnit';
+import { Section, Wrap } from 'styles/common';
+import { MainContainer } from 'styles/pageStyles/mainStyle';
+import TestCompo from 'component/TestCompo';
 import TitleSection from 'component/common/TitleSection';
 
 const Test = () => {
 	return (
 		<>
 			<MainContainer>
-				<TitleSection />
-				<h1>테스트 화면</h1>
+				<TitleSection>
+					<Wrap>
+						<Section size={'150px'} color={cssUnit.colors.DarkGold}>
+							<h1>TESTING PAGE</h1>
+							<TestCompo />
+						</Section>
+					</Wrap>
+				</TitleSection>
 			</MainContainer>
 		</>
 	);
