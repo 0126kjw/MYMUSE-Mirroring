@@ -12,9 +12,12 @@ const Test = () => {
 			<MainContainer>
 				<TitleSection>
 					<Wrap>
+						<h1>TESTING PAGE</h1>
 						<Section size={'150px'} color={cssUnit.colors.DarkGold}>
-							<h1>TESTING PAGE</h1>
 							<TestCompo />
+						</Section>
+						<Section size={'150px'} color={cssUnit.colors.White}>
+							<span> Add testing component . . . . </span>
 						</Section>
 					</Wrap>
 				</TitleSection>

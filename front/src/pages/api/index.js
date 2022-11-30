@@ -3,12 +3,13 @@ import axios from '../../../node_modules/axios/index';
 const API = () => {
 	//[To Front] before running server, change port number [.env] in [back]'s file from '3000' to '3001'
 	const instance = axios.create({
-		baseURL: 'http://' + window.location.hostname + ':' + '3001' + '/',
+		//baseURL: 'http://' + window.location.hostname + ':' + '3001' + '/',
+		baseURL: 'http://localhost:3001/',
 	});
 
 	/**
 	 * @param params array[string]
-	 * @return array
+	 * @return object
 	 */
 	const Get = async (params) => {
 		const url = params.join('/');
@@ -24,7 +25,7 @@ const API = () => {
 	/**
 	 * @param params array[string]
 	 * @param data string
-	 * @return array
+	 * @return object
 	 */
 	const Post = async (params, data) => {
 		const url = params.join('/');
@@ -40,7 +41,7 @@ const API = () => {
 	/**
 	 * @param params array[string]
 	 * @param data string
-	 * @return array
+	 * @return object
 	 */
 	const Put = async (params, data) => {
 		const url = params.join('/');
@@ -55,7 +56,7 @@ const API = () => {
 
 	/**
 	 * @param: array[string]
-	 * @return array
+	 * @return object
 	 */
 	const Delete = async (params) => {
 		const url = params.join('/');
