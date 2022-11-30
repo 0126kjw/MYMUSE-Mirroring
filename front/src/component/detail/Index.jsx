@@ -3,8 +3,8 @@ import DataTable_Agency from 'component/detail/DataTable_Agency';
 import DataTable_Schedule from 'component/detail/DataTable_Schedule';
 import DataTable_AdmissionFee from 'component/detail/DataTable_AdmissionFee';
 import NaverMapComp from 'component/detail/NaverMapComp';
-import PhotoSlider from 'component/detail/PhotoSlider';
 import styled from '@emotion/styled';
+import DetailSlider from './DetailSlider';
 
 const IndexStyle = styled.div`
 	.museData {
@@ -41,12 +41,6 @@ const IndexStyle = styled.div`
 		border-left: solid 5px black;
 		border-right: solid 5px black;
 	}
-	.PhotoSliderStyle {
-		height: 500px;
-		margin: 0 auto;
-		border-left: solid 5px black;
-		border-right: solid 5px black;
-	}
 	.Middle {
 		display: flex;
 		justify-content: center;
@@ -58,7 +52,7 @@ const Index = ({}) => {
 	return (
 		<IndexStyle>
 			<div className='museData'>
-				<PhotoSlider />
+				<DetailSlider />
 				<DataTable_Title />
 				<DataTable_Agency />
 				<DataTable_Schedule />
