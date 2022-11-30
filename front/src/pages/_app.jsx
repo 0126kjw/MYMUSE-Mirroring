@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import Head from 'next/head';
 //style
 import AppLayout from 'component/AppLayout';
 import { GlobalStyles } from 'styles/globalStyle';
@@ -13,7 +14,6 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			{GlobalStyles}
-
 			<ErrorBoundary>
 				<RecoilRoot>
 					<Suspense faillback={<Loading />}>
