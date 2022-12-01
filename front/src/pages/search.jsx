@@ -49,11 +49,13 @@ const Search = () => {
 			console.log('전체 전시관 데이터를 가져오는 과정에서 에러 발생');
 		}
 	};
+
 	const getMoreList = () => {
 		setBundleIdx((prev) => prev + 1);
 	};
+
 	useEffect(() => {
-		getData();
+		// getData();
 	}, [bundleIdx]);
 
 	return (
@@ -71,7 +73,8 @@ const Search = () => {
 					searchRes={searchRes}
 					setSearchRes={setSearchRes}
 				/>
-				<div>검색 결과 {searchRes}</div>
+
+				<div style={{ textAlign: 'center' }}>검색 결과 : {searchRes}</div>
 				<Section color={cssUnit.backgroundColors.White} size={900}>
 					<Wrap>
 						<UnderDevSection>

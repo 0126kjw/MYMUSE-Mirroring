@@ -11,7 +11,6 @@ const SubZidoLayout = styled.div`
 	.subLocationName {
 		position: relative;
 		width: 800px;
-		z-index: 999;
 		color: brown;
 		height: 50px;
 		line-height: 50px;
