@@ -50,9 +50,7 @@ export const crawlExhibitions = async () => {
 
     const startOfGroupCode = text.indexOf('GroupCode');
     const endOfGroupCode = text.indexOf('title');
-    tempObj.href =
-      'https://tickets.interpark.com/goods/' +
-      text.slice(startOfGroupCode + 10, endOfGroupCode - 2);
+    tempObj.href = text.slice(startOfGroupCode + 10, endOfGroupCode - 2);
 
     const startOfPlace = text.indexOf('PlaceOfFlag');
     const endOfPlace = text.indexOf('</a></td>');
