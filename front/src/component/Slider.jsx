@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 const SliderLayout = styled.div`
 	.slider {
 		width: 100%;
-		height: 60vh;
+		height: 70vh;
 		position: relative;
 		overflow: hidden;
 	}
@@ -32,25 +32,12 @@ const SliderLayout = styled.div`
 		top: 23rem;
 		left: 5rem;
 		opacity: 0;
-		width: 50%;
+		width: 60%;
 		padding: 3rem;
-		background: rgba(0, 0, 0, 0.3);
-		-webkit-animation: slide-up 1s ease 0.5s;
+		background: rgba(0, 0, 0, 0.7);
 		animation: slide-up 1s ease 0.5s;
-		-webkit-animation-fill-mode: forwards;
 		animation-fill-mode: forwards;
 		visibility: hidden;
-	}
-
-	@-webkit-keyframes slide-up {
-		0% {
-			visibility: visible;
-			top: 23rem;
-		}
-		100% {
-			visibility: visible;
-			top: 17rem;
-		}
 	}
 
 	@keyframes slide-up {
@@ -60,7 +47,7 @@ const SliderLayout = styled.div`
 		}
 		100% {
 			visibility: visible;
-			top: 17rem;
+			top: 40%;
 		}
 	}
 
@@ -79,21 +66,22 @@ const SliderLayout = styled.div`
 	}
 
 	.arrow {
-		border: 2px solid #fff;
+		/* border: 2px solid #fff; */
 		border-radius: 50%;
-		background: transparent;
+		/* background: transparent; */
+		background-color: black;
 		color: #fff;
 		width: 2rem;
 		height: 2rem;
 		cursor: pointer;
 		position: absolute;
-		top: 35%;
+		top: 45%;
 		z-index: 999;
 	}
 
 	.arrow:hover {
 		background: #fff;
-		color: #777;
+		color: black;
 	}
 
 	.next {
@@ -101,6 +89,12 @@ const SliderLayout = styled.div`
 	}
 	.prev {
 		left: 1.5rem;
+	}
+
+	.todetail {
+		background-color: black;
+		border-radius: 10%;
+		color: white;
 	}
 
 	hr {
@@ -166,7 +160,7 @@ const Slider = () => {
 										<h2>{slide.heading}</h2>
 										<p>{slide.desc}</p>
 										<hr />
-										<button className='--btn --btn-primary'>Get Started</button>
+										<button className='todetail'>상세보기</button>
 									</div>
 								</>
 							)}
