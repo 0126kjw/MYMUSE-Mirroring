@@ -69,7 +69,7 @@ const DetailSlider = () => {
 		setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
 	};
 	const prevSlide = () => {
-		setCuttentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
+		setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
 	};
 
 	useEffect(() => {
@@ -78,9 +78,9 @@ const DetailSlider = () => {
 
 	return (
 		<DetailSliderLayout>
-			<SlArrowLeft className='arrow prev' onClick={prevSlide} />
-			<SlArrowRight className='arrow next' onClick={nextSlide} />
 			<div className='slider'>
+				<SlArrowLeft className='arrow prev' onClick={prevSlide} />
+				<SlArrowRight className='arrow next' onClick={nextSlide} />
 				{sliderData.map((slide, index) => {
 					return (
 						<div

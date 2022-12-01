@@ -1,78 +1,43 @@
 import { useState, useEffect } from 'react';
-//recoil
 import { useRecoilValue } from 'recoil';
-//recoil atom
-import { currentLoc } from 'recoil/navibar';
-//styling
-import { NaviContainer, NavBarLayout, LinkButton } from 'styles/compoStyles/navBarStyle';
+import { currentLoc } from 'state/navibar';
+import { NaviContainer, NavBarLayout } from 'styles/compoStyles/navBarStyle';
+import Link from 'next/link';
 
 const NavBar = () => {
-	//atom only using value
 	const loc = useRecoilValue(currentLoc);
-	//navibar's current menu
-	const [currentMenu, setcurrentMenu] = useState(loc);
-	//setting currentMenu
-	useEffect(() => {
-		switch (loc) {
-			case 'none':
-				setcurrentMenu('default');
-			case '/':
-				setcurrentMenu('Home');
-				break;
-			case '/sub/map':
-				setcurrentMenu('Map');
-				break;
-			case '/sub/search':
-				setcurrentMenu('Search');
-				break;
-			case '/sub/popular':
-				setcurrentMenu('Popular');
-				break;
-			default:
-				//details, or others...
-				setcurrentMenu('test');
-			//throw new error('UI: NavBar Error');
-		}
-	}, [loc]);
-	//console.log('currentMenu: ', currentMenu);
 
 	return (
 		<NaviContainer>
 			<NavBarLayout>
 				<ul>
-					<div className='leftEnd' />
-					<LinkButton
-						selected={currentMenu === 'Home'}
-						href='/'
-						style={{ textDecoration: 'none' }}
-					>
-						<span>Home</span>
-					</LinkButton>
+					<div>
+						<Link href='/' style={{ textDecoration: 'none' }}>
+							<div className={loc === '/' ? 'brown' : 'white'}>홈</div>
+						</Link>
+					</div>
 
-					<LinkButton
-						selected={currentMenu === 'Map'}
-						href='/sub/map'
-						style={{ textDecoration: 'none' }}
-					>
-						{' '}
-						<span>Map</span>{' '}
-					</LinkButton>
-					<LinkButton
-						selected={currentMenu === 'Search'}
-						href='/sub/search'
-						style={{ textDecoration: 'none' }}
-					>
-						{' '}
-						<span>Search</span>{' '}
-					</LinkButton>
-					<LinkButton
-						href='/sub/popular'
-						selected={currentMenu === 'Popular'}
-						style={{ textDecoration: 'none' }}
-					>
-						{' '}
-						<span>Popular</span>{' '}
-					</LinkButton>
+					<div>
+						<Link href='/map' style={{ textDecoration: 'none' }}>
+							<div className={loc === '/map' ? 'brown' : 'white'}>
+								서울 박물관 지도
+							</div>
+						</Link>
+					</div>
+
+					<div>
+						<Link href='/search' style={{ textDecoration: 'none' }}>
+							<div className={loc === '/search' ? 'brown' : 'white'}>박물관 검색</div>
+						</Link>
+					</div>
+
+					<div>
+						<Link href='/popular' style={{ textDecoration: 'none' }}>
+							<div className={loc === '/popular' ? 'brown' : 'white'}>
+								진행중인 전시회
+							</div>
+						</Link>
+					</div>
 				</ul>
 			</NavBarLayout>
 		</NaviContainer>
