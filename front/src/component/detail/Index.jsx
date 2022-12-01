@@ -2,9 +2,9 @@ import DataTable_Title from 'component/detail/DataTable_Title';
 import DataTable_Agency from 'component/detail/DataTable_Agency';
 import DataTable_Schedule from 'component/detail/DataTable_Schedule';
 import DataTable_AdmissionFee from 'component/detail/DataTable_AdmissionFee';
-import NaverMapComp from 'component/detail/NaverMapComp';
 import styled from '@emotion/styled';
 import DetailSlider from './DetailSlider';
+import DetailNaverMap from './DetailNaverMap';
 
 const IndexStyle = styled.div`
 	.museData {
@@ -57,7 +57,7 @@ const Index = ({}) => {
 				<DataTable_Agency />
 				<DataTable_Schedule />
 				<DataTable_AdmissionFee />
-				<NaverMapComp />
+				<DetailNaverMap />
 			</div>
 		</IndexStyle>
 	);
