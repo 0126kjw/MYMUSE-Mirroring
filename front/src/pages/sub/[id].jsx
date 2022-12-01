@@ -7,7 +7,7 @@ import Footer from '../../component/common/Footer';
 import Details from '../../component/details';
 
 const DetailLayout = styled.div`
-	@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
+	/* @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap'); */
 	margin: 0px auto;
 	main {
 		text-align: center;
@@ -27,21 +27,14 @@ export default function About() {
 
 	return (
 		<DetailLayout>
-			<Head>
-				<link
-					rel='preconnect'
-					href='https://fonts.googleapis.com'
-				></link>
-				<link
-					rel='preconnect'
-					href='https://fonts.gstatic.com'
-					crossorigin
-				></link>
+			{/* <Head>
+				<link rel='preconnect' href='https://fonts.googleapis.com'></link>
+				<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin></link>
 				<link
 					href='https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap'
 					rel='stylesheet'
 				></link>
-			</Head>
+			</Head> */}
 
 			<Header />
 			<Details id={id} />

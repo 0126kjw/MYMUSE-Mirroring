@@ -12,7 +12,7 @@ const DetailsLayout = styled.div`
 `;
 
 export default function Details({ id }) {
-	console.log({ id });
+	//console.log({ id });
 	return (
 		<>
 			<DetailsLayout>

@@ -4,7 +4,8 @@ const API = () => {
 	//[To Front] before running server, change port number [.env] in [back]'s file from '3000' to '3001'
 	const instance = axios.create({
 		//baseURL: 'http://' + window.location.hostname + ':' + '3001' + '/',
-		baseURL: 'http://localhost:3001/',
+		//baseURL: 'http://localhost:3001/',
+		baseURL: process.env.BASE_URL,
 	});
 
 	/**
