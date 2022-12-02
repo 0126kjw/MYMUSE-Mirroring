@@ -10,7 +10,6 @@ const SearchBarLayout = styled.div`
 	padding: 30px;
 
 	background-color: transparent;
-
 	color: ${cssUnit.colors.White};
 
 	button {

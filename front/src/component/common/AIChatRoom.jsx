@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import { useState, useEffect } from 'react';
 
 const AIChatRoomStyle = styled.div`
-	z-index: 999999999999999;
+	z-index: 9;
+
 	.AImodal-Outer {
 		border: solid #997a4c 1px;
 		text-align: center;

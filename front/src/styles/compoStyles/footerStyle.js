@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
 
 export const FooterContainer = styled.footer`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	position: relative;
 
 	width: 100%;
 	height: 150px;
@@ -16,6 +16,7 @@ export const FooterContainer = styled.footer`
 	color: ${cssUnit.colors.White};
 `;
 export const FooterWrapper = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -40,8 +41,6 @@ export const FooterTitleBox = styled.div`
 
 		width: 300px;
 		height: 100px;
-
-		z-index: 2;
 	}
 	/* not working: ... */
 	span {

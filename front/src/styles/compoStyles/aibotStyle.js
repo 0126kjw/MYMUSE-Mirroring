@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
 
 const AiBotLayout = styled.div`
+	position: relative;
 	#AImodalOnBtn {
 		margin-left: 10px;
 		position: fixed;
@@ -19,7 +20,7 @@ const AiBotLayout = styled.div`
 		font-size: ${cssUnit.fontSize.medium};
 		font-weight: bold;
 
-		z-index: 1;
+		z-index: 5;
 		&:hover {
 			cursor: pointer;
 		}

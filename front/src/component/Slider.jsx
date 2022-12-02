@@ -76,7 +76,7 @@ const SliderLayout = styled.div`
 		cursor: pointer;
 		position: absolute;
 		top: 45%;
-		z-index: 999;
+		// z-index: 1;
 	}
 
 	.arrow:hover {
@@ -140,9 +140,6 @@ const Slider = () => {
 	return (
 		<SliderLayout>
 			<div className='slider'>
-				<AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
-				<AiOutlineArrowRight className='arrow next' onClick={nextSlide} />
-
 				{sliderData.map((slide, index) => {
 					return (
 						<div
@@ -167,6 +164,8 @@ const Slider = () => {
 						</div>
 					);
 				})}
+				<AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
+				<AiOutlineArrowRight className='arrow next' onClick={nextSlide} />
 			</div>
 		</SliderLayout>
 	);
