@@ -3,7 +3,7 @@ import guId from 'data/guId.json';
 import zoomMap from 'data/zoomMap.json';
 import axios from 'axios';
 
-const getData = async (setMapState, setPins, selectedMapState) => {
+const getData = async (setMapState, setPins, selectedMapState, isFetching, setIsFetching) => {
 	if (selectedMapState.mapKind == 'outer') {
 		setMapState({
 			map: outerMap,
@@ -19,7 +19,6 @@ const getData = async (setMapState, setPins, selectedMapState) => {
 
 		if (foundGu != '') {
 			Promise.allSettled(promiseArray)
-
 				.then((res) => {
 					setMapState({
 						map: res[0].value.data,
@@ -27,6 +26,7 @@ const getData = async (setMapState, setPins, selectedMapState) => {
 						center: centerValue['center'],
 					});
 					setPins(res[0].value.data.pins);
+					setIsFetching(false);
 				})
 				.catch((err) => {
 					alert(err);

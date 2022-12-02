@@ -1,5 +1,6 @@
 import cssUnit from 'lib/cssUnit';
 import styled from '@emotion/styled';
+
 const SubZidoLayout = styled.div`
 	position: relative;
 	background-color: ${cssUnit.backgroundColors.Gray};
@@ -120,6 +121,12 @@ const SubZidoLayout = styled.div`
 		padding-bottom: 20px;
 	}
 	.tooltipStyle {
+		color: red;
+		font-size: 25px;
+	}
+
+	.dataFetchingMsg {
+		margin-top: 250px;
 		color: red;
 		font-size: 25px;
 	}
