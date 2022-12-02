@@ -12,14 +12,6 @@ import { ChatbotService } from './chatbots.service';
 @Controller('chatbots')
 export class ChatbotController {
   constructor(private readonly chatbotService: ChatbotService) {}
-  // private readonly projectId = process.env.GOOGLE_PROJECT_ID;
-  // private readonly sessionId = process.env.DIALOGFLOW_SESSION_ID;
-  // private readonly languageCode = process.env.DIALOGFLOW_LANGUAGE_CODE;
-  // private readonly sessionClient = new dialogflow.SessionsClient();
-  // private readonly sessionPath = this.sessionClient.projectAgentSessionPath(
-  //   this.projectId,
-  //   this.sessionId,
-  // );
 
   @ApiOperation({ summary: 'Chatbot 검색' })
   @ApiOkResponse({
