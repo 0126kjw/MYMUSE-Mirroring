@@ -3,18 +3,23 @@ import DropDown from './DropDown';
 //style
 import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
 
-const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes }) => {
+const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes, setKeyword }) => {
 	const list = ['박물관', '전시회'];
 
 	const onChange = (e) => {
 		setSearchVal(e.target.value);
-		getSearchRes(e.target.value);
+		setSearchRes(e.target.value);
+	};
+	//검색 키워드 전송
+	const onClick = () => {
+		setKeyword(searchVal);
+		setSearchVal('');
 	};
 
 	return (
 		<SearchBarLayout>
 			<DropDown list={list} />
-			<form onSubmit={onSubmit}>
+			<form>
 				{/* <label htmlFor='name'> 검색 : &nbsp;</label> */}
 
 				<input

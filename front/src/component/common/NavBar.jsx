@@ -18,13 +18,13 @@ const NavBar = () => {
 
 					<div className={loc === '/map' ? 'selectedColor' : 'defaultColor'}>
 						<Link href='/map' style={{ textDecoration: 'none' }}>
-							<div className='white'>서울 박물관 지도</div>
+							<div className='white'>지도</div>
 						</Link>
 					</div>
 
 					<div className={loc === '/search' ? 'selectedColor' : 'defaultColor'}>
 						<Link href='/search' style={{ textDecoration: 'none' }}>
-							<div className='white'>박물관 검색</div>
+							<div className='white'>검색</div>
 						</Link>
 					</div>
 

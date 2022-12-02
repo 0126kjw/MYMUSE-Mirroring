@@ -30,7 +30,9 @@ const Search = () => {
 	const PageData = SeoData.Search;
 	// 검색어 입력 처리
 	const [searchVal, setSearchVal] = useState('');
-	const [searchRes, setSearchRes] = useState(null);
+	const [searchRes, setSearchRes] = useState('');
+	//검색시 키워드
+	const [keyword, setKeyword] = useState(null);
 	// 검색결과
 	const [list, setList] = useState([]);
 	//category section
@@ -50,16 +52,16 @@ const Search = () => {
 	//console.log('searchRes?', searchRes);
 
 	const getSearchData = async () => {
-		const data = await GetSearach(searchCategory, searchRes);
+		const data = await GetSearach(searchCategory, keyword);
 		console.log('search: ', data);
 		setList(() => [...data]);
 	};
 
 	useEffect(() => {
-		if (searchRes !== null) {
+		if (keyword !== null) {
 			getSearchData();
 		}
-	}, [searchRes]);
+	}, [keyword]);
 
 	return (
 		<>
@@ -77,6 +79,7 @@ const Search = () => {
 						setSearchVal={setSearchVal}
 						searchRes={searchRes}
 						setSearchRes={setSearchRes}
+						setKeyword={setKeyword}
 					/>
 				</SearchSection>
 
