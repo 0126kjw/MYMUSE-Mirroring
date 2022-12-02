@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import cssUnit from 'lib/cssUnit';
 
-import { Section, Wrap, WrapTitle } from 'styles/common';
-import { UnderDevSection } from 'styles/compoStyles/underDev';
-import Index from 'component/detail/Index';
+import { Section, Wrap, WrapTitle } from 'src/styles/common';
+import { UnderDevSection } from 'src/styles/compoStyles/underDev';
+import Index from 'src/component/detail/Index';
 
 //wrap all
 const DetailContainer = styled.div`

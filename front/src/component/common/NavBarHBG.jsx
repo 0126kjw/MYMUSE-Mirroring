@@ -63,7 +63,7 @@ const MenuTogglerLayout = styled.div`
 			background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 	}
 
-	#menuToggle span:first-child {
+	#menuToggle span:first-of-type {
 		transform-origin: 0% 0%;
 	}
 

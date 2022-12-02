@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 //styling
-import { Section, Wrap, WrapTop, WrapTitle } from 'styles/common';
+import { Section, Wrap, WrapTop, WrapTitle } from 'src/styles/common';
 import {
 	MainContainer,
 	MainTitleContainer,
@@ -16,7 +16,7 @@ import {
 	HumanBubble,
 	AiBubble,
 	SearchBarLayout,
-} from 'styles/pageStyles/mainStyle';
+} from 'src/styles/pageStyles/mainStyle';
 import logo from '../../public/images/siteLogo.png';
 
 // component

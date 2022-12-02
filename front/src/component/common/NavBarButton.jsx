@@ -1,7 +1,7 @@
-import { NaviContainer, NavBarLayout, LinkButton } from 'styles/compoStyles/navBarStyle';
+import { NaviContainer, NavBarLayout, LinkButton } from 'src/styles/compoStyles/navBarStyle';
 //recoil
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { currentLoc } from 'state/navibar';
+import { currentLoc } from 'src/state/navibar';
 import { useState, useEffect } from 'react';
 
 const NavBarButton = () => {

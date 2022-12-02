@@ -2,7 +2,7 @@
 import Link from 'next/link';
 //for style
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 //Navibar full container
 
 export const NaviContainer = styled.div`

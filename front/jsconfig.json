@@ -1,7 +1,8 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "baseUrl": "./src"
-  },
-  "include": ["src"]
+	"compilerOptions": {
+		//"target": "ESNext",
+		"baseUrl": "."
+	},
+	//"exclude": ["node_modules"],
+	"include": ["src"]
 }

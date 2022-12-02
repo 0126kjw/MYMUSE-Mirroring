@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 
 export const HeaderContainer = styled.header`
 	display: flex;

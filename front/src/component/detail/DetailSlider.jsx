@@ -1,4 +1,4 @@
-import { sliderData } from 'data/slider-data';
+import { sliderData } from 'src/data/slider-data';
 import { useState, useEffect } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import styled from '@emotion/styled';

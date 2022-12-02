@@ -1,4 +1,4 @@
-import AiBotLayout from 'styles/compoStyles/aibotStyle';
+import AiBotLayout from 'src/styles/compoStyles/aibotStyle';
 import { useState } from 'react';
 
 const AiBot = () => {

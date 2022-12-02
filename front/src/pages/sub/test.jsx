@@ -1,10 +1,10 @@
 //Dummy Test Page
 //styling
-import cssUnit from 'lib/cssUnit';
-import { Section, Wrap } from 'styles/common';
-import { MainContainer } from 'styles/pageStyles/mainStyle';
-import TestCompo from 'component/TestCompo';
-import TitleSection from 'component/common/TitleSection';
+import cssUnit from 'src/lib/cssUnit';
+import { Section, Wrap } from 'src/styles/common';
+import { MainContainer } from 'src/styles/pageStyles/mainStyle';
+import TestCompo from 'src/component/TestCompo';
+import TitleSection from 'src/component/common/TitleSection';
 
 const Test = () => {
 	return (

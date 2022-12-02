@@ -1,8 +1,8 @@
 //styling
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 //for page common section
-import { Section, Wrap, WrapTitle } from 'styles/common';
+import { Section, Wrap, WrapTitle } from 'src/styles/common';
 import Link from 'next/link';
 
 const ErrorPageLayout = styled.div`

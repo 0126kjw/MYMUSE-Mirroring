@@ -1,25 +1,11 @@
-import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
-
-const SearchBarLayout = styled.div`
-	display: flex;
-	justify-content: center;
-
-	margin: 0px;
-	padding: 30px;
-
-	background-color: transparent;
-
-	color: ${cssUnit.colors.White};
-
-	button {
-		margin-top: 10px;
-		height: 26px;
-		line-height: 26px;
-	}
-`;
+//components
+import DropDown from './DropDown';
+//style
+import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
 
 const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes }) => {
+	const list = ['박물관', '전시회'];
+
 	const onChange = (e) => {
 		setSearchVal(e.target.value);
 	};
@@ -35,8 +21,10 @@ const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes }) => {
 
 	return (
 		<SearchBarLayout>
+			<DropDown list={list} />
 			<form onSubmit={onSubmit}>
-				<label htmlFor='name'> 검색 : &nbsp;</label>
+				{/* <label htmlFor='name'> 검색 : &nbsp;</label> */}
+
 				<input
 					type='text'
 					id='name'

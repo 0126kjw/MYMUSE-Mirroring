@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 
 export const Section = styled.section`
 	width: 100%;
@@ -12,6 +12,11 @@ export const Section = styled.section`
 	:nth-of-type(4) {
 		padding-top: 100px;
 		padding-bottom: 130px;
+	}
+
+	.page {
+		padding-top: 0;
+		padding-bottom: 0;
 	}
 
 	margin: 0;

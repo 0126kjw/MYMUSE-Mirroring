@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { currentLoc } from 'state/navibar';
-import { NaviContainer, NavBarLayout } from 'styles/compoStyles/navBarStyle';
+import { currentLoc } from 'src/state/navibar';
+import { NaviContainer, NavBarLayout } from 'src/styles/compoStyles/navBarStyle';
 import Link from 'next/link';
 
 const NavBar = () => {
@@ -19,15 +19,13 @@ const NavBar = () => {
 
 					<div>
 						<Link href='/map' style={{ textDecoration: 'none' }}>
-							<div className={loc === '/map' ? 'brown' : 'white'}>
-								서울 박물관 지도
-							</div>
+							<div className={loc === '/map' ? 'brown' : 'white'}>지도</div>
 						</Link>
 					</div>
 
 					<div>
 						<Link href='/search' style={{ textDecoration: 'none' }}>
-							<div className={loc === '/search' ? 'brown' : 'white'}>박물관 검색</div>
+							<div className={loc === '/search' ? 'brown' : 'white'}>검색</div>
 						</Link>
 					</div>
 

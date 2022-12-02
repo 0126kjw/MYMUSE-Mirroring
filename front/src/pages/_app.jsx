@@ -1,14 +1,14 @@
 import React, { Suspense } from 'react';
 import Head from 'next/head';
 //style
-import AppLayout from 'component/AppLayout';
-import { GlobalStyles } from 'styles/globalStyle';
+import AppLayout from 'src/component/AppLayout';
+import { GlobalStyles } from 'src/styles/globalStyle';
 //for error
 import { ErrorBoundary } from 'react-error-boundary';
 //for data
 import { RecoilRoot } from 'recoil';
 //for loading
-import Loading from 'component/common/Loading';
+import Loading from 'src/component/common/Loading';
 
 function MyApp({ Component, pageProps }) {
 	return (

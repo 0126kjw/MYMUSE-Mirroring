@@ -1,6 +1,6 @@
-import outerMap from 'data/seoul.json';
-import guId from 'data/guId.json';
-import zoomMap from 'data/zoomMap.json';
+import outerMap from 'src/data/seoul.json';
+import guId from 'src/data/guId.json';
+import zoomMap from 'src/data/zoomMap.json';
 import axios from 'axios';
 
 const getData = async (setMapState, setPins, selectedMapState) => {

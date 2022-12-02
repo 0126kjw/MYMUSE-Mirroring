@@ -5,24 +5,24 @@ import { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 // function
-import getData from 'component/zido/function_getData';
-import SeoulZidoSubStyle from 'styles/compoStyles/SeoulZidoSubStyle';
+import getData from 'src/component/zido/function_getData';
+import SeoulZidoSubStyle from 'src/styles/compoStyles/SeoulZidoSubStyle';
 
 // State
-import SelectedMapState from 'state/selectedMap';
+import SelectedMapState from 'src/state/selectedMap';
 
 // data
-import outerMap from 'data/seoul.json';
-import { markers } from 'data/basicMarkers';
+import outerMap from 'src/data/seoul.json';
+import { markers } from 'src/data/basicMarkers';
 
 // Component
-import CreatedList from 'component/zido/CreatedList';
-import LeftArrow from 'component/zido/LeftArrow';
-import Marker_Inner from 'component/zido/Marker_Inner';
-import Marker_Outer from 'component/zido/Marker_Outer';
-import Geographies_Inner from 'component/zido/Geographies_Inner';
-import Geographies_Outer from 'component/zido/Geographies_Outer';
-import TopDescription from 'component/zido/TopDescription';
+import CreatedList from 'src/component/zido/CreatedList';
+import LeftArrow from 'src/component/zido/LeftArrow';
+import Marker_Inner from 'src/component/zido/Marker_Inner';
+import Marker_Outer from 'src/component/zido/Marker_Outer';
+import Geographies_Inner from 'src/component/zido/Geographies_Inner';
+import Geographies_Outer from 'src/component/zido/Geographies_Outer';
+import TopDescription from 'src/component/zido/TopDescription';
 
 export default function SeoulZido() {
 	// useState

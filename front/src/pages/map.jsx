@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 //for page common section
-import { Section, Wrap, WrapTitle } from 'styles/common';
-import { UnderDevSection } from 'styles/compoStyles/underDev';
-import TitleSection from 'component/common/TitleSection';
-import SeoulZidoSub from 'component/zido/SeoulZidoSub';
-import { ZidoContainer } from 'styles/pageStyles/mapStyle';
+import { Section, Wrap, WrapTitle } from 'src/styles/common';
+import { UnderDevSection } from 'src/styles/compoStyles/underDev';
+import TitleSection from 'src/component/common/TitleSection';
+import SeoulZidoSub from 'src/component/zido/SeoulZidoSub';
+import { ZidoContainer } from 'src/styles/pageStyles/mapStyle';
 //for Seo
-import SeoData from 'lib/seoData';
-import Seo from 'component/Seo';
+import SeoData from 'src/lib/seoData';
+import Seo from 'src/component/Seo';
 
 const Zido = () => {
 	const PageData = SeoData.Map;

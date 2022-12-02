@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 //background-color: ${cssUnit.colors.DarkGold};
 const AiBotLayout = styled.div`
 	position: fixed;

@@ -1,11 +1,11 @@
 import Main from '../component/Main';
 import Head from 'next/head';
 import { useRecoilState } from 'recoil';
-import SelectedMapState from 'state/selectedMap';
+import SelectedMapState from 'src/state/selectedMap';
 import { useEffect } from 'react';
 //for Seo
-import SeoData from 'lib/seoData';
-import Seo from 'component/Seo';
+import SeoData from 'src/lib/seoData';
+import Seo from 'src/component/Seo';
 
 const Home = () => {
 	const PageData = SeoData.Main;

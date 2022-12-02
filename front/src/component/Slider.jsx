@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
-import { sliderData } from 'data/slider-data';
+import { sliderData } from 'src/data/slider-data';
 import styled from '@emotion/styled';
 
 const SliderLayout = styled.div`

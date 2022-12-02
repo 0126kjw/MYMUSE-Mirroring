@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 // etc
-import SelectedMapState from 'state/selectedMap';
-import cssUnit from 'lib/cssUnit';
+import SelectedMapState from 'src/state/selectedMap';
+import cssUnit from 'src/lib/cssUnit';
 import styled from '@emotion/styled';
 
 // data
-import outerMap from 'data/seoul.json';
-import { markers } from 'data/basicMarkers';
+import outerMap from 'src/data/seoul.json';
+import { markers } from 'src/data/basicMarkers';
 
 export const MainZidoLayout = styled.div`
 	background-color: ${cssUnit.backgroundColors.Gray};
