@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
 	position: relative;
 
 	width: 100%;
-	height: 290px;
+	height: 230px;
 
 	background-color: ${cssUnit.backgroundColors.DeepBlack};
 
@@ -26,18 +26,6 @@ export const ImageWraper = styled.div`
 	position: static;
 
 	.bgImg {
-		// display: flex;
-		// flex-direction: column;
-		// justify-content: center;
-		// align-items: center;
-
-		// position: static;
-		// object-position: 100px 200px;
-		// object-position: 50% 50%;
-
-		// width: 100%
-		// height: 240px;
-
 		background-color: ${cssUnit.backgroundColors.DeepBlack};
 		border: 0.1px solid #111111;
 
@@ -81,6 +69,6 @@ export const HeaderUpper = styled.div`
 `;
 
 export const HeaderLower = styled.div`
-	width: 100%;
-	height: 100px;
+	position: sticky;
+	top: 0px;
 `;

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { currentLoc } from 'state/navibar';
 import { NaviContainer, NavBarLayout } from 'styles/compoStyles/navBarStyle';
@@ -11,31 +10,27 @@ const NavBar = () => {
 		<NaviContainer>
 			<NavBarLayout>
 				<ul>
-					<div>
+					<div className={loc === '/' ? 'selectedColor' : 'defaultColor'}>
 						<Link href='/' style={{ textDecoration: 'none' }}>
-							<div className={loc === '/' ? 'brown' : 'white'}>홈</div>
+							<div className='white'>홈</div>
 						</Link>
 					</div>
 
-					<div>
+					<div className={loc === '/map' ? 'selectedColor' : 'defaultColor'}>
 						<Link href='/map' style={{ textDecoration: 'none' }}>
-							<div className={loc === '/map' ? 'brown' : 'white'}>
-								서울 박물관 지도
-							</div>
+							<div className='white'>서울 박물관 지도</div>
 						</Link>
 					</div>
 
-					<div>
+					<div className={loc === '/search' ? 'selectedColor' : 'defaultColor'}>
 						<Link href='/search' style={{ textDecoration: 'none' }}>
-							<div className={loc === '/search' ? 'brown' : 'white'}>박물관 검색</div>
+							<div className='white'>박물관 검색</div>
 						</Link>
 					</div>
 
-					<div>
+					<div className={loc === '/popular' ? 'selectedColor' : 'defaultColor'}>
 						<Link href='/popular' style={{ textDecoration: 'none' }}>
-							<div className={loc === '/popular' ? 'brown' : 'white'}>
-								진행중인 전시회
-							</div>
+							<div className='white'>진행중인 전시회</div>
 						</Link>
 					</div>
 				</ul>

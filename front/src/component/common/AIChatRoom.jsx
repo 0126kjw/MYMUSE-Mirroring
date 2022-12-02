@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 import { useState, useEffect } from 'react';
 
 const AIChatRoomStyle = styled.div`
-	z-index: 9;
-
 	.AImodal-Outer {
 		border: solid #997a4c 1px;
 		text-align: center;
@@ -16,23 +14,24 @@ const AIChatRoomStyle = styled.div`
 		right: 30px;
 		bottom: 100px;
 
-		height: 520px;
-		width: 600px;
+		height: 450px;
+		width: 450px;
 
 		margin: 0 auto;
 		background-color: #d9d9d9;
 		border-radius: 20px 20px 0px 20px;
 	}
 
-	// @media screen and (max-width: 420px) {
-	// 	width: 90vw;
-	// }
-
 	.AImodal-Inner {
 		transform: rotateZ(180deg);
 		width: 100%;
 		height: 100%;
 		overflow: auto;
+		-ms-overflow-style: none;
+	}
+
+	.AImodal-Inner::-webkit-scrollbar {
+		display: none;
 	}
 
 	// 로고
@@ -55,7 +54,6 @@ const AIChatRoomStyle = styled.div`
 
 	.AIsec2 {
 		min-height: 400px;
-		// height: 100%;
 		overflow: scroll;
 		-ms-overflow-style: none; /* IE and Edge */
 		scrollbar-width: none; /* Firefox */
@@ -113,7 +111,7 @@ const AIChatRoomStyle = styled.div`
 			background-color: #ffffff;
 			border-radius: 10px;
 			border: solid 1px #d9d9d9;
-			width: 80%;
+			width: 90%;
 			height: 70%;
 		}
 		button {
@@ -179,7 +177,6 @@ const AIChatRoom = ({ setBotMode }) => {
 						<div className='msgFromHuman'>국립중앙박물관 멍청아</div>
 						<div className='msgFromAI'>너희 엄마한테 물어봐라 멍청아</div>
 					</div>
-					{/* <div className='emptyBox'></div> */}
 				</div>
 			</div>
 			<div className='formDiv'>

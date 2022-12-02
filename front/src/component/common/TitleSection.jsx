@@ -9,12 +9,9 @@ import { useSetRecoilState } from 'recoil';
 import { currentLoc } from 'state/navibar';
 
 const TitleSection = ({ children }) => {
-	//recoil atom
 	const setLoc = useSetRecoilState(currentLoc);
-
 	const router = useRouter();
 	let currentUrl = null;
-	//set atom
 	useEffect(() => {
 		currentUrl = router.pathname;
 		setLoc(currentUrl);

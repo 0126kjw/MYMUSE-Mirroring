@@ -3,6 +3,8 @@ import cssUnit from 'lib/cssUnit';
 
 const AiBotLayout = styled.div`
 	position: relative;
+	z-index: 2;
+
 	#AImodalOnBtn {
 		margin-left: 10px;
 		position: fixed;

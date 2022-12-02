@@ -29,6 +29,7 @@ const Popular = () => {
 			const res = await axios.get(
 				`https://qrcavwxubm.us16.qoddiapp.com/exhibitions?page=${bundleIdx}`,
 			);
+			console.log('res.data', res.data);
 			setList((prev) => [...prev, ...res.data]);
 		} catch {
 			console.log('인기 전시회 데이터를 가져오는 과정에서 에러 발생');
@@ -94,7 +95,7 @@ const Popular = () => {
 														<div className='sub'>{x.title}</div>
 													</div>
 													<div className='div2'>
-														<div className='sub'>{x.period[0]}</div>
+														<div className='sub'>{x.period}</div>
 													</div>
 													<div className='div3'>
 														<div className='sub'>{x.place}</div>
