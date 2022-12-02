@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 const SliderLayout = styled.div`
 	.slider {
 		width: 100%;
-		height: 70vh;
+		height: 600px;
 		position: relative;
 		overflow: hidden;
 	}
@@ -25,19 +25,28 @@ const SliderLayout = styled.div`
 	.slide img {
 		width: 100%;
 		height: 100%;
+		@media screen and (max-width: 900px) {
+			height: 75vh;
+		}
 	}
 
 	.content {
 		position: absolute;
-		top: 23rem;
-		left: 5rem;
+		margin-top: 15%;
 		opacity: 0;
-		width: 60%;
-		padding: 3rem;
+		width: 76%;
+		height: 30%;
+		left: 10%;
+		bottom: 200px;
+		padding: 2%;
 		background: rgba(0, 0, 0, 0.7);
 		animation: slide-up 1s ease 0.5s;
 		animation-fill-mode: forwards;
 		visibility: hidden;
+		font-size: 15px;
+		@media screen and (max-width: 900px) {
+			height: 80vh;
+		}
 	}
 
 	@keyframes slide-up {
@@ -76,7 +85,7 @@ const SliderLayout = styled.div`
 		cursor: pointer;
 		position: absolute;
 		top: 45%;
-		z-index: 999;
+		// z-index: 1;
 	}
 
 	.arrow:hover {
@@ -140,9 +149,6 @@ const Slider = () => {
 	return (
 		<SliderLayout>
 			<div className='slider'>
-				<AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
-				<AiOutlineArrowRight className='arrow next' onClick={nextSlide} />
-
 				{sliderData.map((slide, index) => {
 					return (
 						<div
@@ -150,7 +156,7 @@ const Slider = () => {
 							key={index}
 						>
 							{index === currentSlide && (
-								<>
+								<div className='currentSlide'>
 									<img
 										src={slide.image}
 										alt='slide'
@@ -162,11 +168,13 @@ const Slider = () => {
 										<hr />
 										<button className='todetail'>상세보기</button>
 									</div>
-								</>
+								</div>
 							)}
 						</div>
 					);
 				})}
+				<AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
+				<AiOutlineArrowRight className='arrow next' onClick={nextSlide} />
 			</div>
 		</SliderLayout>
 	);

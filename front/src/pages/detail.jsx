@@ -5,31 +5,62 @@ import { Section, Wrap, WrapTitle } from 'src/styles/common';
 import { UnderDevSection } from 'src/styles/compoStyles/underDev';
 import Index from 'src/component/detail/Index';
 
-//wrap all
+// recoil state
+import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
+import { currentLoc } from 'state/navibar';
+import SelectedMapState from 'state/selectedMap';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+
+// wrap all
 const DetailContainer = styled.div`
 	margin: 0px auto;
-	background-color: ${cssUnit.colors.White};
+	background-color: ${cssUnit.colors.DeepBlack};
 	font-family: 'Noto serif KR', sans-serif;
 	font-weight: bold;
 	font-size: 25px;
+
+	.detailTitle {
+		position: relative;
+		text-align: center;
+		line-height: 50px;
+		padding-top: 50px;
+		padding-bottom: 50px;
+
+		color: ${cssUnit.colors.White};
+
+		width: 100%;
+		font-size: ${cssUnit.fontSize.medium};
+	}
+	.detailBackground {
+		background-color: ${cssUnit.backgroundColors.White};
+	}
 `;
 
 export default function Detail() {
+	const router = useRouter();
+	const setLoc = useSetRecoilState(currentLoc);
+	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
+
+	useEffect(() => {
+		setLoc(router.pathname);
+		setSelectedMapState({
+			mapKind: 'outer',
+			name: '',
+		});
+	}, []);
+
 	return (
 		<DetailContainer>
-			<Section color={cssUnit.backgroundColors.Black} size={100}>
-				<Wrap>
-					<WrapTitle color={cssUnit.colors.White}>상세 전시관 페이지</WrapTitle>
-				</Wrap>
-			</Section>
-			<Section size={900}></Section>
-			<Section color={cssUnit.backgroundColors.White} size={900}>
+			<div className='detailTitle'> 박물관 이름 </div>
+			<div className='detailBackground'>
 				<Wrap>
 					<UnderDevSection>
 						<Index />
 					</UnderDevSection>
 				</Wrap>
-			</Section>
+			</div>
 		</DetailContainer>
 	);
 }

@@ -8,15 +8,7 @@ const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes }) => {
 
 	const onChange = (e) => {
 		setSearchVal(e.target.value);
-	};
-	const onSubmit = (e) => {
-		e.preventDefault();
-		setSearchRes(searchVal);
-		setSearchVal('');
-	};
-	const onClick = () => {
-		setSearchRes(searchVal);
-		setSearchVal('');
+		getSearchRes(e.target.value);
 	};
 
 	return (

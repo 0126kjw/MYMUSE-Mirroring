@@ -1,6 +1,11 @@
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
 
-export default function Geographies_Outer({ selectedMapState, mapState, setSelectedMapState }) {
+export default function Geographies_Outer({
+	selectedMapState,
+	mapState,
+	setSelectedMapState,
+	setIsFetching,
+}) {
 	return (
 		<>
 			{selectedMapState.mapKind == 'outer' ? (
@@ -13,6 +18,7 @@ export default function Geographies_Outer({ selectedMapState, mapState, setSelec
 									stroke={'#F5F5F5'}
 									strokeWidth={mapState.isZoom ? 0 : 0.4}
 									onClick={() => {
+										setIsFetching(true);
 										setSelectedMapState({
 											mapKind: 'inner',
 											name: geo.properties.name,

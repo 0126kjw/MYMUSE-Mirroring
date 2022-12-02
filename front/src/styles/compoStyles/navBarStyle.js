@@ -12,23 +12,43 @@ export const NaviContainer = styled.div`
 	color: ${cssUnit.colors.White};
 	background-color: ${cssUnit.backgroundColors.Black};
 	border-top: 0.1px soild #111111;
+
+	.selectedColor {
+		background-color: ${cssUnit.backgroundColors.DeepBlack};
+	}
+
+	.defaultColor {
+		background-color: ${cssUnit.backgroundColors.Black};
+	}
+
+	position: sticky;
+	z-index: 1;
+	top: 0px;
+
+	@media screen and (max-width: 599px) {
+		display: none;
+	}
 `;
 //navibar basic layout
 export const NavBarLayout = styled.div`
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+
 	ul {
 		display: flex;
 		justify-content: space-around;
 		text-align: center;
 
+		width: 1200px;
 		height: 50px;
 		margin: 0px;
 		padding: 0px;
-
-		background-color: ${cssUnit.backgroundColors.Black};
 		line-height: 50px;
 
 		div {
 			text-decoration: none;
+			width: 300px;
 		}
 
 		.brown {
@@ -36,6 +56,13 @@ export const NavBarLayout = styled.div`
 		}
 		.white {
 			color: white;
+		}
+
+		@media (max-width: 1500px) {
+			width: 100%;
+			div {
+				width: 100%;
+			}
 		}
 	}
 `;

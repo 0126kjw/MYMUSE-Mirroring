@@ -4,6 +4,9 @@ import cssUnit from 'src/lib/cssUnit';
 export const MainContainer = styled.div`
 	width: auto !important;
 	height: auto !important;
+	.hegit-adjustment {
+		margin-top: 30px;
+	}
 `;
 
 export const MainTitleContainer = styled.div`
@@ -82,7 +85,7 @@ export const SerachBarContainer = styled.div`
 
 export const SearchBarLayout = styled.div`
 	margin: 0px;
-	z-index: 10;
+	z-index: 0;
 
 	div {
 		width: 100%;
@@ -116,9 +119,11 @@ export const AiExContainer = styled.div`
 
 	width: 100%;
 	max-width: 500px;
-	height: 500px;
+	/* height: 500px; */
 
 	background-color: white;
+
+	border-radius: 10px;
 `;
 
 //Ai chat example css
@@ -132,26 +137,22 @@ export const AiChatRoomBox = styled.div`
 
 	width: 100%;
 	max-width: 500px;
-	// height: 400px;
 
 	background-color: ${cssUnit.colors.Gray};
+	border-radius: 10px 10px 0px 0px;
 `;
 
 export const HumanBubble = styled.div`
+	text-align: left;
+
 	width: 80%;
 	max-width: 400px;
-	// : 60px;
-	font-size: 10rem;
 
-	margin: 4% 2% 4% 14%;
-
-	// left: 10%;
-	// top: 317px;
-
+	margin: 4% 4% 4% 11%;
 	background-color: ${cssUnit.colors.White};
 
 	font-size: ${cssUnit.fontSize.small};
-	// line-height: 60px;
+	/* line-height: 60px; */
 	padding: 10px;
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -161,13 +162,10 @@ export const AiBubble = styled.div`
 	display: table;
 	width: 80%;
 	max-width: 350px;
-	// height: 250px;
 
 	margin: 4% 14% 4% 6%;
 	padding: 0 0 0 10px;
 
-	// left: 793px;
-	// top: 420px;
 	background-color: ${cssUnit.colors.White};
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -187,6 +185,7 @@ export const AiChatButton = styled.button`
 
 	font-family: 'Noto serif KR', sans-serif;
 	font-weight: 400;
+	border-radius: 0px 0px 10px 10px;
 
 	&:hover {
 		cursor: pointer;
@@ -196,8 +195,6 @@ export const AiChatButton = styled.button`
 //sections
 export const Logosection = styled.section`
 	width: 131px;
-	// height: 450px;
-
 	top: 90px;
 	z-index: 2;
 

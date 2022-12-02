@@ -3,7 +3,7 @@ import guId from 'src/data/guId.json';
 import zoomMap from 'src/data/zoomMap.json';
 import axios from 'axios';
 
-const getData = async (setMapState, setPins, selectedMapState) => {
+const getData = async (setMapState, setPins, selectedMapState, isFetching, setIsFetching) => {
 	if (selectedMapState.mapKind == 'outer') {
 		setMapState({
 			map: outerMap,
@@ -11,8 +11,6 @@ const getData = async (setMapState, setPins, selectedMapState) => {
 			center: [126.986, 37.57],
 		});
 	} else {
-		let mapData = null;
-		let pinData = null;
 		const foundGu = guId.find((v) => v.name === selectedMapState.name);
 		const mapDataUrl = `https://qrcavwxubm.us16.qoddiapp.com/map/${foundGu._id}`;
 		const pinDataUrl = `https://qrcavwxubm.us16.qoddiapp.com/map/${foundGu._id}/pins`;
@@ -20,14 +18,15 @@ const getData = async (setMapState, setPins, selectedMapState) => {
 		const promiseArray = [mapDataUrl, pinDataUrl].map(fetchURL);
 
 		if (foundGu != '') {
-			Promise.all(promiseArray)
+			Promise.allSettled(promiseArray)
 				.then((res) => {
 					setMapState({
-						map: res[0].data,
+						map: res[0].value.data,
 						zoom: 7,
 						center: centerValue['center'],
 					});
-					setPins(res[1].data);
+					setPins(res[0].value.data.pins);
+					setIsFetching(false);
 				})
 				.catch((err) => {
 					alert(err);

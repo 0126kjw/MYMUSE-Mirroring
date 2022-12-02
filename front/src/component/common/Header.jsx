@@ -41,8 +41,8 @@ const Header = () => {
 						/>
 					</div>
 				</ImageWraper>
-				<NavBar />
 			</HeaderContainer>
+			<NavBar />
 		</>
 	);
 };

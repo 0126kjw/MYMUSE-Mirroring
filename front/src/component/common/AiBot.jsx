@@ -2,36 +2,20 @@ import AiBotLayout from 'src/styles/compoStyles/aibotStyle';
 import { useState } from 'react';
 
 const AiBot = () => {
-	const [bot, setBot] = useState('off');
+	const [botMode, setBotMode] = useState('off');
 
 	const openBot = () => {
-		setBot('on');
-	};
-
-	const closeBot = () => {
-		setBot('off');
+		setBotMode('on');
 	};
 
 	return (
 		<AiBotLayout>
-			{bot == 'off' ? (
-				<div className='Aibot' onClick={openBot}>
-					AI
+			{botMode == 'off' ? (
+				<div id='AImodalOnBtn' onClick={openBot}>
+					AIBOT
 				</div>
 			) : (
-				<>
-					<div className='forIframe'>
-						<iframe
-							width='350'
-							height='430'
-							allow='microphone;'
-							src='https://console.dialogflow.com/api-client/demo/embedded/28ff80e2-e5e3-420b-ab8d-8dfe73cc67f5'
-						></iframe>
-					</div>
-					<button className='closeBotBtn' onClick={closeBot}>
-						봇 종료 버튼
-					</button>
-				</>
+				<AIChatRoom setBotMode={setBotMode} />
 			)}
 		</AiBotLayout>
 	);

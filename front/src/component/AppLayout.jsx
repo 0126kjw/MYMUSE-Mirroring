@@ -24,8 +24,8 @@ const AppLayout = ({ children }) => {
 				<Header />
 				<NavBarHBG />
 				<main>{children}</main>
-				<AiBot />
 				<Footer />
+				<AiBot />
 			</div>
 		</>
 	);

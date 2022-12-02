@@ -29,6 +29,7 @@ export default function SeoulZido() {
 	const [tooltipName, setTooltipName] = useState('');
 	const [isMounted, setIsMounted] = useState(false); // Need this for the react-tooltip
 	const [pins, setPins] = useState([]);
+	const [isFetching, setIsFetching] = useState(false);
 	const [hoverPin, setHoverPin] = useState('');
 	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 	const [mapState, setMapState] = useState({
@@ -42,74 +43,79 @@ export default function SeoulZido() {
 		setIsMounted(true);
 	}, []);
 	useEffect(() => {
-		getData(setMapState, setPins, selectedMapState);
+		getData(setMapState, setPins, selectedMapState, isFetching, setIsFetching);
 	}, [selectedMapState]);
 
 	return (
 		<>
-			{isMounted ? (
-				<SeoulZidoSubStyle>
-					<ReactTooltip className='tooltipStyle' type='light'>
-						{tooltipName}
-					</ReactTooltip>
+			<SeoulZidoSubStyle>
+				{isMounted && !isFetching ? (
+					<>
+						<ReactTooltip className='tooltipStyle' type='light'>
+							{tooltipName}
+						</ReactTooltip>
 
-					{/*  react-simple-maps */}
+						{/*  react-simple-maps */}
 
-					<div className='react-simple-maps'>
-						<TopDescription selectedMapState={selectedMapState} />
-						<ComposableMap
-							projection='geoMercator'
-							projectionConfig={{
-								rotate: [-60, 0, 5],
-								scale: 38000,
-							}}
-							data-tip=''
-						>
-							<ZoomableGroup
-								center={mapState.center}
-								zoom={mapState.zoom}
-								minZoom={mapState.zoom}
-								maxZoom={mapState.zoom}
+						<div className='react-simple-maps'>
+							<TopDescription selectedMapState={selectedMapState} />
+							<ComposableMap
+								projection='geoMercator'
+								projectionConfig={{
+									rotate: [-60, 0, 5],
+									scale: 38000,
+								}}
+								data-tip=''
 							>
-								<Geographies_Outer
-									selectedMapState={selectedMapState}
-									setSelectedMapState={setSelectedMapState}
-									mapState={mapState}
-								/>
+								<ZoomableGroup
+									center={mapState.center}
+									zoom={mapState.zoom}
+									minZoom={mapState.zoom}
+									maxZoom={mapState.zoom}
+								>
+									<Geographies_Outer
+										selectedMapState={selectedMapState}
+										setSelectedMapState={setSelectedMapState}
+										mapState={mapState}
+										setIsFetching={setIsFetching}
+									/>
 
-								<Geographies_Inner
-									selectedMapState={selectedMapState}
-									setSelectedMapState={setSelectedMapState}
-									mapState={mapState}
-								/>
+									<Geographies_Inner
+										selectedMapState={selectedMapState}
+										setSelectedMapState={setSelectedMapState}
+										mapState={mapState}
+									/>
 
-								<Marker_Outer
-									markers={markers}
-									selectedMapState={selectedMapState}
-								/>
-								<Marker_Inner
-									selectedMapState={selectedMapState}
-									pins={pins}
-									setTooltipName={setTooltipName}
-									setHoverPin={setHoverPin}
-								/>
-							</ZoomableGroup>
-						</ComposableMap>
-						<LeftArrow
+									<Marker_Outer
+										markers={markers}
+										selectedMapState={selectedMapState}
+									/>
+									<Marker_Inner
+										selectedMapState={selectedMapState}
+										pins={pins}
+										setTooltipName={setTooltipName}
+										setHoverPin={setHoverPin}
+									/>
+								</ZoomableGroup>
+							</ComposableMap>
+							<LeftArrow
+								selectedMapState={selectedMapState}
+								setMapState={setMapState}
+								setPins={setPins}
+								setSelectedMapState={setSelectedMapState}
+								outerMap={outerMap}
+							/>
+						</div>
+						<CreatedList
 							selectedMapState={selectedMapState}
-							setMapState={setMapState}
-							setPins={setPins}
-							setSelectedMapState={setSelectedMapState}
-							outerMap={outerMap}
+							pins={pins}
+							hoverPin={hoverPin}
 						/>
-					</div>
-					<CreatedList
-						selectedMapState={selectedMapState}
-						pins={pins}
-						hoverPin={hoverPin}
-					/>
-				</SeoulZidoSubStyle>
-			) : null}
+					</>
+				) : (
+					<div className='dataFetchingMsg'>데이터를 가져오는 중입니다</div>
+				)}
+			</SeoulZidoSubStyle>
 		</>
 	);
 }

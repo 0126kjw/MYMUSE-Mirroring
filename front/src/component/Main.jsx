@@ -31,17 +31,19 @@ const Main = () => {
 				<TitleSection color={cssUnit.backgroundColors.DeepBlack} size={'150px'}>
 					<WrapTop>
 						<MainTitleContainer>
-							<div className='logoImg'>
-								<Image
-									src={logo}
-									alt='logo'
-									width={150}
-									height={70}
-									style={{ objectFit: 'contain', layout: 'fill' }}
-								/>
-							</div>
-							<div className='logoText'>
-								한 곳에서 보는 <br></br> 온라인 AI 전시정보 팜플렛
+							<div className='hegit-adjustment'>
+								<div className='logoImg'>
+									<Image
+										src={logo}
+										alt='logo'
+										width={150}
+										height={70}
+										style={{ objectFit: 'contain', layout: 'fill' }}
+									/>
+								</div>
+								<div className='logoText'>
+									한 곳에서 보는 온라인 AI 전시정보 팜플렛
+								</div>
 							</div>
 						</MainTitleContainer>
 					</WrapTop>

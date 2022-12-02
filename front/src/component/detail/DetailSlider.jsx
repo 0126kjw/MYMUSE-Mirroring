@@ -5,11 +5,16 @@ import styled from '@emotion/styled';
 
 const DetailSliderLayout = styled.div`
 	.slider {
-		width: 800px;
-		height: 100vh;
+		width: 1190px;
+		height: 600px;
 		margin: 0 auto;
 		position: relative;
 		overflow: hidden;
+		border: solid 5px black;
+	}
+	@media screen and (max-width: 1200px) {
+		width: 100%;
+		height: 100%;
 	}
 
 	.slide {
@@ -21,13 +26,10 @@ const DetailSliderLayout = styled.div`
 		opacity: 0;
 		transform: translateX(-50%);
 		transition: all 0.5s ease;
-	}
 
-	@media screen and (min-width: 600px) {
-		.slide img {
-			width: 100%;
-			height: 100%;
-		}
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.current {
@@ -36,28 +38,26 @@ const DetailSliderLayout = styled.div`
 	}
 
 	.arrow {
-		background: transparent;
+		/* background: transparent; */
 		border: 1px solid white;
 		color: black;
 		width: 5rem;
 		height: 5rem;
 		cursor: pointer;
 		position: absolute;
-		top: 50%;
-		z-index: 999;
+		top: 480px;
+		background-color: red;
 	}
 
 	.arrow:hover {
 		background: #fff;
 		color: #777;
 	}
-
-	.next {
-		right: 20%;
-	}
-
 	.prev {
-		left: 20%;
+		left: 10%;
+	}
+	.next {
+		right: 10%;
 	}
 `;
 
@@ -79,8 +79,6 @@ const DetailSlider = () => {
 	return (
 		<DetailSliderLayout>
 			<div className='slider'>
-				<SlArrowLeft className='arrow prev' onClick={prevSlide} />
-				<SlArrowRight className='arrow next' onClick={nextSlide} />
 				{sliderData.map((slide, index) => {
 					return (
 						<div
@@ -95,6 +93,10 @@ const DetailSlider = () => {
 						</div>
 					);
 				})}
+			</div>
+			<div className='sliderBox'>
+				<SlArrowLeft className='arrow prev' onClick={prevSlide} />
+				<SlArrowRight className='arrow next' onClick={nextSlide} />
 			</div>
 		</DetailSliderLayout>
 	);
