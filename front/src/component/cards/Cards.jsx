@@ -10,23 +10,11 @@ const Card = ({ x }) => {
 		return `${dt.getFullYear()}/${dt.getMonth() + 1}/${dt.getDate()}`;
 	};
 
-	//console.log(x);
 	return (
 		<>
 			<CardArticle key={x._id}>
 				<a target='_blank' href={'https://tickets.interpark.com/goods/' + x.href}>
 					<div className='eachImg'>
-						{/* <Image
-							src={x.imgSrc}
-							alt='logo'
-							width={180}
-							height={210}
-							//unoptimized={true}
-							style={{
-								objectFit: 'cover',
-								layout: 'fill',
-							}}
-						/> */}
 						<Image
 							src={x.imgSrc}
 							fill

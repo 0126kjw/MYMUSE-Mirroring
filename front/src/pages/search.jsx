@@ -31,11 +31,11 @@ const Search = () => {
 	// 검색어 입력 처리
 	const [searchVal, setSearchVal] = useState('');
 	const [searchRes, setSearchRes] = useState('');
-	//검색시 키워드
+	// 검색 키워드
 	const [keyword, setKeyword] = useState(null);
-	// 검색결과
+	// 검색 결과
 	const [list, setList] = useState([]);
-	//category section
+	// category section
 	const searchCategory = useRecoilValue(searchSec);
 	console.log('SL(category', searchCategory);
 

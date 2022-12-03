@@ -6,7 +6,7 @@ const API = () => {
 
 	//section 1, Base codes
 	const instance = axios.create({
-		baseURL: process.env.BASE_URL,
+		baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 		//timeout ?
 	});
 	//instance's scope issue: API 함수 외부에 있을 때 여러번 작동함

@@ -8,7 +8,7 @@ import cssUnit from 'src/lib/cssUnit';
 export const NaviContainer = styled.div`
 	width: 100%;
 	height: 50px;
-	z-index: 0;
+	z-index: 100;
 	color: ${cssUnit.colors.White};
 	background-color: ${cssUnit.backgroundColors.Black};
 	border-top: 0.1px soild #111111;
@@ -22,7 +22,7 @@ export const NaviContainer = styled.div`
 	}
 
 	position: sticky;
-	z-index: 1;
+	/* z-index: 1; */
 	top: 0px;
 
 	@media screen and (max-width: 599px) {
