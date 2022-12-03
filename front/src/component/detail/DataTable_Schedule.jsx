@@ -1,7 +1,7 @@
 const DataTable_Schedule = ({}) => {
 	return (
-		<div className='DataDivision'>
-			<p className='DataSubTitle'>일정정보</p>
+		<div className='boxes'>
+			<p className='subTitle'>일정정보</p>
 			<div className='col-2'>
 				<div>월</div>
 				<div>월</div>

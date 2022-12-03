@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 
-const DetailNaverMap = () => {
+const NaverMap = () => {
 	useEffect(() => {
 		const cityhall = new naver.maps.LatLng(37.5666805, 126.9784147),
 			map = new naver.maps.Map('map', {
@@ -36,8 +36,10 @@ const DetailNaverMap = () => {
 					defer={false}
 				></script>
 			</Head>
-			<div id='map' style={{ width: '50%', height: '400px' }}></div>
+			<div className='boxes'>
+				<div id='map' style={{ width: '1000px', height: '400px' }}></div>
+			</div>
 		</>
 	);
 };
-export default DetailNaverMap;
+export default NaverMap;

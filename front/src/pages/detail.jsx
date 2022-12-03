@@ -53,7 +53,7 @@ export default function Detail() {
 
 	return (
 		<DetailContainer>
-			<div className='detailTitle'> 박물관 이름 </div>
+			<div className='detailTitle'> 박물관 상세설명 </div>
 			<div className='detailBackground'>
 				<Wrap>
 					<UnderDevSection>

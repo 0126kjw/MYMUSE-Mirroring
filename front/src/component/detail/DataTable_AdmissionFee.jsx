@@ -1,7 +1,7 @@
 const DataTable_AdmissionFee = ({}) => {
 	return (
-		<div className='DataDivision'>
-			<p className='DataSubTitle'>요금정보</p>
+		<div className='boxes'>
+			<p className='subTitle'>요금정보</p>
 			<div className='col-2'>
 				<div>무료전시</div>
 				<div>무료전시</div>

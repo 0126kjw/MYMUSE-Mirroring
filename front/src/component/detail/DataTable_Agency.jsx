@@ -1,7 +1,7 @@
 const DataTable_Agency = ({}) => {
 	return (
-		<div className='DataDivision'>
-			<p className='DataSubTitle'>기관정보</p>
+		<div className='boxes'>
+			<p className='subTitle'>기관정보</p>
 			<div className='col-2'>
 				<div>박물관이름</div>
 				<div>박물관이름</div>

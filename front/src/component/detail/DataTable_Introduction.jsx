@@ -1,7 +1,7 @@
-const DataTable_Agency = ({}) => {
+const DataTable_Introduction = ({}) => {
 	return (
-		<div className='DataDivision'>
-			<p className='DataSubTitle'>박물관 소개</p>
+		<div className='boxes'>
+			<p className='subTitle'>박물관 소개</p>
 			<div className='col-1'>
 				국립중앙박물관(國立中央博物館, 영어: National Museum of Korea)은 대한민국 서울특별시
 				용산구 서빙고로 137번지에 위치한 국립박물관이다. 1972년 7월 19일 발족하였으며,
@@ -18,4 +18,4 @@ const DataTable_Agency = ({}) => {
 	);
 };
 
-export default DataTable_Agency;
+export default DataTable_Introduction;

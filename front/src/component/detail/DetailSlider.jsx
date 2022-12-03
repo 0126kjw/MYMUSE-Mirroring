@@ -2,6 +2,7 @@ import { sliderData } from 'src/data/slider-data';
 import { useState, useEffect } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import styled from '@emotion/styled';
+import Image from 'next/image';
 
 const DetailSliderLayout = styled.div`
 	.slider {
@@ -10,11 +11,11 @@ const DetailSliderLayout = styled.div`
 		margin: 0 auto;
 		position: relative;
 		overflow: hidden;
-		border: solid 5px black;
-	}
-	@media screen and (max-width: 1200px) {
-		width: 100%;
-		height: 100%;
+		/* border: solid 5px black; */
+		@media screen and (max-width: 1200px) {
+			width: 100%;
+			height: 60vh;
+		}
 	}
 
 	.slide {
@@ -38,15 +39,17 @@ const DetailSliderLayout = styled.div`
 	}
 
 	.arrow {
-		/* background: transparent; */
+		position: absolute;
 		border: 1px solid white;
+		/* border-radius: 50%; */
 		color: black;
 		width: 5rem;
 		height: 5rem;
 		cursor: pointer;
-		position: absolute;
 		top: 480px;
-		background-color: red;
+		background: transparent;
+		/* background-color: red; */
+		/* background: #fff; */
 	}
 
 	.arrow:hover {
@@ -88,15 +91,22 @@ const DetailSlider = () => {
 							{index === currentSlide && (
 								<>
 									<img src={slide.image} alt='slide' />
+									{/* <Image
+										src={slide.image}
+										alt='slide image'
+										width={150}
+										height={70}
+										style={{ objectFit: 'contain', layout: 'fill' }}
+									/> */}
 								</>
 							)}
 						</div>
 					);
 				})}
-			</div>
-			<div className='sliderBox'>
-				<SlArrowLeft className='arrow prev' onClick={prevSlide} />
-				<SlArrowRight className='arrow next' onClick={nextSlide} />
+				<div className=''>
+					<SlArrowLeft className='arrow prev' onClick={prevSlide} />
+					<SlArrowRight className='arrow next' onClick={nextSlide} />
+				</div>
 			</div>
 		</DetailSliderLayout>
 	);
