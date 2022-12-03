@@ -1,8 +1,8 @@
 //styling
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 //for page common section
-import { Section, Wrap, WrapTitle } from 'styles/common';
+import { Section, Wrap, WrapTitle } from 'src/styles/common';
 import Link from 'next/link';
 
 const ErrorPageLayout = styled.div`
@@ -49,9 +49,7 @@ const ErrorPage = () => {
 			<ErrorPageLayout>
 				<Section color={cssUnit.backgroundColors.Black}>
 					<Wrap>
-						<WrapTitle color={cssUnit.colors.White}>
-							Error
-						</WrapTitle>
+						<WrapTitle color={cssUnit.colors.White}>Error</WrapTitle>
 						<ErrorMessage>에러가 발생했습니다</ErrorMessage>
 						<ErrorClick href='/'>홈으로 돌아가기</ErrorClick>
 					</Wrap>

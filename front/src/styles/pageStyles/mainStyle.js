@@ -1,48 +1,48 @@
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 
 export const MainContainer = styled.div`
+	width: auto !important;
+	height: auto !important;
+	.hegit-adjustment {
+		margin-top: 30px;
+	}
+`;
+
+export const MainTitleContainer = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 
-	width: auto !important;
-	height: auto !important;
-`;
-
-/*containers*/
-//logo
-export const MainTitleContainer = styled.div`
-	//for logo
-	position: relative;
-
-	display: flex;
-	flex-direction: row;
-
-	width: 950px;
-	height: 80px;
-
+	height: 200px;
 	margin: 0px auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
 
+	// MY MUSE
 	.logoImg {
-		padding-left: 40px;
-		width: 300px;
-		height: 80px;
+		// position: absolute;
+		height: 60px;
 	}
-	span {
-		padding-top: 40px;
+
+	// 한곳에서 보는 온라인 AI 전시정보 팜플렛
+	.logoText {
+		height: 80px;
+		line-height: 30px;
 
 		color: white;
 		font-family: 'Gothic A1';
 		font-weight: 600;
+		font-size: 20px;
 	}
 `;
 
-//		border: 3px solid rgba(255, 255, 255, 0.6);
-
 export const SilderContainer = styled.div`
-	width: 900px;
-	max-width: 850px;
-	height: 600px;
+	width: 100%;
+	height: 100%;
+
+	max-width: 900px;
+	max-height: 600px;
 
 	margin: 0;
 	padding: 0px;
@@ -50,6 +50,7 @@ export const SilderContainer = styled.div`
 
 export const MapContainer = styled.div`
 	width: 600px;
+	width: 100%;
 	max-width: 850px;
 	height: 50.5%;
 
@@ -57,15 +58,16 @@ export const MapContainer = styled.div`
 	padding: 0px;
 `;
 
+// 챗봇 모형
 export const AiContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 
-	width: 600px;
-	max-width: 850px;
-	height: 600px;
+	// width: 100%;
+	// max-width: 850px;
+	// height: 600px;
 
 	margin: 0 auto;
 	padding: 0px;
@@ -77,45 +79,32 @@ export const SerachBarContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	width: 500px;
+	width: 100%;
 	height: 100px;
 `;
 
 export const SearchBarLayout = styled.div`
-	top: 10px;
-	right: 50px;
-
 	margin: 0px;
-
-	z-index: 10;
+	z-index: 0;
 
 	div {
-		width: 300px;
-		height: 50px;
-
+		width: 100%;
+		padding: 2px;
 		margin: 0px;
 
-		border-radius: 15px;
+		border-radius: 10px;
 		background-color: #f6f6f6;
 
 		input {
-			width: 200px;
-			height: 30px;
-
-			margin-right: 5px;
-			margin-top: 5px;
-
+			width: 150px;
+			padding: 10px;
 			border-radius: 15px;
 			border: solid rgba(255, 255, 255, 0);
 			background-color: transparent;
 		}
 
 		span {
-			top: 5px;
-			right: 10px;
-
 			cursor: pointer;
-
 			&:hover {
 				cursor: pointer;
 			}
@@ -128,10 +117,13 @@ export const AiExContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	width: 500px;
-	height: 500px;
+	width: 100%;
+	max-width: 500px;
+	/* height: 500px; */
 
 	background-color: white;
+
+	border-radius: 10px;
 `;
 
 //Ai chat example css
@@ -143,40 +135,36 @@ export const AiChatRoomBox = styled.div`
 	justify-content: center;
 	background-color: white;
 
-	width: 500px;
-	height: 400px;
+	width: 100%;
+	max-width: 500px;
 
 	background-color: ${cssUnit.colors.Gray};
+	border-radius: 10px 10px 0px 0px;
 `;
 
 export const HumanBubble = styled.div`
-	width: 400px;
-	height: 60px;
+	text-align: left;
 
-	margin: 20px 5px 20px 70px;
+	width: 80%;
+	max-width: 400px;
 
-	left: 392px;
-	top: 317px;
-
+	margin: 4% 4% 4% 11%;
 	background-color: ${cssUnit.colors.White};
 
 	font-size: ${cssUnit.fontSize.small};
-	line-height: 60px;
+	/* line-height: 60px; */
+	padding: 10px;
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 export const AiBubble = styled.div`
 	display: table;
+	width: 80%;
+	max-width: 350px;
 
-	width: 350px;
-	height: 250px;
-
-	margin: 20px 70px 20px 30px;
-	padding: 0 0 0 50px;
-
-	left: 793px;
-	top: 420px;
+	margin: 4% 14% 4% 6%;
+	padding: 0 0 0 10px;
 
 	background-color: ${cssUnit.colors.White};
 
@@ -184,7 +172,8 @@ export const AiBubble = styled.div`
 `;
 
 export const AiChatButton = styled.button`
-	width: 500px;
+	width: 100%;
+	max-width: 500px;
 	height: 100px;
 
 	background-color: ${cssUnit.colors.DarkGold};
@@ -196,6 +185,7 @@ export const AiChatButton = styled.button`
 
 	font-family: 'Noto serif KR', sans-serif;
 	font-weight: 400;
+	border-radius: 0px 0px 10px 10px;
 
 	&:hover {
 		cursor: pointer;
@@ -205,8 +195,6 @@ export const AiChatButton = styled.button`
 //sections
 export const Logosection = styled.section`
 	width: 131px;
-	height: 450px;
-
 	top: 90px;
 	z-index: 2;
 

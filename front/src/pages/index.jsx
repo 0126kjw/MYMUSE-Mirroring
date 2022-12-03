@@ -1,12 +1,15 @@
 import Main from '../component/Main';
 import Head from 'next/head';
 import { useRecoilState } from 'recoil';
-import SelectedMapState from 'state/selectedMap';
+import SelectedMapState from 'src/state/selectedMap';
 import { useEffect } from 'react';
+//for Seo
+import SeoData from 'src/lib/seoData';
+import Seo from 'src/component/Seo';
 
-export default function Home() {
-	const [selectedMapState, setSelectedMapState] =
-		useRecoilState(SelectedMapState);
+const Home = () => {
+	const PageData = SeoData.Main;
+	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 	useEffect(() => {
 		setSelectedMapState({
 			mapKind: 'outer',
@@ -16,8 +19,10 @@ export default function Home() {
 
 	return (
 		<>
-			<Head></Head>
+			<Seo title={PageData.title} description={PageData.description} ogUrl={PageData.ogUrl} />
 			<Main />
 		</>
 	);
-}
+};
+
+export default Home;

@@ -1,7 +1,3 @@
-// fontSize, color unit
-// import 해서 사용
-//ex) //background-color: ${cssUnit.colors.DarkGold};
-
 const cssUnit = {
 	fontSize: {
 		title: '40px',
@@ -17,6 +13,7 @@ const cssUnit = {
 	},
 
 	colors: {
+		DeepBlack: '#111111',
 		Black: '#222222',
 		LightBlack: '#2D2D2D',
 
@@ -29,6 +26,7 @@ const cssUnit = {
 	},
 
 	backgroundColors: {
+		DeepBlack: '#111111',
 		Black: '#222222',
 		LightBlack: '#2D2D2D',
 		Gray: '#CCCCCC',

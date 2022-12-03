@@ -1,9 +1,5 @@
 import Image from 'next/image';
-import {
-	FooterContainer,
-	FooterWrapper,
-	FooterTitleBox,
-} from 'styles/compoStyles/footerStyle';
+import { FooterContainer, FooterWrapper, FooterTitleBox } from 'src/styles/compoStyles/footerStyle';
 import logo from '../../../public/images/siteLogo.png';
 
 const Footer = () => {
@@ -12,14 +8,13 @@ const Footer = () => {
 			<FooterContainer>
 				<FooterWrapper>
 					<FooterTitleBox>
-						{/* <Image src={logo} art='logo' /> */}
 						<div className='logoImg'>
 							<Image
 								src={logo}
 								alt='logo'
-								layout='fill'
-								objectFit='contain'
-								unoptimized={true}
+								width={300}
+								height={50}
+								style={{ objectFit: 'contain', layout: 'fill' }}
 							/>
 						</div>
 					</FooterTitleBox>

@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 //styling
-import { Section, Wrap, WrapTitle } from 'styles/common';
+import { Section, Wrap, WrapTop, WrapTitle } from 'src/styles/common';
 import {
 	MainContainer,
 	MainTitleContainer,
@@ -16,46 +16,48 @@ import {
 	HumanBubble,
 	AiBubble,
 	SearchBarLayout,
-} from 'styles/pageStyles/mainStyle';
+} from 'src/styles/pageStyles/mainStyle';
 import logo from '../../public/images/siteLogo.png';
 
 // component
 import Slider from './Slider';
-import SeoulZidoMain from './SeoulZidoMain';
+import SeoulZidoMain from './zido/SeoulZidoMain';
 
+import TitleSection from './common/TitleSection';
 const Main = () => {
 	return (
 		<>
 			<MainContainer>
-				<Section color={cssUnit.backgroundColors.Black} size={'150px'}>
-					<Wrap>
+				<TitleSection color={cssUnit.backgroundColors.DeepBlack} size={'150px'}>
+					<WrapTop>
 						<MainTitleContainer>
-							{/* old legacy */}
-							<div className='logoImg'>
-								<Image
-									src={logo}
-									alt='logo'
-									objectFit='contain'
-									unoptimized={true}
-									width={300}
-									height={80}
-								/>
+							<div className='hegit-adjustment'>
+								<div className='logoImg'>
+									<Image
+										src={logo}
+										alt='logo'
+										width={150}
+										height={70}
+										style={{ objectFit: 'contain', layout: 'fill' }}
+									/>
+								</div>
+								<div className='logoText'>
+									한 곳에서 보는 온라인 AI 전시정보 팜플렛
+								</div>
 							</div>
-							<span>한곳에서 보는 온라인 AI 전시정보 팜플렛</span>
 						</MainTitleContainer>
-					</Wrap>
-				</Section>
+					</WrapTop>
+				</TitleSection>
 
 				<Section color={cssUnit.backgroundColors.White}>
 					<Wrap>
-						<WrapTitle>
-							대표적인 박물관과 미술관들을 둘러보세요
-						</WrapTitle>
+						<WrapTitle>대표적인 박물관과 미술관들을 둘러보세요</WrapTitle>
 						<SilderContainer>
 							<Slider />
 						</SilderContainer>
 					</Wrap>
 				</Section>
+
 				<Section color={cssUnit.backgroundColors.Gray}>
 					<Wrap>
 						<WrapTitle>
@@ -68,6 +70,7 @@ const Main = () => {
 						</MapContainer>
 					</Wrap>
 				</Section>
+
 				<Section color={cssUnit.backgroundColors.LightBlack}>
 					<Wrap>
 						<WrapTitle color={cssUnit.colors.White}>
@@ -79,10 +82,7 @@ const Main = () => {
 							<SerachBarContainer>
 								<SearchBarLayout>
 									<div>
-										<input
-											value='국립중앙박물관'
-											disabled
-										/>
+										<input value='국립중앙박물관' disabled />
 										<span>🔍︎</span>
 									</div>
 								</SearchBarLayout>
@@ -90,14 +90,12 @@ const Main = () => {
 							<AiExContainer>
 								<AiChatRoomBox>
 									<HumanBubble>
-										☆☆! 12월에 국립중앙박물관에서는 어떤
-										전시가 열려?
+										12월 국립중앙박물관에서는 어떤 전시가 열려?
 									</HumanBubble>
 									<AiBubble>
 										<p align='left'>
 											<br />
-											22년 12월 국립중앙박물관의
-											<br /> 전시 일정을 찾으셨나요?
+											22년 12월 국립중앙박물관의 전시 일정을 찾으셨나요?
 											<br />
 											합스부르크 600년, 매혹의 걸작들
 											<br />
@@ -110,9 +108,7 @@ const Main = () => {
 										</p>
 									</AiBubble>
 								</AiChatRoomBox>
-								<AiChatButton>
-									Ai 안내데스크 바로가기
-								</AiChatButton>
+								<AiChatButton>Ai 안내데스크 바로가기</AiChatButton>
 							</AiExContainer>
 						</AiContainer>
 					</Wrap>

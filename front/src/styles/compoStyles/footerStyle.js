@@ -1,32 +1,29 @@
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 
 export const FooterContainer = styled.footer`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
-	position: relative;
-
-	bottom: 0;
 
 	width: 100%;
 	height: 150px;
-
 	padding-top: 30px;
 
 	background-color: ${cssUnit.backgroundColors.Black};
-
 	color: ${cssUnit.colors.White};
 `;
 export const FooterWrapper = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
-	width: 950px;
+	width: 100%;
+	max-width: 950px;
 `;
 export const FooterTitleBox = styled.div`
 	display: flex;
@@ -39,15 +36,11 @@ export const FooterTitleBox = styled.div`
 	width: 100%;
 	height: 50px;
 
-	margin: auto;
-
 	.logoImg {
-		position: absolute;
+		position: relative;
 
 		width: 300px;
 		height: 100px;
-
-		z-index: 2;
 	}
 	/* not working: ... */
 	span {

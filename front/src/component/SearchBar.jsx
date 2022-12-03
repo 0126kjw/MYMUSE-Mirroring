@@ -1,42 +1,27 @@
-import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+//components
+import DropDown from './DropDown';
+//style
+import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
 
-const SearchBarLayout = styled.div`
-	display: flex;
-	justify-content: center;
+const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes, setKeyword }) => {
+	const list = ['박물관', '전시회'];
 
-	margin: 0px;
-	padding: 30px;
-
-	background-color: transparent;
-
-	color: ${cssUnit.colors.White};
-
-	button {
-		margin-top: 10px;
-		height: 26px;
-		line-height: 26px;
-	}
-`;
-
-const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes }) => {
 	const onChange = (e) => {
 		setSearchVal(e.target.value);
+		setSearchRes(e.target.value);
 	};
-	const onSubmit = (e) => {
-		e.preventDefault();
-		setSearchRes(searchVal);
-		setSearchVal('');
-	};
+	//검색 키워드 전송
 	const onClick = () => {
-		setSearchRes(searchVal);
+		setKeyword(searchVal);
 		setSearchVal('');
 	};
 
 	return (
 		<SearchBarLayout>
-			<form onSubmit={onSubmit}>
-				<label htmlFor='name'> 검색 : &nbsp;</label>
+			<DropDown list={list} />
+			<form>
+				{/* <label htmlFor='name'> 검색 : &nbsp;</label> */}
+
 				<input
 					type='text'
 					id='name'
@@ -44,7 +29,7 @@ const SearchBar = ({ searchVal, setSearchVal, searchRes, setSearchRes }) => {
 					size='40'
 					value={searchVal}
 					onChange={onChange}
-					autocomplete='off'
+					autoComplete='off'
 				/>
 			</form>
 			<button onClick={onClick}>🔍</button>

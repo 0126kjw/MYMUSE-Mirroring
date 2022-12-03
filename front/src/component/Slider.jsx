@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
-import { sliderData } from 'data/slider-data';
+import { sliderData } from 'src/data/slider-data';
 import styled from '@emotion/styled';
 
 const SliderLayout = styled.div`
 	.slider {
 		width: 100%;
-		/* height: 60vh; */
 		height: 600px;
 		position: relative;
 		overflow: hidden;
@@ -23,40 +22,30 @@ const SliderLayout = styled.div`
 		transition: all 0.5s ease;
 	}
 
-	@media screen and (min-width: 600px) {
-		.slide img {
-			width: 100%;
-			height: 100%;
-		}
-	}
-
 	.slide img {
+		width: 100%;
 		height: 100%;
+		@media screen and (max-width: 900px) {
+			height: 75vh;
+		}
 	}
 
 	.content {
 		position: absolute;
-		top: 23rem;
-		left: 5rem;
+		margin-top: 15%;
 		opacity: 0;
-		width: 50%;
-		padding: 3rem;
-		background: rgba(0, 0, 0, 0.3);
-		-webkit-animation: slide-up 1s ease 0.5s;
+		width: 76%;
+		height: 30%;
+		left: 10%;
+		bottom: 200px;
+		padding: 2%;
+		background: rgba(0, 0, 0, 0.7);
 		animation: slide-up 1s ease 0.5s;
-		-webkit-animation-fill-mode: forwards;
 		animation-fill-mode: forwards;
-		//   visibility: hidden;
-	}
-
-	@-webkit-keyframes slide-up {
-		0% {
-			visibility: visible;
-			top: 23rem;
-		}
-		100% {
-			visibility: visible;
-			top: 17rem;
+		visibility: hidden;
+		font-size: 15px;
+		@media screen and (max-width: 900px) {
+			height: 80vh;
 		}
 	}
 
@@ -67,13 +56,7 @@ const SliderLayout = styled.div`
 		}
 		100% {
 			visibility: visible;
-			top: 17rem;
-		}
-	}
-
-	@media screen and (max-width: 600px) {
-		.content {
-			width: 80%;
+			top: 40%;
 		}
 	}
 
@@ -92,21 +75,22 @@ const SliderLayout = styled.div`
 	}
 
 	.arrow {
-		border: 2px solid #fff;
+		/* border: 2px solid #fff; */
 		border-radius: 50%;
-		background: transparent;
+		/* background: transparent; */
+		background-color: black;
 		color: #fff;
 		width: 2rem;
 		height: 2rem;
 		cursor: pointer;
 		position: absolute;
-		top: 35%;
-		z-index: 999;
+		top: 45%;
+		// z-index: 1;
 	}
 
 	.arrow:hover {
 		background: #fff;
-		color: #777;
+		color: black;
 	}
 
 	.next {
@@ -114,6 +98,12 @@ const SliderLayout = styled.div`
 	}
 	.prev {
 		left: 1.5rem;
+	}
+
+	.todetail {
+		background-color: black;
+		border-radius: 10%;
+		color: white;
 	}
 
 	hr {
@@ -134,15 +124,11 @@ const Slider = () => {
 	let intervalTime = 6000;
 
 	const nextSlide = () => {
-		setCurrentSlide(
-			currentSlide === slideLength - 1 ? 0 : currentSlide + 1,
-		);
+		setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
 	};
 
 	const prevSlide = () => {
-		setCurrentSlide(
-			currentSlide === 0 ? slideLength - 1 : currentSlide - 1,
-		);
+		setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
 	};
 
 	function auto() {
@@ -163,41 +149,32 @@ const Slider = () => {
 	return (
 		<SliderLayout>
 			<div className='slider'>
-				<AiOutlineArrowLeft
-					className='arrow prev'
-					onClick={prevSlide}
-				/>
-				<AiOutlineArrowRight
-					className='arrow next'
-					onClick={nextSlide}
-				/>
-
 				{sliderData.map((slide, index) => {
 					return (
 						<div
-							className={
-								index === currentSlide
-									? 'slide current'
-									: 'slide'
-							}
+							className={index === currentSlide ? 'slide current' : 'slide'}
 							key={index}
 						>
 							{index === currentSlide && (
-								<>
-									<img src={slide.image} alt='slide' />
+								<div className='currentSlide'>
+									<img
+										src={slide.image}
+										alt='slide'
+										style={{ objectFit: 'cover' }}
+									/>
 									<div className='content'>
 										<h2>{slide.heading}</h2>
 										<p>{slide.desc}</p>
 										<hr />
-										<button className='--btn --btn-primary'>
-											Get Started
-										</button>
+										<button className='todetail'>상세보기</button>
 									</div>
-								</>
+								</div>
 							)}
 						</div>
 					);
 				})}
+				<AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
+				<AiOutlineArrowRight className='arrow next' onClick={nextSlide} />
 			</div>
 		</SliderLayout>
 	);

@@ -1,8 +1,8 @@
 //styling
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 //for page common section
-import { Section, Wrap, WrapTitle } from 'styles/common';
+import { Section, Wrap, WrapTitle } from 'src/styles/common';
 import Link from 'next/link';
 
 const FourZeroFourLayout = styled.div`
@@ -54,9 +54,7 @@ const FourZeroFour = () => {
 							<br />
 							Page Not Found
 						</WrapTitle>
-						<ErrorMessage>
-							이 페이지는 존재하지 않습니다.
-						</ErrorMessage>
+						<ErrorMessage>이 페이지는 존재하지 않습니다.</ErrorMessage>
 						<ErrorClick href='/'>홈으로 돌아가기</ErrorClick>
 					</Wrap>
 				</Section>
