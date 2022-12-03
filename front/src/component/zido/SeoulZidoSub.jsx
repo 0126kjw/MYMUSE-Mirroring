@@ -10,6 +10,7 @@ import SeoulZidoSubStyle from 'src/styles/compoStyles/SeoulZidoSubStyle';
 
 // State
 import SelectedMapState from 'src/state/selectedMap';
+import IsMapFetchingState from 'src/state/isMapFetching';
 
 // data
 import outerMap from 'src/data/seoul.json';
@@ -25,13 +26,15 @@ import Geographies_Outer from 'src/component/zido/Geographies_Outer';
 import TopDescription from 'src/component/zido/TopDescription';
 
 export default function SeoulZido() {
-	// useState
+	// global state
+	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
+	const [isMapFetching, setIsMapFetching] = useRecoilState(IsMapFetchingState);
+
+	// state
 	const [tooltipName, setTooltipName] = useState('');
 	const [isMounted, setIsMounted] = useState(false); // Need this for the react-tooltip
 	const [pins, setPins] = useState([]);
-	const [isFetching, setIsFetching] = useState(false);
 	const [hoverPin, setHoverPin] = useState('');
-	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 	const [mapState, setMapState] = useState({
 		map: outerMap,
 		zoom: 2.2,
@@ -43,13 +46,13 @@ export default function SeoulZido() {
 		setIsMounted(true);
 	}, []);
 	useEffect(() => {
-		getData(setMapState, setPins, selectedMapState, isFetching, setIsFetching);
+		getData(setMapState, setPins, selectedMapState, isMapFetching, setIsMapFetching);
 	}, [selectedMapState]);
 
 	return (
 		<>
 			<SeoulZidoSubStyle>
-				{isMounted && !isFetching ? (
+				{isMounted && !isMapFetching ? (
 					<>
 						<ReactTooltip className='tooltipStyle' type='light'>
 							{tooltipName}
@@ -77,7 +80,7 @@ export default function SeoulZido() {
 										selectedMapState={selectedMapState}
 										setSelectedMapState={setSelectedMapState}
 										mapState={mapState}
-										setIsFetching={setIsFetching}
+										setIsMapFetching={setIsMapFetching}
 									/>
 
 									<Geographies_Inner

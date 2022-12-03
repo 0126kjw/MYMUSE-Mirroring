@@ -4,7 +4,7 @@ export default function Geographies_Outer({
 	selectedMapState,
 	mapState,
 	setSelectedMapState,
-	setIsFetching,
+	setIsMapFetching,
 }) {
 	return (
 		<>
@@ -18,7 +18,7 @@ export default function Geographies_Outer({
 									stroke={'#F5F5F5'}
 									strokeWidth={mapState.isZoom ? 0 : 0.4}
 									onClick={() => {
-										setIsFetching(true);
+										setIsMapFetching(true);
 										setSelectedMapState({
 											mapKind: 'inner',
 											name: geo.properties.name,

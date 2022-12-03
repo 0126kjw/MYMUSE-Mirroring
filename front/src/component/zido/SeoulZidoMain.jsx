@@ -13,6 +13,9 @@ import styled from '@emotion/styled';
 import outerMap from 'src/data/seoul.json';
 import { markers } from 'src/data/basicMarkers';
 
+// state
+import IsMapFetchingState from 'src/state/isMapFetching';
+
 export const MainZidoLayout = styled.div`
 	background-color: ${cssUnit.backgroundColors.Gray};
 `;
@@ -21,6 +24,7 @@ export default function SeoulZido() {
 	const router = useRouter();
 
 	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
+	const [isMapFetching, setIsMapFetching] = useRecoilState(IsMapFetchingState);
 
 	const [mapState, setMapState] = useState({
 		map: outerMap,
@@ -46,13 +50,12 @@ export default function SeoulZido() {
 											stroke={'#F5F5F5'}
 											strokeWidth={mapState.isZoom ? 0 : 0.4}
 											onClick={async () => {
-												if (router.pathname == '/') {
-													setSelectedMapState({
-														mapKind: 'inner',
-														name: geo.properties.name,
-													});
-													await router.push('/map');
-												}
+												setIsMapFetching(true);
+												setSelectedMapState({
+													mapKind: 'inner',
+													name: geo.properties.name,
+												});
+												await router.push('/map');
 											}}
 											key={geo.rsmKey}
 											geography={geo}
