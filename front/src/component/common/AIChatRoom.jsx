@@ -150,13 +150,24 @@ const AIChatRoom = ({ setBotMode }) => {
 
 	const submitInput = () => {
 		const ele = document.querySelector('.AIsec2');
+
+		// 유저 질문
 		const humanMsg = document.createElement('div');
 		humanMsg.classList.add('msgFromHuman');
 		humanMsg.innerText = inputValue;
 		ele.appendChild(humanMsg);
+
+		// AI 답변
 		const AiMsg = document.createElement('div');
 		AiMsg.classList.add('msgFromAI');
-		AiMsg.innerText = 'AI의 뭔가 그럴싸한 답변';
+
+		// 목록 답변 vs 일반 답변
+		if (inputValue === '목록') {
+			AiMsg.innerText = '해당하는 목록임 ㅎㅎ';
+		} else {
+			AiMsg.innerText = 'AI의 뭔가 그럴싸한 답변';
+		}
+
 		ele.appendChild(AiMsg);
 
 		// const AIsec3 = document.querySelector('.AIsec3');
