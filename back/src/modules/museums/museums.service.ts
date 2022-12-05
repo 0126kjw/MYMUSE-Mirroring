@@ -24,7 +24,7 @@ export class MuseumService {
     return await this.museumModel.findOne({ name }, reponseInfo).lean();
   }
 
-  async findAddresses(
+  async findAllAddress(
     borough: string,
     category: string,
     reponseInfo: string,
