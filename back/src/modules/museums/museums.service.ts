@@ -20,6 +20,20 @@ export class MuseumService {
     return museum;
   }
 
+  async findOne(name: string, reponseInfo: string): Promise<Museum> {
+    return await this.museumModel.findOne({ name }, reponseInfo).lean();
+  }
+
+  async findAddresses(
+    borough: string,
+    category: string,
+    reponseInfo: string,
+  ): Promise<Museum> {
+    return await this.museumModel
+      .find({ oldAddress: { $regex: borough }, category }, reponseInfo)
+      .lean();
+  }
+
   async pagination(page: number) {
     const perPage = 9;
     // const total = await this.museumModel.countDocuments({});

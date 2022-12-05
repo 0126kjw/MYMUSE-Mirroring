@@ -10,8 +10,8 @@ import { ChatbotService } from './chatbots.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Museum.name, schema: MuseumSchema }]),
     MongooseModule.forFeature([
+      { name: Museum.name, schema: MuseumSchema },
       { name: Exhibition.name, schema: ExhibitionSchema },
     ]),
   ],
