@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 
 import { Section, Wrap, WrapTitle } from 'src/styles/common';
 import { UnderDevSection } from 'src/styles/compoStyles/underDev';
@@ -8,8 +8,8 @@ import Index from 'src/component/detail/Index';
 // recoil state
 import { useSetRecoilState } from 'recoil';
 import { useRecoilState } from 'recoil';
-import { currentLoc } from 'state/navibar';
-import SelectedMapState from 'state/selectedMap';
+import { currentLoc } from 'src/state/navibar';
+import SelectedMapState from 'src/state/selectedMap';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
