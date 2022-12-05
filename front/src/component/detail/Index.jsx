@@ -4,7 +4,7 @@ import DataTable_Schedule from 'src/component/detail/DataTable_Schedule';
 import DataTable_AdmissionFee from 'src/component/detail/DataTable_AdmissionFee';
 import styled from '@emotion/styled';
 import DetailSlider from './DetailSlider';
-import NaverMap from './NaverMap';
+import KakaoMap from './KakaoMap';
 
 const IndexStyle = styled.div`
 	.bkgroundColor {
@@ -111,7 +111,9 @@ const Index = ({}) => {
 					<div className='boxContainer'>
 						<DataTable_AdmissionFee />
 					</div>
-					<div className='boxContainer'>{/* <NaverMap /> */}</div>
+					<div className='boxContainer'>
+						<KakaoMap />
+					</div>
 				</div>
 			</div>
 		</IndexStyle>
