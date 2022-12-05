@@ -1,137 +1,13 @@
-import styled from '@emotion/styled';
+import AiChatRoomStyle from 'src/styles/compoStyles/aiChatRoomStyle';
 import { useState, useEffect } from 'react';
+import { AiFillStepForward } from 'react-icons/ai';
+import styled from '@emotion/styled';
 
-const AIChatRoomStyle = styled.div`
-	.AImodal-Outer {
-		border: solid #997a4c 1px;
-		text-align: center;
-
-		transform: rotateZ(180deg);
-		resize: both;
-		overflow: auto;
-		position: fixed;
-
-		right: 30px;
-		bottom: 100px;
-
-		height: 450px;
-		width: 450px;
-
-		margin: 0 auto;
-		background-color: #d9d9d9;
-		border-radius: 20px 20px 0px 20px;
-	}
-
-	.AImodal-Inner {
-		transform: rotateZ(180deg);
-		width: 100%;
-		height: 100%;
-		overflow: auto;
-		-ms-overflow-style: none;
-	}
-
-	.AImodal-Inner::-webkit-scrollbar {
-		display: none;
-	}
-
-	// 로고
-	.AIsec1 {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #222222;
-		color: white;
-		height: 50px;
-		button {
-			position: absolute;
-			right: 10px;
-			background-color: #222222;
-			color: #997a4c;
-			border: none;
-			cursor: pointer;
-		}
-	}
-
-	.AIsec2 {
-		min-height: 400px;
-		overflow: scroll;
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
-
-		.msgFromAI {
-			float: left;
-			background-color: #ffffff;
-			margin: 1%;
-			padding: 1%;
-			text-align: left;
-			width: 70%;
-			min-height: 20px;
-			border-radius: 10px;
-		}
-
-		.msgFromHuman {
-			float: right;
-			background-color: #997a4c;
-			background-color: #6e3a07;
-			color: white;
-			margin: 1%;
-			padding: 1%;
-			text-align: right;
-			width: 70%;
-			min-height: 20px;
-			border-radius: 10px;
-		}
-	}
-	.AIsec2::-webkit-scrollbar {
-		display: none; /* Chrome, Safari, Opera*/
-	}
-
-	.formDiv {
-		position: fixed;
-		bottom: 30px;
-		right: 30px;
-		width: 450px;
-		height: 70px;
-		border-radius: 20px;
-
-		// background-color: #d9d9d9;
-		background-color: #997a4c;
-		background-color: #6e3a07;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		form {
-			width: 70%;
-			height: 80%;
-			margin-top: 2%;
-		}
-		input {
-			flex-direction: row;
-			background-color: #ffffff;
-			border-radius: 10px;
-			border: solid 1px #d9d9d9;
-			width: 90%;
-			height: 70%;
-		}
-		button {
-			margin-top: 5px;
-			margin-left: 5px;
-			margin-right: 5px;
-			width: 10%;
-			height: 70%;
-			border-radius: 10px;
-			border: solid 1px #997a4c;
-			background-color: black;
-			color: white;
-			font-size: 20px;
-			cursor: pointer;
-		}
-	}
-`;
-
-const AIChatRoom = ({ setBotMode }) => {
+const AIChatRoom = ({ setBotMode, botMode }) => {
 	const [inputValue, setInputValue] = useState('');
+	const [chatRoomWidth, setChatRoomWidth] = useState(450);
+	const [chatRoomHeight, setChatRoomHeight] = useState(450);
+	let done = 'x';
 
 	const onChangeHandler = (e) => {
 		setInputValue(e.target.value);
@@ -148,41 +24,108 @@ const AIChatRoom = ({ setBotMode }) => {
 		submitInput();
 	};
 
+	// AIBot 움직임
+	const observer = new ResizeObserver((entries) => {
+		for (let entry of entries) {
+			const { width, height } = entry.contentRect;
+			setChatRoomWidth(width);
+			setChatRoomHeight(height);
+		}
+	});
+
 	const submitInput = () => {
-		const ele = document.querySelector('.AIsec2');
+		const AIsec2 = document.querySelector('.AIsec2');
 
 		// 유저 질문
 		const humanMsg = document.createElement('div');
 		humanMsg.classList.add('msgFromHuman');
 		humanMsg.innerText = inputValue;
-		ele.appendChild(humanMsg);
+		AIsec2.appendChild(humanMsg);
 
 		// AI 답변
-		const AiMsg = document.createElement('div');
-		AiMsg.classList.add('msgFromAI');
 
-		// 목록 답변 vs 일반 답변
 		if (inputValue === '목록') {
-			AiMsg.innerText = '해당하는 목록임 ㅎㅎ';
+			//
+			const TempElement = document.createElement('div');
+			TempElement.classList.add('horListBox');
+			TempElement.style.width = `${chatRoomWidth - 100}px`;
+
+			for (let i = 0; i < 10; i++) {
+				const listElement = document.createElement('div');
+				listElement.innerHTML = 'listElement';
+				listElement.classList.add('horList');
+				TempElement.appendChild(listElement);
+			}
+			AIsec2.appendChild(TempElement);
+			//
+			const TempElement2 = document.createElement('div');
+			TempElement2.classList.add('msgFromAI');
+			TempElement2.innerText = `${10}개 검색됨. (목록에서 shift + scroll)`;
+			AIsec2.appendChild(TempElement2);
+			TempElement2.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
 		} else {
-			AiMsg.innerText = 'AI의 뭔가 그럴싸한 답변';
+			const TempElement = document.createElement('div');
+			TempElement.classList.add('msgFromAI');
+			TempElement.innerText = 'AI의 뭔가 그럴싸한 답변';
+			AIsec2.appendChild(TempElement);
+			TempElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
 		}
 
-		ele.appendChild(AiMsg);
-
-		// const AIsec3 = document.querySelector('.AIsec3');
-		AiMsg.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
 		setInputValue('');
 		return false;
 	};
 
+	// 봇 활성화시 AIBot 상단에 제어창 생성
+	useEffect(() => {
+		if (botMode == 'on' && done == 'x') {
+			// done : flag
+			const Parent = document.querySelector('.logoTest');
+			const POS = document.querySelector('.position');
+
+			const botController = document.createElement('div');
+			const botOffButton = document.createElement('button');
+
+			botController.innerText = 'MYMUSE';
+			botOffButton.innerText = 'x';
+			botOffButton.onclick = function () {
+				closeBot();
+			};
+
+			botController.classList.add('chatBotControl');
+			botController.id = 'chatBotControl';
+			botController.appendChild(botOffButton);
+			Parent.insertBefore(botController, POS);
+			done = 'o';
+
+			const targetEle = document.querySelector('.AImodal-Outer');
+			observer.observe(targetEle);
+		}
+	}, [botMode]);
+
+	// chatRoom 창을 반영한 제어창 위치조정
+	useEffect(() => {
+		const chatBotControl = document.querySelector('.logoTest');
+		chatBotControl.style.bottom = `${chatRoomHeight + 50}px`;
+		chatBotControl.style.width = `${chatRoomWidth}px`;
+
+		console.log(document.querySelector('.horListBox'));
+
+		if (document.querySelector('.horListBox') !== null) {
+			const selectedElements = document.querySelectorAll('.horListBox');
+			for (let i = 0; i < selectedElements.length; i++) {
+				selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
+			}
+		}
+	}, [chatRoomHeight, chatRoomWidth]);
+
 	return (
-		<AIChatRoomStyle>
+		<AiChatRoomStyle>
 			<div className='AImodal-Outer'>
 				<div className='AImodal-Inner'>
-					<div className='AIsec1'>MYMUSE</div>
 					<div className='AIsec2'>
-						<div className='msgFromAI'>반갑다 인간, 어떤 도움이 필요한가?</div>
+						<div className='msgFromAI'>
+							MYMUSE에 오신 것을 환영합니다. 궁금한 부분은 저에게 질문해주세요!
+						</div>
 						<div className='msgFromHuman'>나를 국중박으로 안내해라</div>
 						<div className='msgFromAI'>국중박이 무엇인지?</div>
 						<div className='msgFromHuman'>국립중앙박물관 멍청아</div>
@@ -195,9 +138,8 @@ const AIChatRoom = ({ setBotMode }) => {
 					<input type='text' value={inputValue} onChange={onChangeHandler} />
 				</form>
 				<button onClick={submitByClick}>&gt;</button>
-				<button onClick={closeBot}>x</button>
 			</div>
-		</AIChatRoomStyle>
+		</AiChatRoomStyle>
 	);
 };
 export default AIChatRoom;

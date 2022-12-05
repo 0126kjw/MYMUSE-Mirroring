@@ -1,5 +1,5 @@
-import AiBotLayout from 'src/styles/compoStyles/aibotStyle';
-import { useState } from 'react';
+import AIBotLayout from 'src/styles/compoStyles/aibotStyle';
+import { useState, useEffect } from 'react';
 import AIChatRoom from 'src/component/common/AIChatRoom';
 
 const AiBot = () => {
@@ -8,17 +8,28 @@ const AiBot = () => {
 	const openBot = () => {
 		setBotMode('on');
 	};
+	useEffect(() => {
+		if (botMode == 'off') {
+			const ele = document.querySelector('#AImodalOnBtn');
+			ele.style.right = '30px';
+			ele.style.bottom = '10px';
+			ele.style.width = '100px';
+		}
+	}, [botMode]);
 
 	return (
-		<AiBotLayout>
+		<AIBotLayout>
 			{botMode == 'off' ? (
 				<div id='AImodalOnBtn' onClick={openBot}>
 					AIBOT
 				</div>
 			) : (
-				<AIChatRoom setBotMode={setBotMode} />
+				<div className='logoTest'>
+					<div className='position'></div>
+					<AIChatRoom setBotMode={setBotMode} botMode={botMode} />
+				</div>
 			)}
-		</AiBotLayout>
+		</AIBotLayout>
 	);
 };
 

@@ -8,7 +8,7 @@ import cssUnit from 'src/lib/cssUnit';
 export const NaviContainer = styled.div`
 	width: 100%;
 	height: 50px;
-	z-index: 100;
+	z-index: 2;
 	color: ${cssUnit.colors.White};
 	background-color: ${cssUnit.backgroundColors.Black};
 	border-top: 0.1px soild #111111;
