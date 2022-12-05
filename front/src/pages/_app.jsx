@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			<Script
-				src='//dapi.kakao.com/v2/maps/sdk.js?appkey=80517f9bc682f09c5ad7a301a2a48954&libraries=services,clusterer&autoload=false'
+				src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&libraries=services,clusterer&autoload=false`}
 				strategy='beforeInteractive'
 			/>
 			{GlobalStyles}
