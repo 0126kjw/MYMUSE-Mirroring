@@ -2,6 +2,7 @@ import AiChatRoomStyle from 'src/styles/compoStyles/aiChatRoomStyle';
 import { useState, useEffect } from 'react';
 import { AiFillStepForward } from 'react-icons/ai';
 import styled from '@emotion/styled';
+import logoImg from '../../../public/images/siteLogo.png';
 
 const AIChatRoom = ({ setBotMode, botMode }) => {
 	const [inputValue, setInputValue] = useState('');
@@ -60,7 +61,7 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 			//
 			const TempElement2 = document.createElement('div');
 			TempElement2.classList.add('msgFromAI');
-			TempElement2.innerText = `${10}개 검색됨. (목록에서 shift + scroll)`;
+			TempElement2.innerText = `${10}개 검색됨. \n 조작 : 목록에서 shift + scroll`;
 			AIsec2.appendChild(TempElement2);
 			TempElement2.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
 		} else {
@@ -86,7 +87,9 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 			const botOffButton = document.createElement('button');
 
 			botController.innerText = 'MYMUSE';
-			botOffButton.innerText = 'x';
+			// botController.innerHTML = `<img src={logoImg} alt='logoImg'/>`;
+
+			botOffButton.innerText = 'X';
 			botOffButton.onclick = function () {
 				closeBot();
 			};

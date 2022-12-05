@@ -1,3 +1,4 @@
+import cssUnit from 'src/lib/cssUnit';
 import styled from '@emotion/styled';
 
 const aiChatRoomStyle = styled.div`
@@ -71,8 +72,8 @@ const aiChatRoomStyle = styled.div`
 
 		.msgFromHuman {
 			float: right;
-			background-color: #997a4c;
 			background-color: #6e3a07;
+			background-color: ${cssUnit.colors.DarkGold};
 			color: white;
 			margin: 1%;
 			padding: 1%;
@@ -94,8 +95,10 @@ const aiChatRoomStyle = styled.div`
 		height: 70px;
 		border-radius: 20px;
 
-		background-color: #997a4c;
-		background-color: #6e3a07;
+		/* background-color: #997a4c; */
+		/* background-color: #6e3a07; */
+		background-color: ${cssUnit.colors.DarkGold};
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -136,7 +139,7 @@ const aiChatRoomStyle = styled.div`
 		overflow: scroll;
 		color: #112031;
 		background: #ffffff;
-		border: 1px solid #000;
+		/* border: 1px solid #000; */
 
 		/* 가로 스크롤 */
 		overflow: auto;
@@ -149,6 +152,7 @@ const aiChatRoomStyle = styled.div`
 		/* 스크롤 없애기-1 */
 		-ms-overflow-style: none;
 		scrollbar-width: none;
+		border-radius: 10px;
 	}
 
 	.horListBox::-webkit-scrollbar {
@@ -157,7 +161,8 @@ const aiChatRoomStyle = styled.div`
 	}
 
 	.horList {
-		border: solid 1px black;
+		border: solid 1px blue;
+		border-radius: 10px;
 		padding: 10px;
 		margin: 10px;
 		width: 300px;
