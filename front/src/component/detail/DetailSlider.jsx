@@ -27,7 +27,6 @@ const DetailSliderLayout = styled.div`
 		opacity: 0;
 		transform: translateX(-50%);
 		transition: all 0.5s ease;
-
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -64,7 +63,7 @@ const DetailSliderLayout = styled.div`
 	}
 `;
 
-const DetailSlider = () => {
+const DetailSlider = ({ _id, imgSrcUrl, srcName, srcUrl }) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const slideLength = sliderData.length;
 
