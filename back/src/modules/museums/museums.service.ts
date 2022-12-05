@@ -21,10 +21,12 @@ export class MuseumService {
   }
 
   async findOne(name: string, reponseInfo: string): Promise<Museum> {
-    return await this.museumModel.findOne({ name }, reponseInfo).lean();
+    const test = await this.museumModel.findOne({ name }, reponseInfo).lean();
+    console.log(test);
+    return test;
   }
 
-  async findAllAddress(
+  async findRightItems(
     borough: string,
     category: string,
     reponseInfo: string,

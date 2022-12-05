@@ -30,6 +30,7 @@ export class ChatbotService {
     const responses = await sessionClient.detectIntent(request);
     console.log('Detected intent');
     const result = responses[0].queryResult;
+    const intent = result.intent;
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
 
@@ -37,24 +38,25 @@ export class ChatbotService {
     //   return await this.exhibitionModel.find({ name }, reponseInfo).lean();
     // };
 
-    if (result.intent) {
-      // console.log('인텐트 구간');
+    if (intent) {
       const fields = result.parameters.fields;
-      const condition = !(result.intent !== 'facilityAreaSerch')
-        ? fields.facilityName.stringValue
-        : '';
+      const displayName = intent.displayName;
+      // const condition = fields.facilityName.stringValue || '';
+      const condition =
+        displayName === 'facilityAreaSearch'
+          ? ''
+          : fields.facilityName.stringValue;
 
-      switch (result.intent.displayName) {
+      switch (displayName) {
         case 'facilityContact':
           return await this.museumService.findOne(condition, 'contactInfo');
 
         case 'facilityAreaSearch':
           const borough =
-            fields.location.listValue.values[0].structValue.fields[
-              'subadmin-area'
-            ].stringValue;
+            fields.location.structValue.fields['subadmin-area'].stringValue;
           const category = fields.facilityCategory.stringValue;
-          return await this.museumService.findAllAddress(
+
+          return await this.museumService.findRightItems(
             borough,
             category,
             'name oldAddress website',
@@ -81,13 +83,11 @@ export class ChatbotService {
         case 'facilityOthers':
           return await this.museumService.findOne(condition, 'website');
 
-        // case 'exhibitionDateSearch':
-        //   const exhibitionDate = await exhibitionDateSearch(
-        //     condition,
-        //     'period',
-        //   );
-
-        //   return exhibitionDate;
+        case 'exhibitionDateSearch':
+          return await this.exhibitionService.findRightItems(
+            condition,
+            'period',
+          );
       }
     } else {
       const message = { errorMessage: 'No intent matched.' };

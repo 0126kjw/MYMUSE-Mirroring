@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ExhibitionService } from '../exhibitions/exhibitions.service';
 import {
   Exhibition,
   ExhibitionSchema,
 } from '../exhibitions/schemas/exhibition.schema';
+import { MuseumService } from '../museums/museums.service';
 import { Museum, MuseumSchema } from '../museums/schemas/museum.schema';
 import { ChatbotController } from './chatbots.controller';
 import { ChatbotService } from './chatbots.service';
@@ -16,6 +18,6 @@ import { ChatbotService } from './chatbots.service';
     ]),
   ],
   controllers: [ChatbotController],
-  providers: [ChatbotService],
+  providers: [ChatbotService, MuseumService, ExhibitionService],
 })
 export class ChatbotModule {}
