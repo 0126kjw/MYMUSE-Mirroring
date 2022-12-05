@@ -1,6 +1,6 @@
 import AiBotLayout from 'src/styles/compoStyles/aibotStyle';
 import { useState } from 'react';
-import AIChatRoom from 'component/common/AIChatRoom';
+import AIChatRoom from 'src/component/common/AIChatRoom';
 
 const AiBot = () => {
 	const [botMode, setBotMode] = useState('off');
