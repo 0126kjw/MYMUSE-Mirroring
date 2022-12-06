@@ -15,7 +15,7 @@ export class MuseumService {
     return museums;
   }
 
-  async findById(id: string): Promise<Museum> {
+  async findById(id: number): Promise<Museum> {
     const museum = await this.museumModel.findOne({ id });
     return museum;
   }
