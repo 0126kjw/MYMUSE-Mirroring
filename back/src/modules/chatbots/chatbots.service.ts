@@ -1,17 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import dialogflow from '@google-cloud/dialogflow';
-import { InjectModel } from '@nestjs/mongoose';
-import { Exhibition } from '../exhibitions/schemas/exhibition.schema';
-import { Museum } from '../museums/schemas/museum.schema';
-import { Model } from 'mongoose';
+import { ExhibitionService } from '../exhibitions/exhibitions.service';
+import { MuseumService } from '../museums/museums.service';
 
 @Injectable()
 export class ChatbotService {
   constructor(
-    @InjectModel(Exhibition.name)
-    private readonly exhibitionModel: Model<Exhibition>,
-    @InjectModel(Museum.name)
-    private readonly museumModel: Model<Museum>,
+    private readonly exhibitionService: ExhibitionService,
+    private readonly museumService: MuseumService,
   ) {}
 
   async findAll(text: string): Promise<any> {
@@ -34,90 +30,64 @@ export class ChatbotService {
     const responses = await sessionClient.detectIntent(request);
     console.log('Detected intent');
     const result = responses[0].queryResult;
+    const intent = result.intent;
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
 
-    const museumFindOne = async (name: string, reponseInfo: string) => {
-      return await this.museumModel.findOne({ name }, reponseInfo).lean();
-    };
-    const facilityAreaSearch = async (
-      borough: string,
-      category: string,
-      reponseInfo: string,
-    ) => {
-      return await this.museumModel
-        .find({ oldAddress: { $regex: borough }, category }, reponseInfo)
-        .lean();
-    };
     // const exhibitionDateSearch = async (name: string, reponseInfo: string) => {
     //   return await this.exhibitionModel.find({ name }, reponseInfo).lean();
     // };
 
-    if (result.intent) {
-      // console.log('인텐트 구간');
-      let condition = '';
+    if (intent) {
+      const fields = result.parameters.fields;
+      const displayName = intent.displayName;
+      // const condition = fields.facilityName.stringValue || '';
+      const condition =
+        displayName === 'facilityAreaSearch'
+          ? ''
+          : fields.facilityName.stringValue;
 
-      if (!(result.intent !== 'facilityAreaSerch')) {
-        condition = result.parameters.fields.facilityName.stringValue;
-      }
-
-      switch (result.intent.displayName) {
+      switch (displayName) {
         case 'facilityContact':
-          const phoneNum = await museumFindOne(condition, 'contactInfo');
-
-          return phoneNum;
+          return await this.museumService.findOne(condition, 'contactInfo');
 
         case 'facilityAreaSearch':
-          //findAll 조건걸쳐서
           const borough =
-            result.parameters.fields.location.listValue.values[0].structValue
-              .fields['subadmin-area'].stringValue;
-          const category =
-            result.parameters.fields.facilityCategory.stringValue;
-          const addressUrl = await facilityAreaSearch(
+            fields.location.structValue.fields['subadmin-area'].stringValue;
+          const category = fields.facilityCategory.stringValue;
+
+          return await this.museumService.findRightItems(
             borough,
             category,
             'name oldAddress website',
           );
 
-          return addressUrl;
-
         case 'facilityAddress':
-          const address = await museumFindOne(
+          return await this.museumService.findOne(
             condition,
             'newAddress oldAddress',
           );
 
-          return address;
-
         case 'facilityOpeningHours':
-          const previewTime = await museumFindOne(
+          return await this.museumService.findOne(
             condition,
             'mon tue wed thu fri sat sun offday',
           );
 
-          return previewTime;
-
         case 'facilityTicket':
-          const Fee = await museumFindOne(
+          return await this.museumService.findOne(
             condition,
             'isFree adultFee youthFee childFee',
           );
 
-          return Fee;
-
         case 'facilityOthers':
-          const website = await museumFindOne(condition, 'website');
+          return await this.museumService.findOne(condition, 'website');
 
-          return website;
-
-        // case 'exhibitionDateSearch':
-        //   const exhibitionDate = await exhibitionDateSearch(
-        //     condition,
-        //     'period',
-        //   );
-
-        //   return exhibitionDate;
+        case 'exhibitionDateSearch':
+          return await this.exhibitionService.findRightItems(
+            condition,
+            'period',
+          );
       }
     } else {
       const message = { errorMessage: 'No intent matched.' };
