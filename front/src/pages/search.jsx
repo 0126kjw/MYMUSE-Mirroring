@@ -46,6 +46,8 @@ const Search = () => {
 	const [keyword, setKeyword] = useState('');
 	// 검색 결과
 	const [list, setList] = useState([]);
+	// 검색결과 띄우기 첫 시점
+	const [ouputNeeded, setOutputNeeded] = useState(false);
 	// 카테고리
 	const searchCategory = useRecoilValue(SearchCategoryState);
 
@@ -65,13 +67,14 @@ const Search = () => {
 						setKeyword={setKeyword}
 						searchRes={searchRes}
 						setSearchRes={setSearchRes}
+						setOutputNeeded={setOutputNeeded}
 						setList={setList}
 					/>
 				</SearchSection>
 				<div>검색결과 : {searchRes}</div>
 
 				<ListSection color={cssUnit.backgroundColors.White} size={900} className={`page`}>
-					<Wrap>{searchRes !== '' && <SearchList list={list} />}</Wrap>
+					<Wrap>{ouputNeeded && <SearchList list={list} />}</Wrap>
 				</ListSection>
 			</PageLayout>
 		</>
@@ -80,7 +83,7 @@ const Search = () => {
 
 export default Search;
 
-// 모든 카드 리스트 띄우기는 우선 안하는 거 같아서 빼뒀습니다.
+// 모든 카드리스트 띄우기는 우선 안쓸 거 같아서 빼뒀습니다.
 // {searchRes && (
 // 	<>
 // 		<AllCardsList category={searchCategory} />

@@ -16,16 +16,23 @@ import SearchCategoryState from 'src/state/searchCategory';
 //style
 import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
 
-const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList }) => {
-	const searchCategory = useRecoilValue(SearchCategoryState);
-	const [modal, setModal] = useState('off');
+const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList, setOutputNeeded }) => {
+	// 실시간 검색결과
+	const [realTimelist, setRealTimeList] = useState([]);
+
+	// 실시간 검색결과를 바탕으로 추천어 목록 생성
 	const [recList, setRecList] = useState([]);
 
+	// 검색 카테고리 (전역값)
+	const searchCategory = useRecoilValue(SearchCategoryState);
+
+	// 추천 검색어 모달 on/off
+	const [modal, setModal] = useState('off');
+
+	// 실시간 검색
 	const realTimeSearch = async (keyword) => {
-		console.log('searchCategory, keyword |', searchCategory, keyword);
 		const data = await GetSearach(searchCategory, keyword);
-		// console.log('data', data);
-		setList(() => [...data]);
+		setRealTimeList(() => [...data]);
 		showRecommendeds(keyword, data);
 	};
 
@@ -43,7 +50,7 @@ const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList }) =>
 		});
 	};
 
-	// 인풋창 값 변경
+	// 인풋 변경
 	const onChange = (e) => {
 		if (searchCategory == 'none') {
 			alert('카테고리를 선택해주세요');
@@ -55,22 +62,25 @@ const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList }) =>
 			realTimeSearch(keyword);
 		}
 	};
-
-	// 검색 (돋보기 클릭 or 엔터)
+	// 검색 (돋보기 클릭)
 	const onClick = () => {
 		showSearchResultsToLists();
 	};
+	// 검색 (엔터 입력)
 	const onSubmit = (e) => {
 		e.preventDefault();
 		showSearchResultsToLists();
 	};
-	const showSearchResultsToLists = () => {
-		// 검색 키워드 띄우기
+	const showSearchResultsToLists = async () => {
+		// 키워드 띄우기
 		setSearchRes(keyword);
 
-		// 검색결과 목록 띄우기 +
+		// 목록 띄우기
+		setOutputNeeded(true);
+		const data = await GetSearach(searchCategory, keyword);
+		setList(() => [...data]);
 
-		// 검색창 값 비우기
+		// 검색창 비우기
 		setKeyword('');
 	};
 
