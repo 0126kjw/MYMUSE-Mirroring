@@ -132,7 +132,7 @@ export class ChatbotService {
         return await this.exhibitionService.findRightItems(
           dateBefore,
           dateAfter,
-          'title',
+          'website',
         );
     }
   }

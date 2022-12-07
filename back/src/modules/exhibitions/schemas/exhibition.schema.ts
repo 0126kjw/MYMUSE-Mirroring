@@ -18,6 +18,9 @@ export class Exhibition {
   place: string;
 
   @Prop()
+  website: string;
+
+  @Prop()
   period: string[];
 }
 
