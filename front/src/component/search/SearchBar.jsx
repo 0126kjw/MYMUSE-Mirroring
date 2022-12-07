@@ -22,7 +22,15 @@ import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
  * onclick, onsubmit => 검색 목록 반환
  */
 
-const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList, setOutputNeeded }) => {
+const SearchBar = ({
+	keyword,
+	setKeyword,
+	searchRes,
+	setSearchRes,
+	setList,
+	setOutputNeeded,
+	setSerchResNeeded,
+}) => {
 	// 실시간 검색결과
 	const [realTimelist, setRealTimeList] = useState([]);
 
@@ -77,6 +85,10 @@ const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList, setO
 		showSearchResultsToLists();
 	};
 	const showSearchResultsToLists = async () => {
+		// const [serchResNeeded, setSerchResNeeded] = useState(false);
+
+		// 검색결과 띄우기
+		setSerchResNeeded(true);
 		// 키워드 띄우기
 		setSearchRes(keyword);
 
@@ -88,13 +100,11 @@ const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList, setO
 
 		// 검색창 비우기
 		setKeyword('');
-
-		alert(searchCategory);
 	};
 
 	return (
 		<SearchBarLayout>
-			<DropDown />
+			<DropDown setList={setList} setSerchResNeeded={setSerchResNeeded} />
 			<form onSubmit={onSubmit}>
 				<input
 					type='text'

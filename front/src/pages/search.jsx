@@ -49,6 +49,7 @@ const Search = () => {
 	const [list, setList] = useState([]);
 	// 검색결과 띄우기 첫 시점
 	const [ouputNeeded, setOutputNeeded] = useState(false);
+	const [serchResNeeded, setSerchResNeeded] = useState(false);
 	// 카테고리
 	const searchCategory = useRecoilValue(SearchCategoryState);
 
@@ -70,9 +71,11 @@ const Search = () => {
 						setSearchRes={setSearchRes}
 						setOutputNeeded={setOutputNeeded}
 						setList={setList}
+						setSerchResNeeded={setSerchResNeeded}
 					/>
 				</SearchSection>
-				<div> '{searchRes}' 검색결과</div>
+				{serchResNeeded && <div> '{searchRes}' 검색결과</div>}
+
 				<ListSection color={cssUnit.backgroundColors.White} size={900} className={`page`}>
 					<Wrap>
 						{ouputNeeded && searchCategory == 'museum' && <SearchListMU list={list} />}
