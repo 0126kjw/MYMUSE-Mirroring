@@ -3,20 +3,15 @@ const { useState } = require('react');
 import { useSetRecoilState } from 'recoil';
 import { useRecoilState } from 'recoil';
 import SearchCategoryState from 'src/state/searchCategory';
+
 //styled
 import { DropDownLabel, Optionlist, Option } from 'src/styles/dropDownStyle';
 
 const DropDown = ({ setList, setSerchResNeeded }) => {
-	const [selected, setSelected] = useState('선택해주세요');
+	// const [selected, setSelected] = useState('선택해주세요');
 	const [catSelector, setCatSelector] = useState('closed');
-	const catList = ['박물관', '전시회'];
-
 	const [category, setCategory] = useRecoilState(SearchCategoryState);
-
-	const translator = (target) => {
-		if (target == '박물관') return 'museum';
-		if (target == '전시회') return 'exhibition';
-	};
+	const catList = ['박물관', '전시회'];
 
 	const CategorySelectorOnOff = (e) => {
 		if (catSelector == 'opened') {
@@ -32,19 +27,15 @@ const DropDown = ({ setList, setSerchResNeeded }) => {
 			setList([]);
 			setSerchResNeeded(false);
 		}
-
-		// 선택 옵션 셀렉창에 출력 (한글)
-		setSelected(item);
-		// 전역 상태 설정 (영어)
-		setCategory(translator(item));
+		setCategory(item);
 	};
 
 	return (
 		<>
 			{catList && (
 				<>
-					<DropDownLabel value={selected} onClick={CategorySelectorOnOff}>
-						{catSelector == 'closed' && <>{selected}</>}
+					<DropDownLabel value={category} onClick={CategorySelectorOnOff}>
+						{catSelector == 'closed' && <>{category}</>}
 						{catSelector == 'opened' && (
 							<>
 								<Optionlist>

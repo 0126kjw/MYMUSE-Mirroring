@@ -78,12 +78,10 @@ const Search = () => {
 
 				<ListSection color={cssUnit.backgroundColors.White} size={900} className={`page`}>
 					<Wrap>
-						{ouputNeeded && searchCategory == 'museum' && <SearchListMU list={list} />}
+						{ouputNeeded && searchCategory == '박물관' && <SearchListMU list={list} />}
 					</Wrap>
 					<Wrap>
-						{ouputNeeded && searchCategory == 'exhibition' && (
-							<SearchListEX list={list} />
-						)}
+						{ouputNeeded && searchCategory == '전시회' && <SearchListEX list={list} />}
 					</Wrap>
 				</ListSection>
 			</PageLayout>

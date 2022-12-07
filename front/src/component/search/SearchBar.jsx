@@ -65,7 +65,7 @@ const SearchBar = ({
 	};
 
 	const onChange = (e) => {
-		if (searchCategory == 'none') {
+		if (searchCategory == '선택해주세요') {
 			alert('카테고리를 선택해주세요');
 			return;
 		}
