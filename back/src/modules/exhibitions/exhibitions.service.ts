@@ -20,6 +20,27 @@ export class ExhibitionService {
     return exhibition;
   }
 
+  async findRightItems(
+    dateBefore: Date,
+    dateAfter: Date,
+    reponseInfo: string,
+  ): Promise<any> {
+    const date = await this.exhibitionModel
+      .find(
+        {
+          period: {
+            $elemMatch: {
+              $gte: dateBefore,
+              $lte: dateAfter,
+            },
+          },
+        },
+        reponseInfo,
+      )
+      .lean();
+    return date;
+  }
+
   async pagination(page: number) {
     const perPage = 9;
     // const total = await this.exhibitionModel.countDocuments({});
@@ -30,5 +51,17 @@ export class ExhibitionService {
       .limit(perPage);
 
     return exhibitions;
+  }
+
+  async searchExhibition(keyword: string) {
+    const options = [
+      { title: new RegExp(keyword) },
+      { place: new RegExp(keyword) },
+    ];
+    const exhibitionResults = await this.exhibitionModel.find({
+      $or: options,
+    });
+
+    return exhibitionResults;
   }
 }
