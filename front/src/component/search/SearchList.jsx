@@ -2,20 +2,14 @@ import { useState, useEffect } from 'react';
 //style
 import { AllListUl } from 'src/styles/compoStyles/cardlistStyle';
 //import Compo
-import Card from './Cards';
+import Card from 'src/component/search/Cards_search';
 import DownButton from '../DownButton';
 
 const SearchList = ({ list }) => {
-	const [bundleIdx, setBundleIdx] = useState(1);
-	//for pagination
-	//console.log('outer bundleIdx', bundleIdx);
-	const getMoreList = () => {
-		setBundleIdx((prev) => prev + 1);
-		//console.log('bundleIdx', bundleIdx);
-	};
-	// useEffect(() => {
-	// 	getData();
-	// }, [bundleIdx]);
+	// const [bundleIdx, setBundleIdx] = useState(1);
+	// const getMoreList = () => {
+	// 	setBundleIdx((prev) => prev + 1);
+	// };
 
 	return (
 		<>

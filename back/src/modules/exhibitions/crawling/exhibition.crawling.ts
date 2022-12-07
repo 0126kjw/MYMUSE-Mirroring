@@ -37,6 +37,7 @@ export const crawlExhibitions = async () => {
       imgSrc: '',
       href: '',
       place: '',
+      website: '',
       period: [],
     };
 
@@ -55,6 +56,8 @@ export const crawlExhibitions = async () => {
     const startOfPlace = text.indexOf('PlaceOfFlag');
     const endOfPlace = text.indexOf('</a></td>');
     tempObj.place = text.slice(startOfPlace + 14, endOfPlace);
+
+    tempObj.website = `https://tickets.interpark.com/goods/${tempObj.href}`;
 
     const period = text.indexOf('~<br>');
     const regexForDot = /\./gi;

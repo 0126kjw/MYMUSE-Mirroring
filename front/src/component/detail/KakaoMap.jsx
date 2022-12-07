@@ -1,11 +1,27 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-const KakaoMap = () => {
+
+const KakaoMap = ({ latitude, longitude, name }) => {
+	// alert(latitude);
 	return (
-		<Map center={{ lat: 33.5563, lng: 126.79581 }} style={{ width: '100%', height: '360px' }}>
-			<MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
-				<div style={{ color: '#000' }}>Hello World!</div>
-			</MapMarker>
-		</Map>
+		<div className='boxes'>
+			<Map
+				center={{ lat: latitude, lng: longitude }}
+				style={{
+					width: '100%',
+					height: '360px',
+				}}
+			>
+				<MapMarker position={{ lat: latitude, lng: longitude }}>
+					<span
+						style={{
+							color: '#000',
+						}}
+					>
+						{name}
+					</span>
+				</MapMarker>
+			</Map>
+		</div>
 	);
 };
 
