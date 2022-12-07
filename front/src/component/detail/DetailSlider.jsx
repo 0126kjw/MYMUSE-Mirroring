@@ -1,4 +1,3 @@
-import { sliderData } from 'src/data/slider-data';
 import { useState, useEffect } from 'react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import styled from '@emotion/styled';
@@ -40,15 +39,12 @@ const DetailSliderLayout = styled.div`
 	.arrow {
 		position: absolute;
 		border: 1px solid white;
-		/* border-radius: 50%; */
 		color: black;
 		width: 5rem;
 		height: 5rem;
 		cursor: pointer;
 		top: 480px;
 		background: transparent;
-		/* background-color: red; */
-		/* background: #fff; */
 	}
 
 	.arrow:hover {
@@ -63,8 +59,12 @@ const DetailSliderLayout = styled.div`
 	}
 `;
 
-const DetailSlider = ({ _id, imgSrcUrl, srcName, srcUrl }) => {
+const DetailSlider = ({ _id, imgSrcUrl, srcName, srcUrl, ID }) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const sliderData = [
+		`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ID}_image01.jpg`,
+		`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ID}_image02.jpg`,
+	];
 	const slideLength = sliderData.length;
 
 	const nextSlide = () => {
@@ -81,7 +81,7 @@ const DetailSlider = ({ _id, imgSrcUrl, srcName, srcUrl }) => {
 	return (
 		<DetailSliderLayout>
 			<div className='slider'>
-				{sliderData.map((slide, index) => {
+				{sliderData.map((eachImgUrl, index) => {
 					return (
 						<div
 							className={index === currentSlide ? 'slide current' : 'slide'}
@@ -89,14 +89,7 @@ const DetailSlider = ({ _id, imgSrcUrl, srcName, srcUrl }) => {
 						>
 							{index === currentSlide && (
 								<>
-									<img src={slide.image} alt='slide' />
-									{/* <Image
-										src={slide.image}
-										alt='slide image'
-										width={150}
-										height={70}
-										style={{ objectFit: 'contain', layout: 'fill' }}
-									/> */}
+									<img src={eachImgUrl} alt='slide' />
 								</>
 							)}
 						</div>

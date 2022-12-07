@@ -24,7 +24,8 @@ const DataTable_AdmissionFee = ({ adultFee, youthFee, childFee, isFree, feeUrl }
 			<div className='col-2'>
 				<div>참조</div>
 				<div>
-					<a href={feeUrl}>{feeUrl}</a>
+					{feeUrl !== '-' && <a href={feeUrl}>{feeUrl}</a>}
+					{feeUrl === '-' && <a href='javascirpt:void(0);'>정보없음</a>}
 				</div>
 			</div>
 		</div>

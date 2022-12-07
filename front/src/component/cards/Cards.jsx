@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { CardArticle, TextSection, Label } from 'src/styles/compoStyles/cardStyle';
 
 const Card = ({ x }) => {
-	//DATE formatting
+	// DATE formatting
 	const formatDate = (period) => {
 		const dt = new Date(period);
 		return `${dt.getFullYear()}/${dt.getMonth() + 1}/${dt.getDate()}`;
@@ -18,7 +18,7 @@ const Card = ({ x }) => {
 						<Image
 							src={x.imgSrc}
 							fill
-							alt={`${x.title} 전시 이미지`}
+							alt={`${x.title} 전시회 이미지`}
 							sizes='(max-width: 180px) 100vw, '
 							style={{
 								objectFit: 'contain',
@@ -30,9 +30,9 @@ const Card = ({ x }) => {
 				<TextSection>
 					<>
 						<Label size={55}>{x.title}</Label>
-						<Label size={20}>
+						{/* <Label size={20}>
 							{formatDate(x.period[0])} - {formatDate(x.period[1])}
-						</Label>
+						</Label> */}
 						<Label size={50}>{x.place}</Label>
 					</>
 				</TextSection>

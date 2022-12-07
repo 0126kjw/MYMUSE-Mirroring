@@ -5,6 +5,8 @@ import DataTable_AdmissionFee from 'src/component/detail/DataTable_AdmissionFee'
 import styled from '@emotion/styled';
 import DetailSlider from './DetailSlider';
 import KakaoMap from './KakaoMap';
+import { useRouter } from 'next/router';
+import { clearConfigCache } from 'prettier';
 
 const IndexStyle = styled.div`
 	.bkgroundColor {
@@ -94,12 +96,17 @@ const IndexStyle = styled.div`
 `;
 
 const Index = ({ item }) => {
+	const router = useRouter();
+	const ID = router.query.id;
+	console.log(item);
+
 	return (
 		<IndexStyle>
 			<div className='bkgroundColor'>
 				<div className='museData'>
 					<DetailSlider
 						_id={item._id}
+						ID={ID}
 						imgSrcUrl={item.imgSrcUrl}
 						srcName={item.srcName}
 						srcUrl={item.srcUrl}
