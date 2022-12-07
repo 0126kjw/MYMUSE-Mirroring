@@ -20,9 +20,10 @@ export class MuseumService {
     return museum;
   }
 
-  async findOne(name: string, reponseInfo: string): Promise<Museum> {
-    const test = await this.museumModel.findOne({ name }, reponseInfo).lean();
-    console.log(test);
+  async findOne(facilityName: string, reponseInfo: string): Promise<any> {
+    const test = await this.museumModel
+      .findOne({ name: facilityName }, reponseInfo)
+      .lean();
     return test;
   }
 
