@@ -16,9 +16,8 @@ export class ChatbotController {
   })
   @ApiNotFoundResponse({ description: 'NotFound' })
   @Post()
-  async getChatbotText(@Body() chatbotDto: ChatbotDto): Promise<any> {
-    console.log(chatbotDto);
-    const chatbotResult = await this.chatbotService.findAll(chatbotDto.text);
-    return chatbotResult;
+  async getChatbotResponse(@Body() chatbotDto: ChatbotDto): Promise<any> {
+    const answeredChatbot = await this.chatbotService.findAll(chatbotDto.text);
+    return answeredChatbot;
   }
 }

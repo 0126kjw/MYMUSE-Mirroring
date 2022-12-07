@@ -20,9 +20,25 @@ export class ExhibitionService {
     return exhibition;
   }
 
-  async findRightItems(name: string, reponseInfo: string): Promise<Exhibition> {
-    // 아직 날짜 관련하여 설정하지 않았음.
-    return await this.exhibitionModel.findOne({ name }, reponseInfo);
+  async findRightItems(
+    dateBefore: Date,
+    dateAfter: Date,
+    reponseInfo: string,
+  ): Promise<any> {
+    const date = await this.exhibitionModel
+      .find(
+        {
+          period: {
+            $elemMatch: {
+              $gte: dateBefore,
+              $lte: dateAfter,
+            },
+          },
+        },
+        reponseInfo,
+      )
+      .lean();
+    return date;
   }
 
   async pagination(page: number) {
