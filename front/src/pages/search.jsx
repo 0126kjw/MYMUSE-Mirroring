@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 
 // components
 import SearchBar from 'src/component/search/SearchBar';
-import SearchList from 'src/component/search/SearchList';
+import SearchListEX from 'src/component/search/SearchListEX';
+import SearchListMU from 'src/component/search/SearchListMU';
 
 // state
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -71,10 +72,16 @@ const Search = () => {
 						setList={setList}
 					/>
 				</SearchSection>
-				<div>검색결과 : {searchRes}</div>
-
+				<div> '{searchRes}' 검색결과</div>
 				<ListSection color={cssUnit.backgroundColors.White} size={900} className={`page`}>
-					<Wrap>{ouputNeeded && <SearchList list={list} />}</Wrap>
+					<Wrap>
+						{ouputNeeded && searchCategory == 'museum' && <SearchListMU list={list} />}
+					</Wrap>
+					<Wrap>
+						{ouputNeeded && searchCategory == 'exhibition' && (
+							<SearchListEX list={list} />
+						)}
+					</Wrap>
 				</ListSection>
 			</PageLayout>
 		</>
