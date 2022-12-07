@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import cssUnit from 'src/lib/cssUnit';
 
 const aiChatRoomStyle = styled.div`
 	.AImodal-Outer {
@@ -55,6 +56,10 @@ const aiChatRoomStyle = styled.div`
 	.AIsec2 {
 		min-height: 400px;
 		overflow: scroll;
+
+		padding-left: 7px;
+		padding-right: 7px;
+
 		-ms-overflow-style: none; /* IE and Edge */
 		scrollbar-width: none; /* Firefox */
 
@@ -71,8 +76,9 @@ const aiChatRoomStyle = styled.div`
 
 		.msgFromHuman {
 			float: right;
-			background-color: #997a4c;
-			background-color: #6e3a07;
+			background-color: ${cssUnit.colors.DarkGold};
+			//background-color: #997a4c;
+			//background-color: #6e3a07;
 			color: white;
 			margin: 1%;
 			padding: 1%;
@@ -94,8 +100,9 @@ const aiChatRoomStyle = styled.div`
 		height: 70px;
 		border-radius: 20px;
 
-		background-color: #997a4c;
-		background-color: #6e3a07;
+		//background-color: #997a4c;
+		//background-color: #6e3a07;
+		background-color: ${cssUnit.colors.DarkGold};
 		display: flex;
 		justify-content: center;
 		align-items: center;
