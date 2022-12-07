@@ -5,6 +5,7 @@ import DataTable_AdmissionFee from 'src/component/detail/DataTable_AdmissionFee'
 import styled from '@emotion/styled';
 import DetailSlider from './DetailSlider';
 import KakaoMap from './KakaoMap';
+import { useEffect } from 'react';
 
 const IndexStyle = styled.div`
 	.bkgroundColor {
@@ -94,6 +95,14 @@ const IndexStyle = styled.div`
 `;
 
 const Index = ({}) => {
+	useEffect(() => {
+		// src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&libraries=services,clusterer&autoload=false`}
+		const kakaosdk = document.createElement('script');
+		kakaosdk.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&libraries=services,clusterer&autoload=false`;
+		kakaosdk.defer = true;
+		kakaosdk.async = true;
+		document.head.appendChild(kakaosdk);
+	}, []);
 	return (
 		<IndexStyle>
 			<div className='bkgroundColor'>
