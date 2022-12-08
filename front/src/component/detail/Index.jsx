@@ -6,6 +6,8 @@ import styled from '@emotion/styled';
 import DetailSlider from './DetailSlider';
 import KakaoMap from './KakaoMap';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { clearConfigCache } from 'prettier';
 
 const IndexStyle = styled.div`
 	.bkgroundColor {
@@ -94,7 +96,7 @@ const IndexStyle = styled.div`
 	}
 `;
 
-const Index = ({}) => {
+const Index = ({ item }) => {
 	useEffect(() => {
 		// src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&libraries=services,clusterer&autoload=false`}
 		const kakaosdk = document.createElement('script');
@@ -103,25 +105,70 @@ const Index = ({}) => {
 		kakaosdk.async = true;
 		document.head.appendChild(kakaosdk);
 	}, []);
+	const router = useRouter();
+	const ID = router.query.id;
+	console.log(item);
+
 	return (
 		<IndexStyle>
 			<div className='bkgroundColor'>
 				<div className='museData'>
-					<DetailSlider />
+					<DetailSlider
+						_id={item._id}
+						ID={ID}
+						imgSrcUrl={item.imgSrcUrl}
+						srcName={item.srcName}
+						srcUrl={item.srcUrl}
+					/>
 					<div className='boxContainer'>
-						<DataTable_Introduction />
+						<DataTable_Introduction
+							_id={item._id}
+							description={item.description}
+							name={item.name}
+						/>
 					</div>
 					<div className='boxContainer'>
-						<DataTable_Agency />
+						<DataTable_Agency
+							_id={item._id}
+							category={item.category}
+							contactInfo={item.contactInfo}
+							facilities={item.facilities}
+							name={item.name}
+							website={item.website}
+							newAddress={item.newAddress}
+							oldAddress={item.oldAddress}
+							runby={item.runby}
+							institution={item.institution}
+						/>
 					</div>
 					<div className='boxContainer'>
-						<DataTable_Schedule />
+						<DataTable_Schedule
+							mon={item.mon}
+							tue={item.tue}
+							wed={item.wed}
+							thu={item.thu}
+							fri={item.fri}
+							sat={item.sat}
+							sun={item.sun}
+							offday={item.offday}
+						/>
 					</div>
 					<div className='boxContainer'>
-						<DataTable_AdmissionFee />
+						<DataTable_AdmissionFee
+							_id={item._id}
+							adultFee={item.adultFee}
+							childFee={item.childFee}
+							youthFee={item.youthFee}
+							isFree={item.isFree}
+							feeUrl={item.feeUrl}
+						/>
 					</div>
 					<div className='boxContainer'>
-						<KakaoMap />
+						<KakaoMap
+							latitude={item.latitude}
+							longitude={item.longitude}
+							name={item.name}
+						/>
 					</div>
 				</div>
 			</div>

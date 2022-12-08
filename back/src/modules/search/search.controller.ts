@@ -1,5 +1,5 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { searchDTO } from './dto/search.dto';
 import { SearchService } from './search.service';
 
@@ -8,7 +8,9 @@ import { SearchService } from './search.service';
 export class SearchController {
   constructor(private searchService: SearchService) {}
 
-  @ApiOperation({ summary: '검색 기능' })
+  /**
+   * 검색기능
+   */
   @Get()
   async search(@Query() searchDto: searchDTO): Promise<object> {
     const searchData = await this.searchService.search(
