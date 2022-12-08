@@ -1,6 +1,5 @@
 import cssUnit from 'src/lib/cssUnit';
 import styled from '@emotion/styled';
-import cssUnit from 'src/lib/cssUnit';
 
 const aiChatRoomStyle = styled.div`
 	.AImodal-Outer {
