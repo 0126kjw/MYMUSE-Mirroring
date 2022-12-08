@@ -26,6 +26,19 @@ function MyApp({ Component, pageProps }) {
 	);
 }
 
+MyApp.getInitialProps = async (context) => {
+	const { ctx, Component } = context;
+
+	let pageProps = {};
+
+	//console.log(ctx);
+
+	if (Component.getInitialProps) {
+		pageProps = await Component.getInitialProps(ctx);
+	}
+	return { pageProps };
+};
+
 export default MyApp;
 
 //<ErrorBoundary faillback={<div>Loading...</div>}>

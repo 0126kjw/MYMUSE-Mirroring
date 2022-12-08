@@ -16,16 +16,37 @@ import SearchCategoryState from 'src/state/searchCategory';
 //style
 import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
 
-const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList }) => {
-	const searchCategory = useRecoilValue(SearchCategoryState);
-	const [modal, setModal] = useState('off');
+/**
+ * <기술 명세>
+ * onchange => 실시간 추천검색어 반환
+ * onclick, onsubmit => 검색 목록 반환
+ */
+
+const SearchBar = ({
+	keyword,
+	setKeyword,
+	searchRes,
+	setSearchRes,
+	setList,
+	setOutputNeeded,
+	setSerchResNeeded,
+}) => {
+	// 실시간 검색결과
+	const [realTimelist, setRealTimeList] = useState([]);
+
+	// 실시간 검색결과를 바탕으로 추천어 목록 생성
 	const [recList, setRecList] = useState([]);
 
+	// 검색 카테고리 (전역값)
+	const searchCategory = useRecoilValue(SearchCategoryState);
+
+	// 추천 검색어 모달 on/off
+	const [modal, setModal] = useState('off');
+
+	// 실시간 검색
 	const realTimeSearch = async (keyword) => {
-		console.log('searchCategory, keyword |', searchCategory, keyword);
 		const data = await GetSearach(searchCategory, keyword);
-		// console.log('data', data);
-		setList(() => [...data]);
+		setRealTimeList(() => [...data]);
 		showRecommendeds(keyword, data);
 	};
 
@@ -37,15 +58,14 @@ const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList }) =>
 			setModal('off');
 		}
 		// setRecList
-		data.map((v, idx) => {
+		data.map((v) => {
 			setRecList((prev) => [...prev, v.title]);
 			console.log('v.title', v.title);
 		});
 	};
 
-	// 인풋창 값 변경
 	const onChange = (e) => {
-		if (searchCategory == 'none') {
+		if (searchCategory == '선택해주세요') {
 			alert('카테고리를 선택해주세요');
 			return;
 		}
@@ -56,27 +76,35 @@ const SearchBar = ({ keyword, setKeyword, searchRes, setSearchRes, setList }) =>
 		}
 	};
 
-	// 검색 (돋보기 클릭 or 엔터)
 	const onClick = () => {
 		showSearchResultsToLists();
 	};
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 		showSearchResultsToLists();
 	};
-	const showSearchResultsToLists = () => {
-		// 검색 키워드 띄우기
+	const showSearchResultsToLists = async () => {
+		// const [serchResNeeded, setSerchResNeeded] = useState(false);
+
+		// 검색결과 띄우기
+		setSerchResNeeded(true);
+		// 키워드 띄우기
 		setSearchRes(keyword);
 
-		// 검색결과 목록 띄우기 +
+		// 목록 띄우기
+		setOutputNeeded(true);
+		const data = await GetSearach(searchCategory, keyword);
+		console.log('data', data);
+		setList(() => [...data]);
 
-		// 검색창 값 비우기
+		// 검색창 비우기
 		setKeyword('');
 	};
 
 	return (
 		<SearchBarLayout>
-			<DropDown />
+			<DropDown setList={setList} setSerchResNeeded={setSerchResNeeded} />
 			<form onSubmit={onSubmit}>
 				<input
 					type='text'
