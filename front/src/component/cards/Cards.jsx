@@ -30,9 +30,9 @@ const Card = ({ x }) => {
 				<TextSection>
 					<>
 						<Label size={55}>{x.title}</Label>
-						{/* <Label size={20}>
-							{formatDate(x.period[0])} - {formatDate(x.period[1])}
-						</Label> */}
+						<Label size={20}>
+							{/* {formatDate(x.period[0])} - {formatDate(x.period[1])} */}
+						</Label>
 						<Label size={50}>{x.place}</Label>
 					</>
 				</TextSection>

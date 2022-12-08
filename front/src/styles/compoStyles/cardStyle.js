@@ -60,6 +60,7 @@ export const CardArticle = styled.article`
 `;
 
 export const TextSection = styled.div`
+	z-index: 0;
 	position: absolute;
 
 	display: flex;
@@ -71,7 +72,7 @@ export const TextSection = styled.div`
 	height: 190px;
 
 	background-color: ${cssUnit.colors.White};
-	z-index: 99;
+	/* z-index: 99; */
 
 	font-size: 18px;
 	line-height: 22px;
