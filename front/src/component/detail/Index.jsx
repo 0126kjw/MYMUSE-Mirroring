@@ -1,10 +1,15 @@
+// component
 import DataTable_Introduction from 'src/component/detail/DataTable_Introduction';
 import DataTable_Agency from 'src/component/detail/DataTable_Agency';
 import DataTable_Schedule from 'src/component/detail/DataTable_Schedule';
 import DataTable_AdmissionFee from 'src/component/detail/DataTable_AdmissionFee';
-import styled from '@emotion/styled';
 import DetailSlider from './DetailSlider';
 import KakaoMap from './KakaoMap';
+
+// style
+import styled from '@emotion/styled';
+
+// library
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { clearConfigCache } from 'prettier';
@@ -78,6 +83,7 @@ const IndexStyle = styled.div`
 			background-color: lightgray;
 			border: solid 1px aliceblue;
 			color: black;
+			overflow: hidden;
 		}
 		@media screen and (max-width: 1200px) {
 			width: 90%;

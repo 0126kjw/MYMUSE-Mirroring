@@ -34,7 +34,11 @@ const DropDown = ({ setList, setSerchResNeeded, catSelector, setCatSelector }) =
 		<>
 			{catList && (
 				<>
-					<DropDownLabel value={category} onClick={CategorySelectorOnOff}>
+					<DropDownLabel
+						value={category}
+						onClick={CategorySelectorOnOff}
+						style={{ cursor: 'pointer' }}
+					>
 						{catSelector == 'closed' && <>{category}</>}
 						{catSelector == 'opened' && (
 							<>

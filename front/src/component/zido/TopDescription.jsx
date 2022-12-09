@@ -2,9 +2,9 @@ export default function TopDescription({ selectedMapState }) {
 	return (
 		<>
 			{selectedMapState.mapKind == 'inner' && (
-				<div className='subLocationName'>{selectedMapState.name}</div>
+				<div className='mapDescBox'>{selectedMapState.name}</div>
 			)}
-			{selectedMapState.mapKind == 'outer' && <div className='subLocationName'>서울시</div>}
+			{selectedMapState.mapKind == 'outer' && <div className='mapDescBox'>서울시</div>}
 		</>
 	);
 }

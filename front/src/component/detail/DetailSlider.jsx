@@ -89,7 +89,11 @@ const DetailSlider = ({ _id, imgSrcUrl, srcName, srcUrl, ID }) => {
 						>
 							{index === currentSlide && (
 								<>
-									<img src={eachImgUrl} alt='slide' />
+									<img
+										src={eachImgUrl}
+										alt='slide'
+										style={{ objectFit: 'fill' }}
+									/>
 								</>
 							)}
 						</div>

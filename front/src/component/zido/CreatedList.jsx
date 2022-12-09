@@ -27,10 +27,10 @@ export default function CreatedList({ pins, selectedMapState, hoverPin }) {
 										moveToDetail(x.name);
 									}}
 								>
-									<li>
+									<div>
 										<p>{x.name}</p>
 										<p>{x.address}</p>
-									</li>
+									</div>
 								</div>
 							);
 						})}

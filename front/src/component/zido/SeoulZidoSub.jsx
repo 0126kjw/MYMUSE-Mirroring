@@ -5,7 +5,9 @@ import { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 // function
-import getData from 'src/component/zido/function_getData';
+import getData from 'src/utils/getMapData';
+
+// Style
 import SeoulZidoSubStyle from 'src/styles/compoStyles/SeoulZidoSubStyle';
 
 // State

@@ -85,7 +85,7 @@ const Card_Muse = ({ x }) => {
 				<div className='ImgSection'>
 					<img
 						src={`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ID}_image01.jpg`}
-						style={{}}
+						style={{ cursor: 'pointer' }}
 						onClick={moveToDetail}
 					></img>
 				</div>

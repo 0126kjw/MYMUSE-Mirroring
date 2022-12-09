@@ -3,7 +3,13 @@ import guId from 'src/data/guId.json';
 import zoomMap from 'src/data/zoomMap.json';
 import axios from 'axios';
 
-const getData = async (setMapState, setPins, selectedMapState, isMapFetching, setIsMapFetching) => {
+const getMapData = async (
+	setMapState,
+	setPins,
+	selectedMapState,
+	isMapFetching,
+	setIsMapFetching,
+) => {
 	if (selectedMapState.mapKind == 'outer') {
 		setMapState({
 			map: outerMap,
@@ -36,4 +42,4 @@ const getData = async (setMapState, setPins, selectedMapState, isMapFetching, se
 	}
 };
 
-export default getData;
+export default getMapData;

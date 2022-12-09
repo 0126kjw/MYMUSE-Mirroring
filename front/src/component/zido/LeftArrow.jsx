@@ -10,7 +10,7 @@ export default function CreatedList({
 			{selectedMapState.mapKind == 'inner' && (
 				<>
 					<div
-						className='leftArrow'
+						className='mapDescBox'
 						onClick={() => {
 							setSelectedMapState({
 								mapKind: 'outer',
@@ -23,6 +23,7 @@ export default function CreatedList({
 							});
 							setPins((prev) => null);
 						}}
+						style={{ cursor: 'pointer', fontSize: '30px' }}
 					>
 						⬅
 					</div>
