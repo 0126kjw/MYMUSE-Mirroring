@@ -19,36 +19,41 @@ export class ChatbotService {
     return await this.chatbotModel.create(feedback);
   }
 
-  async SearchSpecificDate(fields: any): Promise<any> {
-    let startDate = null;
-    let endDate = null;
-    console.log(fields);
-    if (fields['date-time']?.structValue?.fields) {
-      if ('오늘') {
+  async SearchSpecificDate(fields: any, queryText: string): Promise<any> {
+    const dateTime = fields['date-time'];
+
+    if (dateTime?.structValue?.fields) {
+      const period = dateTime.structValue.fields;
+      let endDate = null;
+
+      if (queryText.indexOf('평일') >= 0) {
+        endDate = queryText.slice(0, 10).split('-');
+        endDate[2] -= 2;
+        endDate = endDate.join('-');
+        endDate = new Date(`${endDate}T23:59:59+00:00`);
+      } else {
+        endDate = new Date(period?.endDate?.stringValue);
       }
-      const period = fields['date-time']?.structValue?.fields;
 
-      startDate = new Date(period?.startDate?.stringValue);
-      endDate = new Date(period?.endDate?.stringValue);
-
-      return { startDate, endDate };
-    } else {
-      const period = fields['date-time']?.stringValue;
-      const date = period.slice(0, 10);
-
-      startDate = new Date(`${date}T00:00:00+09:00`);
-      endDate = new Date(`${date}T23:59:59+09:00`);
-
-      console.log(startDate);
       console.log(endDate);
 
-      return { startDate, endDate };
+      return endDate;
+    } else {
+      const period = dateTime.stringValue;
+      const date = period.slice(0, 10);
+      const endDate = new Date(`${date}T23:59:59+00:00`);
+
+      console.log(endDate);
+
+      return endDate;
     }
   }
 
-  async getIntentedAnswer(result: any): Promise<any> {
-    const fields = result.parameters.fields;
-    const displayName = result.intent.displayName;
+  async getIntentedAnswer(
+    fields: any,
+    displayName: string,
+    queryText: string,
+  ): Promise<any> {
     const facilityName = fields?.facilityName?.stringValue;
     const category = fields?.facilityCategory?.stringValue;
     const borough =
@@ -96,15 +101,14 @@ export class ChatbotService {
         );
 
       case 'exhibitionDateSearch':
-        const { startDate, endDate } = await this.SearchSpecificDate(fields);
+        const endDate = await this.SearchSpecificDate(fields, queryText);
         const dateSearch = await this.exhibitionService.findRightItems(
-          startDate,
           endDate,
-          'website period',
+          'title period',
         );
 
         return dateSearch;
-      case 'exhibitionTitle':
+      // case 'exhibitionTitle':
       // const exhibitionTitle = await this.exhibitionService.findOne();
     }
   }
@@ -129,12 +133,15 @@ export class ChatbotService {
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
     const queryText = result.queryText;
-    let fulfillmentText = result.fulfillmentText;
+    const displayName = result.intent.displayName;
+    const fields = result.parameters.fields;
+    let fulfillmentText = result.fulfillmentText.trim();
     console.log('Detected intent');
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
 
-    if (queryText.indexOf('평일') >= 0) {
+    // dialogflow에서 평일을 월~일로 인식하기 때문에 강제로 2일 줄여주는 로직 구성
+    const editWeekdayText = async (fulfillmentText: string) => {
       const endDate = fulfillmentText.slice(11, 21);
       const endDateArr = endDate.split('-');
       const year = Number.parseInt(endDateArr[0]);
@@ -145,15 +152,24 @@ export class ChatbotService {
         .slice(0, 10);
 
       fulfillmentText = fulfillmentText.replace(endDate, newEndDate);
+
+      return fulfillmentText;
+    };
+
+    if (queryText.indexOf('평일') >= 0) {
+      fulfillmentText = await editWeekdayText(fulfillmentText);
     }
 
     if (result.intent) {
-      const intetedAnswer = await this.getIntentedAnswer(result);
+      let intetedAnswers = await this.getIntentedAnswer(
+        fields,
+        displayName,
+        queryText,
+      );
 
-      intetedAnswer.displayName = result.intent.displayName;
-      intetedAnswer.fulfillmentText = fulfillmentText;
-      console.log(intetedAnswer);
-      return intetedAnswer;
+      intetedAnswers = { intetedAnswers, displayName, fulfillmentText };
+
+      return intetedAnswers;
     } else {
       const message = { errorMessage: 'No intent matched.' };
 

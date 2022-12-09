@@ -10,40 +10,41 @@ export class ExhibitionService {
     private readonly exhibitionModel: Model<Exhibition>,
   ) {}
 
-  // async findAll(): Promise<Exhibition[]> {
-  //   const exhibitions = await this.exhibitionModel.find();
-  //   return exhibitions;
-  // }
-
   async findById(id: string): Promise<Exhibition> {
     const exhibition = await this.exhibitionModel.findOne({ id });
     return exhibition;
   }
 
-  async findOne(title: string, reponseInfo: string): Promise<any> {
-    const test = await this.exhibitionModel
-      .findOne({ title }, reponseInfo)
+  // async findOne(title: string, reponseInfo: string): Promise<any> {
+  //   const test = await this.exhibitionModel
+  //     .findOne({ title }, reponseInfo)
+  //     .lean();
+  //   return test;
+  // }
+
+  async findRightItems(endDate: Date, reponseInfo: string): Promise<any> {
+    let date = await this.exhibitionModel
+      .find(
+        {
+          period: {
+            $elemMatch: {
+              $gte: endDate,
+            },
+          },
+        },
+        reponseInfo,
+      )
       .lean();
-    return test;
-  }
 
-  async findRightItems(
-    startDate: Date,
-    endDate: Date,
-    reponseInfo: string,
-  ): Promise<any> {
-    const date = await this.exhibitionModel.find({}, reponseInfo).lean();
+    date = date.filter((date) => {
+      if (new Date(date.period[0]) <= endDate) {
+        date.website = `https://tickets.interpark.com/goods/${date.href}`;
 
-    // date = date.filter((date) => {
-    //   if (
-    //     (new Date(date.period[0]) <= startDate &&
-    //       new Date(date.period[1]) >= startDate) ||
-    //     new Date(date.period[1]) >= endDate
-    //   ) {
-    //     delete date.period;
-    //     return date;
-    //   }
-    // });
+        delete date.period;
+
+        return date;
+      }
+    });
 
     return date;
   }
