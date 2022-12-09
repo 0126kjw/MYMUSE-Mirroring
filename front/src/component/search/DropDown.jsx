@@ -7,9 +7,9 @@ import SearchCategoryState from 'src/state/searchCategory';
 //styled
 import { DropDownLabel, Optionlist, Option } from 'src/styles/dropDownStyle';
 
-const DropDown = ({ setList, setSerchResNeeded }) => {
+const DropDown = ({ setList, setSerchResNeeded, catSelector, setCatSelector }) => {
 	// const [selected, setSelected] = useState('선택해주세요');
-	const [catSelector, setCatSelector] = useState('closed');
+
 	const [category, setCategory] = useRecoilState(SearchCategoryState);
 	const catList = ['박물관', '전시회'];
 

@@ -10,11 +10,6 @@ export class MuseumService {
     private readonly museumModel: Model<Museum>,
   ) {}
 
-  async findAll(): Promise<Museum[]> {
-    const museums = await this.museumModel.find();
-    return museums;
-  }
-
   async findById(id: number): Promise<Museum> {
     const museum = await this.museumModel.findOne({ id });
     return museum;

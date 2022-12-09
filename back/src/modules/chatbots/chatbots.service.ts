@@ -2,79 +2,58 @@ import { Injectable } from '@nestjs/common';
 import dialogflow from '@google-cloud/dialogflow';
 import { ExhibitionService } from '../exhibitions/exhibitions.service';
 import { MuseumService } from '../museums/museums.service';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Chatbot } from './schemas/chatbot.schema';
 
 @Injectable()
 export class ChatbotService {
   constructor(
+    @InjectModel(Chatbot.name)
+    private readonly chatbotModel: Model<Chatbot>,
     private readonly exhibitionService: ExhibitionService,
     private readonly museumService: MuseumService,
   ) {}
 
-  async SearchSpecificDate(result: any): Promise<any> {
-    const text = result.queryText;
-    const regex = /[^0-9]/g;
-    const number = Number.parseInt(text.replace(regex, ''));
-    const schedule = text.indexOf(number) >= 0 ? number : text;
-    const newDate = new Date();
-    const year = newDate.getFullYear();
-    const month = newDate.getMonth();
-    const date = newDate.getDate();
-    const day = newDate.getDay();
-    const week = ['월', '화', '수', '목', '금', '토', '일'];
-    const numberOfDays = 7;
-    let addDate = 1;
-
-    for (let i = day; i <= week.length; i++) {
-      addDate++;
-      if (week[i] == '일') break;
-    }
-
-    const sunday = date + addDate;
-    const monday = sunday - numberOfDays + 1;
-    const friday = monday + 4;
-    const satday = sunday - 1;
-    const nextSunday = sunday + numberOfDays;
-    const nextmonday = monday + numberOfDays;
-    const nextFriday = nextmonday + 4;
-    const nextSatday = nextSunday - 1;
-    let dateBefore = null;
-    let dateAfter = null;
-
-    if (typeof schedule === 'string') {
-      if (schedule.indexOf('이번주') >= 0) {
-        if (schedule.indexOf('주말') >= 0) {
-          dateBefore = new Date(year, month, satday);
-          dateAfter = new Date(year, month, sunday);
-        } else if (schedule.indexOf('평일') >= 0) {
-          dateBefore = new Date(year, month, monday);
-          dateAfter = new Date(year, month, friday);
-        } else {
-          dateBefore = new Date(year, month, monday);
-          dateAfter = new Date(year, month, sunday);
-        }
-      } else if (schedule.indexOf('다음주') >= 0) {
-        if (schedule.indexOf('주말') >= 0) {
-          dateBefore = new Date(year, month, nextSatday);
-          dateAfter = new Date(year, month, nextSunday);
-          console.log(dateBefore);
-          console.log(dateAfter);
-        } else if (schedule.indexOf('평일') >= 0) {
-          dateBefore = new Date(year, month, nextmonday);
-          dateAfter = new Date(year, month, nextFriday);
-        } else {
-          dateBefore = new Date(year, month, nextmonday);
-          dateAfter = new Date(year, month, nextSunday);
-        }
-      }
-    } else {
-      dateBefore = new Date(year, month - 1, 2);
-      dateAfter = new Date(year, month, 1);
-    }
-    return { dateBefore, dateAfter };
+  async create(feedback: string): Promise<any> {
+    return await this.chatbotModel.create(feedback);
   }
-  async getIntentedAnswer(result: any): Promise<any> {
-    const fields = result.parameters.fields;
-    const displayName = result.intent.displayName;
+
+  async SearchSpecificDate(fields: any, queryText: string): Promise<any> {
+    const dateTime = fields['date-time'];
+
+    if (dateTime?.structValue?.fields) {
+      const period = dateTime.structValue.fields;
+      let endDate = null;
+
+      if (queryText.indexOf('평일') >= 0) {
+        endDate = queryText.slice(0, 10).split('-');
+        endDate[2] -= 2;
+        endDate = endDate.join('-');
+        endDate = new Date(`${endDate}T23:59:59+00:00`);
+      } else {
+        endDate = new Date(period?.endDate?.stringValue);
+      }
+
+      console.log(endDate);
+
+      return endDate;
+    } else {
+      const period = dateTime.stringValue;
+      const date = period.slice(0, 10);
+      const endDate = new Date(`${date}T23:59:59+00:00`);
+
+      console.log(endDate);
+
+      return endDate;
+    }
+  }
+
+  async getIntentedAnswer(
+    fields: any,
+    displayName: string,
+    queryText: string,
+  ): Promise<any> {
     const facilityName = fields?.facilityName?.stringValue;
     const category = fields?.facilityCategory?.stringValue;
     const borough =
@@ -87,8 +66,6 @@ export class ChatbotService {
           'contactInfo',
         );
 
-        contactInfo.facilitiyName = facilityName;
-
         return contactInfo;
 
       case 'facilityAddress':
@@ -97,8 +74,6 @@ export class ChatbotService {
           'newAddress oldAddress',
         );
 
-        addressInfo.facilitiyName = facilityName;
-
         return addressInfo;
 
       case 'facilityOpeningHours':
@@ -106,8 +81,6 @@ export class ChatbotService {
           facilityName,
           'mon tue wed thu fri sat sun offday',
         );
-
-        openingHours.facilitiyName = facilityName;
 
         return openingHours;
 
@@ -128,12 +101,15 @@ export class ChatbotService {
         );
 
       case 'exhibitionDateSearch':
-        const { dateBefore, dateAfter } = await this.SearchSpecificDate(result);
-        return await this.exhibitionService.findRightItems(
-          dateBefore,
-          dateAfter,
-          'website',
+        const endDate = await this.SearchSpecificDate(fields, queryText);
+        const dateSearch = await this.exhibitionService.findRightItems(
+          endDate,
+          'title period',
         );
+
+        return dateSearch;
+      // case 'exhibitionTitle':
+      // const exhibitionTitle = await this.exhibitionService.findOne();
     }
   }
 
@@ -156,13 +132,44 @@ export class ChatbotService {
     };
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
+    const queryText = result.queryText;
+    const displayName = result.intent.displayName;
+    const fields = result.parameters.fields;
+    let fulfillmentText = result.fulfillmentText.trim();
     console.log('Detected intent');
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
-    // console.log(result);
+
+    // dialogflow에서 평일을 월~일로 인식하기 때문에 강제로 2일 줄여주는 로직 구성
+    const editWeekdayText = async (fulfillmentText: string) => {
+      const endDate = fulfillmentText.slice(11, 21);
+      const endDateArr = endDate.split('-');
+      const year = Number.parseInt(endDateArr[0]);
+      const month = Number.parseInt(endDateArr[1]);
+      const day = Number.parseInt(endDateArr[2]);
+      const newEndDate = new Date(year, month, day - 1)
+        .toISOString()
+        .slice(0, 10);
+
+      fulfillmentText = fulfillmentText.replace(endDate, newEndDate);
+
+      return fulfillmentText;
+    };
+
+    if (queryText.indexOf('평일') >= 0) {
+      fulfillmentText = await editWeekdayText(fulfillmentText);
+    }
+
     if (result.intent) {
-      const IntetedAnswer = await this.getIntentedAnswer(result);
-      return IntetedAnswer;
+      let intetedAnswers = await this.getIntentedAnswer(
+        fields,
+        displayName,
+        queryText,
+      );
+
+      intetedAnswers = { intetedAnswers, displayName, fulfillmentText };
+
+      return intetedAnswers;
     } else {
       const message = { errorMessage: 'No intent matched.' };
 

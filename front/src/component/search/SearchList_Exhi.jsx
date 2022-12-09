@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 //style
 import { AllListUl } from 'src/styles/compoStyles/cardlistStyle';
 //import Compo
-import Card from 'src/component/search/Cards_search';
+import Card from 'src/component/cards/Cards';
 import DownButton from '../DownButton';
 
-const SearchList = ({ list }) => {
-	// const [bundleIdx, setBundleIdx] = useState(1);
-	// const getMoreList = () => {
-	// 	setBundleIdx((prev) => prev + 1);
-	// };
+const SearchList_Exhi = ({ list }) => {
+	useEffect(() => {
+		console.log('list', list);
+	}, []);
 
 	return (
 		<>
@@ -20,10 +19,9 @@ const SearchList = ({ list }) => {
 							return <Card x={data} key={idx} />;
 						})}
 				</AllListUl>
-				{/* <DownButton getMoreList={getMoreList} /> */}
 			</div>
 		</>
 	);
 };
 
-export default SearchList;
+export default SearchList_Exhi;
