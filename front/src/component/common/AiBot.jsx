@@ -7,28 +7,22 @@ const AiBot = () => {
 
 	const openBot = () => {
 		setBotMode('on');
+		const ele1 = document.querySelector('#AImodalOnBtn');
+		ele1.style.display = 'none';
+
+		const ele2 = document.querySelector('.logoTest');
+		ele2.style.display = 'block';
 	};
-	useEffect(() => {
-		if (botMode == 'off') {
-			const ele = document.querySelector('#AImodalOnBtn');
-			ele.style.right = '30px';
-			ele.style.bottom = '10px';
-			ele.style.width = '100px';
-		}
-	}, [botMode]);
 
 	return (
 		<AIBotLayout>
-			{botMode == 'off' ? (
-				<div id='AImodalOnBtn' onClick={openBot}>
-					AIBOT
-				</div>
-			) : (
-				<div className='logoTest'>
-					<div className='position'></div>
-					<AIChatRoom setBotMode={setBotMode} botMode={botMode} />
-				</div>
-			)}
+			<div id='AImodalOnBtn' onClick={openBot}>
+				AIBOT
+			</div>
+			<div className='logoTest'>
+				<div className='position'></div>
+				<AIChatRoom setBotMode={setBotMode} botMode={botMode} />
+			</div>
 		</AIBotLayout>
 	);
 };

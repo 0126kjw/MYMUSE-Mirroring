@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 
 const aiChatRoomStyle = styled.div`
 	.AImodal-Outer {
-		border: solid #997a4c 1px;
 		text-align: center;
 
 		transform: rotateZ(180deg);
@@ -19,7 +18,6 @@ const aiChatRoomStyle = styled.div`
 
 		margin: 0 auto;
 		background-color: #d9d9d9;
-		border-radius: 20px 20px 0px 20px;
 	}
 
 	.AImodal-Inner {
@@ -35,7 +33,11 @@ const aiChatRoomStyle = styled.div`
 	}
 
 	// 로고
-	.chatBotControl {
+	.modalTopSection {
+		width: 450px;
+		position: fixed;
+		bottom: 550px;
+		right: 30px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -47,8 +49,8 @@ const aiChatRoomStyle = styled.div`
 			position: absolute;
 			right: 10px;
 			background-color: #222222;
+			border: solid 1px #222222;
 			color: #997a4c;
-			border: none;
 			cursor: pointer;
 		}
 	}
@@ -69,23 +71,45 @@ const aiChatRoomStyle = styled.div`
 			margin: 1%;
 			padding: 1%;
 			text-align: left;
-			width: 70%;
 			min-height: 20px;
 			border-radius: 10px;
 		}
-
 		.msgFromHuman {
 			float: right;
 			background-color: ${cssUnit.colors.DarkGold};
-			//background-color: #997a4c;
 			//background-color: #6e3a07;
 			color: white;
 			margin: 1%;
 			padding: 1%;
-			text-align: right;
-			width: 70%;
+			/* width: 70%; */
 			min-height: 20px;
 			border-radius: 10px;
+			text-align: left;
+		}
+
+		.feedBack {
+			background-color: bisque;
+
+			color: black;
+			margin: 1%;
+			padding: 1%;
+			cursor: pointer;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: solid 1px pink;
+
+			p {
+				font-weight: bold;
+				margin: 0%;
+				padding: 0%;
+			}
+		}
+
+		.emptyBox {
+			width: 100%;
+			clear: both;
 		}
 	}
 	.AIsec2::-webkit-scrollbar {
@@ -98,13 +122,9 @@ const aiChatRoomStyle = styled.div`
 		right: 30px;
 		width: 450px;
 		height: 70px;
-		border-radius: 20px;
-
-		///* background-color: #997a4c; */
-		///* background-color: #6e3a07; */
-		background-color: ${cssUnit.colors.DarkGold};
 
 		background-color: ${cssUnit.colors.DarkGold};
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -112,23 +132,26 @@ const aiChatRoomStyle = styled.div`
 		form {
 			width: 100%;
 			height: 80%;
-			margin-top: 3%;
-			margin-left: 3%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			input {
+				flex-direction: row;
+				background-color: #ffffff;
+				border-radius: 5px;
+				border: solid 1px #d9d9d9;
+				width: 95%;
+				height: 30px;
+				/* padding: 0px; */
+			}
 		}
-		input {
-			flex-direction: row;
-			background-color: #ffffff;
-			border-radius: 10px;
-			border: solid 1px #d9d9d9;
-			width: 95%;
-			height: 70%;
-		}
+
 		button {
 			margin-top: 5px;
 			margin-right: 5px;
 			padding: 0px;
 			width: 10%;
-			height: 70%;
+			height: 60%;
 			border-radius: 10px;
 			border: solid 1px #997a4c;
 			background-color: black;
