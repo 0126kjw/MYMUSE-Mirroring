@@ -20,24 +20,31 @@ export class ExhibitionService {
     return exhibition;
   }
 
+  async findOne(title: string, reponseInfo: string): Promise<any> {
+    const test = await this.exhibitionModel
+      .findOne({ title }, reponseInfo)
+      .lean();
+    return test;
+  }
+
   async findRightItems(
-    dateBefore: Date,
-    dateAfter: Date,
+    startDate: Date,
+    endDate: Date,
     reponseInfo: string,
   ): Promise<any> {
-    const date = await this.exhibitionModel
-      .find(
-        {
-          period: {
-            $elemMatch: {
-              $gte: dateBefore,
-              $lte: dateAfter,
-            },
-          },
-        },
-        reponseInfo,
-      )
-      .lean();
+    const date = await this.exhibitionModel.find({}, reponseInfo).lean();
+
+    // date = date.filter((date) => {
+    //   if (
+    //     (new Date(date.period[0]) <= startDate &&
+    //       new Date(date.period[1]) >= startDate) ||
+    //     new Date(date.period[1]) >= endDate
+    //   ) {
+    //     delete date.period;
+    //     return date;
+    //   }
+    // });
+
     return date;
   }
 

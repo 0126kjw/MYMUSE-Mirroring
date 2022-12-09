@@ -2,76 +2,50 @@ import { Injectable } from '@nestjs/common';
 import dialogflow from '@google-cloud/dialogflow';
 import { ExhibitionService } from '../exhibitions/exhibitions.service';
 import { MuseumService } from '../museums/museums.service';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Chatbot } from './schemas/chatbot.schema';
 
 @Injectable()
 export class ChatbotService {
   constructor(
+    @InjectModel(Chatbot.name)
+    private readonly chatbotModel: Model<Chatbot>,
     private readonly exhibitionService: ExhibitionService,
     private readonly museumService: MuseumService,
   ) {}
 
-  async SearchSpecificDate(result: any): Promise<any> {
-    const text = result.queryText;
-    const regex = /[^0-9]/g;
-    const number = Number.parseInt(text.replace(regex, ''));
-    const schedule = text.indexOf(number) >= 0 ? number : text;
-    const newDate = new Date();
-    const year = newDate.getFullYear();
-    const month = newDate.getMonth();
-    const date = newDate.getDate();
-    const day = newDate.getDay();
-    const week = ['월', '화', '수', '목', '금', '토', '일'];
-    const numberOfDays = 7;
-    let addDate = 1;
-
-    for (let i = day; i <= week.length; i++) {
-      addDate++;
-      if (week[i] == '일') break;
-    }
-
-    const sunday = date + addDate;
-    const monday = sunday - numberOfDays + 1;
-    const friday = monday + 4;
-    const satday = sunday - 1;
-    const nextSunday = sunday + numberOfDays;
-    const nextmonday = monday + numberOfDays;
-    const nextFriday = nextmonday + 4;
-    const nextSatday = nextSunday - 1;
-    let dateBefore = null;
-    let dateAfter = null;
-
-    if (typeof schedule === 'string') {
-      if (schedule.indexOf('이번주') >= 0) {
-        if (schedule.indexOf('주말') >= 0) {
-          dateBefore = new Date(year, month, satday);
-          dateAfter = new Date(year, month, sunday);
-        } else if (schedule.indexOf('평일') >= 0) {
-          dateBefore = new Date(year, month, monday);
-          dateAfter = new Date(year, month, friday);
-        } else {
-          dateBefore = new Date(year, month, monday);
-          dateAfter = new Date(year, month, sunday);
-        }
-      } else if (schedule.indexOf('다음주') >= 0) {
-        if (schedule.indexOf('주말') >= 0) {
-          dateBefore = new Date(year, month, nextSatday);
-          dateAfter = new Date(year, month, nextSunday);
-          console.log(dateBefore);
-          console.log(dateAfter);
-        } else if (schedule.indexOf('평일') >= 0) {
-          dateBefore = new Date(year, month, nextmonday);
-          dateAfter = new Date(year, month, nextFriday);
-        } else {
-          dateBefore = new Date(year, month, nextmonday);
-          dateAfter = new Date(year, month, nextSunday);
-        }
-      }
-    } else {
-      dateBefore = new Date(year, month - 1, 2);
-      dateAfter = new Date(year, month, 1);
-    }
-    return { dateBefore, dateAfter };
+  async create(feedback: string): Promise<any> {
+    return await this.chatbotModel.create(feedback);
   }
+
+  async SearchSpecificDate(fields: any): Promise<any> {
+    let startDate = null;
+    let endDate = null;
+    console.log(fields);
+    if (fields['date-time']?.structValue?.fields) {
+      if ('오늘') {
+      }
+      const period = fields['date-time']?.structValue?.fields;
+
+      startDate = new Date(period?.startDate?.stringValue);
+      endDate = new Date(period?.endDate?.stringValue);
+
+      return { startDate, endDate };
+    } else {
+      const period = fields['date-time']?.stringValue;
+      const date = period.slice(0, 10);
+
+      startDate = new Date(`${date}T00:00:00+09:00`);
+      endDate = new Date(`${date}T23:59:59+09:00`);
+
+      console.log(startDate);
+      console.log(endDate);
+
+      return { startDate, endDate };
+    }
+  }
+
   async getIntentedAnswer(result: any): Promise<any> {
     const fields = result.parameters.fields;
     const displayName = result.intent.displayName;
@@ -87,8 +61,6 @@ export class ChatbotService {
           'contactInfo',
         );
 
-        contactInfo.facilitiyName = facilityName;
-
         return contactInfo;
 
       case 'facilityAddress':
@@ -97,8 +69,6 @@ export class ChatbotService {
           'newAddress oldAddress',
         );
 
-        addressInfo.facilitiyName = facilityName;
-
         return addressInfo;
 
       case 'facilityOpeningHours':
@@ -106,8 +76,6 @@ export class ChatbotService {
           facilityName,
           'mon tue wed thu fri sat sun offday',
         );
-
-        openingHours.facilitiyName = facilityName;
 
         return openingHours;
 
@@ -128,12 +96,16 @@ export class ChatbotService {
         );
 
       case 'exhibitionDateSearch':
-        const { dateBefore, dateAfter } = await this.SearchSpecificDate(result);
-        return await this.exhibitionService.findRightItems(
-          dateBefore,
-          dateAfter,
-          'website',
+        const { startDate, endDate } = await this.SearchSpecificDate(fields);
+        const dateSearch = await this.exhibitionService.findRightItems(
+          startDate,
+          endDate,
+          'website period',
         );
+
+        return dateSearch;
+      case 'exhibitionTitle':
+      // const exhibitionTitle = await this.exhibitionService.findOne();
     }
   }
 
@@ -156,13 +128,32 @@ export class ChatbotService {
     };
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
+    const queryText = result.queryText;
+    let fulfillmentText = result.fulfillmentText;
     console.log('Detected intent');
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
-    // console.log(result);
+
+    if (queryText.indexOf('평일') >= 0) {
+      const endDate = fulfillmentText.slice(11, 21);
+      const endDateArr = endDate.split('-');
+      const year = Number.parseInt(endDateArr[0]);
+      const month = Number.parseInt(endDateArr[1]);
+      const day = Number.parseInt(endDateArr[2]);
+      const newEndDate = new Date(year, month, day - 1)
+        .toISOString()
+        .slice(0, 10);
+
+      fulfillmentText = fulfillmentText.replace(endDate, newEndDate);
+    }
+
     if (result.intent) {
-      const IntetedAnswer = await this.getIntentedAnswer(result);
-      return IntetedAnswer;
+      const intetedAnswer = await this.getIntentedAnswer(result);
+
+      intetedAnswer.displayName = result.intent.displayName;
+      intetedAnswer.fulfillmentText = fulfillmentText;
+      console.log(intetedAnswer);
+      return intetedAnswer;
     } else {
       const message = { errorMessage: 'No intent matched.' };
 

@@ -6,16 +6,10 @@ export type ChatbotDocument = Chatbot & Document;
 @Schema({ timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } })
 export class Chatbot {
   @Prop()
-  name: string;
+  feedback: string;
 
   @Prop()
-  opinion: string;
-
-  @Prop()
-  email: string;
-
-  @Prop()
-  registerDate: Date;
+  sentiment: string;
 }
 
 export const ChatbotSchema = SchemaFactory.createForClass(Chatbot);
