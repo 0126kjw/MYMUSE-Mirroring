@@ -1,20 +1,49 @@
-import Seo from 'src/component/Seo';
+//pagePath와 링크하기 위한 객체
+const path = {
+	HOME: '/',
+	MAP: '/map',
+	SEARCH: '/search',
+	POPULAR: '/popular',
+	DETAIL: '/detail/*',
+};
+
+const getTitleByPath = {
+	[path.HOME]: '홈',
+	[path.MAP]: '지도',
+	[path.SEARCH]: '검색',
+	[path.POPULAR]: '인기 전시회',
+	[path.DETAIL]: '상세정보',
+};
+
+const getDescByPath = {
+	[path.HOME]: '메인 화면 입니다.',
+	[path.MAP]: '서울 시내 박물관/전시관을 검색할 수 있는 지도 페이지 입니다.',
+	[path.SEARCH]: '박물관/전시관을 검색할 수 있는 페이지 입니다.',
+	[path.POPULAR]: '인기 전시회를 볼 수 있는 페이지 입니다.',
+	[path.DETAIL]: '상세정보를 볼 수 있는 페이지 입니다.',
+};
+
 /**
  *
  * @param {
  * } context : getServerSideProps
  */
 const withGetServerSideProps = (getServerSideProps) => {
-	//console.log(context.resolvedUrl);
-	//return context.resolvedUrl;
 	return async (context) => {
-		const pageUrl = context.resolvedUrl;
-
-		console.log(pageUrl);
-		return {
-			props: context.resolvedUrl,
-		};
+		const pagePath = context.resolvedUrl;
+		console.log(pagePath);
+		return await getServerSideProps(context).then((res) => {
+			return {
+				...res,
+				props: {
+					...res.props,
+					pagePath,
+					pageTitle: getTitleByPath[pagePath],
+					pageDosc: getDescByPath[pagePath],
+				},
+			};
+		});
 	};
 };
 
-export default withGetServerSideProps();
+export default withGetServerSideProps;

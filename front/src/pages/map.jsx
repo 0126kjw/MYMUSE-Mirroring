@@ -7,14 +7,11 @@ import TitleSection from 'src/component/common/TitleSection';
 import SeoulZidoSub from 'src/component/zido/SeoulZidoSub';
 import { ZidoContainer } from 'src/styles/pageStyles/mapStyle';
 //for Seo
-import SeoData from 'src/lib/seoData';
-import Seo from 'src/component/Seo';
+import withGetServerSideProps from 'src/hocs/withServersideProps';
 
 const Zido = () => {
-	const PageData = SeoData.Map;
 	return (
 		<>
-			<Seo title={PageData.title} description={PageData.description} ogUrl={PageData.ogUrl} />
 			<ZidoContainer>
 				<TitleSection color={cssUnit.backgroundColors.Black} size={100}>
 					<Wrap>
@@ -37,3 +34,9 @@ const Zido = () => {
 };
 
 export default Zido;
+
+export const getServerSideProps = withGetServerSideProps(async (context) => {
+	return {
+		props: {},
+	};
+});

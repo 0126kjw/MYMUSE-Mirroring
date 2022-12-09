@@ -6,25 +6,14 @@ import { ListSection } from 'src/styles/compoStyles/cardlistStyle';
 import { Wrap, WrapTitle } from 'src/styles/common';
 import TitleSection from 'src/component/common/TitleSection';
 //to use in getServersideProps
-//for API
-import API from 'src/utils/api';
-const { GetPages } = API();
 
-//for Seo
-import SeoData from 'src/lib/seoData';
-import Seo from 'src/component/Seo';
-
-import withServersideProps from 'src/hocs/withServersideProps';
 //components where data fetching occured
 import AllCardsList from 'src/component/cards/AllCardsList';
-
+//for seo
+import withGetServerSideProps from 'src/hocs/withServersideProps';
 const Popular = () => {
-	//seo data
-	const PageData = SeoData.Popular;
-
 	return (
 		<>
-			<Seo title={PageData.title} description={PageData.description} ogUrl={PageData.ogUrl} />
 			<PageLayout>
 				<TitleSection color={cssUnit.backgroundColors.Black} size={200}>
 					<Wrap>
@@ -42,10 +31,10 @@ const Popular = () => {
 	);
 };
 
-export const getServerSideProps = withServersideProps(async (context) => {
+export default Popular;
+
+export const getServerSideProps = withGetServerSideProps(async (context) => {
 	return {
-		props: { context },
+		props: {},
 	};
 });
-
-export default Popular;
