@@ -19,100 +19,6 @@ export class ChatbotService {
     return await this.chatbotModel.create(feedback);
   }
 
-  async SearchSpecificDate(fields: any, queryText: string): Promise<any> {
-    const dateTime = fields['date-time'];
-
-    if (dateTime?.structValue?.fields) {
-      const period = dateTime.structValue.fields;
-      let endDate = null;
-
-      if (queryText.indexOf('평일') >= 0) {
-        endDate = queryText.slice(0, 10).split('-');
-        endDate[2] -= 2;
-        endDate = endDate.join('-');
-        endDate = new Date(`${endDate}T23:59:59+00:00`);
-      } else {
-        endDate = new Date(period?.endDate?.stringValue);
-      }
-
-      console.log(endDate);
-
-      return endDate;
-    } else {
-      const period = dateTime.stringValue;
-      const date = period.slice(0, 10);
-      const endDate = new Date(`${date}T23:59:59+00:00`);
-
-      console.log(endDate);
-
-      return endDate;
-    }
-  }
-
-  async getIntentedAnswer(
-    fields: any,
-    displayName: string,
-    queryText: string,
-  ): Promise<any> {
-    const facilityName = fields?.facilityName?.stringValue;
-    const category = fields?.facilityCategory?.stringValue;
-    const borough =
-      fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
-
-    switch (displayName) {
-      case 'facilityContact':
-        const contactInfo = await this.museumService.findOne(
-          facilityName,
-          'contactInfo',
-        );
-
-        return contactInfo;
-
-      case 'facilityAddress':
-        const addressInfo = await this.museumService.findOne(
-          facilityName,
-          'newAddress oldAddress',
-        );
-
-        return addressInfo;
-
-      case 'facilityOpeningHours':
-        const openingHours = await this.museumService.findOne(
-          facilityName,
-          'mon tue wed thu fri sat sun offday',
-        );
-
-        return openingHours;
-
-      case 'facilityTicket':
-        return await this.museumService.findOne(
-          facilityName,
-          'isFree adultFee youthFee childFee',
-        );
-
-      case 'facilityOthers':
-        return await this.museumService.findOne(facilityName, 'website');
-
-      case 'facilityAreaSearch':
-        return await this.museumService.findRightItems(
-          borough,
-          category,
-          'website',
-        );
-
-      case 'exhibitionDateSearch':
-        const endDate = await this.SearchSpecificDate(fields, queryText);
-        const dateSearch = await this.exhibitionService.findRightItems(
-          endDate,
-          'title period',
-        );
-
-        return dateSearch;
-      // case 'exhibitionTitle':
-      // const exhibitionTitle = await this.exhibitionService.findOne();
-    }
-  }
-
   async findAll(text: string): Promise<any> {
     const sessionId = process.env.DIALOGFLOW_SESSION_ID;
     const projectId = process.env.GOOGLE_PROJECT_ID;
@@ -171,9 +77,96 @@ export class ChatbotService {
 
       return intetedAnswers;
     } else {
-      const message = { errorMessage: 'No intent matched.' };
+      return { errorMessage: 'No intent matched.' };
+    }
+  }
 
-      return message;
+  async getIntentedAnswer(
+    fields: any,
+    displayName: string,
+    queryText: string,
+  ): Promise<any> {
+    const facilityName = fields?.facilityName?.stringValue;
+    const category = fields?.facilityCategory?.stringValue;
+    const borough =
+      fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
+
+    switch (displayName) {
+      case 'facilityContact':
+        const contactInfo = await this.museumService.findOne(
+          facilityName,
+          'contactInfo',
+        );
+
+        return contactInfo;
+
+      case 'facilityAddress':
+        const addressInfo = await this.museumService.findOne(
+          facilityName,
+          'newAddress oldAddress',
+        );
+
+        return addressInfo;
+
+      case 'facilityOpeningHours':
+        const openingHours = await this.museumService.findOne(
+          facilityName,
+          'mon tue wed thu fri sat sun offday',
+        );
+
+        return openingHours;
+
+      case 'facilityTicket':
+        return await this.museumService.findOne(
+          facilityName,
+          'isFree adultFee youthFee childFee',
+        );
+
+      case 'facilityOthers':
+        return await this.museumService.findOne(facilityName, 'website');
+
+      case 'facilityAreaSearch':
+        return await this.museumService.findRightItems(
+          borough,
+          category,
+          'website',
+        );
+
+      case 'exhibitionDateSearch':
+        const endDate = await this.SearchSpecificDate(fields, queryText);
+        const dateSearch = await this.exhibitionService.findRightItems(
+          endDate,
+          'title period href',
+        );
+
+        return dateSearch;
+    }
+  }
+
+  async SearchSpecificDate(fields: any, queryText: string): Promise<any> {
+    const dateTime = fields['date-time'];
+
+    if (dateTime?.structValue?.fields) {
+      const period = dateTime.structValue.fields;
+      let endDate = null;
+
+      if (queryText.indexOf('평일') >= 0) {
+        endDate = queryText.slice(0, 10).split('-');
+        endDate[2] -= 2;
+        endDate = endDate.join('-');
+        endDate = new Date(`${endDate}T23:59:59+00:00`);
+      } else {
+        endDate = new Date(period?.endDate?.stringValue);
+      }
+      const date = new Date('2001-11-23');
+
+      return endDate;
+    } else {
+      const period = dateTime.stringValue;
+      const date = period.slice(0, 10);
+      const endDate = new Date(`${date}T23:59:59+00:00`);
+
+      return endDate;
     }
   }
 }
