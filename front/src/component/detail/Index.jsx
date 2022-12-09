@@ -107,7 +107,7 @@ const Index = ({ item }) => {
 	}, []);
 	const router = useRouter();
 	const ID = router.query.id;
-	console.log(item);
+	// console.log('상세정보 :', item);
 
 	return (
 		<IndexStyle>

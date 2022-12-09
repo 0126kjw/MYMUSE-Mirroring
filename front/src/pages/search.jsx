@@ -50,6 +50,7 @@ const Search = () => {
 	// 검색결과 띄우기 첫 시점
 	const [ouputNeeded, setOutputNeeded] = useState(false);
 	const [serchResNeeded, setSerchResNeeded] = useState(false);
+	const [isFetching, setIsFetching] = useState(false);
 	// 카테고리
 	const searchCategory = useRecoilValue(SearchCategoryState);
 
@@ -59,8 +60,7 @@ const Search = () => {
 			<PageLayout>
 				<TitleSection color={cssUnit.backgroundColors.Black} size={50}>
 					<Wrap>
-						<WrapTitle color={cssUnit.colors.White}>박물관/전시관 검색</WrapTitle>
-						{/* <DropDown /> */}
+						<WrapTitle color={cssUnit.colors.White}>박물관/전시회 검색</WrapTitle>
 					</Wrap>
 				</TitleSection>
 				<SearchSection>
@@ -72,23 +72,34 @@ const Search = () => {
 						setOutputNeeded={setOutputNeeded}
 						setList={setList}
 						setSerchResNeeded={setSerchResNeeded}
+						isFetching={isFetching}
+						setIsFetching={setIsFetching}
 					/>
 				</SearchSection>
-				{serchResNeeded && <div> '{searchRes}' 검색결과</div>}
+				{isFetching && serchResNeeded && <div className='searchRes'> 검색중... </div>}
 
-				<ListSection color={cssUnit.backgroundColors.White} size={900} className={`page`}>
-					<Wrap>
-						{ouputNeeded && searchCategory == '박물관' && (
-							<SearchList_Muse list={list} />
-						)}
-					</Wrap>
-					<Wrap>
-						{ouputNeeded && searchCategory == '전시회' && (
-							<SearchList_Exhi list={list} />
-						)}
-					</Wrap>
-				</ListSection>
+				{!isFetching && serchResNeeded && (
+					<div className='searchRes'> '{searchRes}' 검색결과</div>
+				)}
+
+				{!isFetching && (
+					<ListSection
+						color={cssUnit.backgroundColors.White}
+						size={900}
+						className={`page`}
+					>
+						<Wrap>
+							{ouputNeeded && searchCategory == '박물관' && (
+								<SearchList_Muse list={list} />
+							)}
+						</Wrap>
+					</ListSection>
+				)}
 			</PageLayout>
+
+			{!isFetching && ouputNeeded && searchCategory == '전시회' && (
+				<SearchList_Exhi list={list} />
+			)}
 		</>
 	);
 };

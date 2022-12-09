@@ -6,10 +6,6 @@ import Card from 'src/component/cards/Cards';
 import DownButton from '../DownButton';
 
 const SearchList_Exhi = ({ list }) => {
-	useEffect(() => {
-		console.log('list', list);
-	}, []);
-
 	return (
 		<>
 			<div>

@@ -59,8 +59,6 @@ const API = () => {
 		if (category == '박물관') option = 'museum';
 		if (category == '전시회') option = 'exhibition';
 
-		console.log('category, keyword', category, keyword);
-
 		const url = `search?option=${option}&keyword=${keyword}`;
 		return instance.get(url);
 	};

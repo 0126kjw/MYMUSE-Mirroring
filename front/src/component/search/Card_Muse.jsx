@@ -7,6 +7,7 @@ export const Card_Muse_Layout = styled.div`
 	width: 900px;
 	height: 200px;
 	background-color: whitesmoke;
+	padding: 10px;
 
 	border: solid 3px black;
 	margin: 50px auto;
@@ -20,7 +21,7 @@ export const Card_Muse_Layout = styled.div`
 		}
 	}
 	.TextSection {
-		padding: 10px;
+		width: calc(100% - 300px);
 		overflow: hidden;
 		.museName {
 			margin: 10px;
@@ -31,25 +32,34 @@ export const Card_Muse_Layout = styled.div`
 		}
 	}
 	@media screen and (max-width: 1600px) {
-		width: 75%;
-		margin: 10px auto;
+		width: 85%;
+		margin: 30px auto;
 	}
-	@media screen and (max-width: 900px) {
-		width: 95%;
-		height: 200%;
+
+	@media screen and (max-width: 1100px) {
+		width: 90%;
+		height: 400px;
 		display: block;
-		/* margin: 10px auto; */
+		overflow: hidden;
+		.TextSection {
+			width: 100%;
+		}
 	}
+
+	@media screen and (max-width: 600px) {
+		width: 90%;
+		height: 500px;
+	}
+
 	@media screen and (max-width: 300px) {
 		.ImgSection {
 			img {
-				width: 200px;
-				height: 130px;
+				width: 250px;
+				height: 166px;
 			}
 		}
-		width: 95%;
+		width: 85%;
 		height: 200%;
-		display: block;
 	}
 `;
 

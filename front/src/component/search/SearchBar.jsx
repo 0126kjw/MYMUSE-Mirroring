@@ -30,6 +30,8 @@ const SearchBar = ({
 	setList,
 	setOutputNeeded,
 	setSerchResNeeded,
+	isFetching,
+	setIsFetching,
 }) => {
 	// catSelector
 	const [catSelector, setCatSelector] = useState('closed');
@@ -63,7 +65,6 @@ const SearchBar = ({
 		// setRecList
 		data.map((v) => {
 			setRecList((prev) => [...prev, v.title]);
-			console.log('v.title', v.title);
 		});
 	};
 
@@ -81,11 +82,13 @@ const SearchBar = ({
 
 	const onClick = () => {
 		showSearchResultsToLists();
+		setIsFetching(true);
 	};
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		showSearchResultsToLists();
+		setIsFetching(true);
 	};
 	const showSearchResultsToLists = async () => {
 		// const [serchResNeeded, setSerchResNeeded] = useState(false);
@@ -98,6 +101,7 @@ const SearchBar = ({
 		// 목록 띄우기
 		setOutputNeeded(true);
 		const data = await GetSearach(searchCategory, keyword);
+		await setIsFetching(false);
 		console.log('data', data);
 		setList(() => [...data]);
 

@@ -35,6 +35,17 @@ export const PageLayout = styled.div`
 	.subTitle {
 		padding-top: 50px;
 	}
+	.searchRes {
+		margin: 40px auto;
+		font-size: 25px;
+		border-radius: 10px;
+		width: 300px;
+		height: 120px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: solid 1px black;
+	}
 `;
 //Base layout for list section
 export const ListSection = styled.section`
