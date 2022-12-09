@@ -15,21 +15,15 @@ export class ExhibitionService {
     return exhibition;
   }
 
-  // async findOne(title: string, reponseInfo: string): Promise<any> {
-  //   const test = await this.exhibitionModel
-  //     .findOne({ title }, reponseInfo)
-  //     .lean();
-  //   return test;
-  // }
-
   async findRightItems(endDate: Date, reponseInfo: string): Promise<any> {
     let date = await this.exhibitionModel
       .find(
         {
-          period: {
-            $elemMatch: {
-              $gte: endDate,
-            },
+          'period.0': {
+            $lte: endDate,
+          },
+          'period.1': {
+            $gte: endDate,
           },
         },
         reponseInfo,
@@ -37,13 +31,11 @@ export class ExhibitionService {
       .lean();
 
     date = date.filter((date) => {
-      if (new Date(date.period[0]) <= endDate) {
-        date.website = `https://tickets.interpark.com/goods/${date.href}`;
+      date.website = `https://tickets.interpark.com/goods/${date.href}`;
 
-        delete date.period;
+      delete date.period;
 
-        return date;
-      }
+      return date;
     });
 
     return date;
