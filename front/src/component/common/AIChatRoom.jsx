@@ -1,20 +1,42 @@
+// style
 import AiChatRoomStyle from 'src/styles/compoStyles/aiChatRoomStyle';
+import styled from '@emotion/styled';
+import Image from 'next/legacy/image';
+import FeedBackModal from 'src/component/common/FeedBackModal';
+
+// library
 import { useState, useEffect } from 'react';
 import { AiFillStepForward } from 'react-icons/ai';
-import styled from '@emotion/styled';
+
+// image
 import logoImg from '../../../public/images/siteLogo.png';
 
 const AIChatRoom = ({ setBotMode, botMode }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [chatRoomWidth, setChatRoomWidth] = useState(450);
 	const [chatRoomHeight, setChatRoomHeight] = useState(450);
-	let done = 'x';
+	const [feedBackModal, setFeedBackModal] = useState('off');
+
+	let innerScreen = 0;
+	let outerScreen = 0;
+	const outerCheck = () => {
+		if (innerScreen + outerScreen == 1) setFeedBackModal('on');
+		innerScreen = 0;
+		outerScreen = 0;
+	};
+	const innerCheck = () => {
+		innerScreen = 0;
+		outerScreen = 0;
+	};
 
 	const onChangeHandler = (e) => {
 		setInputValue(e.target.value);
 	};
+
 	const closeBot = () => {
 		setBotMode('off');
+		document.querySelector('#AImodalOnBtn').style.display = 'block';
+		document.querySelector('.logoTest').style.display = 'none';
 	};
 	const submitByClick = () => {
 		submitInput();
@@ -25,14 +47,21 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		submitInput();
 	};
 
-	// AIBot 움직임
-	const observer = new ResizeObserver((entries) => {
-		for (let entry of entries) {
-			const { width, height } = entry.contentRect;
-			setChatRoomWidth(width);
-			setChatRoomHeight(height);
+	useEffect(() => {
+		// AIBot 움직임
+		const observer = new ResizeObserver((entries) => {
+			for (let entry of entries) {
+				const { width, height } = entry.contentRect;
+				setChatRoomWidth(width);
+				setChatRoomHeight(height);
+			}
+		});
+
+		if (botMode == 'on') {
+			const targetEle = document.querySelector('.AImodal-Outer');
+			observer.observe(targetEle);
 		}
-	});
+	}, [botMode]);
 
 	const submitInput = () => {
 		const AIsec2 = document.querySelector('.AIsec2');
@@ -43,8 +72,11 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		humanMsg.innerText = inputValue;
 		AIsec2.appendChild(humanMsg);
 
-		// AI 답변
+		const emptyBox = document.createElement('div');
+		emptyBox.classList.add('emptyBox');
+		AIsec2.appendChild(emptyBox);
 
+		// AI 답변
 		if (inputValue === '목록') {
 			//
 			const TempElement = document.createElement('div');
@@ -58,7 +90,6 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 				TempElement.appendChild(listElement);
 			}
 			AIsec2.appendChild(TempElement);
-			//
 			const TempElement2 = document.createElement('div');
 			TempElement2.classList.add('msgFromAI');
 			TempElement2.innerText = `${10}개 검색됨. \n 조작 : 목록에서 shift + scroll`;
@@ -71,48 +102,26 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 			AIsec2.appendChild(TempElement);
 			TempElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
 		}
+		const emptyBox2 = document.createElement('div');
+		emptyBox2.classList.add('emptyBox');
+		AIsec2.appendChild(emptyBox2);
 
 		setInputValue('');
 		return false;
 	};
 
-	// 봇 활성화시 AIBot 상단에 제어창 생성
+	// chatRoom 창을 반영한 제어창 위치 조정
 	useEffect(() => {
-		if (botMode == 'on' && done == 'x') {
-			// done : flag
-			const Parent = document.querySelector('.logoTest');
-			const POS = document.querySelector('.position');
+		// modalTopSection
+		const modalTopSection = document.querySelector('.modalTopSection');
+		modalTopSection.style.bottom = `${chatRoomHeight + 95}px`;
+		modalTopSection.style.width = `${chatRoomWidth}px`;
 
-			const botController = document.createElement('div');
-			const botOffButton = document.createElement('button');
+		// formDiv
+		const formDiv = document.querySelector('.formDiv');
+		formDiv.style.width = `${chatRoomWidth}px`;
 
-			botController.innerText = 'MYMUSE';
-			// botController.innerHTML = `<img src={logoImg} alt='logoImg'/>`;
-
-			botOffButton.innerText = 'X';
-			botOffButton.onclick = function () {
-				closeBot();
-			};
-
-			botController.classList.add('chatBotControl');
-			botController.id = 'chatBotControl';
-			botController.appendChild(botOffButton);
-			Parent.insertBefore(botController, POS);
-			done = 'o';
-
-			const targetEle = document.querySelector('.AImodal-Outer');
-			observer.observe(targetEle);
-		}
-	}, [botMode]);
-
-	// chatRoom 창을 반영한 제어창 위치조정
-	useEffect(() => {
-		const chatBotControl = document.querySelector('.logoTest');
-		chatBotControl.style.bottom = `${chatRoomHeight + 50}px`;
-		chatBotControl.style.width = `${chatRoomWidth}px`;
-
-		console.log(document.querySelector('.horListBox'));
-
+		// horListBox
 		if (document.querySelector('.horListBox') !== null) {
 			const selectedElements = document.querySelectorAll('.horListBox');
 			for (let i = 0; i < selectedElements.length; i++) {
@@ -122,31 +131,42 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 	}, [chatRoomHeight, chatRoomWidth]);
 
 	return (
-		<AiChatRoomStyle>
-			<div className='AImodal-Outer'>
-				<div className='AImodal-Inner'>
-					<div className='AIsec2'>
-						<div className='msgFromAI'>
-							MYMUSE에 오신 것을 환영합니다. 궁금한 부분은 저에게 질문해주세요!
+		<>
+			{feedBackModal == 'on' && <FeedBackModal setFeedBackModal={setFeedBackModal} />}
+			<AiChatRoomStyle>
+				<div className='modalTopSection'>
+					<Image src={logoImg} alt='logoImg' width='100' height='30'></Image>
+					<button onClick={closeBot}>X</button>
+				</div>
+				<div className='AImodal-Outer'>
+					<div className='AImodal-Inner'>
+						<div className='AIsec2'>
+							<div
+								className='feedBack'
+								onClick={() => {
+									setFeedBackModal('on');
+								}}
+							>
+								<p> ⮞⮞⮞ AI Bot 피드백 작성 ⮞⮞⮞ </p>
+							</div>
+							<div className='msgFromAI'>
+								MYMUSE에 오신 것을 환영합니다. 궁금한 부분은 저에게 질문해주세요!
+							</div>
+							<div className='emptyBox'></div>
+							{/* <div className='msgFromHuman'>국립중앙박물관이 어디에 있나요?</div>
+							<div className='emptyBox'></div> */}
 						</div>
-						<div className='msgFromHuman'>나를 국중박으로 안내해라</div>
-						<div className='msgFromAI'>국중박이 무엇인지?</div>
-						<div className='msgFromHuman'>국립중앙박물관 멍청아</div>
-						<div className='msgFromAI'>너희 엄마한테 물어봐라 멍청아</div>
 					</div>
 				</div>
-			</div>
-			<div className='formDiv'>
-				<form onSubmit={submitByEnter}>
-					<input type='text' value={inputValue} onChange={onChangeHandler} />
-				</form>
-				<button onClick={submitByClick}>&gt;</button>
-			</div>
-		</AiChatRoomStyle>
+
+				<div className='formDiv'>
+					<form onSubmit={submitByEnter}>
+						<input type='text' value={inputValue} onChange={onChangeHandler} />
+					</form>
+					<button onClick={submitByClick}>&gt;</button>
+				</div>
+			</AiChatRoomStyle>
+		</>
 	);
 };
 export default AIChatRoom;
-
-// 하얀색 배경 D9D9D9
-// 블랙 22222
-// 골드 997A4C border, X 푯히
