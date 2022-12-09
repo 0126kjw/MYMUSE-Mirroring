@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { AiFillCaretDown } from 'react-icons/ai';
 //components
 import DropDown from 'src/component/search/DropDown';
 import RecommendedList from 'src/component/search/RecommendedList';
@@ -31,6 +31,9 @@ const SearchBar = ({
 	setOutputNeeded,
 	setSerchResNeeded,
 }) => {
+	// catSelector
+	const [catSelector, setCatSelector] = useState('closed');
+
 	// 실시간 검색결과
 	const [realTimelist, setRealTimeList] = useState([]);
 
@@ -104,7 +107,24 @@ const SearchBar = ({
 
 	return (
 		<SearchBarLayout>
-			<DropDown setList={setList} setSerchResNeeded={setSerchResNeeded} />
+			<DropDown
+				setList={setList}
+				setSerchResNeeded={setSerchResNeeded}
+				catSelector={catSelector}
+				setCatSelector={setCatSelector}
+			/>
+			{catSelector == 'closed' && (
+				<AiFillCaretDown
+					style={{
+						position: 'absolute',
+						marginTop: '10px',
+						marginLeft: '5px',
+						color: 'black',
+						fontSize: '30px',
+					}}
+				/>
+			)}
+
 			<form onSubmit={onSubmit}>
 				<input
 					type='text'

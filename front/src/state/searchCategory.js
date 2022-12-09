@@ -5,7 +5,7 @@ import { atom } from 'recoil';
 //museum or exhibition 상태관리
 const searchCategory = atom({
 	key: `searchCategory`,
-	default: '선택해주세요',
+	default: '박물관',
 });
 
 export default searchCategory;

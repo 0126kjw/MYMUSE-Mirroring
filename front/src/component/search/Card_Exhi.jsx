@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { CardArticle, TextSection, Label } from 'src/styles/compoStyles/cardStyle';
 import { IdBook } from 'src/data/idBook';
 
-const Card = ({ x }) => {
+const Card_Exhi = ({ x }) => {
 	const router = useRouter();
 
 	// get ID
@@ -73,4 +73,4 @@ const Card = ({ x }) => {
 	);
 };
 
-export default Card;
+export default Card_Exhi;

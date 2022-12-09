@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 // components
 import SearchBar from 'src/component/search/SearchBar';
-import SearchListEX from 'src/component/search/SearchListEX';
-import SearchListMU from 'src/component/search/SearchListMU';
+import SearchList_Exhi from 'src/component/search/SearchList_Exhi';
+import SearchList_Muse from 'src/component/search/SearchList_Muse';
 
 // state
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -78,10 +78,14 @@ const Search = () => {
 
 				<ListSection color={cssUnit.backgroundColors.White} size={900} className={`page`}>
 					<Wrap>
-						{ouputNeeded && searchCategory == '박물관' && <SearchListMU list={list} />}
+						{ouputNeeded && searchCategory == '박물관' && (
+							<SearchList_Muse list={list} />
+						)}
 					</Wrap>
 					<Wrap>
-						{ouputNeeded && searchCategory == '전시회' && <SearchListEX list={list} />}
+						{ouputNeeded && searchCategory == '전시회' && (
+							<SearchList_Exhi list={list} />
+						)}
 					</Wrap>
 				</ListSection>
 			</PageLayout>
@@ -90,14 +94,3 @@ const Search = () => {
 };
 
 export default Search;
-
-// 모든 카드리스트 띄우기는 우선 안쓸 거 같아서 빼뒀습니다.
-// {searchRes && (
-// 	<>
-// 		<AllCardsList category={searchCategory} />
-// 	</>
-// ) : (
-// 	<>
-// 		<SearchList list={list} />
-// 	</>
-// )}
