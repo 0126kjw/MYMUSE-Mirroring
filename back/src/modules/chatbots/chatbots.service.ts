@@ -122,7 +122,7 @@ export class ChatbotService {
       case 'facilityOpeningHours':
         const openingHours = await this.museumService.findOne(
           facilityName,
-          'institution mon tue wed thu fri sat sun offday',
+          'name mon tue wed thu fri sat sun offday',
         );
 
         return openingHours;
