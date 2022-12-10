@@ -67,19 +67,19 @@ export class ChatbotService {
     }
 
     if (result.intent) {
-      let intentedAnswers = await this.getIntentedAnswer(
+      let intendedAnswer = await this.getIntentedAnswer(
         fields,
         displayName,
         queryText,
       );
-      if (intentedAnswers) {
-        intentedAnswers = { intentedAnswers, displayName, fulfillmentText };
+      if (intendedAnswer) {
+        intendedAnswer = { intendedAnswer, displayName, fulfillmentText };
       } else {
         fulfillmentText = '데이터에 없는 정보 입니다.';
-        intentedAnswers = { displayName, fulfillmentText };
+        intendedAnswer = { displayName, fulfillmentText };
       }
 
-      return intentedAnswers;
+      return intendedAnswer;
     } else {
       return { errorMessage: 'No intent matched.' };
     }
