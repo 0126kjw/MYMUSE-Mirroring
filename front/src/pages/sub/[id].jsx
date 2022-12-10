@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import Head from 'next/head';
 import Header from '../../component/common/Header';
-import AiBot from '../../component/common/AiBot';
+import AiBot from '../../component/common/ai/AiBot';
 import Footer from '../../component/common/Footer';
 import Details from '../../component/details';
 

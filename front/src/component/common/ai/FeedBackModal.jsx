@@ -57,10 +57,10 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 		outerClick = 0;
 	};
 
-	const onSubmit = (e) => {
-		e.preventDefault();
-		feedbackSubmit();
-	};
+	// const onSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	feedbackSubmit();
+	// };
 	const onClick = () => {
 		feedbackSubmit();
 	};
@@ -91,7 +91,7 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 					<h3>고객님의 만족도를 남겨주세요! </h3>
 				</div>
 				<div className='feedbackSection'>
-					<form onSubmit={onSubmit}>
+					<form>
 						<textarea value={inputValue} onChange={onChange} />
 					</form>
 					<button onClick={onClick}>보내기</button>
