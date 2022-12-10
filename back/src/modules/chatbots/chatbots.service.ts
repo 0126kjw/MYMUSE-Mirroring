@@ -88,8 +88,14 @@ export class ChatbotService {
   ): Promise<any> {
     const facilityName = fields?.facilityName?.stringValue;
     const category = fields?.facilityCategory?.stringValue;
-    const borough =
-      fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
+    let address = null;
+    if (fields?.location?.structValue?.fields?.['subadmin-area']) {
+      address =
+        fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
+    } else if (fields?.location?.structValue?.fields?.['street-address']) {
+      address =
+        fields?.location?.structValue?.fields?.['street-address']?.stringValue;
+    }
 
     switch (displayName) {
       case 'facilityContact':
@@ -127,7 +133,7 @@ export class ChatbotService {
 
       case 'facilityAreaSearch':
         return await this.museumService.findRightItems(
-          borough,
+          address,
           category,
           'website',
         );

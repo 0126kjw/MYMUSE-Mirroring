@@ -23,12 +23,12 @@ export class MuseumService {
   }
 
   async findRightItems(
-    borough: string,
+    address: string,
     category: string,
     reponseInfo: string,
   ): Promise<Museum> {
     return await this.museumModel
-      .find({ oldAddress: { $regex: borough }, category }, reponseInfo)
+      .find({ oldAddress: { $regex: address }, category }, reponseInfo)
       .lean();
   }
 
