@@ -1,18 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import dialogflow from '@google-cloud/dialogflow';
+import { ExhibitionService } from '../exhibitions/exhibitions.service';
+import { MuseumService } from '../museums/museums.service';
 import { InjectModel } from '@nestjs/mongoose';
-import { Exhibition } from '../exhibitions/schemas/exhibition.schema';
-import { Museum } from '../museums/schemas/museum.schema';
 import { Model } from 'mongoose';
+import { Chatbot } from './schemas/chatbot.schema';
 
 @Injectable()
 export class ChatbotService {
   constructor(
-    @InjectModel(Exhibition.name)
-    private readonly exhibitionModel: Model<Exhibition>,
-    @InjectModel(Museum.name)
-    private readonly museumModel: Model<Museum>,
+    @InjectModel(Chatbot.name)
+    private readonly chatbotModel: Model<Chatbot>,
+    private readonly exhibitionService: ExhibitionService,
+    private readonly museumService: MuseumService,
   ) {}
+
+  async create(feedback: string): Promise<any> {
+    return await this.chatbotModel.create(feedback);
+  }
 
   async findAll(text: string): Promise<any> {
     const sessionId = process.env.DIALOGFLOW_SESSION_ID;
@@ -32,97 +37,142 @@ export class ChatbotService {
       },
     };
     const responses = await sessionClient.detectIntent(request);
-    console.log('Detected intent');
     const result = responses[0].queryResult;
+    const queryText = result.queryText;
+    const displayName = result.intent.displayName;
+    const fields = result.parameters.fields;
+    let fulfillmentText = result.fulfillmentText.trim();
+    console.log('Detected intent');
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
 
-    const museumFindOne = async (name: string, reponseInfo: string) => {
-      return await this.museumModel.findOne({ name }, reponseInfo).lean();
+    // dialogflow에서 평일을 월~일로 인식하기 때문에 강제로 2일 줄여주는 로직 구성
+    const editWeekdayText = async (fulfillmentText: string) => {
+      const endDate = fulfillmentText.slice(11, 21);
+      const endDateArr = endDate.split('-');
+      const year = Number.parseInt(endDateArr[0]);
+      const month = Number.parseInt(endDateArr[1]);
+      const day = Number.parseInt(endDateArr[2]);
+      const newEndDate = new Date(year, month, day - 1)
+        .toISOString()
+        .slice(0, 10);
+
+      fulfillmentText = fulfillmentText.replace(endDate, newEndDate);
+
+      return fulfillmentText;
     };
-    const facilityAreaSearch = async (
-      borough: string,
-      category: string,
-      reponseInfo: string,
-    ) => {
-      return await this.museumModel
-        .find({ oldAddress: { $regex: borough }, category }, reponseInfo)
-        .lean();
-    };
-    // const exhibitionDateSearch = async (name: string, reponseInfo: string) => {
-    //   return await this.exhibitionModel.find({ name }, reponseInfo).lean();
-    // };
+
+    if (queryText.indexOf('평일') >= 0) {
+      fulfillmentText = await editWeekdayText(fulfillmentText);
+    }
 
     if (result.intent) {
-      // console.log('인텐트 구간');
-      let condition = '';
+      let intetedAnswers = await this.getIntentedAnswer(
+        fields,
+        displayName,
+        queryText,
+      );
 
-      if (!(result.intent !== 'facilityAreaSerch')) {
-        condition = result.parameters.fields.facilityName.stringValue;
-      }
+      intetedAnswers = { intetedAnswers, displayName, fulfillmentText };
 
-      switch (result.intent.displayName) {
-        case 'facilityContact':
-          const phoneNum = await museumFindOne(condition, 'contactInfo');
-
-          return phoneNum;
-
-        case 'facilityAreaSearch':
-          //findAll 조건걸쳐서
-          const borough =
-            result.parameters.fields.location.listValue.values[0].structValue
-              .fields['subadmin-area'].stringValue;
-          const category =
-            result.parameters.fields.facilityCategory.stringValue;
-          const addressUrl = await facilityAreaSearch(
-            borough,
-            category,
-            'name oldAddress website',
-          );
-
-          return addressUrl;
-
-        case 'facilityAddress':
-          const address = await museumFindOne(
-            condition,
-            'newAddress oldAddress',
-          );
-
-          return address;
-
-        case 'facilityOpeningHours':
-          const previewTime = await museumFindOne(
-            condition,
-            'mon tue wed thu fri sat sun offday',
-          );
-
-          return previewTime;
-
-        case 'facilityTicket':
-          const Fee = await museumFindOne(
-            condition,
-            'isFree adultFee youthFee childFee',
-          );
-
-          return Fee;
-
-        case 'facilityOthers':
-          const website = await museumFindOne(condition, 'website');
-
-          return website;
-
-        // case 'exhibitionDateSearch':
-        //   const exhibitionDate = await exhibitionDateSearch(
-        //     condition,
-        //     'period',
-        //   );
-
-        //   return exhibitionDate;
-      }
+      return intetedAnswers;
     } else {
-      const message = { errorMessage: 'No intent matched.' };
+      return { errorMessage: 'No intent matched.' };
+    }
+  }
 
-      return message;
+  async getIntentedAnswer(
+    fields: any,
+    displayName: string,
+    queryText: string,
+  ): Promise<any> {
+    const facilityName = fields?.facilityName?.stringValue;
+    const category = fields?.facilityCategory?.stringValue;
+    let address = null;
+    if (fields?.location?.structValue?.fields?.['subadmin-area']) {
+      address =
+        fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
+    } else if (fields?.location?.structValue?.fields?.['street-address']) {
+      address =
+        fields?.location?.structValue?.fields?.['street-address']?.stringValue;
+    }
+
+    switch (displayName) {
+      case 'facilityContact':
+        const contactInfo = await this.museumService.findOne(
+          facilityName,
+          'contactInfo',
+        );
+
+        return contactInfo;
+
+      case 'facilityAddress':
+        const addressInfo = await this.museumService.findOne(
+          facilityName,
+          'newAddress oldAddress',
+        );
+
+        return addressInfo;
+
+      case 'facilityOpeningHours':
+        const openingHours = await this.museumService.findOne(
+          facilityName,
+          'mon tue wed thu fri sat sun offday',
+        );
+
+        return openingHours;
+
+      case 'facilityTicket':
+        return await this.museumService.findOne(
+          facilityName,
+          'isFree adultFee youthFee childFee',
+        );
+
+      case 'facilityOthers':
+        return await this.museumService.findOne(facilityName, 'website');
+
+      case 'facilityAreaSearch':
+        return await this.museumService.findRightItems(
+          address,
+          category,
+          'website',
+        );
+
+      case 'exhibitionDateSearch':
+        const endDate = await this.SearchSpecificDate(fields, queryText);
+        const dateSearch = await this.exhibitionService.findRightItems(
+          endDate,
+          'title period href',
+        );
+
+        return dateSearch;
+    }
+  }
+
+  async SearchSpecificDate(fields: any, queryText: string): Promise<any> {
+    const dateTime = fields['date-time'];
+
+    if (dateTime?.structValue?.fields) {
+      const period = dateTime.structValue.fields;
+      let endDate = null;
+
+      if (queryText.indexOf('평일') >= 0) {
+        endDate = queryText.slice(0, 10).split('-');
+        endDate[2] -= 2;
+        endDate = endDate.join('-');
+        endDate = new Date(`${endDate}T23:59:59+00:00`);
+      } else {
+        endDate = new Date(period?.endDate?.stringValue);
+      }
+      const date = new Date('2001-11-23');
+
+      return endDate;
+    } else {
+      const period = dateTime.stringValue;
+      const date = period.slice(0, 10);
+      const endDate = new Date(`${date}T23:59:59+00:00`);
+
+      return endDate;
     }
   }
 }

@@ -54,7 +54,11 @@ const API = () => {
 	 * @param {*} keyword 검색 키워드
 	 * @returns data (array) : res.data를 전해줍니다
 	 */
-	const GetSearach = async (option, keyword) => {
+	const GetSearach = async (category, keyword) => {
+		let option = '';
+		if (category == '박물관') option = 'museum';
+		if (category == '전시회') option = 'exhibition';
+
 		const url = `search?option=${option}&keyword=${keyword}`;
 		return instance.get(url);
 	};

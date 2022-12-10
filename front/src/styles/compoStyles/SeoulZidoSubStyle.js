@@ -9,52 +9,53 @@ const SubZidoLayout = styled.div`
 	padding: 0px;
 	width: 800px;
 
-	.subLocationName {
+	@media screen and (max-width: 1000px) {
+		width: 90%;
+	}
+
+	.mapDescBox {
 		position: relative;
 		width: 800px;
 		color: brown;
 		height: 50px;
 		line-height: 50px;
 		background-color: aliceblue;
+
+		@media screen and (max-width: 1000px) {
+			width: 100%;
+		}
 	}
 
 	.react-simple-maps {
 		width: 800px;
 		background-color: gray;
-	}
-
-	.leftArrow {
-		position: absolute;
-		top: 550px;
-		left: 10px;
-		font-size: 80px;
-		color: black;
-		z-index: 5;
-		cursor: pointer;
+		@media screen and (max-width: 1000px) {
+			width: 100%;
+		}
 	}
 
 	.pinListUps {
-		margin: 0px;
+		width: 100%;
+		margin: 0px auto;
 		background-color: gray;
-		margin-top: 40px;
-		margin-bottom: 40px;
 		padding-top: 20px;
 		padding-bottom: 20px;
+		font-size: 20px;
+
 		ul {
 			margin: 0px;
-			padding-left: 30px;
-			li {
+			div {
 				margin-bottom: 20px;
 			}
 		}
 
 		.basic {
 			position: relative;
-			width: 700px;
 			background-color: aliceblue;
-			list-style: none;
-			border: solid 10px aliceblue;
-			margin: 10px;
+			width: calc(100% - 40px);
+			height: 150px;
+			border: solid 5px aliceblue;
+			overflow: hidden;
 
 			&:hover {
 				background-color: pink;
@@ -65,11 +66,11 @@ const SubZidoLayout = styled.div`
 
 		.borderRed {
 			position: relative;
-			width: 700px;
 			background-color: aliceblue;
-			list-style: none;
-			border: solid 10px red;
-			margin: 10px;
+			width: calc(100% - 40px);
+			height: 150px;
+			border: solid 5px red;
+			overflow: hidden;
 
 			&:hover {
 				background-color: pink;
@@ -109,6 +110,10 @@ const SubZidoLayout = styled.div`
 		margin-bottom: 40px;
 		padding-top: 20px;
 		padding-bottom: 20px;
+		@media screen and (max-width: 1000px) {
+			width: 100%;
+			font-size: 20px;
+		}
 	}
 	.guideText2 {
 		position: relative;
@@ -119,6 +124,10 @@ const SubZidoLayout = styled.div`
 		margin-bottom: 40px;
 		padding-top: 20px;
 		padding-bottom: 20px;
+		@media screen and (max-width: 1000px) {
+			width: 100%;
+			font-size: 20px;
+		}
 	}
 	.tooltipStyle {
 		color: red;

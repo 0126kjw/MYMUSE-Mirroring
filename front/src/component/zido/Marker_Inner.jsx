@@ -1,5 +1,19 @@
 import { Marker } from 'react-simple-maps';
+import { IdBook } from 'src/data/idBook';
+import { useRouter } from 'next/router';
+
 export default function Marker_Inner({ selectedMapState, pins, setTooltipName, setHoverPin }) {
+	const router = useRouter();
+	const moveToDetail = (museName) => {
+		let ID = '';
+		IdBook.forEach((v) => {
+			if (v.name == museName) {
+				ID = v.id;
+			}
+		});
+		router.push(`/detail/${ID}`);
+	};
+
 	return (
 		<>
 			{selectedMapState.mapKind == 'inner'
@@ -9,7 +23,7 @@ export default function Marker_Inner({ selectedMapState, pins, setTooltipName, s
 							key={_id}
 							coordinates={coordinates}
 							onClick={() => {
-								alert('박물관 page로 이동');
+								moveToDetail(name);
 							}}
 							onMouseEnter={() => {
 								setTooltipName(name);

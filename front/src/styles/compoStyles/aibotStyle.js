@@ -1,12 +1,15 @@
 import styled from '@emotion/styled';
-
 import cssUnit from 'src/lib/cssUnit';
-//background-color: ${cssUnit.colors.DarkGold};
-const AiBotLayout = styled.div`
+
+const AIBotLayout = styled.div`
 	position: relative;
 	z-index: 2;
+	.logoTest {
+		display: none;
+	}
 
 	#AImodalOnBtn {
+		display: block;
 		margin-left: 10px;
 		position: fixed;
 
@@ -35,4 +38,4 @@ const AiBotLayout = styled.div`
 	}
 `;
 
-export default AiBotLayout;
+export default AIBotLayout;

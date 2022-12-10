@@ -1,24 +1,29 @@
-import AiBotLayout from 'src/styles/compoStyles/aibotStyle';
-import { useState } from 'react';
-import AIChatRoom from 'component/common/AIChatRoom';
+import AIBotLayout from 'src/styles/compoStyles/aibotStyle';
+import { useState, useEffect } from 'react';
+import AIChatRoom from 'src/component/common/AIChatRoom';
 
 const AiBot = () => {
 	const [botMode, setBotMode] = useState('off');
 
 	const openBot = () => {
 		setBotMode('on');
+		const ele1 = document.querySelector('#AImodalOnBtn');
+		ele1.style.display = 'none';
+
+		const ele2 = document.querySelector('.logoTest');
+		ele2.style.display = 'block';
 	};
 
 	return (
-		<AiBotLayout>
-			{botMode == 'off' ? (
-				<div id='AImodalOnBtn' onClick={openBot}>
-					AIBOT
-				</div>
-			) : (
-				<AIChatRoom setBotMode={setBotMode} />
-			)}
-		</AiBotLayout>
+		<AIBotLayout>
+			<div id='AImodalOnBtn' onClick={openBot}>
+				AIBOT
+			</div>
+			<div className='logoTest'>
+				<div className='position'></div>
+				<AIChatRoom setBotMode={setBotMode} botMode={botMode} />
+			</div>
+		</AIBotLayout>
 	);
 };
 

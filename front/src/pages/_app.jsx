@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import Head from 'next/head';
 //style
 import AppLayout from 'src/component/AppLayout';
 import { GlobalStyles } from 'src/styles/globalStyle';
@@ -26,6 +25,19 @@ function MyApp({ Component, pageProps }) {
 		</>
 	);
 }
+
+MyApp.getInitialProps = async (context) => {
+	const { ctx, Component } = context;
+
+	let pageProps = {};
+
+	//console.log(ctx);
+
+	if (Component.getInitialProps) {
+		pageProps = await Component.getInitialProps(ctx);
+	}
+	return { pageProps };
+};
 
 export default MyApp;
 

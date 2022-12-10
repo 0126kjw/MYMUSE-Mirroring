@@ -5,11 +5,16 @@ import { ListSection } from 'src/styles/compoStyles/cardlistStyle';
 //for page common section
 import { Wrap, WrapTitle } from 'src/styles/common';
 import TitleSection from 'src/component/common/TitleSection';
+//to use in getServersideProps
+//for API
+import API from 'src/utils/api';
+const { GetPages } = API();
 
 //for Seo
 import SeoData from 'src/lib/seoData';
 import Seo from 'src/component/Seo';
 
+import withServersideProps from 'src/hocs/withServersideProps';
 //components where data fetching occured
 import AllCardsList from 'src/component/cards/AllCardsList';
 
@@ -36,5 +41,11 @@ const Popular = () => {
 		</>
 	);
 };
+
+export const getServerSideProps = withServersideProps(async (context) => {
+	return {
+		props: { context },
+	};
+});
 
 export default Popular;

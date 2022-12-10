@@ -10,14 +10,26 @@ export class MuseumService {
     private readonly museumModel: Model<Museum>,
   ) {}
 
-  async findAll(): Promise<Museum[]> {
-    const museums = await this.museumModel.find();
-    return museums;
-  }
-
-  async findById(id: string): Promise<Museum> {
+  async findById(id: number): Promise<Museum> {
     const museum = await this.museumModel.findOne({ id });
     return museum;
+  }
+
+  async findOne(facilityName: string, reponseInfo: string): Promise<any> {
+    const test = await this.museumModel
+      .findOne({ name: facilityName }, reponseInfo)
+      .lean();
+    return test;
+  }
+
+  async findRightItems(
+    address: string,
+    category: string,
+    reponseInfo: string,
+  ): Promise<Museum> {
+    return await this.museumModel
+      .find({ oldAddress: { $regex: address }, category }, reponseInfo)
+      .lean();
   }
 
   async pagination(page: number) {
@@ -30,5 +42,13 @@ export class MuseumService {
       .limit(perPage);
 
     return museums;
+  }
+
+  async searchMuseum(keyword: string) {
+    const museumResults = await this.museumModel.find({
+      name: new RegExp(keyword),
+    });
+
+    return museumResults;
   }
 }

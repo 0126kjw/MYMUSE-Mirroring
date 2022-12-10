@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { sliderData } from 'src/data/slider-data';
+import { IdBook } from 'src/data/idBook';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 
 const SliderLayout = styled.div`
 	.slider {
@@ -114,6 +116,7 @@ const SliderLayout = styled.div`
 `;
 
 const Slider = () => {
+	const router = useRouter();
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const slideLength = sliderData.length;
 	// slideLength = 1 2 3 4 5 6 7 8
@@ -146,6 +149,16 @@ const Slider = () => {
 		return () => clearInterval(slideInterval);
 	}, [currentSlide]);
 
+	const moveToDetail = (museName) => {
+		let ID = '';
+		IdBook.forEach((v) => {
+			if (v.name == museName) {
+				ID = v.id;
+			}
+		});
+		router.push(`/detail/${ID}`);
+	};
+
 	return (
 		<SliderLayout>
 			<div className='slider'>
@@ -166,7 +179,13 @@ const Slider = () => {
 										<h2>{slide.heading}</h2>
 										<p>{slide.desc}</p>
 										<hr />
-										<button className='todetail'>상세보기</button>
+										<button
+											className='todetail'
+											onClick={() => moveToDetail(slide.heading)}
+											style={{ cursor: 'pointer' }}
+										>
+											상세보기
+										</button>
 									</div>
 								</div>
 							)}

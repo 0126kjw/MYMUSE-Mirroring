@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import cssUnit from 'lib/cssUnit';
+import cssUnit from 'src/lib/cssUnit';
 
 import { Section, Wrap, WrapTitle } from 'src/styles/common';
 import { UnderDevSection } from 'src/styles/compoStyles/underDev';
@@ -8,10 +8,11 @@ import Index from 'src/component/detail/Index';
 // recoil state
 import { useSetRecoilState } from 'recoil';
 import { useRecoilState } from 'recoil';
-import { currentLoc } from 'state/navibar';
-import SelectedMapState from 'state/selectedMap';
+import { currentLoc } from 'src/state/navibar';
+import SelectedMapState from 'src/state/selectedMap';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 // wrap all
 const DetailContainer = styled.div`
@@ -38,7 +39,7 @@ const DetailContainer = styled.div`
 	}
 `;
 
-export default function Detail() {
+export default function Detail({ item }) {
 	const router = useRouter();
 	const setLoc = useSetRecoilState(currentLoc);
 	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
@@ -57,10 +58,23 @@ export default function Detail() {
 			<div className='detailBackground'>
 				<Wrap>
 					<UnderDevSection>
-						<Index />
+						<Index item={item} />
 					</UnderDevSection>
 				</Wrap>
 			</div>
 		</DetailContainer>
 	);
+}
+
+export async function getServerSideProps(context) {
+	const id = context.params.id;
+	const apiUrl = `https://qrcavwxubm.us16.qoddiapp.com/museums/${id}`;
+	const res = await axios.get(apiUrl);
+	const data = res.data;
+
+	return {
+		props: {
+			item: data,
+		},
+	};
 }

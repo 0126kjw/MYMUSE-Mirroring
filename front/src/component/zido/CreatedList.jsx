@@ -1,4 +1,18 @@
+import { IdBook } from 'src/data/idBook';
+import { useRouter } from 'next/router';
+
 export default function CreatedList({ pins, selectedMapState, hoverPin }) {
+	const router = useRouter();
+	const moveToDetail = (museName) => {
+		let ID = '';
+		IdBook.forEach((v) => {
+			if (v.name == museName) {
+				ID = v.id;
+			}
+		});
+		router.push(`/detail/${ID}`);
+	};
+
 	return (
 		<>
 			{selectedMapState.mapKind == 'inner' && pins && pins.length > 0 && (
@@ -9,11 +23,14 @@ export default function CreatedList({ pins, selectedMapState, hoverPin }) {
 								<div
 									key={x._id}
 									className={x._id != hoverPin ? 'basic' : 'borderRed'}
+									onClick={() => {
+										moveToDetail(x.name);
+									}}
 								>
-									<li>
+									<div>
 										<p>{x.name}</p>
 										<p>{x.address}</p>
-									</li>
+									</div>
 								</div>
 							);
 						})}

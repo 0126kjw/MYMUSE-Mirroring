@@ -3,7 +3,9 @@ import { atom } from 'recoil';
 //import { v4 } from 'uuid';
 
 //museum or exhibition 상태관리
-export const searchSec = atom({
-	key: `searchSection`,
-	default: 'none',
+const searchCategory = atom({
+	key: `searchCategory`,
+	default: '박물관',
 });
+
+export default searchCategory;
