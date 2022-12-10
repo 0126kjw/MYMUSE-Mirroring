@@ -67,15 +67,19 @@ export class ChatbotService {
     }
 
     if (result.intent) {
-      let intetedAnswers = await this.getIntentedAnswer(
+      let intentedAnswers = await this.getIntentedAnswer(
         fields,
         displayName,
         queryText,
       );
+      if (intentedAnswers) {
+        intentedAnswers = { intentedAnswers, displayName, fulfillmentText };
+      } else {
+        fulfillmentText = '데이터에 없는 정보 입니다.';
+        intentedAnswers = { displayName, fulfillmentText };
+      }
 
-      intetedAnswers = { intetedAnswers, displayName, fulfillmentText };
-
-      return intetedAnswers;
+      return intentedAnswers;
     } else {
       return { errorMessage: 'No intent matched.' };
     }
@@ -87,6 +91,7 @@ export class ChatbotService {
     queryText: string,
   ): Promise<any> {
     const facilityName = fields?.facilityName?.stringValue;
+    console.log(facilityName);
     const category = fields?.facilityCategory?.stringValue;
     let address = null;
     if (fields?.location?.structValue?.fields?.['subadmin-area']) {
