@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
 //components
 import DropDown from 'src/component/search/DropDown';
 import RecommendedList from 'src/component/search/RecommendedList';
+
+// id book
+import { IdBook } from 'src/data/idBook';
 
 //for API
 import API from 'src/utils/api';
@@ -15,12 +18,6 @@ import SearchCategoryState from 'src/state/searchCategory';
 
 //style
 import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
-
-/**
- * <기술 명세>
- * onchange => 실시간 추천검색어 반환
- * onclick, onsubmit => 검색 목록 반환
- */
 
 const SearchBar = ({
 	keyword,
@@ -56,41 +53,45 @@ const SearchBar = ({
 	};
 
 	const showRecommendeds = (keyword, data) => {
-		// 추천 검색어 모달 띄우기
+		let tempArr = [];
 		if (keyword !== '') {
+			// 추천검색어 생성
+
+			IdBook.forEach((element) => {
+				const Name = element.name;
+				if (Name.includes(keyword)) {
+					tempArr.push(element);
+				}
+			});
+			setRecList([...tempArr]);
+			console.log('tempArr', tempArr);
 			setModal('on');
 		} else {
 			setModal('off');
 		}
-		// setRecList
-		data.map((v) => {
-			setRecList((prev) => [...prev, v.title]);
-		});
 	};
 
 	const onChange = (e) => {
-		if (searchCategory == '선택해주세요') {
-			alert('카테고리를 선택해주세요');
-			return;
-		}
 		const keyword = e.target.value;
 		setKeyword(keyword);
 		if (keyword !== '') {
 			realTimeSearch(keyword);
+		} else {
+			setModal('off');
 		}
 	};
 
 	const onClick = () => {
-		showSearchResultsToLists();
+		showSearchResultsToLists(keyword);
 		setIsFetching(true);
 	};
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		showSearchResultsToLists();
+		showSearchResultsToLists(keyword);
 		setIsFetching(true);
 	};
-	const showSearchResultsToLists = async () => {
+	const showSearchResultsToLists = async (keyword) => {
 		// const [serchResNeeded, setSerchResNeeded] = useState(false);
 
 		// 검색결과 띄우기
@@ -107,6 +108,7 @@ const SearchBar = ({
 
 		// 검색창 비우기
 		setKeyword('');
+		setModal('off');
 	};
 
 	return (
@@ -139,7 +141,12 @@ const SearchBar = ({
 					onChange={onChange}
 					autoComplete='off'
 				/>
-				{modal == 'on' && <RecommendedList recList={recList} />}
+				{modal == 'on' && (
+					<RecommendedList
+						recList={recList}
+						showSearchResultsToLists={showSearchResultsToLists}
+					/>
+				)}
 			</form>
 			<button onClick={onClick}>🔍</button>
 		</SearchBarLayout>

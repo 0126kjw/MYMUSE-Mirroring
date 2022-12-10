@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import Image from 'next/image';
 import Card_Muse from 'src/component/search/Card_Muse';
 import styled from '@emotion/styled';
 
