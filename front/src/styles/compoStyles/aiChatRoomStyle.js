@@ -163,7 +163,7 @@ const aiChatRoomStyle = styled.div`
 			cursor: pointer;
 		}
 	}
-
+	/* ------------------------------------------------------ */
 	.horListBox {
 		/* width: 2000px; */
 		/* float: left; */
@@ -182,14 +182,14 @@ const aiChatRoomStyle = styled.div`
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
-		/* 스크롤 없애기-1 */
+		/* 스크롤 없애기 */
 		-ms-overflow-style: none;
 		scrollbar-width: none;
 		border-radius: 10px;
 	}
 
 	.horListBox::-webkit-scrollbar {
-		/* 스크롤 없애기-2 */
+		/* 스크롤 없애기 */
 		display: none;
 	}
 
@@ -214,6 +214,8 @@ const aiChatRoomStyle = styled.div`
 			color: blue;
 		}
 	}
+
+	/* ------------------------------------------------------ */
 `;
 
 export default aiChatRoomStyle;

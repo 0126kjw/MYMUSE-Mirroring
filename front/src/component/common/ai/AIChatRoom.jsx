@@ -97,6 +97,11 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 								MYMUSE에 오신 것을 환영합니다. 궁금한 부분은 저에게 질문해주세요!
 							</div>
 							<div className='emptyBox'></div>
+							<div className='msgFromAI'>
+								(팁) 화면 좌상단에서 채팅봇 크기 조정이 가능합니다
+							</div>
+
+							<div className='emptyBox'></div>
 						</div>
 					</div>
 				</div>

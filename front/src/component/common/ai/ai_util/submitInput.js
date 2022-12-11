@@ -137,7 +137,7 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 	}
 
 	// <AI response (3)>
-	// 템플릿 값이 있으면 붙여주고 없으면 마무리한다.
+	// 템플릿 값이 있으면 붙여주고 없으면 마무리
 	const TempElement2 = document.createElement('div');
 	// 붙여줌
 	if (template !== null) {
@@ -149,7 +149,7 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 		emptyBox.classList.add('emptyBox');
 		AIsec2.appendChild(emptyBox);
 	}
-	// 마무리 (포커스 무빙)
+	// 마무리 (포커스 이동)
 	if (template !== null) {
 		TempElement2.scrollIntoView({
 			behavior: 'smooth',
