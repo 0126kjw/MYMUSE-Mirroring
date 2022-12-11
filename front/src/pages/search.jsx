@@ -92,14 +92,13 @@ const Search = () => {
 							{ouputNeeded && searchCategory == '박물관' && (
 								<SearchList_Muse list={list} />
 							)}
+							{ouputNeeded && searchCategory == '전시회' && (
+								<SearchList_Exhi list={list} />
+							)}
 						</Wrap>
 					</ListSection>
 				)}
 			</PageLayout>
-
-			{!isFetching && ouputNeeded && searchCategory == '전시회' && (
-				<SearchList_Exhi list={list} />
-			)}
 		</>
 	);
 };

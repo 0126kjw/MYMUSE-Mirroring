@@ -9,7 +9,6 @@ const { GetPages } = API();
 
 //import Card compo
 import Card from './Cards';
-
 import { AllListUl } from 'src/styles/compoStyles/cardlistStyle';
 
 const AllCardsList = ({ category }) => {
@@ -19,7 +18,6 @@ const AllCardsList = ({ category }) => {
 	// Get Data using API (get Lists)
 	const getData = async () => {
 		const data = await GetPages(category, bundleIdx);
-		console.log('get ex or museum data: ', data);
 		setList((prev) => [...prev, ...data]);
 	};
 
