@@ -1,8 +1,5 @@
 import styled from '@emotion/styled';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-
 export const RecommendedListStyle = styled.div`
 	width: 250px;
 	z-index: 2;
@@ -35,25 +32,19 @@ export const RecommendedListStyle = styled.div`
 	}
 `;
 
-const RecommendedList = ({ recList, showSearchResultsToLists }) => {
-	const router = useRouter();
-	const onClick = (name, id) => {
+const RecommendedList = ({ recList, showSearchResultsToLists, setModal }) => {
+	// 추천검색어 클릭시 상세페이지가 아닌 검색창으로 이동 (우선)
+	const onClick = (name) => {
+		setModal('off');
 		showSearchResultsToLists(name);
-
-		// 바로 상세페이지로 이동할까도 싶습니다
-		// router.push(`/detail/${id}`);
 	};
-
-	useEffect(() => {
-		console.log('recList', recList);
-	}, [recList]);
 
 	return (
 		<RecommendedListStyle>
 			<ul>
 				{recList &&
 					recList.map((item, idx) => (
-						<li onClick={() => onClick(item.name, item.id)} key={`${idx}`}>
+						<li onClick={() => onClick(item.name)} key={`${idx}`}>
 							{item.name}
 						</li>
 					))}

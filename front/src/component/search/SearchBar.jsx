@@ -1,6 +1,8 @@
-import { useState, useEffect, useSyncExternalStore } from 'react';
+// library
+import { useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
-//components
+
+// components
 import DropDown from 'src/component/search/DropDown';
 import RecommendedList from 'src/component/search/RecommendedList';
 
@@ -10,7 +12,6 @@ import { IdBook } from 'src/data/idBook';
 //for API
 import API from 'src/utils/api';
 const { GetSearach } = API();
-// import axios from 'axios';
 
 // state
 import { useRecoilValue } from 'recoil';
@@ -33,9 +34,6 @@ const SearchBar = ({
 	// catSelector
 	const [catSelector, setCatSelector] = useState('closed');
 
-	// 실시간 검색결과
-	const [realTimelist, setRealTimeList] = useState([]);
-
 	// 실시간 검색결과를 바탕으로 추천어 목록 생성
 	const [recList, setRecList] = useState([]);
 
@@ -47,16 +45,9 @@ const SearchBar = ({
 
 	// 실시간 검색
 	const realTimeSearch = async (keyword) => {
-		const data = await GetSearach(searchCategory, keyword);
-		setRealTimeList(() => [...data]);
-		showRecommendeds(keyword, data);
-	};
-
-	const showRecommendeds = (keyword, data) => {
-		let tempArr = [];
 		if (keyword !== '') {
 			// 추천검색어 생성
-
+			let tempArr = [];
 			IdBook.forEach((element) => {
 				const Name = element.name;
 				if (Name.includes(keyword)) {
@@ -64,7 +55,6 @@ const SearchBar = ({
 				}
 			});
 			setRecList([...tempArr]);
-			console.log('tempArr', tempArr);
 			setModal('on');
 		} else {
 			setModal('off');
@@ -72,10 +62,10 @@ const SearchBar = ({
 	};
 
 	const onChange = (e) => {
-		const keyword = e.target.value;
-		setKeyword(keyword);
-		if (keyword !== '') {
-			realTimeSearch(keyword);
+		const keywordValue = e.target.value;
+		setKeyword(keywordValue);
+		if (keywordValue !== '') {
+			realTimeSearch(keywordValue);
 		} else {
 			setModal('off');
 		}
@@ -84,31 +74,26 @@ const SearchBar = ({
 	const onClick = () => {
 		showSearchResultsToLists(keyword);
 		setIsFetching(true);
+		setModal('off');
 	};
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		showSearchResultsToLists(keyword);
 		setIsFetching(true);
+		setModal('off');
 	};
 	const showSearchResultsToLists = async (keyword) => {
-		// const [serchResNeeded, setSerchResNeeded] = useState(false);
-
-		// 검색결과 띄우기
-		setSerchResNeeded(true);
-		// 키워드 띄우기
+		// 검색한 키워드와 검색결과 띄우고
 		setSearchRes(keyword);
-
-		// 목록 띄우기
+		setSerchResNeeded(true);
 		setOutputNeeded(true);
 		const data = await GetSearach(searchCategory, keyword);
 		await setIsFetching(false);
-		console.log('data', data);
 		setList(() => [...data]);
 
-		// 검색창 비우기
+		// 검색창 비움
 		setKeyword('');
-		setModal('off');
 	};
 
 	return (
@@ -145,6 +130,7 @@ const SearchBar = ({
 					<RecommendedList
 						recList={recList}
 						showSearchResultsToLists={showSearchResultsToLists}
+						setModal={setModal}
 					/>
 				)}
 			</form>
