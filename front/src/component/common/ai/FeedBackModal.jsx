@@ -94,8 +94,8 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 				}}
 			>
 				<div className='titleSection'>
-					<h3>AI Bot 서비스 품질 향상을 위해 </h3>
-					<h3>고객님의 만족도를 남겨주세요! </h3>
+					<h3>AI챗봇 서비스 품질 향상을 위해 </h3>
+					<h3>고객님의 만족도를 간략히 남겨주세요! </h3>
 				</div>
 				<div className='feedbackSection'>
 					<form>

@@ -1,5 +1,5 @@
 // library
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
 
 // components
@@ -31,7 +31,23 @@ const SearchBar = ({
 	isFetching,
 	setIsFetching,
 }) => {
-	// catSelector
+	// 드롭다운 모달처리
+	const dropDownRef = useRef();
+
+	const modalCloseHandler = ({ target }) => {
+		if (catSelector && !dropDownRef.current.contains(target)) {
+			setCatSelector('closed');
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('click', modalCloseHandler);
+		return () => {
+			window.removeEventListener('click', modalCloseHandler);
+		};
+	});
+
+	// 박물관/전시관 셀릭터 오픈
 	const [catSelector, setCatSelector] = useState('closed');
 
 	// 실시간 검색결과를 바탕으로 추천어 목록 생성
@@ -83,9 +99,12 @@ const SearchBar = ({
 		setIsFetching(true);
 		setModal('off');
 	};
+	// 검색결과 띄우기
 	const showSearchResultsToLists = async (keyword) => {
-		// 검색한 키워드와 검색결과 띄우고
+		// 검색한 키워드 띄우기
 		setSearchRes(keyword);
+
+		// 검색결과 띄우기
 		setSerchResNeeded(true);
 		setOutputNeeded(true);
 		const data = await GetSearach(searchCategory, keyword);
@@ -98,12 +117,17 @@ const SearchBar = ({
 
 	return (
 		<SearchBarLayout>
-			<DropDown
-				setList={setList}
-				setSerchResNeeded={setSerchResNeeded}
-				catSelector={catSelector}
-				setCatSelector={setCatSelector}
-			/>
+			<div ref={dropDownRef}>
+				<DropDown
+					setList={setList}
+					setSerchResNeeded={setSerchResNeeded}
+					catSelector={catSelector}
+					setCatSelector={setCatSelector}
+				/>
+			</div>
+
+			{/* <div ref={testRef}></div> */}
+
 			{catSelector == 'closed' && (
 				<AiFillCaretDown
 					style={{
