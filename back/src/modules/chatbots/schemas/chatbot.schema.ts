@@ -9,7 +9,7 @@ export class Chatbot {
   feedback: string;
 
   @Prop()
-  sentiment: string;
+  sentiment?: string;
 }
 
 export const ChatbotSchema = SchemaFactory.createForClass(Chatbot);

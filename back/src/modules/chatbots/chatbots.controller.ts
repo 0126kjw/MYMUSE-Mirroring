@@ -33,9 +33,7 @@ export class ChatbotController {
   async saveChatbotFeedback(
     @Body() chatbotDto: SaveChatbotFeedbackDto,
   ): Promise<any> {
-    const createdFeedback = await this.chatbotService.create(
-      chatbotDto.feedback,
-    );
+    const createdFeedback = this.chatbotService.create(chatbotDto.feedback);
     return createdFeedback;
   }
 }
