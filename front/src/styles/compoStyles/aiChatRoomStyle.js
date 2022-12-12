@@ -105,7 +105,7 @@ const aiChatRoomStyle = styled.div`
 		}
 
 		.feedBack {
-			background-color: bisque;
+			background-color: blanchedalmond;
 
 			color: black;
 			margin: 1%;
@@ -114,7 +114,7 @@ const aiChatRoomStyle = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			border: solid 1px pink;
+			border: solid 1px bisque;
 
 			p {
 				font-weight: bold;
@@ -122,8 +122,10 @@ const aiChatRoomStyle = styled.div`
 				padding: 0%;
 			}
 			&:hover {
+				background-color: bisque;
 				cursor: pointer;
-				color: red;
+				/* color: red; */
+				border: solid 1px burlywood;
 			}
 		}
 

@@ -9,8 +9,9 @@ import API from 'src/utils/api';
 const { PostUserQuestion } = API();
 
 // template
-import facilityOpeningHoursTemp from 'src/component/common/ai/ai_util/facilityOpeningHoursTemp';
-import facilityAddressTemp from 'src/component/common/ai/ai_util/facilityAddressTemp';
+import template_open from 'src/component/common/ai/ai_util/template_open';
+import template_ticket from 'src/component/common/ai/ai_util/template_ticket';
+import template_address from 'src/component/common/ai/ai_util/template_address';
 
 const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHeight, router) => {
 	const AIsec2 = document.querySelector('.AIsec2');
@@ -31,6 +32,7 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 		//data = post.data;
 		//console.log('data', data);
 		data = await PostUserQuestion(userQuestion);
+		console.log(data);
 	} catch {
 		console.log('posting error');
 	}
@@ -69,6 +71,9 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 	} else if (classification == 'facilityAreaSearch') {
 		// 종로구에 미술관 있어?
 		infoGuide = defaultGuidance;
+	} else if (classification == 'exhibitionDateSearch') {
+		// ~~ 에 열리는 전시회는 다음과 같습니다.
+		infoGuide = defaultGuidance;
 	} else if (classification == 'facilityContact') {
 		// '쉼박물관 연락처 좀 줘'
 		infoGuide = defaultGuidance;
@@ -76,11 +81,11 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 	} else if (classification == 'facilityAddress') {
 		// '경운박물관 어디에 있어'
 		infoGuide = defaultGuidance;
-		template = facilityAddressTemp(ans.name, ans.newAddress, ans.oldAddress);
+		template = template_address(ans.name, ans.newAddress, ans.oldAddress);
 	} else if (classification == 'facilityOpeningHours') {
 		// '경운박물관 언제 문 닫아'
 		infoGuide = defaultGuidance;
-		template = facilityOpeningHoursTemp(
+		template = template_open(
 			ans.name,
 			ans.mon,
 			ans.tue,
@@ -97,11 +102,18 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 		if (ans.isFree == true) {
 			template = `${ans.name}(은/는) 무료입장이 가능합니다.`;
 		} else {
-			template = `${ans.name} 입장료는 성인 ${ans.adultFee}, 청소년 ${ans.youthFee}, 아동 ${ans.childFee} 입니다.`;
+			template = template_ticket(
+				ans.name,
+				ans.adultFee,
+				ans.youthFee,
+				ans.childFee,
+				ans.feeUrl,
+			);
 		}
 	} else if (classification == 'facilityOthers') {
 		infoGuide = `${ans.name}에 대해 자세히 알아볼 수 있는 페이지를 보여드릴게요!`;
 		template = `<a href='${ans.website}'>${ans.name} : ${ans.website}</a>`;
+	} else {
 	}
 
 	// <AI response (1)> 기본 info Guide
@@ -125,6 +137,40 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 		for (let i = 0; i < ans.length; i++) {
 			const listElement = document.createElement('div');
 			listElement.innerHTML = `<div>${ans[i].name}</div>`;
+			listElement.addEventListener('click', function () {
+				goToDetail(ans[i].name, router);
+			});
+			listElement.classList.add('horList');
+			TempElement.appendChild(listElement);
+		}
+		AIsec2.appendChild(TempElement);
+
+		// 개수 표현
+		const TempElement2 = document.createElement('div');
+		TempElement2.classList.add('msgFromAI');
+		TempElement2.innerText = `${ans.length}개가 검색되었습니다.`;
+		AIsec2.appendChild(TempElement2);
+
+		// 개행
+		const emptyBox = document.createElement('div');
+		emptyBox.classList.add('emptyBox');
+		AIsec2.appendChild(emptyBox);
+	}
+	if (classification == 'exhibitionDateSearch') {
+		// 목록 표현
+		const TempElement = document.createElement('div');
+		TempElement.classList.add('horListBox');
+		TempElement.style.width = `${chatRoomWidth - 100}px`;
+
+		for (let i = 0; i < ans.length; i++) {
+			const listElement = document.createElement('div');
+			listElement.innerHTML = `
+                <div>
+                    <img src={http://ticketimage.interpark.com/rz/image/play/goods/poster/22/${ans[i].href}_p_s.jpg}>
+                    <a target='_blank href={https://tickets.interpark.com/goods/${ans[i].href}}> 
+                        ${ans[i].title}
+                    </a>
+                </div>`;
 			listElement.addEventListener('click', function () {
 				goToDetail(ans[i].name, router);
 			});
