@@ -17,16 +17,16 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<>
 			{GlobalStyles}
-			<ErrorBoundary>
-				<Seo pagePath={pagePath} pageTitle={pageTitle} pageDosc={pageDosc} />
-				<RecoilRoot>
+			<Seo pagePath={pagePath} pageTitle={pageTitle} pageDosc={pageDosc} />
+			<RecoilRoot>
+				<ErrorBoundary>
 					<Suspense faillback={<Loading />}>
 						<AppLayout>
 							<Component {...pageProps} />
 						</AppLayout>
 					</Suspense>
-				</RecoilRoot>
-			</ErrorBoundary>
+				</ErrorBoundary>
+			</RecoilRoot>
 		</>
 	);
 }
