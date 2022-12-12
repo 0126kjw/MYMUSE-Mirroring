@@ -33,7 +33,7 @@ const InfoModalLayout = styled.div`
 	}
 
 	.chatExample {
-		padding-top: 20px;
+		padding-top: 35px;
 		line-height: 15px;
 		padding-left: 20px;
 		font-weight: bold;
