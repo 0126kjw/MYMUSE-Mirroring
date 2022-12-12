@@ -10,7 +10,7 @@ const InfoModalLayout = styled.div`
 	flex-direction: column;
 
 	width: 700px;
-	height: 500px;
+	height: 570px;
 	background: #fff;
 	border-radius: 4px;
 	z-index: 10;
@@ -94,6 +94,8 @@ const InfoModal = ({ setBotInfoModal }) => {
 					<p className='example'>'EX) 국립중앙박물관 입장료가 얼마야?'</p>
 					<p className='question'>- 특정기관 위치 안내</p>
 					<p className='example'>'EX) 국립중앙박물관 어디에 있어?'</p>
+					<p className='question'>- 특정기관 기타 문의사항 (알고싶은 정보) </p>
+					<p className='example'>'EX) 국립중앙박물관에 장애인 전용 주차장 있어?'</p>
 				</div>
 			</InfoModalLayout>
 		</>

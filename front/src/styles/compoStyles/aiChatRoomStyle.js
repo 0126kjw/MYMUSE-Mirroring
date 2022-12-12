@@ -86,7 +86,7 @@ const aiChatRoomStyle = styled.div`
 			min-height: 20px;
 			border-radius: 10px;
 			font-size: 18px;
-			line-height: 27px;
+			line-height: 30px;
 			p {
 				line-height: 20px;
 			}
