@@ -1,4 +1,4 @@
-//pagePath와 링크하기 위한 객체
+//context에서 받아온 pagePath와 링크하기 위한 객체
 const path = {
 	HOME: '/',
 	MAP: '/map',
@@ -31,7 +31,7 @@ const getDescByPath = {
 const withGetServerSideProps = (getServerSideProps) => {
 	return async (context) => {
 		const pagePath = context.resolvedUrl;
-		console.log(pagePath);
+		//console.log('with.js: ', pagePath);
 		return await getServerSideProps(context).then((res) => {
 			return {
 				...res,

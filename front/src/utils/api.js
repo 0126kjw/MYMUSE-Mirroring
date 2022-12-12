@@ -22,6 +22,16 @@ const API = () => {
 		},
 	);
 
+	instance.interceptors.request.use(
+		(config) => {
+			return config;
+		},
+		(err) => {
+			//return error and catch will get it
+			return Promise.reject(err);
+		},
+	);
+
 	//console.log(interceptor);
 	//get multiple param - for page
 	/** *
@@ -63,7 +73,21 @@ const API = () => {
 		return instance.get(url);
 	};
 
-	return { Get, GetPages, GetSearach };
+	//section 3. Chatbots
+	const chatbotUrl = 'chatbots';
+
+	//3-1 feedback (src/compo/ai/feedbackmodal.jsx)
+	const PostFeedback = async (data) => {
+		const url = `${chatbotUrl}/feedback`;
+		return instance.post(url, data);
+	};
+
+	//3-2 userQusetion (src/comp/common/ai/ai_util/submitinput.js)
+	const PostUserQuestion = async (data) => {
+		return instance.post(chatbotUrl, data);
+	};
+
+	return { Get, GetPages, GetSearach, PostFeedback, PostUserQuestion };
 };
 
 export default API;

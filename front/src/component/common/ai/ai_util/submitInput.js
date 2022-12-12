@@ -1,7 +1,12 @@
 // library
 import chat_question from 'src/component/common/ai/ai_util/chat_question';
 import goToDetail from 'src/component/common/ai/ai_util/goToDetail';
+
 import axios from 'axios';
+
+//api from src/util/api.js
+import API from 'src/utils/api';
+const { PostUserQuestion } = API();
 
 // template
 import facilityOpeningHoursTemp from 'src/component/common/ai/ai_util/facilityOpeningHoursTemp';
@@ -22,9 +27,10 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 	const userQuestion = { text: inputValue };
 	let data = null;
 	try {
-		const post = await axios.post('http://localhost:3001/chatbots', userQuestion);
-		data = post.data;
-		console.log('data', data);
+		//const post = await axios.post('http://localhost:3001/chatbots', userQuestion);
+		//data = post.data;
+		//console.log('data', data);
+		data = await PostUserQuestion(userQuestion);
 	} catch {
 		console.log('posting error');
 	}
