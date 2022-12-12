@@ -4,7 +4,7 @@ import { IsNumber } from 'class-validator';
 export class GetMuseumPagenationDto {
   /**
    * page
-   * @example '1'
+   * @example 1
    */
   @IsNumber()
   @Type(() => Number)
