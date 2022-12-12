@@ -134,7 +134,7 @@ export class ChatbotService {
         return this.museumService.findRightItems(
           address,
           category,
-          'name website',
+          'id name website',
         );
 
       case 'exhibitionDateSearch':
