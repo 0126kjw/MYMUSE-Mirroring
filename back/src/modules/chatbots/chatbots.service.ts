@@ -5,9 +5,6 @@ import { MuseumService } from '../museums/museums.service';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Chatbot } from './schemas/chatbot.schema';
-import axios from 'axios';
-import { spawn } from 'child_process';
-import { error } from 'console';
 
 @Injectable()
 export class ChatbotService {
@@ -20,27 +17,9 @@ export class ChatbotService {
 
   async create(feedback: string): Promise<void> {
     console.log(feedback);
-
-    await this.runPy
-      .then(function (feedback) {
-        console.log(feedback.toString());
-      })
-      .catch((err) => console.log(error));
-    // const response = await axios.get('http://localhost:5000/test');
-    // console.log(response);
     // this.chatbotModel.create({ feedback });
   }
-  runPy = new Promise(async function (success, nosuccess) {
-    const pyprog = spawn('python', ['./../pypy.py']);
 
-    pyprog.stdout.on('data', async function (data) {
-      success(data);
-    });
-
-    pyprog.stderr.on('data', async (data) => {
-      nosuccess(data);
-    });
-  });
   async findAll(text: string): Promise<any> {
     const sessionId = process.env.DIALOGFLOW_SESSION_ID;
     const projectId = process.env.GOOGLE_PROJECT_ID;
