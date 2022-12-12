@@ -1,11 +1,10 @@
 //This page returns list of all cards.
 //In this page, API handling is occured, which chosen by prop in each page
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 
 //for API
-import API from 'src/utils/api';
+import { GetPages } from 'src/utils/api';
 import DownButton from '../DownButton';
-const { GetPages } = API();
 
 //import Card compo
 import Card from './Cards';
@@ -23,9 +22,13 @@ const AllCardsList = ({ category }) => {
 	};
 
 	// pagination
-	const getMoreList = () => {
-		setBundleIdx((prev) => prev + 1);
-	};
+	// const getMoreList = () => {
+	// 	setBundleIdx((prev) => prev + 1);
+	// };
+
+	const getMoreListMemo = useCallback(() => {
+		return setBundleIdx((prev) => prev + 1);
+	}, [bundleIdx]);
 
 	useEffect(() => {
 		getData();
@@ -40,7 +43,7 @@ const AllCardsList = ({ category }) => {
 							return <Card x={data} key={idx} />;
 						})}
 				</AllListUl>
-				<DownButton getMoreList={getMoreList} />
+				<DownButton getMoreList={getMoreListMemo} />
 			</div>
 		</>
 	);

@@ -13,14 +13,14 @@ import Seo from 'src/component/Seo';
 
 function MyApp({ Component, pageProps }) {
 	//console.log('페이지프롭스?', pageProps);
-	const { pagePath, pageTitle, pageDosc } = pageProps;
+	const { pagePath, pageTitle, pageDesc } = pageProps;
 	return (
 		<>
 			{GlobalStyles}
-			<Seo pagePath={pagePath} pageTitle={pageTitle} pageDosc={pageDosc} />
 			<RecoilRoot>
 				<ErrorBoundary>
 					<Suspense faillback={<Loading />}>
+						<Seo pagePath={pagePath} pageTitle={pageTitle} pageDesc={pageDesc} />
 						<AppLayout>
 							<Component {...pageProps} />
 						</AppLayout>

@@ -17,7 +17,7 @@ export class ChatbotService {
 
   async create(feedback: string): Promise<void> {
     console.log(feedback);
-    // this.chatbotModel.create({ feedback });
+    this.chatbotModel.create({ feedback });
   }
 
   async findAll(text: string): Promise<any> {
