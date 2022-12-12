@@ -124,27 +124,25 @@ const DetailSlider = ({ _id, imgSrcUrl, srcName, srcUrl, ID }) => {
 				<div className='slider'>
 					{sliderData.map((eachImgUrl, index) => {
 						return (
-							<>
-								<div
-									className={index === currentSlide ? 'slide current' : 'slide'}
-									key={index}
-								>
-									{index === currentSlide && (
-										<>
-											<Image
-												src={eachImgUrl}
-												alt='slide'
-												fill
-												size='width:100%, height:100%'
-												style={{
-													objectFit: 'cover',
-													layout: 'fill',
-												}}
-											/>
-										</>
-									)}
-								</div>
-							</>
+							<div
+								className={index === currentSlide ? 'slide current' : 'slide'}
+								key={index}
+							>
+								{index === currentSlide && (
+									<>
+										<Image
+											src={eachImgUrl}
+											alt='slide'
+											fill
+											size='width:100%, height:100%'
+											style={{
+												objectFit: 'cover',
+												layout: 'fill',
+											}}
+										/>
+									</>
+								)}
+							</div>
 						);
 					})}
 					<div className=''>
