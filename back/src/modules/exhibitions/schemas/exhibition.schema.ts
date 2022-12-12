@@ -18,10 +18,13 @@ export class Exhibition {
   place: string;
 
   @Prop()
-  website: string;
+  period: string[];
 
   @Prop()
-  period: string[];
+  createdAt: string;
+
+  @Prop()
+  updatedAt: string;
 }
 
 export const ExhibitionSchema = SchemaFactory.createForClass(Exhibition);
