@@ -37,12 +37,12 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		document.querySelector('.logoTest').style.display = 'none';
 	};
 	const submitByClick = () => {
-		submitInput(inputValue, setInputValue, chatRoomWidth, chatRoomHeight, router);
+		submitInput(inputValue, setInputValue, router);
 	};
 
 	const submitByEnter = (e) => {
 		e.preventDefault();
-		submitInput(inputValue, setInputValue, chatRoomWidth, chatRoomHeight, router);
+		submitInput(inputValue, setInputValue, router);
 	};
 
 	useEffect(() => {
@@ -73,12 +73,12 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		formDiv.style.width = `${chatRoomWidth}px`;
 
 		// horListBox;
-		if (document.querySelector('.horListBox') !== null) {
-			const selectedElements = document.querySelectorAll('.horListBox');
-			for (let i = 0; i < selectedElements.length; i++) {
-				selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
-			}
-		}
+		// if (document.querySelector('.horListBox') !== null) {
+		// 	const selectedElements = document.querySelectorAll('.horListBox');
+		// 	for (let i = 0; i < selectedElements.length; i++) {
+		// 		selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
+		// 	}
+		// }
 	}, [chatRoomHeight, chatRoomWidth]);
 
 	return (
