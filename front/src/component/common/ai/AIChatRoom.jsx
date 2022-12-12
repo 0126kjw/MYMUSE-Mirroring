@@ -2,6 +2,7 @@
 import AiChatRoomStyle from 'src/styles/compoStyles/aiChatRoomStyle';
 
 import FeedBackModal from 'src/component/common/ai/FeedBackModal';
+import InfoModal from 'src/component/common/ai/InfoModal';
 
 // library
 import Image from 'next/legacy/image';
@@ -9,6 +10,7 @@ import { useState, useEffect, createElement } from 'react';
 import { useRouter } from 'next/router';
 // image
 import logoImg from '../../../../public/images/siteLogo.png';
+import InfoImg from '../../../../public/images/info.png';
 
 // util
 import submitInput from 'src/component/common/ai/ai_util/submitInput';
@@ -19,9 +21,14 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 	const [chatRoomWidth, setChatRoomWidth] = useState(450);
 	const [chatRoomHeight, setChatRoomHeight] = useState(450);
 	const [feedBackModal, setFeedBackModal] = useState('off');
+	const [botInfoModal, setBotInfoModal] = useState('off');
 
 	const onChangeHandler = (e) => {
 		setInputValue(e.target.value);
+	};
+
+	const openInfoModal = () => {
+		setBotInfoModal('on');
 	};
 
 	const closeBot = () => {
@@ -77,10 +84,17 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 	return (
 		<>
 			{feedBackModal == 'on' && <FeedBackModal setFeedBackModal={setFeedBackModal} />}
+			{botInfoModal == 'on' && <InfoModal setBotInfoModal={setBotInfoModal} />}
+
 			<AiChatRoomStyle>
 				<div className='modalTopSection'>
+					<button className='Lbtn' onClick={openInfoModal}>
+						<Image src={InfoImg} alt='BotInfo' width='25' height='25'></Image>
+					</button>
 					<Image src={logoImg} alt='logoImg' width='100' height='30'></Image>
-					<button onClick={closeBot}>X</button>
+					<button className='Rbtn' onClick={closeBot}>
+						X
+					</button>
 				</div>
 				<div className='AImodal-Outer'>
 					<div className='AImodal-Inner'>
@@ -94,14 +108,25 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 								<p> ⮞⮞⮞ AI Bot 피드백 작성 ⮞⮞⮞ </p>
 							</div>
 							<div className='msgFromAI'>
-								MYMUSE에 오신 것을 환영합니다. 궁금한 부분은 저에게 질문해주세요!
+								MYMUSE에 오신 것을 환영합니다. <br></br>
+								궁금한 부분을 질문해주세요!
 							</div>
 							<div className='emptyBox'></div>
 							<div className='msgFromAI'>
+								<p>다음과 같은 대화와 안내가 가능합니다!</p>
+								<hr></hr>
+								<p>- 간단한 인사</p>
+								<p>- 구 별 박물관/미술관 안내</p>
+								<p>- 특정기관 운영시간 안내</p>
+								<p>- 특정기관 연락처 안내</p>
+								<p>- 특정기관 입장료 안내</p>
+								<p>- 특정기관 위치 안내</p>
+							</div>
+							<div className='emptyBox'></div>
+
+							<div className='msgFromAI'>
 								(팁) 화면 좌상단에서 채팅봇 크기 조정이 가능합니다
 							</div>
-
-							<div className='emptyBox'></div>
 						</div>
 					</div>
 				</div>
