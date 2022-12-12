@@ -61,10 +61,6 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 		outerClick = 0;
 	};
 
-	// const onSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	feedbackSubmit();
-	// };
 	const onClick = () => {
 		feedbackSubmit();
 	};

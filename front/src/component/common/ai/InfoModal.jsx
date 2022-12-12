@@ -9,8 +9,8 @@ const InfoModalLayout = styled.div`
 	transform: translate(-50%, -50%);
 	flex-direction: column;
 
-	width: 700px;
-	height: 570px;
+	width: 600px;
+	height: 620px;
 	background: #fff;
 	border-radius: 4px;
 	z-index: 10;
@@ -83,7 +83,9 @@ const InfoModal = ({ setBotInfoModal }) => {
 				</div>
 				<div className='chatExample'>
 					<p className='question'>- 간단한 인사</p>
-					<p className='example'>EX) '안녕하세요'</p>
+					<p className='example'>EX) 안녕하세요</p>
+					<p className='question'>- 진행중인 전시회 일정 안내</p>
+					<p className='example'>'EX) 다음주에 열리는 전시회 알려줘'</p>
 					<p className='question'>- 구 별 박물관/미술관 안내</p>
 					<p className='example'>'EX) 종로구에 어떤 미술관 있어?'</p>
 					<p className='question'>- 특정기관 운영시간 안내</p>

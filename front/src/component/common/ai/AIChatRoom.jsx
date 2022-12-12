@@ -37,12 +37,12 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		document.querySelector('.logoTest').style.display = 'none';
 	};
 	const submitByClick = () => {
-		submitInput(inputValue, setInputValue, chatRoomWidth, chatRoomHeight, router);
+		submitInput(inputValue, setInputValue, router);
 	};
 
 	const submitByEnter = (e) => {
 		e.preventDefault();
-		submitInput(inputValue, setInputValue, chatRoomWidth, chatRoomHeight, router);
+		submitInput(inputValue, setInputValue, router);
 	};
 
 	useEffect(() => {
@@ -73,12 +73,12 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		formDiv.style.width = `${chatRoomWidth}px`;
 
 		// horListBox;
-		if (document.querySelector('.horListBox') !== null) {
-			const selectedElements = document.querySelectorAll('.horListBox');
-			for (let i = 0; i < selectedElements.length; i++) {
-				selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
-			}
-		}
+		// if (document.querySelector('.horListBox') !== null) {
+		// 	const selectedElements = document.querySelectorAll('.horListBox');
+		// 	for (let i = 0; i < selectedElements.length; i++) {
+		// 		selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
+		// 	}
+		// }
 	}, [chatRoomHeight, chatRoomWidth]);
 
 	return (
@@ -105,7 +105,7 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 									setFeedBackModal('on');
 								}}
 							>
-								<p> ⮞⮞⮞ AI Bot 피드백 작성 ⮞⮞⮞ </p>
+								<p> AI Bot 피드백 작성 </p>
 							</div>
 							<div className='msgFromAI'>
 								MYMUSE에 오신 것을 환영합니다. <br></br>
@@ -116,6 +116,7 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 								<p>다음과 같은 대화와 안내가 가능합니다!</p>
 								<hr></hr>
 								<p>- 간단한 인사</p>
+								<p>- 진행중인 전시회 일정 안내</p>
 								<p>- 구 별 박물관/미술관 안내</p>
 								<p>- 특정기관 운영시간 안내</p>
 								<p>- 특정기관 연락처 안내</p>
@@ -124,7 +125,6 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 								<p>- 기타 문의 </p>
 							</div>
 							<div className='emptyBox'></div>
-
 							<div className='msgFromAI'>
 								(팁) 화면 좌상단에서 채팅봇 크기 조정이 가능합니다
 							</div>
