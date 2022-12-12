@@ -14,16 +14,11 @@ const AllCardsList = ({ category }) => {
 	const [list, setList] = useState([]);
 	const [bundleIdx, setBundleIdx] = useState(1);
 
-	// Get Data using API (get Lists)
+	// Get Data using API (get Lists)(callx)
 	const getData = async () => {
 		const data = await GetPages(category, bundleIdx);
 		setList((prev) => [...prev, ...data]);
 	};
-
-	// pagination
-	// const getMoreList = () => {
-	// 	setBundleIdx((prev) => prev + 1);
-	// };
 
 	const getMoreListMemo = useCallback(() => {
 		return setBundleIdx((prev) => prev + 1);
