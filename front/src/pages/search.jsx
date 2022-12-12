@@ -21,8 +21,7 @@ import TitleSection from 'src/component/common/TitleSection';
 import { SearchSection } from 'src/styles/pageStyles/searchStyle';
 
 // API
-import API from 'src/utils/api';
-const { GetSearach } = API();
+import { GetSearach } from 'src/utils/api';
 
 // Seo
 import withGetServerSideProps from 'src/hocs/withServersideProps';

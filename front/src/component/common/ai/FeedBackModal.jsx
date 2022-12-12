@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 //import axios from 'axios';
 
 //api from src/util/api.js
-import API from 'src/utils/api';
-const { PostFeedback } = API();
+import { PostFeedback } from 'src/utils/api';
 
 const FeedBackModalLayout = styled.div`
 	position: fixed;
