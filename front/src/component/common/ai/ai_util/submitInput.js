@@ -57,6 +57,9 @@ const submitInput = async (inputValue, setInputValue, chatRoomWidth, chatRoomHei
 	if (classification == 'DefaultFallback') {
 		// 알 수 없는 질문
 		infoGuide = defaultGuidance;
+	} else if (classification == 'defaultWelcome') {
+		// 인사
+		infoGuide = defaultGuidance;
 	} else if (classification == 'facilityAreaSearch') {
 		// 종로구에 미술관 있어?
 		infoGuide = defaultGuidance;
