@@ -121,12 +121,14 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 								<p>- 특정기관 연락처 안내</p>
 								<p>- 특정기관 입장료 안내</p>
 								<p>- 특정기관 위치 안내</p>
+								<p>- 기타 문의 </p>
 							</div>
 							<div className='emptyBox'></div>
 
 							<div className='msgFromAI'>
 								(팁) 화면 좌상단에서 채팅봇 크기 조정이 가능합니다
 							</div>
+							<div className='emptyBox'></div>
 						</div>
 					</div>
 				</div>
