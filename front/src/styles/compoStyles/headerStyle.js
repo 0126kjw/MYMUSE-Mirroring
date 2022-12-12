@@ -22,8 +22,9 @@ export const HeaderContainer = styled.header`
 export const ImageWraper = styled.div`
 	width: 100vw;
 	height: 250px;
-
-	position: static;
+	//react_devtools의 경고 (dont' use static, use relative)
+	//position: static;
+	position: relative;
 
 	.bgImg {
 		background-color: ${cssUnit.backgroundColors.DeepBlack};
