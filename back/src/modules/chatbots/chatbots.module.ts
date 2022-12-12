@@ -15,11 +15,7 @@ import { Chatbot, ChatbotSchema } from './schemas/chatbot.schema';
   imports: [
     MuseumModule,
     ExhibitionModule,
-    MongooseModule.forFeature([
-      { name: Museum.name, schema: MuseumSchema },
-      { name: Exhibition.name, schema: ExhibitionSchema },
-      { name: Chatbot.name, schema: ChatbotSchema },
-    ]),
+    MongooseModule.forFeature([{ name: Chatbot.name, schema: ChatbotSchema }]),
   ],
   controllers: [ChatbotController],
   providers: [ChatbotService],
