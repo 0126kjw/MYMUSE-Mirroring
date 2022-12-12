@@ -15,7 +15,7 @@ export class ExhibitionService {
   }
 
   async findRightItems(endDate: Date, reponseInfo: string): Promise<any> {
-    const exhibitions = await this.exhibitionModel
+    return this.exhibitionModel
       .find(
         {
           'period.0': {
@@ -28,11 +28,6 @@ export class ExhibitionService {
         reponseInfo,
       )
       .lean();
-
-    return exhibitions.map(({ title, href }) => ({
-      title,
-      website: `https://tickets.interpark.com/goods/${href}`,
-    }));
   }
 
   async pagination(page: number): Promise<Exhibition[]> {
