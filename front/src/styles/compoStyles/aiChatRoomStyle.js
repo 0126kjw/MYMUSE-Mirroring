@@ -13,7 +13,7 @@ const aiChatRoomStyle = styled.div`
 		right: 30px;
 		bottom: 100px;
 
-		height: 450px;
+		height: 550px;
 		width: 450px;
 
 		margin: 0 auto;
@@ -36,18 +36,29 @@ const aiChatRoomStyle = styled.div`
 	.modalTopSection {
 		width: 450px;
 		position: fixed;
-		bottom: 550px;
+		/* bottom: 550px; */
+		bottom: 600px;
 		right: 30px;
 		display: flex;
-		justify-content: center;
+		/* justify-content: center; */
+		justify-content: space-between;
 		align-items: center;
 		background-color: #222222;
 		color: white;
 		height: 50px;
 
-		button {
-			position: absolute;
-			right: 10px;
+		.Lbtn {
+			/* position: absolute; */
+			/* right: 420px; */
+			background-color: #222222;
+			border: solid 1px #222222;
+			color: #997a4c;
+			cursor: pointer;
+		}
+
+		.Rbtn {
+			/* position: absolute; */
+			/* right: 10px; */
 			background-color: #222222;
 			border: solid 1px #222222;
 			color: #997a4c;
@@ -56,7 +67,8 @@ const aiChatRoomStyle = styled.div`
 	}
 
 	.AIsec2 {
-		min-height: 400px;
+		/* min-height: 400px; */
+		min-height: 450px;
 		overflow: scroll;
 
 		padding-left: 7px;
@@ -73,6 +85,11 @@ const aiChatRoomStyle = styled.div`
 			text-align: left;
 			min-height: 20px;
 			border-radius: 10px;
+			font-size: 18px;
+			line-height: 27px;
+			p {
+				line-height: 20px;
+			}
 		}
 		.msgFromHuman {
 			float: right;

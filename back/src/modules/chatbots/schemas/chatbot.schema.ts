@@ -10,6 +10,12 @@ export class Chatbot {
 
   @Prop()
   sentiment?: string;
+
+  @Prop()
+  createdAt: string;
+
+  @Prop()
+  updatedAt: string;
 }
 
 export const ChatbotSchema = SchemaFactory.createForClass(Chatbot);

@@ -1,8 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { ChatbotDto } from './dto/chatbot.dto';
+import { GetChatbotDto } from './dto/getchatbot.dto';
 import { ChatbotService } from './chatbots.service';
-import { SaveChatbotFeedbackDto } from './dto/saveChatbotFeedback.dto';
+import { CreateChatbotFeedbackDto } from './dto/createChatbotFeedback.dto';
 
 @ApiTags('Chatbot')
 @Controller('chatbots')
@@ -17,8 +17,10 @@ export class ChatbotController {
   })
   @ApiNotFoundResponse({ description: 'NotFound' })
   @Post()
-  async getChatbotResponse(@Body() chatbotDto: ChatbotDto): Promise<any> {
-    const answeredChatbot = await this.chatbotService.findAll(chatbotDto.text);
+  async getChatbotResponse(@Body() getChatbotDto: GetChatbotDto): Promise<any> {
+    const answeredChatbot = await this.chatbotService.findAll(
+      getChatbotDto.text,
+    );
     return answeredChatbot;
   }
 
@@ -30,10 +32,12 @@ export class ChatbotController {
   })
   @ApiNotFoundResponse({ description: 'NotFound' })
   @Post('feedback')
-  async saveChatbotFeedback(
-    @Body() chatbotDto: SaveChatbotFeedbackDto,
+  async createChatbotFeedback(
+    @Body() createChatbotDto: CreateChatbotFeedbackDto,
   ): Promise<any> {
-    const createdFeedback = this.chatbotService.create(chatbotDto.feedback);
+    const createdFeedback = this.chatbotService.create(
+      createChatbotDto.feedback,
+    );
     return createdFeedback;
   }
 }
