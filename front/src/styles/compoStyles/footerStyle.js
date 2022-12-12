@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import cssUnit from 'src/lib/cssUnit';
 
 export const FooterContainer = styled.footer`
+	z-index: 1;
 	position: relative;
 	display: flex;
 	flex-direction: column;

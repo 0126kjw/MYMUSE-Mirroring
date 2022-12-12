@@ -16,7 +16,8 @@ export class ChatbotService {
   ) {}
 
   async create(feedback: string): Promise<any> {
-    return await this.chatbotModel.create(feedback);
+    console.log(feedback);
+    return await this.chatbotModel.create({ feedback });
   }
 
   async findAll(text: string): Promise<any> {
@@ -38,10 +39,10 @@ export class ChatbotService {
     };
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
-    const queryText = result.queryText;
-    const displayName = result.intent.displayName;
-    const fields = result.parameters.fields;
-    let fulfillmentText = result.fulfillmentText.trim();
+    const queryText = result?.queryText;
+    const displayName = result?.intent?.displayName;
+    const fields = result?.parameters?.fields;
+    let fulfillmentText = result?.fulfillmentText.trim();
     console.log('Detected intent');
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
@@ -67,15 +68,21 @@ export class ChatbotService {
     }
 
     if (result.intent) {
-      let intetedAnswers = await this.getIntentedAnswer(
+      let intendedAnswer = await this.getIntentedAnswer(
         fields,
         displayName,
         queryText,
       );
+      if (fields?.facilityName?.stringValue === '') {
+        fulfillmentText = '데이터에 없는 정보 입니다.';
+        intendedAnswer = { displayName, fulfillmentText };
+      } else if (intendedAnswer) {
+        intendedAnswer = { intendedAnswer, displayName, fulfillmentText };
+      } else {
+        intendedAnswer = { displayName, fulfillmentText };
+      }
 
-      intetedAnswers = { intetedAnswers, displayName, fulfillmentText };
-
-      return intetedAnswers;
+      return intendedAnswer;
     } else {
       return { errorMessage: 'No intent matched.' };
     }
@@ -87,15 +94,22 @@ export class ChatbotService {
     queryText: string,
   ): Promise<any> {
     const facilityName = fields?.facilityName?.stringValue;
+    console.log(facilityName);
     const category = fields?.facilityCategory?.stringValue;
-    const borough =
-      fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
+    let address = null;
+    if (fields?.location?.structValue?.fields?.['subadmin-area']) {
+      address =
+        fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
+    } else if (fields?.location?.structValue?.fields?.['street-address']) {
+      address =
+        fields?.location?.structValue?.fields?.['street-address']?.stringValue;
+    }
 
     switch (displayName) {
       case 'facilityContact':
         const contactInfo = await this.museumService.findOne(
           facilityName,
-          'contactInfo',
+          'name contactInfo',
         );
 
         return contactInfo;
@@ -103,7 +117,7 @@ export class ChatbotService {
       case 'facilityAddress':
         const addressInfo = await this.museumService.findOne(
           facilityName,
-          'newAddress oldAddress',
+          'name newAddress oldAddress',
         );
 
         return addressInfo;
@@ -111,7 +125,7 @@ export class ChatbotService {
       case 'facilityOpeningHours':
         const openingHours = await this.museumService.findOne(
           facilityName,
-          'mon tue wed thu fri sat sun offday',
+          'name mon tue wed thu fri sat sun offday',
         );
 
         return openingHours;
@@ -119,17 +133,17 @@ export class ChatbotService {
       case 'facilityTicket':
         return await this.museumService.findOne(
           facilityName,
-          'isFree adultFee youthFee childFee',
+          'name isFree adultFee youthFee childFee',
         );
 
       case 'facilityOthers':
-        return await this.museumService.findOne(facilityName, 'website');
+        return await this.museumService.findOne(facilityName, 'name website');
 
       case 'facilityAreaSearch':
         return await this.museumService.findRightItems(
-          borough,
+          address,
           category,
-          'website',
+          'name website',
         );
 
       case 'exhibitionDateSearch':

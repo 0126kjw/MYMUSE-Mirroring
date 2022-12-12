@@ -126,6 +126,13 @@ const MenuTogglerLayout = styled.div`
 `;
 
 const NavBarHBG = () => {
+	const menu = [
+		{ korName: '홈', route: '/' },
+		{ korName: '지도', route: '/map' },
+		{ korName: '검색', route: '/search' },
+		{ korName: '진행중인 전시회', route: '/popular' },
+	];
+
 	return (
 		<MenuTogglerLayout>
 			<div id='menuToggle'>
@@ -134,18 +141,11 @@ const NavBarHBG = () => {
 				<span></span>
 				<span></span>
 				<ul id='menu'>
-					<Link href='/'>
-						<li>홈</li>
-					</Link>
-					<Link href='/map'>
-						<li>서울 지도로 찾기</li>
-					</Link>
-					<Link href='/search'>
-						<li>박물관 검색</li>
-					</Link>
-					<Link href='/popular'>
-						<li>진행중인 전시회</li>
-					</Link>
+					{menu.map((item, idx) => (
+						<Link key={`mbMenu${idx}`} href={item.route}>
+							<li>{item.korName}</li>
+						</Link>
+					))}
 				</ul>
 			</div>
 		</MenuTogglerLayout>

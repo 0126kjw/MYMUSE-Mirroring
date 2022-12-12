@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import OuterModal from 'src/styles/compoStyles/OuterModalStyle';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const FeedBackModalLayout = styled.div`
 	position: fixed;
@@ -57,10 +58,10 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 		outerClick = 0;
 	};
 
-	const onSubmit = (e) => {
-		e.preventDefault();
-		feedbackSubmit();
-	};
+	// const onSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	feedbackSubmit();
+	// };
 	const onClick = () => {
 		feedbackSubmit();
 	};
@@ -68,8 +69,14 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 		setInputValue(e.target.value);
 	};
 	const feedbackSubmit = async () => {
-		alert('감사합니다');
-		setInputValue('');
+		const obj = { feedback: inputValue };
+		try {
+			const res = await axios.post('http://localhost:3001/chatbots/feedback', obj);
+			console.log('res', res);
+			alert('감사합니다');
+		} catch {
+			console.log('피드백 전달 실패');
+		}
 		setFeedBackModal('off');
 	};
 
@@ -87,11 +94,11 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 				}}
 			>
 				<div className='titleSection'>
-					<h3>AI Bot 서비스 품질 향상을 위해 </h3>
-					<h3>고객님의 만족도를 남겨주세요! </h3>
+					<h3>AI챗봇 서비스 품질 향상을 위해 </h3>
+					<h3>고객님의 만족도를 간략히 남겨주세요! </h3>
 				</div>
 				<div className='feedbackSection'>
-					<form onSubmit={onSubmit}>
+					<form>
 						<textarea value={inputValue} onChange={onChange} />
 					</form>
 					<button onClick={onClick}>보내기</button>

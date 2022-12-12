@@ -93,7 +93,6 @@ const aiChatRoomStyle = styled.div`
 			color: black;
 			margin: 1%;
 			padding: 1%;
-			cursor: pointer;
 
 			display: flex;
 			justify-content: center;
@@ -104,6 +103,10 @@ const aiChatRoomStyle = styled.div`
 				font-weight: bold;
 				margin: 0%;
 				padding: 0%;
+			}
+			&:hover {
+				cursor: pointer;
+				color: red;
 			}
 		}
 
@@ -160,10 +163,11 @@ const aiChatRoomStyle = styled.div`
 			cursor: pointer;
 		}
 	}
-
+	/* ------------------------------------------------------ */
 	.horListBox {
-		/* width: 450px; */
-		float: left;
+		/* width: 2000px; */
+		/* float: left; */
+		display: flex;
 		/* padding: 20px; */
 		overflow: scroll;
 		color: #112031;
@@ -178,25 +182,40 @@ const aiChatRoomStyle = styled.div`
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
-		/* 스크롤 없애기-1 */
+		/* 스크롤 없애기 */
 		-ms-overflow-style: none;
 		scrollbar-width: none;
 		border-radius: 10px;
 	}
 
 	.horListBox::-webkit-scrollbar {
-		/* 스크롤 없애기-2 */
+		/* 스크롤 없애기 */
 		display: none;
 	}
 
 	.horList {
+		/* color: red; */
+		/* display: flex; */
+
 		border: solid 1px blue;
-		border-radius: 10px;
-		padding: 10px;
-		margin: 10px;
-		width: 300px;
-		height: 200px;
+		border-radius: 5px;
+		padding: 5px;
+		margin: 5px;
+		min-width: 150px;
+		height: 150px;
+		overflow: hidden;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&:hover {
+			background-color: aqua;
+			cursor: pointer;
+			color: blue;
+		}
 	}
+
+	/* ------------------------------------------------------ */
 `;
 
 export default aiChatRoomStyle;

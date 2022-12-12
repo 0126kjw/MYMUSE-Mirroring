@@ -40,11 +40,11 @@ const DataTable_Agency = ({
 				<div>{contactInfo}</div>
 			</div>
 			<div className='col-2'>
-				<div>newAddress</div>
+				<div>도로명 주소</div>
 				<div>{newAddress}</div>
 			</div>
 			<div className='col-2'>
-				<div>oldAddress</div>
+				<div>지번 주소</div>
 				<div>{oldAddress}</div>
 			</div>
 			<div className='col-2'>

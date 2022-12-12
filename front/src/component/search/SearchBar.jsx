@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react';
+// library
+import { useState, useEffect, useRef } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
-//components
+
+// components
 import DropDown from 'src/component/search/DropDown';
 import RecommendedList from 'src/component/search/RecommendedList';
+
+// id book
+import { IdBook } from 'src/data/idBook';
 
 //for API
 import API from 'src/utils/api';
 const { GetSearach } = API();
-// import axios from 'axios';
 
 // state
 import { useRecoilValue } from 'recoil';
@@ -15,12 +19,6 @@ import SearchCategoryState from 'src/state/searchCategory';
 
 //style
 import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
-
-/**
- * <기술 명세>
- * onchange => 실시간 추천검색어 반환
- * onclick, onsubmit => 검색 목록 반환
- */
 
 const SearchBar = ({
 	keyword,
@@ -33,11 +31,24 @@ const SearchBar = ({
 	isFetching,
 	setIsFetching,
 }) => {
-	// catSelector
-	const [catSelector, setCatSelector] = useState('closed');
+	// 드롭다운 모달처리
+	const dropDownRef = useRef();
 
-	// 실시간 검색결과
-	const [realTimelist, setRealTimeList] = useState([]);
+	const modalCloseHandler = ({ target }) => {
+		if (catSelector && !dropDownRef.current.contains(target)) {
+			setCatSelector('closed');
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('click', modalCloseHandler);
+		return () => {
+			window.removeEventListener('click', modalCloseHandler);
+		};
+	});
+
+	// 박물관/전시관 셀릭터 오픈
+	const [catSelector, setCatSelector] = useState('closed');
 
 	// 실시간 검색결과를 바탕으로 추천어 목록 생성
 	const [recList, setRecList] = useState([]);
@@ -50,73 +61,73 @@ const SearchBar = ({
 
 	// 실시간 검색
 	const realTimeSearch = async (keyword) => {
-		const data = await GetSearach(searchCategory, keyword);
-		setRealTimeList(() => [...data]);
-		showRecommendeds(keyword, data);
-	};
-
-	const showRecommendeds = (keyword, data) => {
-		// 추천 검색어 모달 띄우기
 		if (keyword !== '') {
+			// 추천검색어 생성
+			let tempArr = [];
+			IdBook.forEach((element) => {
+				const Name = element.name;
+				if (Name.includes(keyword)) {
+					tempArr.push(element);
+				}
+			});
+			setRecList([...tempArr]);
 			setModal('on');
 		} else {
 			setModal('off');
 		}
-		// setRecList
-		data.map((v) => {
-			setRecList((prev) => [...prev, v.title]);
-		});
 	};
 
 	const onChange = (e) => {
-		if (searchCategory == '선택해주세요') {
-			alert('카테고리를 선택해주세요');
-			return;
-		}
-		const keyword = e.target.value;
-		setKeyword(keyword);
-		if (keyword !== '') {
-			realTimeSearch(keyword);
+		const keywordValue = e.target.value;
+		setKeyword(keywordValue);
+		if (keywordValue !== '') {
+			realTimeSearch(keywordValue);
+		} else {
+			setModal('off');
 		}
 	};
 
 	const onClick = () => {
-		showSearchResultsToLists();
+		showSearchResultsToLists(keyword);
 		setIsFetching(true);
+		setModal('off');
 	};
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		showSearchResultsToLists();
+		showSearchResultsToLists(keyword);
 		setIsFetching(true);
+		setModal('off');
 	};
-	const showSearchResultsToLists = async () => {
-		// const [serchResNeeded, setSerchResNeeded] = useState(false);
+	// 검색결과 띄우기
+	const showSearchResultsToLists = async (keyword) => {
+		// 검색한 키워드 띄우기
+		setSearchRes(keyword);
 
 		// 검색결과 띄우기
 		setSerchResNeeded(true);
-		// 키워드 띄우기
-		setSearchRes(keyword);
-
-		// 목록 띄우기
 		setOutputNeeded(true);
 		const data = await GetSearach(searchCategory, keyword);
 		await setIsFetching(false);
-		console.log('data', data);
 		setList(() => [...data]);
 
-		// 검색창 비우기
+		// 검색창 비움
 		setKeyword('');
 	};
 
 	return (
 		<SearchBarLayout>
-			<DropDown
-				setList={setList}
-				setSerchResNeeded={setSerchResNeeded}
-				catSelector={catSelector}
-				setCatSelector={setCatSelector}
-			/>
+			<div ref={dropDownRef}>
+				<DropDown
+					setList={setList}
+					setSerchResNeeded={setSerchResNeeded}
+					catSelector={catSelector}
+					setCatSelector={setCatSelector}
+				/>
+			</div>
+
+			{/* <div ref={testRef}></div> */}
+
 			{catSelector == 'closed' && (
 				<AiFillCaretDown
 					style={{
@@ -139,7 +150,13 @@ const SearchBar = ({
 					onChange={onChange}
 					autoComplete='off'
 				/>
-				{modal == 'on' && <RecommendedList recList={recList} />}
+				{modal == 'on' && (
+					<RecommendedList
+						recList={recList}
+						showSearchResultsToLists={showSearchResultsToLists}
+						setModal={setModal}
+					/>
+				)}
 			</form>
 			<button onClick={onClick}>🔍</button>
 		</SearchBarLayout>

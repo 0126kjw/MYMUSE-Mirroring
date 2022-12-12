@@ -66,19 +66,3 @@ export const NavBarLayout = styled.div`
 		}
 	}
 `;
-//styling Link/next
-// export const LinkButton = styled(Link)`
-// 	display: inline-block;
-// 	list-style: none;
-
-// 	&:hover {
-// 		cursor: pointer;
-// 		background-color: ${cssUnit.backgroundColors.DeepBlack};
-// 		border: ${cssUnit.backgroundColors.Black};
-// 	}
-
-// 	background-color: ${(prop) => {
-// 		return prop.selected ? `${cssUnit.backgroundColors.DeepBlack}` : '';
-// 		// return prop.selected ? `${cssUnit.Colors.DeepBlack}` : '';
-// 	}};
-// `;

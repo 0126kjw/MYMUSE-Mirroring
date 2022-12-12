@@ -12,7 +12,6 @@ import styled from '@emotion/styled';
 // library
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { clearConfigCache } from 'prettier';
 
 const IndexStyle = styled.div`
 	.bkgroundColor {
@@ -43,7 +42,6 @@ const IndexStyle = styled.div`
 	}
 	.boxes {
 		width: 1200px;
-		/* width: 90%; */
 		margin: 0 auto;
 		padding-top: 20px;
 		padding-bottom: 30px;
@@ -53,7 +51,6 @@ const IndexStyle = styled.div`
 		border-left: solid 5px black;
 		@media screen and (max-width: 1200px) {
 			width: 80%;
-			/* padding: 32px; */
 		}
 	}
 	.subTitle {
@@ -78,7 +75,7 @@ const IndexStyle = styled.div`
 	.col-2 {
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: 15% 85%;
+		grid-template-columns: 30% 70%;
 		div {
 			background-color: lightgray;
 			border: solid 1px aliceblue;

@@ -1,33 +1,24 @@
 // style
 import AiChatRoomStyle from 'src/styles/compoStyles/aiChatRoomStyle';
-import styled from '@emotion/styled';
-import Image from 'next/legacy/image';
-import FeedBackModal from 'src/component/common/FeedBackModal';
+
+import FeedBackModal from 'src/component/common/ai/FeedBackModal';
 
 // library
-import { useState, useEffect } from 'react';
-import { AiFillStepForward } from 'react-icons/ai';
-
+import Image from 'next/legacy/image';
+import { useState, useEffect, createElement } from 'react';
+import { useRouter } from 'next/router';
 // image
-import logoImg from '../../../public/images/siteLogo.png';
+import logoImg from '../../../../public/images/siteLogo.png';
+
+// util
+import submitInput from 'src/component/common/ai/ai_util/submitInput';
 
 const AIChatRoom = ({ setBotMode, botMode }) => {
+	const router = useRouter();
 	const [inputValue, setInputValue] = useState('');
 	const [chatRoomWidth, setChatRoomWidth] = useState(450);
 	const [chatRoomHeight, setChatRoomHeight] = useState(450);
 	const [feedBackModal, setFeedBackModal] = useState('off');
-
-	let innerScreen = 0;
-	let outerScreen = 0;
-	const outerCheck = () => {
-		if (innerScreen + outerScreen == 1) setFeedBackModal('on');
-		innerScreen = 0;
-		outerScreen = 0;
-	};
-	const innerCheck = () => {
-		innerScreen = 0;
-		outerScreen = 0;
-	};
 
 	const onChangeHandler = (e) => {
 		setInputValue(e.target.value);
@@ -39,12 +30,12 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		document.querySelector('.logoTest').style.display = 'none';
 	};
 	const submitByClick = () => {
-		submitInput();
+		submitInput(inputValue, setInputValue, chatRoomWidth, chatRoomHeight, router);
 	};
 
 	const submitByEnter = (e) => {
 		e.preventDefault();
-		submitInput();
+		submitInput(inputValue, setInputValue, chatRoomWidth, chatRoomHeight, router);
 	};
 
 	useEffect(() => {
@@ -63,53 +54,6 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		}
 	}, [botMode]);
 
-	const submitInput = () => {
-		const AIsec2 = document.querySelector('.AIsec2');
-
-		// 유저 질문
-		const humanMsg = document.createElement('div');
-		humanMsg.classList.add('msgFromHuman');
-		humanMsg.innerText = inputValue;
-		AIsec2.appendChild(humanMsg);
-
-		const emptyBox = document.createElement('div');
-		emptyBox.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox);
-
-		// AI 답변
-		if (inputValue === '목록') {
-			//
-			const TempElement = document.createElement('div');
-			TempElement.classList.add('horListBox');
-			TempElement.style.width = `${chatRoomWidth - 100}px`;
-
-			for (let i = 0; i < 10; i++) {
-				const listElement = document.createElement('div');
-				listElement.innerHTML = 'listElement';
-				listElement.classList.add('horList');
-				TempElement.appendChild(listElement);
-			}
-			AIsec2.appendChild(TempElement);
-			const TempElement2 = document.createElement('div');
-			TempElement2.classList.add('msgFromAI');
-			TempElement2.innerText = `${10}개 검색됨. \n 조작 : 목록에서 shift + scroll`;
-			AIsec2.appendChild(TempElement2);
-			TempElement2.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-		} else {
-			const TempElement = document.createElement('div');
-			TempElement.classList.add('msgFromAI');
-			TempElement.innerText = 'AI의 뭔가 그럴싸한 답변';
-			AIsec2.appendChild(TempElement);
-			TempElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-		}
-		const emptyBox2 = document.createElement('div');
-		emptyBox2.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox2);
-
-		setInputValue('');
-		return false;
-	};
-
 	// chatRoom 창을 반영한 제어창 위치 조정
 	useEffect(() => {
 		// modalTopSection
@@ -121,7 +65,7 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		const formDiv = document.querySelector('.formDiv');
 		formDiv.style.width = `${chatRoomWidth}px`;
 
-		// horListBox
+		// horListBox;
 		if (document.querySelector('.horListBox') !== null) {
 			const selectedElements = document.querySelectorAll('.horListBox');
 			for (let i = 0; i < selectedElements.length; i++) {
@@ -153,8 +97,11 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 								MYMUSE에 오신 것을 환영합니다. 궁금한 부분은 저에게 질문해주세요!
 							</div>
 							<div className='emptyBox'></div>
-							{/* <div className='msgFromHuman'>국립중앙박물관이 어디에 있나요?</div>
-							<div className='emptyBox'></div> */}
+							<div className='msgFromAI'>
+								(팁) 화면 좌상단에서 채팅봇 크기 조정이 가능합니다
+							</div>
+
+							<div className='emptyBox'></div>
 						</div>
 					</div>
 				</div>
