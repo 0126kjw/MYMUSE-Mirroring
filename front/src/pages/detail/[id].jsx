@@ -68,7 +68,7 @@ export default function Detail({ item }) {
 
 export async function getServerSideProps(context) {
 	const id = context.params.id;
-	const apiUrl = `https://qrcavwxubm.us16.qoddiapp.com/museums/${id}`;
+	const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/museums/${id}`;
 	const res = await axios.get(apiUrl);
 	const data = res.data;
 

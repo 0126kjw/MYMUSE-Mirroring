@@ -18,8 +18,8 @@ const getMapData = async (
 		});
 	} else {
 		const foundGu = guId.find((v) => v.name === selectedMapState.name);
-		const mapDataUrl = `https://qrcavwxubm.us16.qoddiapp.com/map/${foundGu._id}`;
-		const pinDataUrl = `https://qrcavwxubm.us16.qoddiapp.com/map/${foundGu._id}/pins`;
+		const mapDataUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/map/${foundGu._id}`;
+		const pinDataUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/map/${foundGu._id}/pins`;
 		const fetchURL = (url) => axios.get(url);
 		const promiseArray = [mapDataUrl, pinDataUrl].map(fetchURL);
 
