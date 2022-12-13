@@ -3,8 +3,11 @@ import { css } from '@emotion/react';
 import cssUnit from 'src/lib/cssUnit';
 //components
 import { Header, Footer, AiBot, NavBarHBG } from './common/index';
-import Watched from './common/Watched';
+
 import { useState } from 'react';
+
+import Watched from './common/Watched';
+import WatchedOnButton from './common/WatchedOnButton';
 
 //styling
 const AppContainer = css`
@@ -29,8 +32,8 @@ const AppLayout = ({ children }) => {
 				<NavBarHBG />
 				<main>{children}</main>
 				<Footer />
-				{isWatchedOn && <Watched />}
-				{isWatchedOn && <TriangleButton />}
+				{isWatchedOn && <Watched setIsWatchedOn={setIsWatchedOn} />}
+				{!isWatchedOn && <WatchedOnButton setIsWatchedOn={setIsWatchedOn} />}
 				<AiBot />
 			</div>
 		</>
