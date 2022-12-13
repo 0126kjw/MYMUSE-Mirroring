@@ -25,11 +25,11 @@ const aiChatRoomStyle = styled.div`
 		width: 100%;
 		height: 100%;
 		overflow: auto;
-		-ms-overflow-style: none;
+		/* -ms-overflow-style: none; */
 	}
 
 	.AImodal-Inner::-webkit-scrollbar {
-		display: none;
+		/* display: none; */
 	}
 
 	// 로고
@@ -74,8 +74,8 @@ const aiChatRoomStyle = styled.div`
 		padding-left: 7px;
 		padding-right: 7px;
 
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none;
+		scrollbar-width: none;
 
 		.msgFromAI {
 			float: left;
@@ -185,10 +185,10 @@ const aiChatRoomStyle = styled.div`
 	/* ------------------------------------------------------ */
 	.horListBox {
 		/* max-width: 100%; */
+		width: 100%;
 		display: flex;
 		overflow: scroll;
-		color: ${cssUnit.backgroundColors.LightBlack};
-		background: #ffffff;
+		background-color: #d9d9d9;
 
 		/* 가로 스크롤 */
 		overflow: auto;
@@ -212,24 +212,35 @@ const aiChatRoomStyle = styled.div`
 	}
 
 	.horList {
-		border: solid 1px ${cssUnit.colors.DarkGold};
-		border-radius: 5px;
+		background: #ffffff;
+		/* border: solid 1px ${cssUnit.colors.DarkGold}; */
+		/* border-radius: 5px; */
 		padding: 5px;
-		margin: 5px;
+		/* margin: 5px; */
 		min-width: 200px;
 		height: 200px;
 		overflow: hidden;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		border-radius: 0px;
+	}
+	.innerHorList {
+		width: 170px;
+		height: 170px;
+		padding: 10px;
+		border: solid 3px ${cssUnit.colors.DarkGold};
+		background-color: ${cssUnit.backgroundColors.White};
+		border-radius: 5px;
+		overflow: hidden;
+
 		&:hover {
-			background-color: ${cssUnit.backgroundColors.Gray};
 			background-color: beige;
 			cursor: pointer;
 		}
 		img {
 			width: 150px;
-			height: 150px;
+			height: 100px;
 			object-fit: cover;
 		}
 	}
@@ -257,8 +268,6 @@ const aiChatRoomStyle = styled.div`
 			object-fit: cover;
 		}
 	}
-
-	/* ------------------------------------------------------ */
 `;
 
 export default aiChatRoomStyle;

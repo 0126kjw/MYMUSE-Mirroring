@@ -73,12 +73,14 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		formDiv.style.width = `${chatRoomWidth}px`;
 
 		// horListBox;
-		// if (document.querySelector('.horListBox') !== null) {
-		// 	const selectedElements = document.querySelectorAll('.horListBox');
-		// 	for (let i = 0; i < selectedElements.length; i++) {
-		// 		selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
-		// 	}
-		// }
+		if (document.querySelector('.horListBox') !== null) {
+			const selectedElements = document.querySelectorAll('.horListBox');
+			if (selectedElements.length >= 5) {
+				for (let i = 0; i < selectedElements.length; i++) {
+					selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
+				}
+			}
+		}
 	}, [chatRoomHeight, chatRoomWidth]);
 
 	return (

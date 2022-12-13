@@ -183,21 +183,25 @@ const submitInput = async (inputValue, setInputValue, router) => {
 		// 목록 표현
 		const TempElement = document.createElement('div');
 		TempElement.classList.add('horListBox');
-		TempElement.style.width = `${ans.length * 212 + 52}px`;
 
 		for (let i = 0; i < ans.length; i++) {
 			const listElement = document.createElement('div');
-			listElement.innerHTML = `
+			listElement.classList.add('horList');
+
+			const InnerlistElement = document.createElement('div');
+			InnerlistElement.classList.add('innerHorList');
+
+			InnerlistElement.innerHTML = `
                 <div className='imgBox'>
                     <img src=https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ans[i].id}_image01.jpg>
                     <p>${ans[i].name}</p>
                 </div>
             `;
-			listElement.addEventListener('click', function () {
-				// goToDetail(ans[i].name, router);
+			InnerlistElement.addEventListener('click', function () {
 				router.push(`/detail/${ans[i].id}`);
 			});
-			listElement.classList.add('horList');
+
+			listElement.appendChild(InnerlistElement);
 			TempElement.appendChild(listElement);
 		}
 		AIsec2.appendChild(TempElement);
@@ -222,22 +226,27 @@ const submitInput = async (inputValue, setInputValue, router) => {
 		// 목록 표현
 		const TempElement = document.createElement('div');
 		TempElement.classList.add('horListBox');
-		TempElement.style.width = `${ans.length * 212 + 52}px`;
 
 		for (let i = 0; i < ans.length; i++) {
 			const listElement = document.createElement('div');
 			listElement.classList.add('horList');
-			listElement.innerHTML = `
+
+			const InnerlistElement = document.createElement('div');
+			InnerlistElement.classList.add('innerHorList');
+
+			InnerlistElement.innerHTML = `
                 <div className='imgBox'>
                     <a target=_blank href=https://tickets.interpark.com/goods/${ans[i].href}> 
                             <img src=http://ticketimage.interpark.com/rz/image/play/goods/poster/22/${ans[i].href}_p_s.jpg>
                         <p>${ans[i].title}</p>
                     </a>
-                </div>`;
-			listElement.addEventListener('click', function () {
+                </div>
+                `;
+			InnerlistElement.addEventListener('click', function () {
 				goToDetail(ans[i].name, router);
 			});
 
+			listElement.appendChild(InnerlistElement);
 			TempElement.appendChild(listElement);
 		}
 		AIsec2.appendChild(TempElement);
