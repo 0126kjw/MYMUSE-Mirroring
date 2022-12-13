@@ -53,15 +53,13 @@ const Detail = ({ item }) => {
 			mapKind: 'outer',
 			name: '',
 		});
-		// 최근 페이지
-		renewWatched();
-		// ??
 		if (!item) {
 			router.push(`/404`);
 			return;
 		}
 	}, []);
 
+	// 최근 페이지
 	const renewWatched = () => {
 		if (localStorage.getItem('watched') == null) {
 			localStorage.setItem('watched', JSON.stringify([item.name]));
@@ -93,6 +91,7 @@ const Detail = ({ item }) => {
 			localStorage.setItem('watched', JSON.stringify(arr));
 		}
 	};
+	renewWatched();
 
 	return (
 		<DetailContainer>
