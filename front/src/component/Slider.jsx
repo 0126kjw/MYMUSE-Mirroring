@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 
 const SliderLayout = styled.div`
+	cursor: pointer;
 	.slider {
 		width: 100%;
 		height: 600px;
@@ -45,7 +46,7 @@ const SliderLayout = styled.div`
 		animation: slide-up 1s ease 0.5s;
 		animation-fill-mode: forwards;
 		visibility: hidden;
-		font-size: 15px;
+		font-size: 20px;
 		@media screen and (max-width: 900px) {
 			height: 80vh;
 		}
@@ -159,6 +160,11 @@ const Slider = () => {
 		router.push(`/detail/${ID}`);
 	};
 
+	const headingToDetail = () => {
+		const museName = sliderData[currentSlide].heading;
+		moveToDetail(museName);
+	};
+
 	return (
 		<SliderLayout>
 			<div className='slider'>
@@ -167,6 +173,7 @@ const Slider = () => {
 						<div
 							className={index === currentSlide ? 'slide current' : 'slide'}
 							key={index}
+							onClick={headingToDetail}
 						>
 							{index === currentSlide && (
 								<div className='currentSlide'>
@@ -178,14 +185,10 @@ const Slider = () => {
 									<div className='content'>
 										<h2>{slide.heading}</h2>
 										<p>{slide.desc}</p>
-										<hr />
-										<button
-											className='todetail'
-											onClick={() => moveToDetail(slide.heading)}
-											style={{ cursor: 'pointer' }}
-										>
+										{/* <hr />
+										<button className='todetail' style={{ cursor: 'pointer' }}>
 											상세보기
-										</button>
+										</button> */}
 									</div>
 								</div>
 							)}

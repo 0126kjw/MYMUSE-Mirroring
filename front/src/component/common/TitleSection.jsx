@@ -1,6 +1,6 @@
 //for get url
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 //styling
 import cssUnit from 'src/lib/cssUnit';
 import { Section } from 'src/styles/common';

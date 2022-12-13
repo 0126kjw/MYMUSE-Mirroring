@@ -15,9 +15,9 @@ export class ChatbotService {
     private readonly museumService: MuseumService,
   ) {}
 
-  async create(feedback: string): Promise<any> {
+  async create(feedback: string): Promise<void> {
     console.log(feedback);
-    return await this.chatbotModel.create({ feedback });
+    this.chatbotModel.create({ feedback });
   }
 
   async findAll(text: string): Promise<any> {
@@ -73,6 +73,7 @@ export class ChatbotService {
         displayName,
         queryText,
       );
+
       if (fields?.facilityName?.stringValue === '') {
         fulfillmentText = '데이터에 없는 정보 입니다.';
         intendedAnswer = { displayName, fulfillmentText };
@@ -84,7 +85,7 @@ export class ChatbotService {
 
       return intendedAnswer;
     } else {
-      return { errorMessage: 'No intent matched.' };
+      throw new Error('Chatbot intent error');
     }
   }
 
@@ -94,70 +95,55 @@ export class ChatbotService {
     queryText: string,
   ): Promise<any> {
     const facilityName = fields?.facilityName?.stringValue;
-    console.log(facilityName);
+    const area = fields?.location?.structValue?.fields;
     const category = fields?.facilityCategory?.stringValue;
     let address = null;
-    if (fields?.location?.structValue?.fields?.['subadmin-area']) {
-      address =
-        fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
-    } else if (fields?.location?.structValue?.fields?.['street-address']) {
-      address =
-        fields?.location?.structValue?.fields?.['street-address']?.stringValue;
+
+    if (area?.['subadmin-area']) {
+      address = area?.['subadmin-area']?.stringValue;
+    } else if (area?.['street-address']) {
+      address = area?.['street-address']?.stringValue;
     }
 
     switch (displayName) {
       case 'facilityContact':
-        const contactInfo = await this.museumService.findOne(
-          facilityName,
-          'name contactInfo',
-        );
-
-        return contactInfo;
+        return this.museumService.findOne(facilityName, 'name contactInfo');
 
       case 'facilityAddress':
-        const addressInfo = await this.museumService.findOne(
+        return this.museumService.findOne(
           facilityName,
           'name newAddress oldAddress',
         );
 
-        return addressInfo;
-
       case 'facilityOpeningHours':
-        const openingHours = await this.museumService.findOne(
+        return this.museumService.findOne(
           facilityName,
           'name mon tue wed thu fri sat sun offday',
         );
 
-        return openingHours;
-
       case 'facilityTicket':
-        return await this.museumService.findOne(
+        return this.museumService.findOne(
           facilityName,
-          'name isFree adultFee youthFee childFee',
+          'name isFree adultFee youthFee childFee feeUrl',
         );
 
       case 'facilityOthers':
-        return await this.museumService.findOne(facilityName, 'name website');
+        return this.museumService.findOne(facilityName, 'name website');
 
       case 'facilityAreaSearch':
-        return await this.museumService.findRightItems(
+        return this.museumService.findRightItems(
           address,
           category,
-          'name website',
+          'id name website',
         );
 
       case 'exhibitionDateSearch':
-        const endDate = await this.SearchSpecificDate(fields, queryText);
-        const dateSearch = await this.exhibitionService.findRightItems(
-          endDate,
-          'title period href',
-        );
-
-        return dateSearch;
+        const endDate = await this.searchSpecificDate(fields, queryText);
+        return this.exhibitionService.findRightItems(endDate, 'title href');
     }
   }
 
-  async SearchSpecificDate(fields: any, queryText: string): Promise<any> {
+  async searchSpecificDate(fields: any, queryText: string): Promise<any> {
     const dateTime = fields['date-time'];
 
     if (dateTime?.structValue?.fields) {
@@ -168,19 +154,14 @@ export class ChatbotService {
         endDate = queryText.slice(0, 10).split('-');
         endDate[2] -= 2;
         endDate = endDate.join('-');
-        endDate = new Date(`${endDate}T23:59:59+00:00`);
+        return new Date(`${endDate}T23:59:59+00:00`);
       } else {
-        endDate = new Date(period?.endDate?.stringValue);
+        return new Date(period?.endDate?.stringValue);
       }
-      const date = new Date('2001-11-23');
-
-      return endDate;
     } else {
       const period = dateTime.stringValue;
       const date = period.slice(0, 10);
-      const endDate = new Date(`${date}T23:59:59+00:00`);
-
-      return endDate;
+      return new Date(`${date}T23:59:59+00:00`);
     }
   }
 }

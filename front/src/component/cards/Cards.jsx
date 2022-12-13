@@ -1,14 +1,14 @@
-import { useState } from 'react';
 //import Image from 'next/legacy/image';
 import Image from 'next/image';
+import { useCallback } from 'react';
 import { CardArticle, TextSection, Label } from 'src/styles/compoStyles/cardStyle';
 
 const Card = ({ x }) => {
 	// DATE formatting
-	const formatDate = (period) => {
+	const formatDate = useCallback((period) => {
 		const dt = new Date(period);
 		return `${dt.getFullYear()}/${dt.getMonth() + 1}/${dt.getDate()}`;
-	};
+	}, []);
 
 	return (
 		<>

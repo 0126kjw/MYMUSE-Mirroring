@@ -1,7 +1,10 @@
 import styled from '@emotion/styled';
 import OuterModal from 'src/styles/compoStyles/OuterModalStyle';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
+
+//api from src/util/api.js
+import { PostFeedback } from 'src/utils/api';
 
 const FeedBackModalLayout = styled.div`
 	position: fixed;
@@ -58,10 +61,6 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 		outerClick = 0;
 	};
 
-	// const onSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	feedbackSubmit();
-	// };
 	const onClick = () => {
 		feedbackSubmit();
 	};
@@ -71,8 +70,9 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 	const feedbackSubmit = async () => {
 		const obj = { feedback: inputValue };
 		try {
-			const res = await axios.post('http://localhost:3001/chatbots/feedback', obj);
-			console.log('res', res);
+			// const res = await axios.post('http://localhost:3001/chatbots/feedback', obj);
+			const res = await PostFeedback(obj);
+			//console.log('res', res);
 			alert('감사합니다');
 		} catch {
 			console.log('피드백 전달 실패');

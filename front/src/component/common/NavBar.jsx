@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { currentLoc } from 'src/state/navibar';
-import { NaviContainer, NavBarLayout } from 'src/styles/compoStyles/navBarStyle';
+import { NaviContainer, NavBarLayout, MenuLinkText } from 'src/styles/compoStyles/navBarStyle';
 import Link from 'next/link';
 
 const NavBar = () => {
@@ -22,7 +22,19 @@ const NavBar = () => {
 							className={loc === item.route ? 'selectedColor' : 'defaultColor'}
 						>
 							<Link href={item.route} style={{ textDecoration: 'none' }}>
-								<div className='white'>{item.korName}</div>
+								<div
+									className={
+										loc === item.route ? 'selectedColor' : 'defaultColor'
+									}
+								>
+									<li
+										className={
+											loc === item.route ? 'selectedColor' : 'defaultColor'
+										}
+									>
+										{item.korName}
+									</li>
+								</div>
 							</Link>
 						</div>
 					))}
@@ -33,3 +45,7 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+{
+	/* <div className='white'>{item.korName}</div> */
+}

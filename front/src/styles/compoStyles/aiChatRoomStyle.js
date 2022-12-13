@@ -13,7 +13,7 @@ const aiChatRoomStyle = styled.div`
 		right: 30px;
 		bottom: 100px;
 
-		height: 450px;
+		height: 550px;
 		width: 450px;
 
 		margin: 0 auto;
@@ -36,18 +36,29 @@ const aiChatRoomStyle = styled.div`
 	.modalTopSection {
 		width: 450px;
 		position: fixed;
-		bottom: 550px;
+		/* bottom: 550px; */
+		bottom: 600px;
 		right: 30px;
 		display: flex;
-		justify-content: center;
+		/* justify-content: center; */
+		justify-content: space-between;
 		align-items: center;
 		background-color: #222222;
 		color: white;
 		height: 50px;
 
-		button {
-			position: absolute;
-			right: 10px;
+		.Lbtn {
+			/* position: absolute; */
+			/* right: 420px; */
+			background-color: #222222;
+			border: solid 1px #222222;
+			color: #997a4c;
+			cursor: pointer;
+		}
+
+		.Rbtn {
+			/* position: absolute; */
+			/* right: 10px; */
 			background-color: #222222;
 			border: solid 1px #222222;
 			color: #997a4c;
@@ -56,7 +67,8 @@ const aiChatRoomStyle = styled.div`
 	}
 
 	.AIsec2 {
-		min-height: 400px;
+		/* min-height: 400px; */
+		min-height: 450px;
 		overflow: scroll;
 
 		padding-left: 7px;
@@ -73,6 +85,11 @@ const aiChatRoomStyle = styled.div`
 			text-align: left;
 			min-height: 20px;
 			border-radius: 10px;
+			font-size: 18px;
+			line-height: 30px;
+			p {
+				line-height: 20px;
+			}
 		}
 		.msgFromHuman {
 			float: right;
@@ -88,7 +105,7 @@ const aiChatRoomStyle = styled.div`
 		}
 
 		.feedBack {
-			background-color: bisque;
+			background-color: blanchedalmond;
 
 			color: black;
 			margin: 1%;
@@ -97,7 +114,7 @@ const aiChatRoomStyle = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			border: solid 1px pink;
+			border: solid 1px bisque;
 
 			p {
 				font-weight: bold;
@@ -105,8 +122,10 @@ const aiChatRoomStyle = styled.div`
 				padding: 0%;
 			}
 			&:hover {
+				background-color: bisque;
 				cursor: pointer;
-				color: red;
+				/* color: red; */
+				border: solid 1px burlywood;
 			}
 		}
 
@@ -165,19 +184,14 @@ const aiChatRoomStyle = styled.div`
 	}
 	/* ------------------------------------------------------ */
 	.horListBox {
-		/* width: 2000px; */
-		/* float: left; */
+		/* max-width: 100%; */
 		display: flex;
-		/* padding: 20px; */
 		overflow: scroll;
-		color: #112031;
+		color: ${cssUnit.backgroundColors.LightBlack};
 		background: #ffffff;
-		/* border: 1px solid #000; */
 
 		/* 가로 스크롤 */
 		overflow: auto;
-		/* white-space: nowrap; */
-
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
@@ -186,6 +200,10 @@ const aiChatRoomStyle = styled.div`
 		-ms-overflow-style: none;
 		scrollbar-width: none;
 		border-radius: 10px;
+		a {
+			text-decoration: none;
+			color: black;
+		}
 	}
 
 	.horListBox::-webkit-scrollbar {
@@ -194,24 +212,49 @@ const aiChatRoomStyle = styled.div`
 	}
 
 	.horList {
-		/* color: red; */
-		/* display: flex; */
-
-		border: solid 1px blue;
+		border: solid 1px ${cssUnit.colors.DarkGold};
 		border-radius: 5px;
 		padding: 5px;
 		margin: 5px;
-		min-width: 150px;
-		height: 150px;
+		min-width: 200px;
+		height: 200px;
 		overflow: hidden;
-
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		&:hover {
-			background-color: aqua;
+			background-color: ${cssUnit.backgroundColors.Gray};
+			background-color: beige;
 			cursor: pointer;
-			color: blue;
+		}
+		img {
+			width: 150px;
+			height: 150px;
+			object-fit: cover;
+		}
+	}
+
+	.singleOne {
+		border: solid 1px ${cssUnit.colors.DarkGold};
+		border-radius: 5px;
+		padding: 5px;
+		margin: 5px;
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: #ffffff;
+		&:hover {
+			background-color: ${cssUnit.backgroundColors.Gray};
+			background-color: beige;
+			cursor: pointer;
+		}
+		img {
+			width: 150px;
+			height: 150px;
+			object-fit: cover;
 		}
 	}
 

@@ -10,8 +10,7 @@ import RecommendedList from 'src/component/search/RecommendedList';
 import { IdBook } from 'src/data/idBook';
 
 //for API
-import API from 'src/utils/api';
-const { GetSearach } = API();
+import { GetSearach } from 'src/utils/api';
 
 // state
 import { useRecoilValue } from 'recoil';

@@ -21,17 +21,12 @@ import TitleSection from 'src/component/common/TitleSection';
 import { SearchSection } from 'src/styles/pageStyles/searchStyle';
 
 // API
-import API from 'src/utils/api';
-const { GetSearach } = API();
+import { GetSearach } from 'src/utils/api';
 
 // Seo
-import SeoData from 'src/lib/seoData';
-import Seo from 'src/component/Seo';
+import withGetServerSideProps from 'src/hocs/withServersideProps';
 
 const Search = () => {
-	//seo Data
-	const PageData = SeoData.Search;
-
 	// 지도 outer 상태로 지정
 	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 	useEffect(() => {
@@ -56,7 +51,6 @@ const Search = () => {
 
 	return (
 		<>
-			<Seo title={PageData.title} description={PageData.description} ogUrl={PageData.ogUrl} />
 			<PageLayout>
 				<TitleSection color={cssUnit.backgroundColors.Black} size={50}>
 					<Wrap>
@@ -104,3 +98,9 @@ const Search = () => {
 };
 
 export default Search;
+
+export const getServerSideProps = withGetServerSideProps(async (context) => {
+	return {
+		props: {},
+	};
+});

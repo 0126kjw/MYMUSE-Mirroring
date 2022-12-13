@@ -1,5 +1,3 @@
-//for link
-import Link from 'next/link';
 //for style
 import styled from '@emotion/styled';
 import cssUnit from 'src/lib/cssUnit';
@@ -46,16 +44,68 @@ export const NavBarLayout = styled.div`
 		padding: 0px;
 		line-height: 50px;
 
+		list-style: none;
+
 		div {
 			text-decoration: none;
 			width: 300px;
 		}
 
-		.brown {
+		/* .brown {
 			color: yellow;
 		}
 		.white {
 			color: white;
+		} */
+
+		.selectedColor {
+			font-weight: 600;
+
+			color: ${cssUnit.colors.DarkGold};
+			background-color: ${cssUnit.backgroundColors.DeepBlack};
+
+			li {
+				position: relative;
+
+				:after {
+					content: '';
+					display: block;
+					position: absolute;
+
+					width: 50%;
+					height: 0.5px;
+
+					top: 80%;
+					left: 25%;
+
+					border-bottom: 1px solid ${cssUnit.colors.DarkGold};
+
+					transition: all 0.3s ease-in;
+				}
+			}
+		}
+
+		.defaultColor {
+			color: ${cssUnit.colors.White};
+			background-color: ${cssUnit.backgroundColors.Black};
+
+			li {
+				:after {
+					content: '';
+					display: block;
+					position: absolute;
+
+					left: 50%;
+
+					width: 0%;
+					height: 0.7px;
+
+					//margin-top: 3px;
+					//border-bottom: 2px solid ${cssUnit.colors.DarkGold};
+
+					transition: all 0.3s ease;
+				}
+			}
 		}
 
 		@media (max-width: 1500px) {
@@ -64,5 +114,21 @@ export const NavBarLayout = styled.div`
 				width: 100%;
 			}
 		}
+	}
+`;
+
+export const MenuLinkText = styled.div`
+	text-decoration: none;
+	color: ${cssUnit.colors.DarkGold};
+	.selectedColor {
+		font-weight: 600;
+		color: ${cssUnit.colors.White};
+		color: ${cssUnit.colors.DarkGold};
+		background-color: ${cssUnit.backgroundColors.DeepBlack};
+	}
+
+	.defaultColor {
+		color: ${cssUnit.colors.White};
+		background-color: ${cssUnit.backgroundColors.Black};
 	}
 `;
