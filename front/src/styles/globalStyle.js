@@ -1,6 +1,12 @@
 import { css, Global } from '@emotion/react';
 import cssUnit from 'src/lib/cssUnit';
 
+/**FONT */
+// font-family: 'Gothic A1', sans-serif; (AI봇, 타이틀 일부)
+// font-family: 'Hahmlet', serif;
+// font-family: 'Nanum Myeongjo', serif;
+// font-family: 'Noto Serif KR', serif; (기본) (light 300, semibold 600)
+
 export const GlobalStyles = (
 	<Global
 		styles={css`

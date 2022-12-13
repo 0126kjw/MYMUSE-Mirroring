@@ -14,7 +14,6 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 //import axios from 'axios';
 //import { Get } from 'src/utils/api';
-
 //for seo
 import withGetServerSideProps from 'src/hocs/withServersideProps';
 // wrap all
@@ -36,6 +35,26 @@ const DetailContainer = styled.div`
 
 		width: 100%;
 		font-size: ${cssUnit.fontSize.medium};
+
+		list-style: none;
+
+		li {
+			//position: relative;
+
+			:after {
+				content: '';
+				display: block;
+				position: absolute;
+
+				width: 20vw;
+				height: 0.5px;
+
+				top: 70%;
+				left: 40%;
+
+				border-bottom: 5px solid ${cssUnit.colors.DarkGold};
+			}
+		}
 	}
 	.detailBackground {
 		background-color: ${cssUnit.backgroundColors.White};
@@ -105,7 +124,9 @@ const Detail = ({ item }) => {
 
 	return (
 		<DetailContainer>
-			<div className='detailTitle'> 박물관 상세설명 </div>
+			<div className='detailTitle'>
+				<li>{item.name}</li>
+			</div>
 			<div className='detailBackground'>
 				<Wrap>
 					<UnderDevSection>

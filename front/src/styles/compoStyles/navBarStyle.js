@@ -86,6 +86,7 @@ export const NavBarLayout = styled.div`
 		}
 
 		.defaultColor {
+			font-weight: 300;
 			color: ${cssUnit.colors.White};
 			background-color: ${cssUnit.backgroundColors.Black};
 

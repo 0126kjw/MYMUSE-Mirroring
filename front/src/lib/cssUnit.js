@@ -1,4 +1,10 @@
 const cssUnit = {
+	fontFamily: {
+		NotoKR: `'Noto Serif KR', serif`,
+		NanumM: `'Nanum Myeongjo',serif`,
+		Hahmlet: `'Hahmlet',serif`,
+		GothicAi: `'Gothic A1', sans-serif`,
+	},
 	fontSize: {
 		title: '40px',
 		large: '32px',
@@ -19,6 +25,8 @@ const cssUnit = {
 
 		DarkGray: '#676767',
 		Gray: '#CCCCCC',
+		LightGray: '#D9D9D9',
+		RealLightGray: '#E6E6E6',
 
 		White: '#FAFAFA',
 

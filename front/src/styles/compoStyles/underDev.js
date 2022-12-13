@@ -8,5 +8,5 @@ export const UnderDevSection = styled.section`
 	min-height: 600px;
 	height: 100%;
 
-	background-color: ${cssUnit.backgroundColors.Gray};
+	background-color: ${cssUnit.backgroundColors.White};
 `;

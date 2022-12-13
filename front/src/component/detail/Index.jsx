@@ -8,6 +8,7 @@ import KakaoMap from './KakaoMap';
 
 // style
 import styled from '@emotion/styled';
+import cssUnit from 'src/lib/cssUnit';
 
 // library
 import { useEffect } from 'react';
@@ -15,19 +16,33 @@ import { useRouter } from 'next/router';
 
 const IndexStyle = styled.div`
 	.bkgroundColor {
-		background-color: aliceblue;
+		background-color: ${cssUnit.backgroundColors.White};
 		font-size: 20px;
 	}
 	.museData {
 		margin: 0 auto;
 		width: 1200px;
+		animation-duration: 0.75s;
+		animation-delay: 0.5s;
+		animation-name: animate-fade;
+		animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+		animation-fill-mode: backwards;
+
+		@keyframes animate-fade {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
 		@media screen and (max-width: 1200px) {
 			width: 100%;
 			height: 100%;
 		}
 	}
 	.boxContainer {
-		width: 1190px;
+		width: 1200px;
 		margin: 0 auto;
 		padding: 0.3%;
 		padding-top: 3%;
@@ -39,30 +54,111 @@ const IndexStyle = styled.div`
 			margin-top: 30px;
 			margin-bottom: 30px;
 		}
+
+		animation-duration: 0.75s;
+		animation-delay: 0.5s;
+		animation-name: animate-fade;
+		animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
+		animation-fill-mode: backwards;
+
+		@keyframes animate-fade {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+		:nth-last-of-type(5) {
+			/* animation-name: animate-fade;
+			animation-delay: 0.5s;
+			animation-duration: 0.75s;
+			animation-timing-function: ease-in-out;
+			//animation-fill-mode: forwards;
+			animation-fill-mode: none; */
+		}
+
+		:nth-last-of-type(4) {
+		}
+
+		:nth-last-of-type(3) {
+		}
+
+		:nth-last-of-type(2) {
+		}
+
+		/* :nth-last-of-type(1) {
+			animation-delay: 1.48s;
+		} */
 	}
 	.boxes {
 		width: 1200px;
 		margin: 0 auto;
 		padding-top: 20px;
 		padding-bottom: 30px;
-		border-bottom: solid 3px black;
+		/* border-bottom: solid 3px black;
 		border-top: solid 3px black;
 		border-right: solid 5px black;
-		border-left: solid 5px black;
+		border-left: solid 5px black; */
+
+		/* button {
+			width: 150px;
+			height: 50px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			border: 0;
+			border-radius: 0.5em;
+
+			background-color: ${cssUnit.colors.DarkGold};
+
+			word-break: keep-all;
+
+			a {
+				//padding: 10px;
+				font-weight: 600;
+				font-family: ${cssUnit.fontFamily.NanumM};
+				color: ${cssUnit.colors.White};
+				text-decoration-line: none;
+			}
+
+			cursor: pointer;
+		} */
+
 		@media screen and (max-width: 1200px) {
 			width: 80%;
 		}
 	}
 	.subTitle {
-		color: brown;
+		margin: 10px 0 30px 0;
+
+		color: ${cssUnit.colors.DarkGold};
+		font-family: ${cssUnit.fontFamily.GothicAi};
+		font-size: ${cssUnit.fontSize.medium};
+		font-weight: 600;
+
+		list-style: none;
+		position: relative;
 	}
 	.col-1 {
 		margin: 0 auto;
-		background-color: lightgray;
-		border: solid 1px aliceblue;
-		padding: 50px;
 		margin-bottom: 10px;
-		color: black;
+
+		padding: 50px;
+
+		//border: solid 1px aliceblue;
+		background-color: ${cssUnit.colors.LightGray};
+
+		//border: dotted 2px gray;
+		border-bottom: dotted 1px gray;
+		border-top: dotted 2px gray;
+
+		font-family: ${cssUnit.fontFamily.NanumM};
+		font-weight: 600;
+		line-height: 150%;
+		text-align: justify;
+		color: ${cssUnit.colors.DeepBlack};
+
 		@media screen and (max-width: 1200px) {
 			width: 80%;
 			padding: 30px;
@@ -76,11 +172,74 @@ const IndexStyle = styled.div`
 		margin: 0 auto;
 		display: grid;
 		grid-template-columns: 30% 70%;
+
 		div {
-			background-color: lightgray;
+			padding: 10px 0 10px 0;
+			background-color: ${cssUnit.colors.RealLightGray};
 			border: solid 1px aliceblue;
-			color: black;
+			color: ${cssUnit.colors.DeepBlack};
 			overflow: hidden;
+			font-weight: 300;
+		}
+		a {
+			//padding: 10px;
+			font-weight: 500;
+			font-family: ${cssUnit.fontFamily.NanumM};
+			color: ${cssUnit.colors.DarkGold};
+			text-decoration-line: none;
+			//cursor: pointer;
+		}
+
+		.rcol {
+			background-color: ${cssUnit.colors.DarkGold};
+			font-weight: 500;
+			color: ${cssUnit.colors.White};
+			font-family: ${cssUnit.fontFamily.Hahmlet};
+		}
+
+		.rcol-fee {
+			background-color: ${cssUnit.colors.Gray};
+			font-weight: 500;
+			color: ${cssUnit.colors.LightBlack};
+			font-family: ${cssUnit.fontFamily.Hahmlet};
+		}
+		@media screen and (max-width: 1200px) {
+			width: 90%;
+		}
+	}
+
+	.close {
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 30% 70%;
+		div {
+			padding: 10px 0 10px 0;
+			background-color: ${cssUnit.colors.DarkGray};
+			//border: solid 1px aliceblue;
+			color: ${cssUnit.colors.White};
+			overflow: hidden;
+			font-weight: 500;
+		}
+		@media screen and (max-width: 1200px) {
+			width: 90%;
+		}
+	}
+	.open {
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 30% 70%;
+		div {
+			padding: 10px 0 10px 0;
+			background-color: ${cssUnit.colors.RealLightGray};
+			border: solid 1px aliceblue;
+			color: ${cssUnit.colors.DeepBlack};
+			overflow: hidden;
+			font-weight: 500;
+		}
+		.rcol {
+			background-color: ${cssUnit.colors.LightGray};
+			font-weight: 500;
+			color: ${cssUnit.colors.LightBlack};
 		}
 		@media screen and (max-width: 1200px) {
 			width: 90%;
