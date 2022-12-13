@@ -91,6 +91,7 @@ export const SearchBarLayout = styled.div`
 		width: 100%;
 		padding: 2px;
 		margin: 0px;
+		cursor: pointer;
 
 		border-radius: 10px;
 		background-color: #f6f6f6;
@@ -101,14 +102,15 @@ export const SearchBarLayout = styled.div`
 			border-radius: 15px;
 			border: solid rgba(255, 255, 255, 0);
 			background-color: transparent;
+			cursor: pointer;
 		}
 
-		span {
+		/* span {
 			cursor: pointer;
 			&:hover {
 				cursor: pointer;
 			}
-		}
+		} */
 	}
 `;
 export const AiExContainer = styled.div`

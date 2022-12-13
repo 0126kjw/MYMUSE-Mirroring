@@ -19,20 +19,14 @@ const InfoModalLayout = styled.div`
 	padding: 10px;
 
 	.titleSection {
+		margin-top: 15px;
 		width: 100%;
 		height: 30px;
 		text-align: center;
-		h3 {
-			margin-top: 10px;
-			margin-bottom: 30px;
-		}
-		hr {
-			margin-top: 15px;
-			margin-bottom: 30px;
-		}
 	}
 
 	.chatExample {
+		font-size: 17px;
 		padding-top: 35px;
 		line-height: 15px;
 		padding-left: 20px;
@@ -46,12 +40,12 @@ const InfoModalLayout = styled.div`
 		}
 	}
 `;
-// setBotInfoModal
-const InfoModal = ({ setBotInfoModal }) => {
+// setIsInfoModalOn
+const InfoModal = ({ setIsInfoModalOn }) => {
 	useEffect(() => {
 		document.addEventListener('keydown', (event) => {
 			if (event.key == 'Escape') {
-				setBotInfoModal('off');
+				setIsInfoModalOn(false);
 			}
 		});
 	}, []);
@@ -59,7 +53,7 @@ const InfoModal = ({ setBotInfoModal }) => {
 	let innerClick = 0;
 	let outerClick = 0;
 	const outerCheck = () => {
-		if (innerClick + outerClick == 1) setBotInfoModal('off');
+		if (innerClick + outerClick == 1) setIsInfoModalOn(false);
 		innerClick = 0;
 		outerClick = 0;
 	};
@@ -78,7 +72,7 @@ const InfoModal = ({ setBotInfoModal }) => {
 				}}
 			>
 				<div className='titleSection'>
-					<h3>다음과 같은 질문 답변이 가능합니다</h3>
+					<h3>AI 봇은 다음과 같은 질문 답변이 가능합니다!</h3>
 					<hr></hr>
 				</div>
 				<div className='chatExample'>
