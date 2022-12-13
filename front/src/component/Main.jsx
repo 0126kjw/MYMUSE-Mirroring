@@ -22,9 +22,12 @@ import logo from '../../public/images/siteLogo.png';
 // component
 import Slider from './Slider';
 import SeoulZidoMain from './zido/SeoulZidoMain';
-
 import TitleSection from './common/TitleSection';
+
+import { useRouter } from 'next/router';
+
 const Main = () => {
+	const router = useRouter();
 	return (
 		<>
 			<MainContainer>
@@ -81,7 +84,11 @@ const Main = () => {
 						<AiContainer>
 							<SerachBarContainer>
 								<SearchBarLayout>
-									<div>
+									<div
+										onClick={() => {
+											router.push(`/search`);
+										}}
+									>
 										<input value='국립중앙박물관' disabled />
 										<span>🔍︎</span>
 									</div>
@@ -89,13 +96,9 @@ const Main = () => {
 							</SerachBarContainer>
 							<AiExContainer>
 								<AiChatRoomBox>
-									<HumanBubble>
-										12월 국립중앙박물관에서는 어떤 전시가 열려?
-									</HumanBubble>
+									<HumanBubble>12월에는 어떤 전시회들이 열려?</HumanBubble>
 									<AiBubble>
 										<p align='left'>
-											<br />
-											22년 12월 국립중앙박물관의 전시 일정을 찾으셨나요?
 											<br />
 											합스부르크 600년, 매혹의 걸작들
 											<br />
@@ -103,7 +106,7 @@ const Main = () => {
 											<br />
 											대한제국 첫 궁중 연회
 											<br />
-											......
+											나탈리 카르푸센코 사진전 ......
 											<br />
 										</p>
 									</AiBubble>
