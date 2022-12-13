@@ -35,6 +35,10 @@ const WatchedStyle = styled.div`
 	.watchedTitle {
 		text-align: center;
 		font-weight: bold;
+		span {
+			color: brown;
+			cursor: pointer;
+		}
 	}
 `;
 
@@ -75,7 +79,16 @@ const Watched = ({ setIsWatchedOn }) => {
 	return (
 		<>
 			<WatchedStyle className='watched_box'>
-				<div className='watchedTitle'>최근 본 페이지</div>
+				<div className='watchedTitle'>
+					최근 본 페이지{' '}
+					<span
+						onClick={() => {
+							setIsWatchedOn(false);
+						}}
+					>
+						&nbsp;✖
+					</span>
+				</div>
 				{detail_list !== null
 					? detail_list.map((a, i) => {
 							return (
@@ -92,7 +105,7 @@ const Watched = ({ setIsWatchedOn }) => {
 					  })
 					: null}
 			</WatchedStyle>
-			<RightArrow>
+			{/* <RightArrow>
 				<Image
 					src={rightArrow}
 					onClick={() => {
@@ -102,7 +115,7 @@ const Watched = ({ setIsWatchedOn }) => {
 					width='25'
 					height='25'
 				/>
-			</RightArrow>
+			</RightArrow> */}
 		</>
 	);
 };
