@@ -2,7 +2,7 @@ import Head from 'next/head';
 import withServersideProps from 'src/hocs/withServersideProps';
 
 const ogImageSrc =
-	'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/07da70fe-2c9b-4f57-931c-5fde28a98939/Frame_11_%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221130%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221130T175257Z&X-Amz-Expires=86400&X-Amz-Signature=d7eadc4094f7415aa9fda411fbd95bf7d7859cbffcbe730f4e9094917bb424a1&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Frame%252011%2520%281%29.png%22&x-id=GetObject';
+	'https://res.cloudinary.com/dtq075vja/image/upload/v1669879703/9gle/ogImage_uki29n.png';
 
 const Seo = ({ pagePath, pageTitle, pageDesc }) => {
 	const appName = `MYMUSE ${pageTitle}`;

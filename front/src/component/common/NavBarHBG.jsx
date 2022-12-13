@@ -1,5 +1,11 @@
+//hamburger menu for mobile
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import cssUnit from 'src/lib/cssUnit';
+
+//recoil
+import { currentLoc } from 'src/state/navibar';
+import { useRecoilValue } from 'recoil';
 
 const MenuTogglerLayout = styled.div`
 	position: absolute;
@@ -20,19 +26,28 @@ const MenuTogglerLayout = styled.div`
 
 	#menuToggle a {
 		text-decoration: none;
-		color: #232323;
+		color: ${cssUnit.colors.DeepBlack};
 
 		transition: color 0.3s ease;
+
+		//selected loc
+		.selectedColor {
+			color: ${cssUnit.colors.DarkGold};
+		}
+
+		.defaultColor {
+			color: ${cssUnit.colors.DeepBlack};
+		}
 	}
 
 	#menuToggle a:hover {
-		color: tomato;
+		color: ${cssUnit.colors.DarkGold};
 	}
 
 	#menuToggle input {
 		display: block;
-		width: 40px;
-		height: 32px;
+		width: 35px;
+		height: 35px;
 		position: absolute;
 		top: -7px;
 		left: -5px;
@@ -49,44 +64,44 @@ const MenuTogglerLayout = styled.div`
 	// hamburger
 	#menuToggle span {
 		display: block;
-		width: 33px;
+		width: 29px;
 		height: 4px;
-		margin-bottom: 5px;
+		margin-bottom: 4.5px;
 		position: relative;
 
-		background: #cdcdcd;
+		background: ${cssUnit.colors.White};
 		border-radius: 3px;
 
 		z-index: 1;
-		transform-origin: 4px 0px;
+		transform-origin: 4.5px 0px;
 		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
 			background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 	}
 
-	#menuToggle span:first-of-type {
+	#menuToggle span:nth-last-of-type(4) {
 		transform-origin: 0% 0%;
 	}
 
-	#menuToggle span:nth-last-child(2) {
+	#menuToggle span:nth-last-of-type(3) {
 		transform-origin: 0% 100%;
 	}
 
 	// Transform all the slices of hamburger into a crossmark.
 	#menuToggle input:checked ~ span {
 		opacity: 1;
-		transform: rotate(45deg) translate(-2px, -1px);
-		background: #232323;
+		transform: rotate(45deg) translate(-1.5px, -1.5px);
+		background: ${cssUnit.colors.DeepBlack};
 	}
 
 	// hide the middle one
-	#menuToggle input:checked ~ span:nth-last-child(3) {
+	#menuToggle input:checked ~ span:nth-last-of-type(2) {
 		opacity: 0;
 		transform: rotate(0deg) scale(0.2, 0.2);
 	}
 
 	// last one should go the other direction
-	#menuToggle input:checked ~ span:nth-last-child(2) {
-		transform: rotate(-45deg) translate(0, -1px);
+	#menuToggle input:checked ~ span:nth-last-of-type(1) {
+		transform: rotate(-45deg) translate(0, -1.5px);
 	}
 
 	#menu {
@@ -126,6 +141,7 @@ const MenuTogglerLayout = styled.div`
 `;
 
 const NavBarHBG = () => {
+	const loc = useRecoilValue(currentLoc);
 	const menu = [
 		{ korName: '홈', route: '/' },
 		{ korName: '지도', route: '/map' },
@@ -143,7 +159,9 @@ const NavBarHBG = () => {
 				<ul id='menu'>
 					{menu.map((item, idx) => (
 						<Link key={`mbMenu${idx}`} href={item.route}>
-							<li>{item.korName}</li>
+							<li className={loc === item.route ? 'selectedColor' : 'defaultColor'}>
+								{item.korName}
+							</li>
 						</Link>
 					))}
 				</ul>
