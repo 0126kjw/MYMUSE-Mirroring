@@ -51,6 +51,18 @@ export default function Detail({ item }) {
 			name: '',
 		});
 	}, []);
+	useEffect(() => {
+		let arr = localStorage.getItem('watched');
+		if (arr == null) {
+			arr = [];
+		} else {
+			arr = JSON.parse(arr);
+		}
+		arr.push(item.name);
+		arr = new Set(arr);
+		arr = [...arr];
+		localStorage.setItem('watched', JSON.stringify(arr));
+	}, []);
 
 	return (
 		<DetailContainer>

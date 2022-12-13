@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import cssUnit from 'src/lib/cssUnit';
 //components
 import { Header, Footer, AiBot, NavBarHBG } from './common/index';
+import Watched from './common/Watched';
 
 //styling
 const AppContainer = css`
@@ -25,6 +26,7 @@ const AppLayout = ({ children }) => {
 				<NavBarHBG />
 				<main>{children}</main>
 				<Footer />
+				<Watched />
 				<AiBot />
 			</div>
 		</>
