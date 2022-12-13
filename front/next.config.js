@@ -27,7 +27,7 @@ const nextConfig = {
 		domains: ['images.unsplash.com', 'ticketimage.interpark.com', 'res.cloudinary.com'],
 		deviceSizes: [120, 250, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
 	},
-	reactStrictMode: false,
+	reactStrictMode: true,
 	env: {
 		BASE_URL: process.env.BASE_URL,
 	},

@@ -12,8 +12,9 @@ import Loading from 'src/component/common/Loading';
 import Seo from 'src/component/Seo';
 
 function MyApp({ Component, pageProps }) {
-	console.log('페이지프롭스?', pageProps);
-	const { pagePath, pageTitle, pageDesc } = pageProps;
+	//console.log('페이지프롭스?', pageProps);
+	//console.log('compo?', Component);
+	const { pagePath, pageTitle, pageDesc, item } = pageProps;
 	return (
 		<>
 			{GlobalStyles}
@@ -22,7 +23,7 @@ function MyApp({ Component, pageProps }) {
 					<Suspense faillback={<Loading />}>
 						<Seo pagePath={pagePath} pageTitle={pageTitle} pageDesc={pageDesc} />
 						<AppLayout>
-							<Component {...pageProps} />
+							<Component {...pageProps} item={item} />
 						</AppLayout>
 					</Suspense>
 				</ErrorBoundary>

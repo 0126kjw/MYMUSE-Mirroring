@@ -12,7 +12,8 @@ import { currentLoc } from 'src/state/navibar';
 import SelectedMapState from 'src/state/selectedMap';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
+//import { Get } from 'src/utils/api';
 
 //for seo
 import withGetServerSideProps from 'src/hocs/withServersideProps';
@@ -42,12 +43,13 @@ const DetailContainer = styled.div`
 `;
 
 const Detail = ({ item }) => {
+	//console.log('디테일에서 item', item);
 	const router = useRouter();
 	const setLoc = useSetRecoilState(currentLoc);
 	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 
 	useEffect(() => {
-		if (!item) {
+		if (item === '404') {
 			router.push(`/404`);
 			return;
 		}
@@ -61,6 +63,9 @@ const Detail = ({ item }) => {
 		});
 	}, []);
 	useEffect(() => {
+		if (item === '404') {
+			return;
+		}
 		let arr = localStorage.getItem('watched');
 		if (arr == null) {
 			arr = [];
@@ -88,21 +93,35 @@ const Detail = ({ item }) => {
 };
 
 export default Detail;
-// export const getServerSideProps = withGetServerSideProps(async (context) => {
-// 	return {
-// 		props: {},
-// 	};
-// });
 
-export async function getServerSideProps(context) {
-	const id = context.params.id;
-	const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/museums/${id}`;
-	const res = await axios.get(apiUrl);
-	const data = res.data;
-
+export const getServerSideProps = withGetServerSideProps(async (context) => {
 	return {
-		props: {
-			item: data,
-		},
+		props: {},
 	};
-}
+});
+
+// // //id 단독
+// export async function getServerSideProps(context) {
+// 	console.log('단독 context', context);
+// 	const id = context.params.id;
+// 	//const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/museums/${id}`;
+// 	//const res = await axios.get(apiUrl);
+// 	//const data = res.data;
+
+// 	const item = await Get(['museums', id]);
+
+// 	const pagePath = `detail/${id}`;
+// 	const pageTitle = item.name;
+// 	const pageDesc = `${item.name}의 상세 페이지입니다.`;
+
+// 	return {
+// 		props: {
+// 			//item: data,
+// 			...context.props,
+// 			pagePath,
+// 			pageTitle,
+// 			pageDesc,
+// 			item,
+// 		},
+// 	};
+// }
