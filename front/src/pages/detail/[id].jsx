@@ -88,7 +88,6 @@ const Detail = ({ item }) => {
 };
 
 export default Detail;
-
 // export const getServerSideProps = withGetServerSideProps(async (context) => {
 // 	return {
 // 		props: {},

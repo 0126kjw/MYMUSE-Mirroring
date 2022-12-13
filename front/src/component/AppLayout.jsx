@@ -4,6 +4,7 @@ import cssUnit from 'src/lib/cssUnit';
 //components
 import { Header, Footer, AiBot, NavBarHBG } from './common/index';
 import Watched from './common/Watched';
+import { useState } from 'react';
 
 //styling
 const AppContainer = css`
@@ -15,6 +16,8 @@ const AppContainer = css`
 `;
 
 const AppLayout = ({ children }) => {
+	const [isWatchedOn, setIsWatchedOn] = useState(false);
+
 	return (
 		<>
 			<div
@@ -26,7 +29,8 @@ const AppLayout = ({ children }) => {
 				<NavBarHBG />
 				<main>{children}</main>
 				<Footer />
-				<Watched />
+				{isWatchedOn && <Watched />}
+				{isWatchedOn && <TriangleButton />}
 				<AiBot />
 			</div>
 		</>
