@@ -88,21 +88,21 @@ const Detail = ({ item }) => {
 };
 
 export default Detail;
-export const getServerSideProps = withGetServerSideProps(async (context) => {
-	return {
-		props: {},
-	};
-});
-
-// export async function getServerSideProps(context) {
-// 	const id = context.params.id;
-// 	const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/museums/${id}`;
-// 	const res = await axios.get(apiUrl);
-// 	const data = res.data;
-
+// export const getServerSideProps = withGetServerSideProps(async (context) => {
 // 	return {
-// 		props: {
-// 			item: data,
-// 		},
+// 		props: {},
 // 	};
-// }
+// });
+
+export async function getServerSideProps(context) {
+	const id = context.params.id;
+	const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/museums/${id}`;
+	const res = await axios.get(apiUrl);
+	const data = res.data;
+
+	return {
+		props: {
+			item: data,
+		},
+	};
+}
