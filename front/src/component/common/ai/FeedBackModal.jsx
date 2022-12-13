@@ -43,12 +43,12 @@ const FeedBackModalLayout = styled.div`
 	}
 `;
 
-const FeedBackModal = ({ setFeedBackModal }) => {
+const FeedBackModal = ({ setIsFeedBackModalOn }) => {
 	const [inputValue, setInputValue] = useState('');
 	useEffect(() => {
 		document.addEventListener('keydown', (event) => {
 			if (event.key == 'Escape') {
-				setFeedBackModal('none');
+				setIsFeedBackModalOn(false);
 			}
 		});
 	}, []);
@@ -56,7 +56,9 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 	let innerClick = 0;
 	let outerClick = 0;
 	const outerCheck = () => {
-		if (innerClick + outerClick == 1) setFeedBackModal('none');
+		if (innerClick + outerClick == 1) {
+			setIsFeedBackModalOn(false);
+		}
 		innerClick = 0;
 		outerClick = 0;
 	};
@@ -77,7 +79,7 @@ const FeedBackModal = ({ setFeedBackModal }) => {
 		} catch {
 			console.log('피드백 전달 실패');
 		}
-		setFeedBackModal('off');
+		setIsFeedBackModalOn(false);
 	};
 
 	return (

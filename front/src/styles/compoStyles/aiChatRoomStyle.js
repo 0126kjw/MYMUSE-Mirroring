@@ -2,6 +2,64 @@ import cssUnit from 'src/lib/cssUnit';
 import styled from '@emotion/styled';
 
 const aiChatRoomStyle = styled.div`
+	.modalTopSection {
+		width: 450px;
+		position: fixed;
+		/* bottom: 550px; */
+		bottom: 600px;
+		right: 30px;
+
+		background-color: #222222;
+		color: white;
+		border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray};
+		border-radius: 10px 10px 0px 0px;
+
+		.ControlSection {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 50px;
+
+			.Lbtn {
+				background-color: #222222;
+				border: solid 1px #222222;
+				color: #997a4c;
+				cursor: pointer;
+			}
+
+			.Rbtn {
+				background-color: #222222;
+				border: solid 1px #222222;
+				color: #997a4c;
+				cursor: pointer;
+			}
+		}
+
+		.feedBackSection {
+			/* height: 35px; */
+			background-color: #805332;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: solid 5px aliceblue;
+			padding: 3px;
+
+			p {
+				font-weight: bold;
+				margin: 0%;
+				padding: 0%;
+			}
+			&:hover {
+				background-color: white;
+				border: solid 5px lightgray;
+				color: black;
+				cursor: pointer;
+			}
+		}
+	}
+
 	.AImodal-Outer {
 		text-align: center;
 
@@ -11,13 +69,15 @@ const aiChatRoomStyle = styled.div`
 		position: fixed;
 
 		right: 30px;
-		bottom: 100px;
+		bottom: 96px;
 
 		height: 550px;
 		width: 450px;
 
 		margin: 0 auto;
 		background-color: #d9d9d9;
+		border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray};
 	}
 
 	.AImodal-Inner {
@@ -30,40 +90,6 @@ const aiChatRoomStyle = styled.div`
 
 	.AImodal-Inner::-webkit-scrollbar {
 		/* display: none; */
-	}
-
-	// 로고
-	.modalTopSection {
-		width: 450px;
-		position: fixed;
-		/* bottom: 550px; */
-		bottom: 600px;
-		right: 30px;
-		display: flex;
-		/* justify-content: center; */
-		justify-content: space-between;
-		align-items: center;
-		background-color: #222222;
-		color: white;
-		height: 50px;
-
-		.Lbtn {
-			/* position: absolute; */
-			/* right: 420px; */
-			background-color: #222222;
-			border: solid 1px #222222;
-			color: #997a4c;
-			cursor: pointer;
-		}
-
-		.Rbtn {
-			/* position: absolute; */
-			/* right: 10px; */
-			background-color: #222222;
-			border: solid 1px #222222;
-			color: #997a4c;
-			cursor: pointer;
-		}
 	}
 
 	.AIsec2 {
@@ -104,31 +130,6 @@ const aiChatRoomStyle = styled.div`
 			text-align: left;
 		}
 
-		.feedBack {
-			background-color: blanchedalmond;
-
-			color: black;
-			margin: 1%;
-			padding: 1%;
-
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border: solid 1px bisque;
-
-			p {
-				font-weight: bold;
-				margin: 0%;
-				padding: 0%;
-			}
-			&:hover {
-				background-color: bisque;
-				cursor: pointer;
-				/* color: red; */
-				border: solid 1px burlywood;
-			}
-		}
-
 		.emptyBox {
 			width: 100%;
 			clear: both;
@@ -146,13 +147,18 @@ const aiChatRoomStyle = styled.div`
 		height: 70px;
 
 		background-color: ${cssUnit.colors.DarkGold};
+		background-color: #654321;
+		background-color: gray;
+		border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray};
+		border-radius: 0px 0px 10px 10px;
 
 		display: flex;
 		justify-content: center;
 		align-items: center;
 
 		form {
-			width: 100%;
+			width: 85%;
 			height: 80%;
 			display: flex;
 			justify-content: center;
@@ -169,11 +175,11 @@ const aiChatRoomStyle = styled.div`
 		}
 
 		button {
-			margin-top: 5px;
+			/* margin-top: 5px; */
 			margin-right: 5px;
 			padding: 0px;
-			width: 10%;
-			height: 60%;
+			width: 40px;
+			height: 55%;
 			border-radius: 10px;
 			border: solid 1px #997a4c;
 			background-color: black;
