@@ -55,7 +55,10 @@ const Detail = ({ item }) => {
 			mapKind: 'outer',
 			name: '',
 		});
-		if (!item) {
+	}, []);
+	//item이 없거나 404를 보낼 때 (=쿼리가 제대로 된 범위에 없을 때 item은 withSer..에서 404를 받는다.)
+	useEffect(() => {
+		if (!item || item === '404') {
 			router.push(`/404`);
 			return;
 		}
@@ -93,7 +96,12 @@ const Detail = ({ item }) => {
 			localStorage.setItem('watched', JSON.stringify(arr));
 		}
 	};
-	renewWatched();
+	useEffect(() => {
+		renewWatched();
+		return;
+	}, []);
+
+	//renewWatched(); -> Error: localStorage is not defined
 
 	return (
 		<DetailContainer>

@@ -8,7 +8,7 @@ const path = {
 	MAP: '/map',
 	SEARCH: '/search',
 	POPULAR: '/popular',
-	//DETAIL: `/detail/*`,
+	DETAIL: `/detail/`,
 	ERROR404: `/404`,
 };
 
@@ -52,14 +52,18 @@ const withGetServerSideProps = (getServerSideProps) => {
 
 		//[1] 쿼리가 존재하고 숫자만 가지고 있는가?
 		if (detailQueryId !== undefined && digitsOnlyChecking(detailQueryId)) {
-			//console.log('1.쿼리가 존재하니?,', detailQueryId);
-			//console.log('2. 숫자만 가졌니?', digitsOnlyChecking(detailQueryId));
+			console.log('1.쿼리가 존재하니?,', detailQueryId);
+			console.log('2. 숫자만 가졌니?', digitsOnlyChecking(detailQueryId));
 
-			//console.log('1과 2가 통과되면 정수로 바꿔준다.');
+			console.log('1과 2가 통과되면 정수로 바꿔준다.');
 			const intDetailQueryId = parseInt(detailQueryId);
 
 			//[2]쿼리가 제대로 된 범위에 있는가?
 			if (intDetailQueryId > 0 && intDetailQueryId <= numsOfMuseums) {
+				console.log(
+					'3. 쿼리가 제대로 된 범위에 있는가?',
+					intDetailQueryId > 0 && intDetailQueryId <= numsOfMuseums,
+				);
 				return await getServerSideProps(context).then(async (res) => {
 					const item = await Get(['museums', detailQueryId]);
 					const pagePath = `detail/${detailQueryId}`;
@@ -81,6 +85,7 @@ const withGetServerSideProps = (getServerSideProps) => {
 				//(음의 정수/오버된 쿼리 처리)
 				//console.log('숫자 쿼리가 있는데 숫자가 미만/오버된 경우(없는 페이지로 가려고 할 때');
 				return await getServerSideProps(context).then(async (res) => {
+					console.log('다른 페이지로 갔어요');
 					const item = '404';
 					const pagePath = `/404`;
 					const pageTitle = 'Page Not Found';

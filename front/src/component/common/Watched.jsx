@@ -93,6 +93,7 @@ const Watched = ({ setIsWatchedOn }) => {
 					? detail_list.map((a, i) => {
 							return (
 								<div
+									key={i}
 									onClick={() => {
 										moveToDetail(detail_list[i]);
 									}}
