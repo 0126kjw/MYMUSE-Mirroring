@@ -49,34 +49,51 @@ const Detail = ({ item }) => {
 	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 
 	useEffect(() => {
-		if (item === '404') {
-			router.push(`/404`);
-			return;
-		}
-	}, []);
-
-	useEffect(() => {
+		// 지도 처리
 		setLoc(router.pathname);
 		setSelectedMapState({
 			mapKind: 'outer',
 			name: '',
 		});
-	}, []);
-	useEffect(() => {
-		if (item === '404') {
+		if (!item) {
+			router.push(`/404`);
 			return;
 		}
-		let arr = localStorage.getItem('watched');
-		if (arr == null) {
-			arr = [];
-		} else {
-			arr = JSON.parse(arr);
-		}
-		arr.push(item.name);
-		arr = new Set(arr);
-		arr = [...arr];
-		localStorage.setItem('watched', JSON.stringify(arr));
 	}, []);
+
+	// 최근 페이지
+	const renewWatched = () => {
+		if (localStorage.getItem('watched') == null) {
+			localStorage.setItem('watched', JSON.stringify([item.name]));
+		} else {
+			let arr = JSON.parse(localStorage.getItem('watched'));
+			let isSameIncluded = false;
+			let loc = -1;
+			arr.forEach((ele, idx) => {
+				if (ele == item.name) {
+					isSameIncluded = true;
+					loc = idx;
+				}
+			});
+			// 같은 값이 들어있을땐 제거 후 맨 앞에 추가
+			if (isSameIncluded) {
+				arr.splice(loc, 1);
+				arr.unshift(item.name);
+			}
+			// 3개가 다 찼을 때 맨뒤에 하나 뽑고 추가
+			else if (arr.length >= 3) {
+				arr.pop();
+				arr.unshift(item.name);
+			}
+			// 그 외엔 그냥 추가
+			else {
+				arr.unshift(item.name);
+			}
+			arr = [...arr];
+			localStorage.setItem('watched', JSON.stringify(arr));
+		}
+	};
+	renewWatched();
 
 	return (
 		<DetailContainer>

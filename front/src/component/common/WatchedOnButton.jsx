@@ -1,22 +1,30 @@
 import styled from '@emotion/styled';
+import leftArrow from '../../../public/images/left-arrow.png';
+import Image from 'next/legacy/image';
 
 const WatchedOnButtonStyle = styled.div`
+	padding: 0px;
+	margin: 0px;
 	position: fixed;
-	right: 13px;
-	bottom: 50vh;
-	background-color: red;
-	width: 300px;
-	height: 300px;
+	right: 10px;
+	top: 50vh;
+	z-index: 2;
+	background-color: beige;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	border: solid 1px black;
+	cursor: pointer;
 `;
 
-const WatchedOnButton = () => {
+const WatchedOnButton = ({ setIsWatchedOn }) => {
 	return (
 		<WatchedOnButtonStyle
 			onClick={() => {
-				alert();
+				setIsWatchedOn(true);
 			}}
 		>
-			삼각형!!!!!!
+			<Image src={leftArrow} alt='openWatched' width='25' height='25' />
 		</WatchedOnButtonStyle>
 	);
 };

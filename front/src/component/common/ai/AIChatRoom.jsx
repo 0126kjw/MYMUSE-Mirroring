@@ -1,6 +1,5 @@
 // style
 import AiChatRoomStyle from 'src/styles/compoStyles/aiChatRoomStyle';
-
 import FeedBackModal from 'src/component/common/ai/FeedBackModal';
 import InfoModal from 'src/component/common/ai/InfoModal';
 
@@ -20,7 +19,7 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 	const [inputValue, setInputValue] = useState('');
 	const [chatRoomWidth, setChatRoomWidth] = useState(450);
 	const [chatRoomHeight, setChatRoomHeight] = useState(450);
-	const [feedBackModal, setFeedBackModal] = useState('off');
+	const [isFeedBackModalOn, setIsFeedBackModalOn] = useState(false);
 	const [isInfoModalOn, setIsInfoModalOn] = useState(false);
 
 	const onChangeHandler = (e) => {
@@ -37,12 +36,12 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		document.querySelector('.logoTest').style.display = 'none';
 	};
 	const submitByClick = () => {
-		submitInput(inputValue, setInputValue, router);
+		submitInput(inputValue, setInputValue, router, setBotMode);
 	};
 
 	const submitByEnter = (e) => {
 		e.preventDefault();
-		submitInput(inputValue, setInputValue, router);
+		submitInput(inputValue, setInputValue, router, setBotMode);
 	};
 
 	useEffect(() => {
@@ -73,40 +72,46 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		formDiv.style.width = `${chatRoomWidth}px`;
 
 		// horListBox;
-		// if (document.querySelector('.horListBox') !== null) {
-		// 	const selectedElements = document.querySelectorAll('.horListBox');
-		// 	for (let i = 0; i < selectedElements.length; i++) {
-		// 		selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
-		// 	}
-		// }
+		if (document.querySelector('.horListBox') !== null) {
+			const selectedElements = document.querySelectorAll('.horListBox');
+			if (selectedElements.length >= 5) {
+				for (let i = 0; i < selectedElements.length; i++) {
+					selectedElements[i].style.width = `${chatRoomWidth - 50}px`;
+				}
+			}
+		}
 	}, [chatRoomHeight, chatRoomWidth]);
 
 	return (
 		<>
-			{feedBackModal == 'on' && <FeedBackModal setFeedBackModal={setFeedBackModal} />}
+			{isFeedBackModalOn == true && (
+				<FeedBackModal setIsFeedBackModalOn={setIsFeedBackModalOn} />
+			)}
 			{isInfoModalOn == true && <InfoModal setIsInfoModalOn={setIsInfoModalOn} />}
 
 			<AiChatRoomStyle>
 				<div className='modalTopSection'>
-					<button className='Lbtn' onClick={openInfoModal}>
-						<Image src={InfoImg} alt='BotInfo' width='25' height='25'></Image>
-					</button>
-					<Image src={logoImg} alt='logoImg' width='100' height='30'></Image>
-					<button className='Rbtn' onClick={closeBot}>
-						X
-					</button>
+					<div className='ControlSection'>
+						<button className='Lbtn' onClick={openInfoModal}>
+							<Image src={InfoImg} alt='BotInfo' width='25' height='25'></Image>
+						</button>
+						<Image src={logoImg} alt='logoImg' width='100' height='30'></Image>
+						<button className='Rbtn' onClick={closeBot}>
+							X
+						</button>
+					</div>
+					<div
+						className='feedBackSection'
+						onClick={() => {
+							setIsFeedBackModalOn(true);
+						}}
+					>
+						<p> AI Bot 피드백 작성 </p>
+					</div>
 				</div>
 				<div className='AImodal-Outer'>
 					<div className='AImodal-Inner'>
 						<div className='AIsec2'>
-							<div
-								className='feedBack'
-								onClick={() => {
-									setFeedBackModal('on');
-								}}
-							>
-								<p> AI Bot 피드백 작성 </p>
-							</div>
 							<div className='msgFromAI'>
 								MYMUSE에 오신 것을 환영합니다. <br></br>
 								궁금한 부분을 질문해주세요!

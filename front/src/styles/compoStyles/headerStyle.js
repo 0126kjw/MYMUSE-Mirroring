@@ -6,9 +6,7 @@ export const HeaderContainer = styled.header`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
 	position: relative;
-
 	width: 100%;
 	height: 230px;
 
@@ -20,7 +18,8 @@ export const HeaderContainer = styled.header`
 `;
 
 export const ImageWraper = styled.div`
-	width: 100vw;
+	/* width: 100vw; */
+	width: 100%;
 	height: 250px;
 	//react_devtools의 경고 (dont' use static, use relative)
 	//position: static;
@@ -56,8 +55,7 @@ export const HeaderUpper = styled.div`
 
 	.logoImg {
 		position: absolute;
-
-		width: 200px;
+		/* width: 200px; */
 		height: 40px;
 		top: 180px;
 		left: 2%;

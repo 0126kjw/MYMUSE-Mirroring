@@ -2,6 +2,79 @@ import cssUnit from 'src/lib/cssUnit';
 import styled from '@emotion/styled';
 
 const aiChatRoomStyle = styled.div`
+	.modalTopSection {
+		width: 450px;
+		position: fixed;
+		/* bottom: 550px; */
+		bottom: 600px;
+		right: 30px;
+
+		background-color: #222222;
+		color: white;
+		/* border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray}; */
+		border-left: solid 3px gray;
+		border-right: solid 3px gray;
+		border-radius: 10px 10px 0px 0px;
+
+		.ControlSection {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			height: 50px;
+			margin-top: 5px;
+
+			.Lbtn {
+				background-color: #222222;
+				border: solid 1px #222222;
+				color: #997a4c;
+				cursor: pointer;
+			}
+
+			.Rbtn {
+				background-color: #222222;
+				border: solid 1px #222222;
+				color: #997a4c;
+				cursor: pointer;
+			}
+		}
+
+		.feedBackSection {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: solid 5px aliceblue;
+			/* box-shadow: 15px 15px 15px 15px; */
+
+			background-color: white;
+			/* border: solid 5px lightgray; */
+			color: black;
+
+			/* padding: 5px; */
+			margin: 5%;
+			margin-top: 0px;
+			margin-bottom: 25px;
+			width: 90%;
+			height: 30px;
+			padding: 0px;
+
+			-webkit-transition: box-shadow 0.5s;
+			transition: box-shadow 0.5s;
+
+			p {
+				font-weight: bold;
+			}
+			&:hover {
+				cursor: pointer;
+				box-shadow: 15px 15px 15px 15px black;
+			}
+			&:active {
+				cursor: pointer;
+				box-shadow: 3px 3px 3px 3px gray inset;
+			}
+		}
+	}
+
 	.AImodal-Outer {
 		text-align: center;
 
@@ -11,13 +84,17 @@ const aiChatRoomStyle = styled.div`
 		position: fixed;
 
 		right: 30px;
-		bottom: 100px;
+		bottom: 96px;
 
 		height: 550px;
 		width: 450px;
 
 		margin: 0 auto;
 		background-color: #d9d9d9;
+		/* border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray}; */
+		border-left: solid 3px gray;
+		border-right: solid 3px gray;
 	}
 
 	.AImodal-Inner {
@@ -25,45 +102,11 @@ const aiChatRoomStyle = styled.div`
 		width: 100%;
 		height: 100%;
 		overflow: auto;
-		-ms-overflow-style: none;
+		/* -ms-overflow-style: none; */
 	}
 
 	.AImodal-Inner::-webkit-scrollbar {
-		display: none;
-	}
-
-	// 로고
-	.modalTopSection {
-		width: 450px;
-		position: fixed;
-		/* bottom: 550px; */
-		bottom: 600px;
-		right: 30px;
-		display: flex;
-		/* justify-content: center; */
-		justify-content: space-between;
-		align-items: center;
-		background-color: #222222;
-		color: white;
-		height: 50px;
-
-		.Lbtn {
-			/* position: absolute; */
-			/* right: 420px; */
-			background-color: #222222;
-			border: solid 1px #222222;
-			color: #997a4c;
-			cursor: pointer;
-		}
-
-		.Rbtn {
-			/* position: absolute; */
-			/* right: 10px; */
-			background-color: #222222;
-			border: solid 1px #222222;
-			color: #997a4c;
-			cursor: pointer;
-		}
+		/* display: none; */
 	}
 
 	.AIsec2 {
@@ -74,8 +117,8 @@ const aiChatRoomStyle = styled.div`
 		padding-left: 7px;
 		padding-right: 7px;
 
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none;
+		scrollbar-width: none;
 
 		.msgFromAI {
 			float: left;
@@ -104,31 +147,6 @@ const aiChatRoomStyle = styled.div`
 			text-align: left;
 		}
 
-		.feedBack {
-			background-color: blanchedalmond;
-
-			color: black;
-			margin: 1%;
-			padding: 1%;
-
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border: solid 1px bisque;
-
-			p {
-				font-weight: bold;
-				margin: 0%;
-				padding: 0%;
-			}
-			&:hover {
-				background-color: bisque;
-				cursor: pointer;
-				/* color: red; */
-				border: solid 1px burlywood;
-			}
-		}
-
 		.emptyBox {
 			width: 100%;
 			clear: both;
@@ -146,13 +164,20 @@ const aiChatRoomStyle = styled.div`
 		height: 70px;
 
 		background-color: ${cssUnit.colors.DarkGold};
+		background-color: #654321;
+		background-color: gray;
+		/* border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray}; */
+		border-left: solid 3px gray;
+		border-right: solid 3px gray;
+		border-radius: 0px 0px 10px 10px;
 
 		display: flex;
 		justify-content: center;
 		align-items: center;
 
 		form {
-			width: 100%;
+			width: 85%;
 			height: 80%;
 			display: flex;
 			justify-content: center;
@@ -169,11 +194,11 @@ const aiChatRoomStyle = styled.div`
 		}
 
 		button {
-			margin-top: 5px;
+			/* margin-top: 5px; */
 			margin-right: 5px;
 			padding: 0px;
-			width: 10%;
-			height: 60%;
+			width: 40px;
+			height: 55%;
 			border-radius: 10px;
 			border: solid 1px #997a4c;
 			background-color: black;
@@ -185,10 +210,10 @@ const aiChatRoomStyle = styled.div`
 	/* ------------------------------------------------------ */
 	.horListBox {
 		/* max-width: 100%; */
+		width: 100%;
 		display: flex;
 		overflow: scroll;
-		color: ${cssUnit.backgroundColors.LightBlack};
-		background: #ffffff;
+		background-color: #d9d9d9;
 
 		/* 가로 스크롤 */
 		overflow: auto;
@@ -212,24 +237,35 @@ const aiChatRoomStyle = styled.div`
 	}
 
 	.horList {
-		border: solid 1px ${cssUnit.colors.DarkGold};
-		border-radius: 5px;
+		background: #ffffff;
+		/* border: solid 1px ${cssUnit.colors.DarkGold}; */
+		/* border-radius: 5px; */
 		padding: 5px;
-		margin: 5px;
+		/* margin: 5px; */
 		min-width: 200px;
 		height: 200px;
 		overflow: hidden;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		border-radius: 0px;
+	}
+	.innerHorList {
+		width: 170px;
+		height: 170px;
+		padding: 10px;
+		border: solid 3px ${cssUnit.colors.DarkGold};
+		background-color: ${cssUnit.backgroundColors.White};
+		border-radius: 5px;
+		overflow: hidden;
+
 		&:hover {
-			background-color: ${cssUnit.backgroundColors.Gray};
 			background-color: beige;
 			cursor: pointer;
 		}
 		img {
 			width: 150px;
-			height: 150px;
+			height: 100px;
 			object-fit: cover;
 		}
 	}
@@ -257,8 +293,6 @@ const aiChatRoomStyle = styled.div`
 			object-fit: cover;
 		}
 	}
-
-	/* ------------------------------------------------------ */
 `;
 
 export default aiChatRoomStyle;

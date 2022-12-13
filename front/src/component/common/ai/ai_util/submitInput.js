@@ -11,7 +11,7 @@ import template_open from 'src/component/common/ai/ai_util/template_open';
 import template_ticket from 'src/component/common/ai/ai_util/template_ticket';
 import template_address from 'src/component/common/ai/ai_util/template_address';
 
-const submitInput = async (inputValue, setInputValue, router) => {
+const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 	const AIsec2 = document.querySelector('.AIsec2');
 
 	// 유저 질문 띄우기
@@ -53,6 +53,9 @@ const submitInput = async (inputValue, setInputValue, router) => {
             `;
 		singleOne.addEventListener('click', function () {
 			router.push(`/detail/${checkId}`);
+			setBotMode('off');
+			document.querySelector('#AImodalOnBtn').style.display = 'block';
+			document.querySelector('.logoTest').style.display = 'none';
 		});
 
 		AIsec2.appendChild(singleOne);
@@ -76,21 +79,6 @@ const submitInput = async (inputValue, setInputValue, router) => {
 	} catch {
 		console.log('posting error');
 	}
-
-	// if (data.fulfillmentText == '데이터에 없는 정보 입니다.') {
-	// 	const TempElement = document.createElement('div');
-	// 	TempElement.classList.add('msgFromAI');
-	// 	TempElement.innerText = '데이터베이스를 검색했으나 질문에 대한 답을 찾지 못했습니다.';
-	// 	AIsec2.appendChild(TempElement);
-	// 	// 개행
-	// 	const emptyBox2 = document.createElement('div');
-	// 	emptyBox2.classList.add('emptyBox');
-	// 	AIsec2.appendChild(emptyBox2);
-
-	// 	TempElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-	// 	setInputValue('');
-	// 	return;
-	// }
 
 	// API 리턴값 축약
 	const defaultGuidance = data.fulfillmentText;
@@ -183,21 +171,28 @@ const submitInput = async (inputValue, setInputValue, router) => {
 		// 목록 표현
 		const TempElement = document.createElement('div');
 		TempElement.classList.add('horListBox');
-		TempElement.style.width = `${ans.length * 212 + 52}px`;
 
 		for (let i = 0; i < ans.length; i++) {
 			const listElement = document.createElement('div');
-			listElement.innerHTML = `
+			listElement.classList.add('horList');
+
+			const InnerlistElement = document.createElement('div');
+			InnerlistElement.classList.add('innerHorList');
+
+			InnerlistElement.innerHTML = `
                 <div className='imgBox'>
                     <img src=https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ans[i].id}_image01.jpg>
                     <p>${ans[i].name}</p>
                 </div>
             `;
-			listElement.addEventListener('click', function () {
-				// goToDetail(ans[i].name, router);
+			InnerlistElement.addEventListener('click', function () {
 				router.push(`/detail/${ans[i].id}`);
+				setBotMode('off');
+				document.querySelector('#AImodalOnBtn').style.display = 'block';
+				document.querySelector('.logoTest').style.display = 'none';
 			});
-			listElement.classList.add('horList');
+
+			listElement.appendChild(InnerlistElement);
 			TempElement.appendChild(listElement);
 		}
 		AIsec2.appendChild(TempElement);
@@ -222,22 +217,30 @@ const submitInput = async (inputValue, setInputValue, router) => {
 		// 목록 표현
 		const TempElement = document.createElement('div');
 		TempElement.classList.add('horListBox');
-		TempElement.style.width = `${ans.length * 212 + 52}px`;
 
 		for (let i = 0; i < ans.length; i++) {
 			const listElement = document.createElement('div');
 			listElement.classList.add('horList');
-			listElement.innerHTML = `
+
+			const InnerlistElement = document.createElement('div');
+			InnerlistElement.classList.add('innerHorList');
+
+			InnerlistElement.innerHTML = `
                 <div className='imgBox'>
                     <a target=_blank href=https://tickets.interpark.com/goods/${ans[i].href}> 
                             <img src=http://ticketimage.interpark.com/rz/image/play/goods/poster/22/${ans[i].href}_p_s.jpg>
                         <p>${ans[i].title}</p>
                     </a>
-                </div>`;
-			listElement.addEventListener('click', function () {
+                </div>
+                `;
+			InnerlistElement.addEventListener('click', function () {
 				goToDetail(ans[i].name, router);
+				setBotMode('off');
+				document.querySelector('#AImodalOnBtn').style.display = 'block';
+				document.querySelector('.logoTest').style.display = 'none';
 			});
 
+			listElement.appendChild(InnerlistElement);
 			TempElement.appendChild(listElement);
 		}
 		AIsec2.appendChild(TempElement);
