@@ -21,14 +21,14 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 	const [chatRoomWidth, setChatRoomWidth] = useState(450);
 	const [chatRoomHeight, setChatRoomHeight] = useState(450);
 	const [feedBackModal, setFeedBackModal] = useState('off');
-	const [botInfoModal, setBotInfoModal] = useState('off');
+	const [isInfoModalOn, setIsInfoModalOn] = useState(false);
 
 	const onChangeHandler = (e) => {
 		setInputValue(e.target.value);
 	};
 
 	const openInfoModal = () => {
-		setBotInfoModal('on');
+		setIsInfoModalOn(true);
 	};
 
 	const closeBot = () => {
@@ -84,7 +84,7 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 	return (
 		<>
 			{feedBackModal == 'on' && <FeedBackModal setFeedBackModal={setFeedBackModal} />}
-			{botInfoModal == 'on' && <InfoModal setBotInfoModal={setBotInfoModal} />}
+			{isInfoModalOn == true && <InfoModal setIsInfoModalOn={setIsInfoModalOn} />}
 
 			<AiChatRoomStyle>
 				<div className='modalTopSection'>

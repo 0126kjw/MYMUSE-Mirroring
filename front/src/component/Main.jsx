@@ -18,16 +18,33 @@ import {
 	SearchBarLayout,
 } from 'src/styles/pageStyles/mainStyle';
 import logo from '../../public/images/siteLogo.png';
+import { useState } from 'react';
 
 // component
 import Slider from './Slider';
 import SeoulZidoMain from './zido/SeoulZidoMain';
 import TitleSection from './common/TitleSection';
-
+import InfoModal from 'src/component/common/ai/InfoModal';
 import { useRouter } from 'next/router';
+import { useEffect, useRef } from 'react';
 
 const Main = () => {
 	const router = useRouter();
+	// InfoModal on off 처리
+	const InfoModalRef = useRef();
+	const [isInfoModalOn, setIsInfoModalOn] = useState(false);
+	const modalCloseHandler = ({ target }) => {
+		if (isInfoModalOn && !InfoModalRef.current.contains(target)) {
+			setIsInfoModalOn('closed');
+		}
+	};
+	useEffect(() => {
+		window.addEventListener('click', modalCloseHandler);
+		return () => {
+			window.removeEventListener('click', modalCloseHandler);
+		};
+	});
+
 	return (
 		<>
 			<MainContainer>
@@ -111,12 +128,23 @@ const Main = () => {
 										</p>
 									</AiBubble>
 								</AiChatRoomBox>
-								<AiChatButton>Ai 안내데스크 바로가기</AiChatButton>
+								<AiChatButton
+									onClick={() => {
+										setIsInfoModalOn(true);
+									}}
+								>
+									Ai 안내데스크 사용방법
+								</AiChatButton>
 							</AiExContainer>
 						</AiContainer>
 					</Wrap>
 				</Section>
 			</MainContainer>
+			{isInfoModalOn && (
+				<div ref={InfoModalRef}>
+					<InfoModal setIsInfoModalOn={setIsInfoModalOn} />
+				</div>
+			)}
 		</>
 	);
 };
