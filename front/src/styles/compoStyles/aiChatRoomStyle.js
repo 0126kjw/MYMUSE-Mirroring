@@ -11,8 +11,10 @@ const aiChatRoomStyle = styled.div`
 
 		background-color: #222222;
 		color: white;
-		border-left: solid 3px ${cssUnit.colors.Gray};
-		border-right: solid 3px ${cssUnit.colors.Gray};
+		/* border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray}; */
+		border-left: solid 3px gray;
+		border-right: solid 3px gray;
 		border-radius: 10px 10px 0px 0px;
 
 		.ControlSection {
@@ -20,6 +22,7 @@ const aiChatRoomStyle = styled.div`
 			justify-content: space-between;
 			align-items: center;
 			height: 50px;
+			margin-top: 5px;
 
 			.Lbtn {
 				background-color: #222222;
@@ -37,25 +40,37 @@ const aiChatRoomStyle = styled.div`
 		}
 
 		.feedBackSection {
-			/* height: 35px; */
-			background-color: #805332;
-
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			border: solid 5px aliceblue;
-			padding: 3px;
+			/* box-shadow: 15px 15px 15px 15px; */
+
+			background-color: white;
+			/* border: solid 5px lightgray; */
+			color: black;
+
+			/* padding: 5px; */
+			margin: 5%;
+			margin-top: 0px;
+			margin-bottom: 25px;
+			width: 90%;
+			height: 30px;
+			padding: 0px;
+
+			-webkit-transition: box-shadow 0.5s;
+			transition: box-shadow 0.5s;
 
 			p {
 				font-weight: bold;
-				margin: 0%;
-				padding: 0%;
 			}
 			&:hover {
-				background-color: white;
-				border: solid 5px lightgray;
-				color: black;
 				cursor: pointer;
+				box-shadow: 15px 15px 15px 15px black;
+			}
+			&:active {
+				cursor: pointer;
+				box-shadow: 3px 3px 3px 3px gray inset;
 			}
 		}
 	}
@@ -76,8 +91,10 @@ const aiChatRoomStyle = styled.div`
 
 		margin: 0 auto;
 		background-color: #d9d9d9;
-		border-left: solid 3px ${cssUnit.colors.Gray};
-		border-right: solid 3px ${cssUnit.colors.Gray};
+		/* border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray}; */
+		border-left: solid 3px gray;
+		border-right: solid 3px gray;
 	}
 
 	.AImodal-Inner {
@@ -149,8 +166,10 @@ const aiChatRoomStyle = styled.div`
 		background-color: ${cssUnit.colors.DarkGold};
 		background-color: #654321;
 		background-color: gray;
-		border-left: solid 3px ${cssUnit.colors.Gray};
-		border-right: solid 3px ${cssUnit.colors.Gray};
+		/* border-left: solid 3px ${cssUnit.colors.Gray};
+		border-right: solid 3px ${cssUnit.colors.Gray}; */
+		border-left: solid 3px gray;
+		border-right: solid 3px gray;
 		border-radius: 0px 0px 10px 10px;
 
 		display: flex;
