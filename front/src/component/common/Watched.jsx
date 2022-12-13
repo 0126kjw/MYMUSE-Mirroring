@@ -10,7 +10,7 @@ const WatchedStyle = styled.div`
 	position: fixed;
 	width: 180px;
 	right: 0px;
-	top: 35%;
+	top: 45vh;
 	margin: 0px auto;
 
 	background-color: aliceblue;
