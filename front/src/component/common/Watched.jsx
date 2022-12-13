@@ -11,8 +11,11 @@ const Watched = () => {
 	// 		localStorage.setItem('data', watched);
 	// 	}
 	// }, []);
-	let detail_list = JSON.parse(localStorage.getItem('watched'));
 
+	let detail_list = null;
+	if (typeof window !== 'undefined') {
+		detail_list = JSON.parse(localStorage.getItem('watched'));
+	}
 	useEffect(() => {
 		detail_list === null ? localStorage.setItem('watched', JSON.stringify([])) : null;
 	}, []);
@@ -27,7 +30,7 @@ const Watched = () => {
 			{detail_list !== null
 				? detail_list.map((a, i) => {
 						return (
-							<div>
+							<div key={i}>
 								<p className='watched_list' style={{ marginTop: '10px' }}>
 									{detail_list[i]}
 								</p>
