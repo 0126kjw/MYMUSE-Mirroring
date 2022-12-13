@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import cssUnit from 'src/lib/cssUnit';
 
-import { Section, Wrap, WrapTitle } from 'src/styles/common';
+import { Wrap } from 'src/styles/common';
 import { UnderDevSection } from 'src/styles/compoStyles/underDev';
 import Index from 'src/component/detail/Index';
 
@@ -11,9 +11,11 @@ import { useRecoilState } from 'recoil';
 import { currentLoc } from 'src/state/navibar';
 import SelectedMapState from 'src/state/selectedMap';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
 
+//for seo
+import withGetServerSideProps from 'src/hocs/withServersideProps';
 // wrap all
 const DetailContainer = styled.div`
 	margin: 0px auto;
@@ -39,10 +41,17 @@ const DetailContainer = styled.div`
 	}
 `;
 
-export default function Detail({ item }) {
+const Detail = ({ item }) => {
 	const router = useRouter();
 	const setLoc = useSetRecoilState(currentLoc);
 	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
+
+	useEffect(() => {
+		if (!item) {
+			router.push(`/404`);
+			return;
+		}
+	}, []);
 
 	useEffect(() => {
 		setLoc(router.pathname);
@@ -64,17 +73,24 @@ export default function Detail({ item }) {
 			</div>
 		</DetailContainer>
 	);
-}
+};
 
-export async function getServerSideProps(context) {
-	const id = context.params.id;
-	const apiUrl = `https://qrcavwxubm.us16.qoddiapp.com/museums/${id}`;
-	const res = await axios.get(apiUrl);
-	const data = res.data;
-
+export default Detail;
+export const getServerSideProps = withGetServerSideProps(async (context) => {
 	return {
-		props: {
-			item: data,
-		},
+		props: {},
 	};
-}
+});
+
+// export async function getServerSideProps(context) {
+// 	const id = context.params.id;
+// 	const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/museums/${id}`;
+// 	const res = await axios.get(apiUrl);
+// 	const data = res.data;
+
+// 	return {
+// 		props: {
+// 			item: data,
+// 		},
+// 	};
+// }

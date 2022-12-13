@@ -11,6 +11,7 @@ import TitleSection from 'src/component/common/TitleSection';
 import AllCardsList from 'src/component/cards/AllCardsList';
 //for seo
 import withGetServerSideProps from 'src/hocs/withServersideProps';
+
 const Popular = () => {
 	return (
 		<>

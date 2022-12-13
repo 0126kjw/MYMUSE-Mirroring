@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import withServersideProps from 'src/hocs/withServersideProps';
 
 const ogImageSrc =
 	'https://res.cloudinary.com/dtq075vja/image/upload/v1669879703/9gle/ogImage_uki29n.png';
@@ -7,6 +6,7 @@ const ogImageSrc =
 const Seo = ({ pagePath, pageTitle, pageDesc }) => {
 	const appName = `MYMUSE ${pageTitle}`;
 	const ogUrl = process.env.NEXT_PUBLIC_OGURL_URL + pagePath;
+	console.log('SEO, ', pagePath, pageTitle, pageDesc);
 	return (
 		<Head>
 			<meta name='viewport' content='width=device-width, initial-scale=1.0' />

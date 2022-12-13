@@ -12,7 +12,7 @@ import Loading from 'src/component/common/Loading';
 import Seo from 'src/component/Seo';
 
 function MyApp({ Component, pageProps }) {
-	//console.log('페이지프롭스?', pageProps);
+	console.log('페이지프롭스?', pageProps);
 	const { pagePath, pageTitle, pageDesc } = pageProps;
 	return (
 		<>

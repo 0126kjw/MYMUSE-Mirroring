@@ -10,9 +10,9 @@ const FourZeroFourLayout = styled.div`
 	height: auto;
 
 	margin: 0px auto;
+	padding: 150px 0 200px 0;
 
-	background-color: ${cssUnit.colors.White};
-
+	background-color: ${cssUnit.backgroundColors.Black};
 	font-family: 'Noto serif KR', sans-serif;
 	font-weight: bold;
 	font-size: 25px;
