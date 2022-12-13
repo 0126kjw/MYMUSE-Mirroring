@@ -4,7 +4,7 @@ const path = {
 	MAP: '/map',
 	SEARCH: '/search',
 	POPULAR: '/popular',
-	DETAIL: '/detail/*',
+	DETAIL: `/detail/*`,
 };
 
 const getTitleByPath = {
@@ -33,13 +33,14 @@ const withGetServerSideProps = (getServerSideProps) => {
 		const pagePath = context.resolvedUrl;
 		//console.log('with.js: ', pagePath);
 		return await getServerSideProps(context).then((res) => {
+			console.log('context', context);
 			return {
 				...res,
 				props: {
 					...res.props,
 					pagePath,
 					pageTitle: getTitleByPath[pagePath],
-					pageDosc: getDescByPath[pagePath],
+					pageDesc: getDescByPath[pagePath],
 				},
 			};
 		});

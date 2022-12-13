@@ -18,7 +18,7 @@ const AllCardsList = ({ category }) => {
 	const getData = async () => {
 		const data = await GetPages(category, bundleIdx);
 		setList((prev) => [...prev, ...data]);
-		console.log(data);
+		//console.log(data);
 	};
 
 	const getMoreListMemo = useCallback(() => {
