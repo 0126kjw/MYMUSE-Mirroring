@@ -5,6 +5,7 @@ import { MuseumService } from '../museums/museums.service';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Chatbot } from './schemas/chatbot.schema';
+import { format, subDays, add } from 'date-fns';
 
 @Injectable()
 export class ChatbotService {
@@ -66,13 +67,13 @@ export class ChatbotService {
     // dialogflow에서 평일을 월~일로 인식하기 때문에 강제로 2일 줄여주는 로직 구성
     const editWeekdayText = async (fulfillmentText: string) => {
       const endDate = fulfillmentText.slice(11, 21);
-      const endDateArr = endDate.split('-');
-      const year = Number.parseInt(endDateArr[0]);
-      const month = Number.parseInt(endDateArr[1]);
-      const day = Number.parseInt(endDateArr[2]);
-      const newEndDate = new Date(year, month, day - 1)
-        .toISOString()
-        .slice(0, 10);
+      const [year, month, day] = endDate.split('-');
+      const date = new Date(
+        Number.parseInt(year),
+        Number.parseInt(month),
+        Number.parseInt(day),
+      );
+      const newEndDate = format(subDays(date, 2), 'yyyy-MM-dd');
 
       fulfillmentText = fulfillmentText.replace(endDate, newEndDate);
 
@@ -155,29 +156,39 @@ export class ChatbotService {
 
       case 'exhibitionDateSearch':
         const endDate = await this.searchSpecificDate(fields, queryText);
+
         return this.exhibitionService.findRightItems(endDate, 'title href');
     }
   }
 
   async searchSpecificDate(fields: any, queryText: string): Promise<any> {
     const dateTime = fields['date-time'];
+    let date = null;
+    let endDate = null;
 
     if (dateTime?.structValue?.fields) {
       const period = dateTime.structValue.fields;
-      let endDate = null;
 
       if (queryText.indexOf('평일') >= 0) {
-        endDate = queryText.slice(0, 10).split('-');
-        endDate[2] -= 2;
-        endDate = endDate.join('-');
-        return new Date(`${endDate}T23:59:59+00:00`);
+        date = new Date(period?.endDate?.stringValue);
+        endDate = format(subDays(date, 2), 'yyyy-MM-dd HH:mm:ss.SSS');
+
+        return new Date(endDate);
       } else {
         return new Date(period?.endDate?.stringValue);
       }
     } else {
-      const period = dateTime.stringValue;
-      const date = period.slice(0, 10);
-      return new Date(`${date}T23:59:59+00:00`);
+      date = new Date(dateTime.stringValue);
+      endDate = format(
+        add(date, {
+          hours: 23,
+          minutes: 59,
+          seconds: 59,
+        }),
+        'yyyy-MM-dd HH:mm:ss.SSS',
+      );
+
+      return new Date(endDate);
     }
   }
 }
