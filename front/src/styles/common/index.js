@@ -63,11 +63,15 @@ export const WrapTop = styled.article`
 
 	margin: 0px auto;
 	text-align: center;
+
+	word-break: keep-all;
 `;
 
 //common Wrap title
 export const WrapTitle = styled.h2`
 	font-size: ${cssUnit.fontSize.medium};
+
+	word-break: keep-all;
 
 	color: ${(props) => {
 		return props.color ? props.color : cssUnit.colors.Black;

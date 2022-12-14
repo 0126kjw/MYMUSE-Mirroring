@@ -4,6 +4,7 @@ import { sliderData } from 'src/data/slider-data';
 import { IdBook } from 'src/data/idBook';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
+import cssUnit from 'src/lib/cssUnit';
 
 const SliderLayout = styled.div`
 	cursor: pointer;
@@ -12,6 +13,14 @@ const SliderLayout = styled.div`
 		height: 600px;
 		position: relative;
 		overflow: hidden;
+
+		@media screen and (max-width: 900px) {
+			height: 500px;
+		}
+
+		@media screen and (max-width: 600px) {
+			height: 300px;
+		}
 	}
 
 	.slide {
@@ -23,13 +32,18 @@ const SliderLayout = styled.div`
 		opacity: 0;
 		transform: translateX(50%);
 		transition: all 0.5s ease;
+		@media screen and (max-width: 900px) {
+			//height: 80vh;
+			height: 50%;
+		}
 	}
 
 	.slide img {
 		width: 100%;
 		height: 100%;
 		@media screen and (max-width: 900px) {
-			height: 75vh;
+			//height: 75vh;
+			height: 50%;
 		}
 	}
 
@@ -46,9 +60,95 @@ const SliderLayout = styled.div`
 		animation: slide-up 1s ease 0.5s;
 		animation-fill-mode: forwards;
 		visibility: hidden;
-		font-size: 20px;
+
+		h2 {
+			font-family: ${cssUnit.fontFamily.NanumM};
+		}
+
+		p {
+			font-size: 20px;
+			line-height: 30px;
+			font-family: ${cssUnit.fontFamily.NotoKR};
+
+			display: -webkit-box;
+			//-webkit-line-clamp: 2; // 원하는 라인수
+			-webkit-box-orient: vertical;
+			text-overflow: ellipsis;
+
+			padding: 20px;
+			word-break: keep-all;
+		}
+
 		@media screen and (max-width: 900px) {
-			height: 80vh;
+			height: 100%;
+			//height: 80vh;
+
+			animation: slide-up-mobile 1s ease 0.5s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+
+			p {
+				text-overflow: ellipsis;
+				overflow: hidden;
+				word-break: keep-all;
+
+				font-size: 16px;
+				padding: 5px;
+
+				display: -webkit-box;
+				-webkit-line-clamp: 3; // 원하는 라인수
+				-webkit-box-orient: vertical;
+			}
+		}
+
+		@media screen and (max-width: 600px) {
+			//height: 80vh;
+			height: 600px;
+
+			animation: slide-up-mobile 1s ease 0.5s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+
+			p {
+				text-overflow: ellipsis;
+				overflow: hidden;
+				word-break: keep-all;
+
+				font-size: 16px;
+				padding: 5px;
+
+				display: -webkit-box;
+				-webkit-line-clamp: 3; // 원하는 라인수
+				-webkit-box-orient: vertical;
+			}
+		}
+
+		@media screen and (max-width: 300px) {
+			//height: 80vh;
+			height: 150px;
+
+			animation: slide-up-mobile 1s ease 0.5s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			h2 {
+				overflow: hidden;
+				word-break: break-all;
+				padding: 10px;
+
+				display: -webkit-box;
+				-webkit-line-clamp: 3; // 원하는 라인수
+				-webkit-box-orient: vertical;
+			}
+
+			p {
+				display: none;
+			}
 		}
 	}
 
@@ -60,6 +160,17 @@ const SliderLayout = styled.div`
 		100% {
 			visibility: visible;
 			top: 40%;
+		}
+	}
+
+	@keyframes slide-up-mobile {
+		0% {
+			visibility: visible;
+			top: 23rem;
+		}
+		100% {
+			visibility: visible;
+			top: 20%;
 		}
 	}
 
@@ -113,6 +224,12 @@ const SliderLayout = styled.div`
 		height: 2px;
 		background: #fff;
 		width: 50%;
+	}
+
+	@media screen and (max-width: 900px) {
+		//height: 80vh;
+		height: 300px;
+		overflow: hidden;
 	}
 `;
 

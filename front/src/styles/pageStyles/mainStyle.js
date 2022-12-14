@@ -26,14 +26,21 @@ export const MainTitleContainer = styled.div`
 	}
 
 	// 한곳에서 보는 온라인 AI 전시정보 팜플렛
-	.logoText {
-		height: 80px;
+	h2 {
+		//height: 80px;
 		line-height: 30px;
 
 		color: white;
 		font-family: 'Gothic A1';
-		font-weight: 600;
+		//font-weight: 600;
 		font-size: 20px;
+		word-break: keep-all;
+
+		//padding: 0 0 40px 0;
+
+		@media screen and (max-width: 400px) {
+			display: none;
+		}
 	}
 `;
 
@@ -65,12 +72,16 @@ export const AiContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	// width: 100%;
-	// max-width: 850px;
-	// height: 600px;
+	width: 100%;
+	max-width: 850px;
+	height: 500px;
 
-	margin: 0 auto;
+	margin: 0px auto;
 	padding: 0px;
+
+	@media screen and (max-width: 550px) {
+		width: 80vw;
+	}
 `;
 
 export const SerachBarContainer = styled.div`
@@ -81,6 +92,10 @@ export const SerachBarContainer = styled.div`
 
 	width: 100%;
 	height: 100px;
+
+	@media screen and (max-width: 550px) {
+		width: 80vw;
+	}
 `;
 
 export const SearchBarLayout = styled.div`
@@ -112,6 +127,10 @@ export const SearchBarLayout = styled.div`
 			}
 		} */
 	}
+
+	@media screen and (max-width: 300px) {
+		display: none;
+	}
 `;
 export const AiExContainer = styled.div`
 	display: flex;
@@ -126,6 +145,10 @@ export const AiExContainer = styled.div`
 	background-color: white;
 
 	border-radius: 10px;
+
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: keep-all;
 `;
 
 //Ai chat example css
@@ -147,7 +170,7 @@ export const AiChatRoomBox = styled.div`
 export const HumanBubble = styled.div`
 	text-align: left;
 
-	width: 80%;
+	width: 60%;
 	max-width: 400px;
 
 	margin: 4% 4% 4% 11%;
@@ -158,6 +181,12 @@ export const HumanBubble = styled.div`
 	padding: 10px;
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+	@media screen and (max-width: 400px) {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
 `;
 
 export const AiBubble = styled.div`
@@ -166,11 +195,35 @@ export const AiBubble = styled.div`
 	max-width: 350px;
 
 	margin: 4% 14% 4% 6%;
-	padding: 0 0 0 10px;
+	padding: 10px;
 
 	background-color: ${cssUnit.colors.White};
 
+	text-overflow: ellipsis;
+	overflow: hidden;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+	@media screen and (max-width: 400px) {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		//white-space: nowrap;
+
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+
+		p {
+			margin: 5px;
+			//line-height: 20px;
+			//padding-bottom: 43px;
+			overflow: hidden;
+
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+		}
+	}
 `;
 
 export const AiChatButton = styled.button`
@@ -191,6 +244,11 @@ export const AiChatButton = styled.button`
 
 	&:hover {
 		cursor: pointer;
+	}
+
+	@media screen and (max-width: 400px) {
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 `;
 

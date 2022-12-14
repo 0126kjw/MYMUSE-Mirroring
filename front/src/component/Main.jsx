@@ -62,9 +62,7 @@ const Main = () => {
 										style={{ objectFit: 'contain', layout: 'fill' }}
 									/>
 								</div>
-								<div className='logoText'>
-									한 곳에서 보는 온라인 AI 전시정보 팜플렛
-								</div>
+								<h2>한 곳에서 보는 온라인 AI 전시정보 팜플렛</h2>
 							</div>
 						</MainTitleContainer>
 					</WrapTop>
@@ -117,14 +115,9 @@ const Main = () => {
 									<HumanBubble>12월에는 어떤 전시회들이 열려?</HumanBubble>
 									<AiBubble>
 										<p align='left'>
-											<br />
-											합스부르크 600년, 매혹의 걸작들
-											<br />
-											외규장각 의궤, 그 고귀함의 의미
-											<br />
-											대한제국 첫 궁중 연회
-											<br />
-											나탈리 카르푸센코 사진전 ......
+											합스부르크 600년 매혹의 걸작들, 외규장각 의궤 그
+											고귀함의 의미, 대한제국 첫 궁중 연회, 나탈리 카르푸센코
+											사진전 ......
 											<br />
 										</p>
 									</AiBubble>
