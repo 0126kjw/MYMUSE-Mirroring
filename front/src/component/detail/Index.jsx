@@ -290,7 +290,7 @@ const Index = ({ item }) => {
 			return;
 		}
 		const kakaosdk = document.createElement('script');
-		kakaosdk.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&libraries=services,clusterer&autoload=false`;
+		kakaosdk.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOSHARE_API_KEY}&libraries=services,clusterer&autoload=false`;
 		kakaosdk.defer = true;
 		kakaosdk.async = true;
 		document.head.appendChild(kakaosdk);
