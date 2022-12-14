@@ -7,7 +7,7 @@ import SearchList_Muse from 'src/component/search/SearchList_Muse';
 
 // state
 import { useRecoilState, useRecoilValue } from 'recoil';
-import SelectedMapState from 'src/state/selectedMap';
+import currentMapState from 'src/state/currentMap';
 import SearchCategoryState from 'src/state/searchCategory';
 
 // style
@@ -29,9 +29,9 @@ import withGetServerSideProps from 'src/hocs/withServersideProps';
 
 const Search = () => {
 	// 지도 outer 상태로 지정
-	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
+	const [mapState, setMapState] = useRecoilState(currentMapState);
 	useEffect(() => {
-		setSelectedMapState({
+		setMapState({
 			mapKind: 'outer',
 			name: '',
 		});

@@ -1,7 +1,7 @@
 import Main from '../component/Main';
 import Head from 'next/head';
 import { useRecoilState } from 'recoil';
-import SelectedMapState from 'src/state/selectedMap';
+import SelectedMapState from 'src/state/currentMap';
 import { useEffect } from 'react';
 //for Seo
 

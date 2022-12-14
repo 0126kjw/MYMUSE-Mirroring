@@ -22,7 +22,7 @@ const template_ticket = (name, adultFee, youthFee, childFee, feeUrl) => {
         <td>${childFee}</td>
     </tr>
     <tr align="center" bgcolor="#D9BC8C">
-        <td colspan="2">상세 확인 url</td>
+        <td colspan="2" style='font-weight:bold'>상세 확인 url</td>
     </tr>
     <tr align="center">
         <td colspan="2">

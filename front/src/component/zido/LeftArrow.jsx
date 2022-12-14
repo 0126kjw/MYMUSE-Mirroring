@@ -1,25 +1,14 @@
-export default function CreatedList({
-	selectedMapState,
-	setMapState,
-	setPins,
-	setSelectedMapState,
-	outerMap,
-}) {
+export default function LeftArrow({ currentMap, setPins, setCurrentMap }) {
 	return (
 		<>
-			{selectedMapState.mapKind == 'inner' && (
+			{currentMap.mapKind == 'inner' && (
 				<>
 					<div
 						className='mapDescBox'
 						onClick={() => {
-							setSelectedMapState({
+							setCurrentMap({
 								mapKind: 'outer',
 								name: '',
-							});
-							setMapState({
-								zoom: 2,
-								map: outerMap,
-								center: [126.986, 37.561],
 							});
 							setPins((prev) => null);
 						}}

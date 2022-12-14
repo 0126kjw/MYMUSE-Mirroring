@@ -2,7 +2,7 @@ import { Marker } from 'react-simple-maps';
 import { IdBook } from 'src/data/idBook';
 import { useRouter } from 'next/router';
 
-export default function Marker_Inner({ selectedMapState, pins, setTooltipName, setHoverPin }) {
+export default function Marker_Inner({ currentMap, pins, setTooltipName, setHoverPin }) {
 	const router = useRouter();
 	const moveToDetail = (museName) => {
 		let ID = '';
@@ -16,7 +16,7 @@ export default function Marker_Inner({ selectedMapState, pins, setTooltipName, s
 
 	return (
 		<>
-			{selectedMapState.mapKind == 'inner'
+			{currentMap.mapKind == 'inner'
 				? pins &&
 				  pins.map(({ name, coordinates, _id }) => (
 						<Marker
@@ -45,7 +45,7 @@ export default function Marker_Inner({ selectedMapState, pins, setTooltipName, s
 								},
 							}}
 						>
-							<circle r={1} fill='#F00' stroke='#fff' strokeWidth={0.2} />
+							<circle r={5} fill='#F00' stroke='#fff' strokeWidth={1} />
 							<text
 								textAnchor='middle'
 								y='-2'

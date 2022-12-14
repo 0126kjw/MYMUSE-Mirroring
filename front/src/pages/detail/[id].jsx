@@ -9,7 +9,8 @@ import Index from 'src/component/detail/Index';
 import { useSetRecoilState } from 'recoil';
 import { useRecoilState } from 'recoil';
 import { currentLoc } from 'src/state/navibar';
-import SelectedMapState from 'src/state/selectedMap';
+import currentMapState from 'src/state/currentMap';
+
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 //import axios from 'axios';
@@ -128,12 +129,12 @@ const Detail = ({ item }) => {
 	//console.log('디테일에서 item', item);
 	const router = useRouter();
 	const setLoc = useSetRecoilState(currentLoc);
-	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
+	const [mapState, setMapState] = useRecoilState(currentMapState);
 
 	useEffect(() => {
 		// 지도 처리
 		setLoc(router.pathname);
-		setSelectedMapState({
+		setMapState({
 			mapKind: 'outer',
 			name: '',
 		});

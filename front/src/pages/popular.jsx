@@ -13,7 +13,20 @@ import AllCardsList from 'src/component/cards/AllCardsList';
 //for seo
 import withGetServerSideProps from 'src/hocs/withServersideProps';
 
+import { useRecoilState, useRecoilValue } from 'recoil';
+import currentMapState from 'src/state/currentMap';
+import { useEffect } from 'react';
+
 const Popular = () => {
+	// 지도 outer 상태로 지정
+	const [mapState, setMapState] = useRecoilState(currentMapState);
+	useEffect(() => {
+		setMapState({
+			mapKind: 'outer',
+			name: '',
+		});
+	}, []);
+
 	return (
 		<>
 			<PageLayout>

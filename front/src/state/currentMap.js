@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
 
-const selectedMap = atom({
-	key: 'selectedMap',
+const currentMap = atom({
+	key: 'currentMap',
 	default: { mapKind: 'outer', name: '' },
 });
 
-export default selectedMap;
+export default currentMap;

@@ -1,7 +1,7 @@
 import { IdBook } from 'src/data/idBook';
 import { useRouter } from 'next/router';
 
-export default function CreatedList({ pins, selectedMapState, hoverPin }) {
+export default function CreatedList({ pins, currentMap, hoverPin }) {
 	const router = useRouter();
 	const moveToDetail = (museName) => {
 		let ID = '';
@@ -15,7 +15,7 @@ export default function CreatedList({ pins, selectedMapState, hoverPin }) {
 
 	return (
 		<>
-			{selectedMapState.mapKind == 'inner' && pins && pins.length > 0 && (
+			{currentMap.mapKind == 'inner' && pins && pins.length > 0 && (
 				<div className='pinListUps'>
 					<ul>
 						{pins.map((x) => {
@@ -38,13 +38,13 @@ export default function CreatedList({ pins, selectedMapState, hoverPin }) {
 				</div>
 			)}
 
-			{selectedMapState.mapKind == 'inner' && pins && pins.length == 0 && (
+			{currentMap.mapKind == 'inner' && pins && pins.length == 0 && (
 				<div className='guideText2'>
-					<p>{selectedMapState.name}는 등록된 박물관이 없습니다.</p>
+					<p>{currentMap.name}는 등록된 박물관이 없습니다.</p>
 				</div>
 			)}
 
-			{selectedMapState.mapKind == 'inner' && (
+			{currentMap.mapKind == 'inner' && (
 				<div className='guideText'>
 					<p>
 						박물관 위치가 겹치는 경우<br></br> 지도에서 확인이 어려울 수 있습니다.
@@ -52,7 +52,7 @@ export default function CreatedList({ pins, selectedMapState, hoverPin }) {
 				</div>
 			)}
 
-			{selectedMapState.mapKind == 'outer' && (
+			{currentMap.mapKind == 'outer' && (
 				<div className='guideText'>
 					<p>박물관 목록에서 상세 페이지로 이동할 수 있습니다.</p>
 				</div>
