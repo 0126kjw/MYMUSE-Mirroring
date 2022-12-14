@@ -80,7 +80,18 @@ export default function SeoulZido() {
 						</Geographies>
 
 						{markers.map(({ name, coordinates, markerOffset }) => (
-							<Marker key={name} coordinates={coordinates}>
+							<Marker
+								key={name}
+								coordinates={coordinates}
+								onClick={async () => {
+									setIsMapFetching(true);
+									setSelectedMapState({
+										mapKind: 'inner',
+										name: name + '구',
+									});
+									await router.push('/map');
+								}}
+							>
 								<text
 									textAnchor='middle'
 									y={markerOffset}
@@ -88,7 +99,7 @@ export default function SeoulZido() {
 										fontFamily: 'system-ui',
 										fontSize: '8',
 										fontWeight: 'bold',
-										cursor: 'default',
+										cursor: 'pointer',
 									}}
 								>
 									{name}

@@ -94,6 +94,8 @@ export default function SeoulZido() {
 									<Marker_Outer
 										markers={markers}
 										selectedMapState={selectedMapState}
+										setIsMapFetching={setIsMapFetching}
+										setSelectedMapState={setSelectedMapState}
 									/>
 									<Marker_Inner
 										selectedMapState={selectedMapState}
