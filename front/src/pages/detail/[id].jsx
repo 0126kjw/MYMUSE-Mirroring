@@ -16,7 +16,6 @@ import { useEffect } from 'react';
 //import { Get } from 'src/utils/api';
 //for seo
 import withGetServerSideProps from 'src/hocs/withServersideProps';
-// wrap all
 
 const DetailTitle = styled.div`
 	//position: relative;
@@ -139,28 +138,19 @@ const Detail = ({ item }) => {
 			name: '',
 		});
 
-		//test2
-
+		// //item이 없거나 404를 보낼 때 (=쿼리가 제대로 된 범위에 없을 때 item은 withSer..에서 404를 받는다.)
 		if (!item || item === '404') {
 			router.push(`/404`);
 			return;
 		}
 
-		//test3
+		// 최근 페이지
 		const curId = router.query.id;
 		if (0 < curId && curId < 128) {
 			renewWatched();
 			return;
 		}
 	}, []);
-
-	// //item이 없거나 404를 보낼 때 (=쿼리가 제대로 된 범위에 없을 때 item은 withSer..에서 404를 받는다.)
-	// useEffect(() => {
-	// 	if (!item || item === '404') {
-	// 		router.push(`/404`);
-	// 		return;
-	// 	}
-	// }, []);
 
 	// 최근 페이지
 	const renewWatched = () => {
@@ -194,11 +184,6 @@ const Detail = ({ item }) => {
 			localStorage.setItem('watched', JSON.stringify(arr));
 		}
 	};
-	// useEffect(() => {
-	// 	renewWatched();
-	// 	return;
-	// }, []);
-
 	//renewWatched(); -> Error: localStorage is not defined
 
 	return (
