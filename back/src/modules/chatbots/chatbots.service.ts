@@ -17,7 +17,23 @@ export class ChatbotService {
 
   async create(feedback: string): Promise<void> {
     console.log(feedback);
-    this.chatbotModel.create({ feedback });
+    // const spawn = require('child_process').spawn;
+    // const result = spawn('python', [
+    //   './src/modules/chatbots/python/emotePredict.py',
+    //   feedback,
+    // ]);
+
+    // result.stdout.on('data', function (data: { toString: () => any }) {
+    //   console.log('성공');
+    //   console.log(data.toString());
+    // });
+
+    // result.stderr.on('data', function (data: { toString: () => any }) {
+    //   console.log('오류');
+    //   console.log(data.toString());
+    // });
+
+    this.chatbotModel.create({ feedback, sentiment: '' });
   }
 
   async findAll(text: string): Promise<any> {
