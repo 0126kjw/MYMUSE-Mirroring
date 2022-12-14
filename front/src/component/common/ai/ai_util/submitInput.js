@@ -12,6 +12,10 @@ import template_ticket from 'src/component/common/ai/ai_util/template_ticket';
 import template_address from 'src/component/common/ai/ai_util/template_address';
 
 const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
+	if (inputValue == '') {
+		alert('값을 입력해 주세요');
+		return;
+	}
 	const AIsec2 = document.querySelector('.AIsec2');
 
 	// 유저 질문 띄우기

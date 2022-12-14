@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import logoImg from '../../../../public/images/siteLogo.png';
 import closeImg from '../../../../public/images/closeImg.png';
 import InfoImg from '../../../../public/images/info.png';
+import enterImg from '../../../../public/images/enter.png';
 
 // util
 import submitInput from 'src/component/common/ai/ai_util/submitInput';
@@ -94,15 +95,12 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 				<div className='modalTopSection'>
 					<div className='topInnerSection'>
 						<div className='ControlSection'>
-							<button className='Lbtn' onClick={openInfoModal}>
-								<Image src={InfoImg} alt='BotInfo' width='25' height='25'></Image>
-							</button>
-
 							<Image src={logoImg} alt='logoImg' width='100' height='30'></Image>
-
-							<button className='Rbtn' onClick={closeBot}>
-								x
-							</button>
+							<div className='buttonBundles'>
+								<button className='closeButton' onClick={closeBot}>
+									<span>X</span>
+								</button>
+							</div>
 						</div>
 					</div>
 					<div
@@ -144,10 +142,15 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 				</div>
 
 				<div className='formDiv'>
+					<button className='infoButton' onClick={openInfoModal}>
+						<span>Info</span>
+					</button>
 					<form onSubmit={submitByEnter}>
 						<input type='text' value={inputValue} onChange={onChangeHandler} />
 					</form>
-					<button onClick={submitByClick}>&gt;</button>
+					<button className='enterButton' onClick={submitByClick}>
+						<Image src={enterImg} alt='enterImage' width='50' height='50'></Image>
+					</button>
 				</div>
 			</AiChatRoomStyle>
 		</>

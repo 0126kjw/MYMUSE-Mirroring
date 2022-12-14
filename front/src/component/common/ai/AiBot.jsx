@@ -1,6 +1,8 @@
 import AIBotLayout from 'src/styles/compoStyles/aibotStyle';
 import { useState, useEffect } from 'react';
 import AIChatRoom from 'src/component/common/ai/AIChatRoom';
+import Image from 'next/image';
+import AiBotImg from '../../../../public/images/aibot.png';
 
 const AiBot = () => {
 	const [botMode, setBotMode] = useState('off');
@@ -17,7 +19,7 @@ const AiBot = () => {
 	return (
 		<AIBotLayout>
 			<div id='AImodalOnBtn' onClick={openBot}>
-				AIBOT
+				<Image src={AiBotImg} alt='enterImage' width='100' height='150'></Image>
 			</div>
 			<div className='logoTest'>
 				<div className='position'></div>

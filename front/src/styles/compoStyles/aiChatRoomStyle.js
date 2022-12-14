@@ -19,34 +19,15 @@ const aiChatRoomStyle = styled.div`
 
 		.topInnerSection {
 			margin: 0 auto;
-			width: 90%;
+			width: 91%;
 		}
+
 		.ControlSection {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			height: 50px;
 			margin-top: 5px;
-
-			.Lbtn {
-				background-color: #222222;
-				border: solid 1px #222222;
-				color: #997a4c;
-				cursor: pointer;
-			}
-
-			.Rbtn {
-				background-color: #386795;
-				border: solid 1px #222222;
-				color: #e9cb1d;
-				cursor: pointer;
-				border-radius: 50%;
-				font-size: 15px;
-				font-weight: bold;
-				width: 25px;
-				height: 27px;
-				text-shadow: 6px 2px 6px darkblue;
-			}
 		}
 
 		.feedBackSection {
@@ -201,22 +182,7 @@ const aiChatRoomStyle = styled.div`
 				/* padding: 0px; */
 			}
 		}
-
-		button {
-			/* margin-top: 5px; */
-			margin-right: 5px;
-			padding: 0px;
-			width: 40px;
-			height: 55%;
-			border-radius: 10px;
-			border: solid 1px #997a4c;
-			background-color: black;
-			color: white;
-			font-size: 20px;
-			cursor: pointer;
-		}
 	}
-	/* ------------------------------------------------------ */
 	.horListBox {
 		/* max-width: 100%; */
 		width: 100%;
@@ -247,10 +213,7 @@ const aiChatRoomStyle = styled.div`
 
 	.horList {
 		background: #ffffff;
-		/* border: solid 1px ${cssUnit.colors.DarkGold}; */
-		/* border-radius: 5px; */
 		padding: 5px;
-		/* margin: 5px; */
 		min-width: 200px;
 		height: 200px;
 		overflow: hidden;
@@ -301,6 +264,47 @@ const aiChatRoomStyle = styled.div`
 			height: 150px;
 			object-fit: cover;
 		}
+	}
+
+	.infoButton {
+		background-color: #d9d9d9;
+		border: solid 1px beige;
+		color: #997a4c;
+		font-size: 20px;
+		font-weight: bold;
+		width: 50px;
+		height: 35px;
+		font-style: italic;
+		border-radius: 50px;
+		margin: 10px;
+		cursor: pointer;
+		:hover {
+			color: brown;
+		}
+	}
+
+	.closeButton {
+		background-color: #222222;
+		color: #997a4c;
+		border: solid 1px #222222;
+		border-radius: 50px;
+		cursor: pointer;
+		font-size: 20px;
+		font-weight: bold;
+		height: 35px;
+		:hover {
+			color: red;
+		}
+	}
+	.enterButton {
+		margin-top: 3px;
+		margin-right: 5px;
+		margin-left: 5px;
+		padding: 0px;
+		border: solid 1px gray;
+		background-color: gray;
+		font-size: 20px;
+		cursor: pointer;
 	}
 `;
 

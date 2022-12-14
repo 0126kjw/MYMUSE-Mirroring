@@ -14,12 +14,11 @@ const AIBotLayout = styled.div`
 		position: fixed;
 
 		right: 30px;
-		bottom: 30px;
+		bottom: 50px;
 
 		justify-content: center;
 		width: 100px;
 		height: 100px;
-		background-color: ${cssUnit.colors.DarkGold};
 		border-radius: 50%;
 		line-height: 100px;
 		text-align: center;
