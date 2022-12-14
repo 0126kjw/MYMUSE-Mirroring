@@ -95,7 +95,10 @@ const Main = () => {
 						<WrapTitle color={cssUnit.colors.White}>
 							직접 검색하거나
 							<br />
-							Ai에게 물어볼 수 있어요
+							<br />
+							사용자 _% 가 만족하고 있는 AI봇에게
+							<br />
+							물어볼 수 있어요!
 						</WrapTitle>
 						<AiContainer>
 							<SerachBarContainer>
