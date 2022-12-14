@@ -15,6 +15,8 @@ const WatchedOnButtonStyle = styled.div`
 	border-radius: 50%;
 	border: solid 1px black;
 	cursor: pointer;
+
+	//overflow-x: hidden;
 `;
 
 const WatchedOnButton = ({ setIsWatchedOn }) => {

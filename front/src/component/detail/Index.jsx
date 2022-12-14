@@ -38,7 +38,7 @@ const IndexStyle = styled.div`
 		}
 		@media screen and (max-width: 1200px) {
 			width: 100%;
-			height: 100%;
+			height: auto;
 		}
 	}
 	.boxContainer {
@@ -139,6 +139,9 @@ const IndexStyle = styled.div`
 
 		list-style: none;
 		position: relative;
+
+		overflow-x: hidden;
+		width: 100%;
 	}
 	.col-1 {
 		margin: 0 auto;
@@ -203,9 +206,30 @@ const IndexStyle = styled.div`
 			color: ${cssUnit.colors.LightBlack};
 			font-family: ${cssUnit.fontFamily.Hahmlet};
 		}
-		@media screen and (max-width: 1200px) {
-			width: 90%;
+
+		.rcol2-free {
+			content: ' ';
+			padding: 10px 0 10px 0;
+			background-color: ${cssUnit.colors.RealLightGray};
+			border: solid 1px aliceblue;
+			color: ${cssUnit.colors.DeepBlack};
+			overflow: hidden;
+			font-weight: 300;
 		}
+
+		.rcol2-notFree {
+			content: '무료';
+			padding: 10px 0 10px 0;
+			background-color: ${cssUnit.colors.RealLightGray};
+			border: solid 1px aliceblue;
+			color: ${cssUnit.colors.DeepBlack};
+			overflow: hidden;
+			font-weight: 300;
+		}
+	}
+
+	@media screen and (max-width: 1200px) {
+		width: 90%;
 	}
 
 	.close {
@@ -298,8 +322,8 @@ const Index = ({ item }) => {
 					<div className='boxContainer'>
 						<DataTable_Introduction
 							_id={item._id}
+							category={item.category}
 							description={item.description}
-							name={item.name}
 						/>
 					</div>
 					<div className='boxContainer'>
@@ -326,6 +350,7 @@ const Index = ({ item }) => {
 							sat={item.sat}
 							sun={item.sun}
 							offday={item.offday}
+							website={item.website}
 						/>
 					</div>
 					<div className='boxContainer'>

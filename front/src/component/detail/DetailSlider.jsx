@@ -18,7 +18,8 @@ const DetailSliderLayout = styled.div`
 
 		@media screen and (max-width: 1200px) {
 			width: 100%;
-			height: 60vh;
+			height: 30vh;
+			//height: auto;
 		}
 	}
 

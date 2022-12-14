@@ -11,15 +11,15 @@ const DataTable_AdmissionFee = ({ adultFee, youthFee, childFee, isFree, feeUrl }
 
 			<div className='col-2'>
 				<div className='rcol-fee'>어른 관람료</div>
-				<div>{adultFee}</div>
+				<div>{adultFee === 0 ? '무료' : adultFee}</div>
 			</div>
 			<div className='col-2'>
 				<div className='rcol-fee'>청소년 관람료</div>
-				<div>{youthFee}</div>
+				<div>{youthFee === 0 ? '무료' : youthFee}</div>
 			</div>
 			<div className='col-2'>
 				<div className='rcol-fee'>어린이 관람료</div>
-				<div>{childFee}</div>
+				<div>{childFee === 0 ? '무료' : childFee}</div>
 			</div>
 			<div className='col-2'>
 				<div className='rcol'>요금 참조</div>

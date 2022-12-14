@@ -8,20 +8,26 @@ import { currentLoc } from 'src/state/navibar';
 import { useRecoilValue } from 'recoil';
 
 const MenuTogglerLayout = styled.div`
-	position: absolute;
+	//position: absolute;
+	position: fixed;
+
 	// width: 100vw;
 	// height: 100vh;
+
+	z-index: 10;
 
 	#menuToggle {
 		display: block;
 		position: relative;
-		top: 40px;
+		top: 45px;
 		left: 55%;
-		z-index: 1000;
+		z-index: 100;
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
+
+		//position: fixed;
 	}
 
 	#menuToggle a {

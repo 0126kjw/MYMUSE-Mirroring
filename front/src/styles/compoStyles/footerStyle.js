@@ -15,6 +15,8 @@ export const FooterContainer = styled.footer`
 
 	background-color: ${cssUnit.backgroundColors.Black};
 	color: ${cssUnit.colors.White};
+
+	overflow-x: hidden;
 `;
 export const FooterWrapper = styled.div`
 	position: relative;

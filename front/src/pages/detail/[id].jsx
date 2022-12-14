@@ -17,6 +17,64 @@ import { useEffect } from 'react';
 //for seo
 import withGetServerSideProps from 'src/hocs/withServersideProps';
 // wrap all
+
+const DetailTitle = styled.div`
+	//position: relative;
+	//padding-top: 50px;
+	//padding-bottom: 50px;
+
+	position: sticky;
+	top: 0px;
+
+	width: 100%;
+
+	list-style: none;
+
+	padding-top: 40px;
+	padding-bottom: 30px;
+
+	z-index: 1;
+
+	color: ${cssUnit.colors.White};
+	font-size: ${cssUnit.fontSize.medium};
+	text-align: center;
+	line-height: 50px;
+
+	background-color: ${cssUnit.colors.Black};
+
+	/* @media screen and (max-width: 599px) {
+		height: ${(props) => {
+		return props.size ? props.size : '100%';
+	}};
+		:nth-of-type(2),
+		:nth-of-type(3),
+		:nth-of-type(4) {
+			padding-top: 70px;
+			padding-bottom: 100px;
+		}
+	} */
+
+	//font-family: ${cssUnit.fontFamily.NanumM};
+	//font-weight: 700;
+
+	li {
+		//position: relative;
+
+		:after {
+			content: '';
+			display: block;
+			position: absolute;
+
+			width: 20vw;
+			height: 0.5px;
+
+			top: 70%;
+			left: 40%;
+
+			border-bottom: 5px solid ${cssUnit.colors.DarkGold};
+		}
+	}
+`;
 const DetailContainer = styled.div`
 	margin: 0px auto;
 	background-color: ${cssUnit.colors.DeepBlack};
@@ -24,7 +82,7 @@ const DetailContainer = styled.div`
 	font-weight: bold;
 	font-size: 25px;
 
-	.detailTitle {
+	/* .detailTitle {
 		position: relative;
 		text-align: center;
 		line-height: 50px;
@@ -34,9 +92,15 @@ const DetailContainer = styled.div`
 		color: ${cssUnit.colors.White};
 
 		width: 100%;
-		font-size: ${cssUnit.fontSize.medium};
+		font-size: ${cssUnit.fontSize.title};
 
 		list-style: none;
+
+		position: sticky;
+		top: 4px;
+
+		//font-family: ${cssUnit.fontFamily.NanumM};
+		//font-weight: 700;
 
 		li {
 			//position: relative;
@@ -55,7 +119,7 @@ const DetailContainer = styled.div`
 				border-bottom: 5px solid ${cssUnit.colors.DarkGold};
 			}
 		}
-	}
+	} */
 	.detailBackground {
 		background-color: ${cssUnit.backgroundColors.White};
 	}
@@ -74,14 +138,29 @@ const Detail = ({ item }) => {
 			mapKind: 'outer',
 			name: '',
 		});
-	}, []);
-	//item이 없거나 404를 보낼 때 (=쿼리가 제대로 된 범위에 없을 때 item은 withSer..에서 404를 받는다.)
-	useEffect(() => {
+
+		//test2
+
 		if (!item || item === '404') {
 			router.push(`/404`);
 			return;
 		}
+
+		//test3
+		const curId = router.query.id;
+		if (0 < curId && curId < 128) {
+			renewWatched();
+			return;
+		}
 	}, []);
+
+	// //item이 없거나 404를 보낼 때 (=쿼리가 제대로 된 범위에 없을 때 item은 withSer..에서 404를 받는다.)
+	// useEffect(() => {
+	// 	if (!item || item === '404') {
+	// 		router.push(`/404`);
+	// 		return;
+	// 	}
+	// }, []);
 
 	// 최근 페이지
 	const renewWatched = () => {
@@ -115,26 +194,35 @@ const Detail = ({ item }) => {
 			localStorage.setItem('watched', JSON.stringify(arr));
 		}
 	};
-	useEffect(() => {
-		renewWatched();
-		return;
-	}, []);
+	// useEffect(() => {
+	// 	renewWatched();
+	// 	return;
+	// }, []);
 
 	//renewWatched(); -> Error: localStorage is not defined
 
 	return (
-		<DetailContainer>
-			<div className='detailTitle'>
+		<>
+			{item && (
+				<>
+					<DetailTitle>
+						<li>{item.name}</li>
+					</DetailTitle>
+					<DetailContainer>
+						{/* <div className='detailTitle'>
 				<li>{item.name}</li>
-			</div>
-			<div className='detailBackground'>
-				<Wrap>
-					<UnderDevSection>
-						<Index item={item} />
-					</UnderDevSection>
-				</Wrap>
-			</div>
-		</DetailContainer>
+			</div> */}
+						<div className='detailBackground'>
+							<Wrap>
+								<UnderDevSection>
+									<Index item={item} />
+								</UnderDevSection>
+							</Wrap>
+						</div>
+					</DetailContainer>
+				</>
+			)}
+		</>
 	);
 };
 
