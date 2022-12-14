@@ -18,6 +18,8 @@ import SearchCategoryState from 'src/state/searchCategory';
 
 //style
 import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
+import cssUnit from 'src/lib/cssUnit';
+import { MobileButton } from 'src/styles/compoStyles/searchBarStyle';
 
 const SearchBar = ({
 	keyword,
@@ -116,48 +118,62 @@ const SearchBar = ({
 
 	return (
 		<SearchBarLayout>
-			<div ref={dropDownRef}>
-				<DropDown
-					setList={setList}
-					setSerchResNeeded={setSerchResNeeded}
-					catSelector={catSelector}
-					setCatSelector={setCatSelector}
-				/>
-			</div>
-
-			{/* <div ref={testRef}></div> */}
-
-			{catSelector == 'closed' && (
-				<AiFillCaretDown
-					style={{
-						position: 'absolute',
-						marginTop: '10px',
-						marginLeft: '5px',
-						color: 'black',
-						fontSize: '30px',
-					}}
-				/>
-			)}
-
-			<form onSubmit={onSubmit}>
-				<input
-					type='text'
-					id='name'
-					name='name'
-					size='40'
-					value={keyword}
-					onChange={onChange}
-					autoComplete='off'
-				/>
-				{modal == 'on' && (
-					<RecommendedList
-						recList={recList}
-						showSearchResultsToLists={showSearchResultsToLists}
-						setModal={setModal}
+			<div className='layout'>
+				<div className='dropDonwLayout' ref={dropDownRef}>
+					<DropDown
+						setList={setList}
+						setSerchResNeeded={setSerchResNeeded}
+						catSelector={catSelector}
+						setCatSelector={setCatSelector}
 					/>
-				)}
-			</form>
-			<button onClick={onClick}>🔍</button>
+					{catSelector == 'closed' && (
+						<AiFillCaretDown
+							style={{
+								position: 'absolute',
+								marginTop: '3px',
+								marginLeft: '100px',
+								color: 'black',
+								fontSize: '25px',
+							}}
+						/>
+					)}
+				</div>
+
+				{/* <div ref={testRef}></div> */}
+
+				<form onSubmit={onSubmit}>
+					<div className={keyword ? 'inputDiv-typing' : 'inputDiv-nontyping'}>
+						<input
+							type='text'
+							id='name'
+							name='name'
+							size='40'
+							value={keyword}
+							onChange={onChange}
+							autoComplete='off'
+							style={{
+								outline: 'none',
+								fontFamily: `${cssUnit.fontFamily.GothicAi}`,
+								fontSize: '18px',
+							}}
+						/>
+						<MobileButton onClick={onClick}>
+							<div className='search'>
+								<div className='s_circle'></div>
+								<div className='s_rectangle'></div>
+							</div>
+						</MobileButton>
+					</div>
+					{modal == 'on' && (
+						<RecommendedList
+							recList={recList}
+							showSearchResultsToLists={showSearchResultsToLists}
+							setModal={setModal}
+						/>
+					)}
+				</form>
+				{/* <button >🔍</button> */}
+			</div>
 		</SearchBarLayout>
 	);
 };

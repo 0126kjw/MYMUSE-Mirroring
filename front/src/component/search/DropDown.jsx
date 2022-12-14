@@ -1,6 +1,4 @@
-const { useState } = require('react');
 //recoil
-import { useSetRecoilState } from 'recoil';
 import { useRecoilState } from 'recoil';
 import SearchCategoryState from 'src/state/searchCategory';
 
@@ -35,6 +33,7 @@ const DropDown = ({ setList, setSerchResNeeded, catSelector, setCatSelector }) =
 			{catList && (
 				<>
 					<DropDownLabel
+						className='checking'
 						value={category}
 						onClick={CategorySelectorOnOff}
 						style={{ cursor: 'pointer' }}

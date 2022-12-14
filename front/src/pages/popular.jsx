@@ -5,6 +5,7 @@ import { ListSection } from 'src/styles/compoStyles/cardlistStyle';
 //for page common section
 import { Wrap, WrapTitle } from 'src/styles/common';
 import TitleSection from 'src/component/common/TitleSection';
+import { PopWrapTitle } from 'src/styles/pageStyles/popularStyle';
 //to use in getServersideProps
 
 //components where data fetching occured
@@ -18,7 +19,9 @@ const Popular = () => {
 			<PageLayout>
 				<TitleSection color={cssUnit.backgroundColors.Black} size={200}>
 					<Wrap>
-						<WrapTitle color={cssUnit.colors.White}>인기 유료 전시회</WrapTitle>
+						<PopWrapTitle color={cssUnit.colors.White}>
+							<li>인기 유료 전시회</li>
+						</PopWrapTitle>
 						<SubTitle>인터파크 티켓랭킹</SubTitle>
 					</Wrap>
 				</TitleSection>
