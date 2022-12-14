@@ -26,7 +26,6 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 	let checkId = '';
 	for (const ele of IdBook) {
 		if (ele.name == inputValue) {
-			console.log(inputValue);
 			checkId = ele.id;
 			break;
 		}
@@ -71,11 +70,7 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 	const userQuestion = { text: inputValue };
 	let data = null;
 	try {
-		//const post = await axios.post('http://localhost:3001/chatbots', userQuestion);
-		//data = post.data;
-		//console.log('data', data);
 		data = await PostUserQuestion(userQuestion);
-		console.log(data);
 	} catch {
 		console.log('posting error');
 	}

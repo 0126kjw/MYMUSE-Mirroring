@@ -11,6 +11,8 @@ import Loading from 'src/component/common/Loading';
 //for seo
 import Seo from 'src/component/Seo';
 
+import Layout from 'src/component/common/Layout';
+
 function MyApp({ Component, pageProps }) {
 	//console.log('페이지프롭스?', pageProps);
 	//console.log('compo?', Component);
@@ -23,7 +25,9 @@ function MyApp({ Component, pageProps }) {
 					<Suspense faillback={<Loading />}>
 						<Seo pagePath={pagePath} pageTitle={pageTitle} pageDesc={pageDesc} />
 						<AppLayout>
-							<Component {...pageProps} item={item} />
+							<Layout>
+								<Component {...pageProps} item={item} />
+							</Layout>
 						</AppLayout>
 					</Suspense>
 				</ErrorBoundary>

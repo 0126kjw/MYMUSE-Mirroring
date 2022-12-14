@@ -27,6 +27,7 @@ import TitleSection from './common/TitleSection';
 import InfoModal from 'src/component/common/ai/InfoModal';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
+import KakaoBtn from './detail/KakaoShare';
 
 const Main = () => {
 	const router = useRouter();
@@ -137,6 +138,13 @@ const Main = () => {
 								</AiChatButton>
 							</AiExContainer>
 						</AiContainer>
+					</Wrap>
+					<Wrap>
+						<WrapTitle color={cssUnit.colors.White}>
+							<br />
+							카카오톡으로 공유해보세요
+						</WrapTitle>
+						<KakaoBtn />
 					</Wrap>
 				</Section>
 			</MainContainer>
