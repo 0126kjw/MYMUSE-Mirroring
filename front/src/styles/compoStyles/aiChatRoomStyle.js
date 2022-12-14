@@ -17,6 +17,10 @@ const aiChatRoomStyle = styled.div`
 		border-right: solid 3px gray;
 		border-radius: 10px 10px 0px 0px;
 
+		.topInnerSection {
+			margin: 0 auto;
+			width: 90%;
+		}
 		.ControlSection {
 			display: flex;
 			justify-content: space-between;
@@ -32,10 +36,16 @@ const aiChatRoomStyle = styled.div`
 			}
 
 			.Rbtn {
-				background-color: #222222;
+				background-color: #386795;
 				border: solid 1px #222222;
-				color: #997a4c;
+				color: #e9cb1d;
 				cursor: pointer;
+				border-radius: 50%;
+				font-size: 15px;
+				font-weight: bold;
+				width: 25px;
+				height: 27px;
+				text-shadow: 6px 2px 6px darkblue;
 			}
 		}
 
@@ -86,7 +96,7 @@ const aiChatRoomStyle = styled.div`
 		right: 30px;
 		bottom: 96px;
 
-		height: 550px;
+		height: 350px;
 		width: 450px;
 
 		margin: 0 auto;
@@ -124,6 +134,7 @@ const aiChatRoomStyle = styled.div`
 			float: left;
 			background-color: #ffffff;
 			margin: 1%;
+			margin-bottom: 10px;
 			padding: 1%;
 			text-align: left;
 			min-height: 20px;
@@ -137,11 +148,9 @@ const aiChatRoomStyle = styled.div`
 		.msgFromHuman {
 			float: right;
 			background-color: ${cssUnit.colors.DarkGold};
-			//background-color: #6e3a07;
 			color: white;
 			margin: 1%;
 			padding: 1%;
-			/* width: 70%; */
 			min-height: 20px;
 			border-radius: 10px;
 			text-align: left;
