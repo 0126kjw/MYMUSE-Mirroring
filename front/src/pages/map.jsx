@@ -21,13 +21,13 @@ const Zido = () => {
 					</Wrap>
 				</TitleSection>
 				{/* <Section size={900}></Section> */}
-				<Section color={cssUnit.backgroundColors.White} size={900}>
-					<Wrap>
-						<UnderDevSection>
-							<SeoulZidoSub />
-						</UnderDevSection>
-					</Wrap>
-				</Section>
+				{/* <Section color={cssUnit.backgroundColors.White} size={900}> */}
+				<Wrap>
+					<UnderDevSection>
+						<SeoulZidoSub />
+					</UnderDevSection>
+				</Wrap>
+				{/* </Section> */}
 			</ZidoContainer>
 		</>
 	);
