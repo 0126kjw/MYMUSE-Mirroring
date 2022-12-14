@@ -80,10 +80,10 @@ const SliderLayout = styled.div`
 		}
 
 		@media screen and (max-width: 900px) {
-			height: 100%;
+			height: 500px;
 			//height: 80vh;
 
-			animation: slide-up-mobile 1s ease 0.5s;
+			animation: slide-up-mobile1 1s ease 0.5s;
 			animation-fill-mode: forwards;
 			visibility: hidden;
 
@@ -96,7 +96,7 @@ const SliderLayout = styled.div`
 				padding: 5px;
 
 				display: -webkit-box;
-				-webkit-line-clamp: 3; // 원하는 라인수
+				-webkit-line-clamp: 2; // 원하는 라인수
 				-webkit-box-orient: vertical;
 			}
 		}
@@ -105,7 +105,7 @@ const SliderLayout = styled.div`
 			//height: 80vh;
 			height: 600px;
 
-			animation: slide-up-mobile 1s ease 0.5s;
+			animation: slide-up-mobile2 1s ease 0.5s;
 			animation-fill-mode: forwards;
 			visibility: hidden;
 
@@ -118,7 +118,7 @@ const SliderLayout = styled.div`
 				padding: 5px;
 
 				display: -webkit-box;
-				-webkit-line-clamp: 3; // 원하는 라인수
+				-webkit-line-clamp: 2; // 원하는 라인수
 				-webkit-box-orient: vertical;
 			}
 		}
@@ -127,7 +127,7 @@ const SliderLayout = styled.div`
 			//height: 80vh;
 			height: 150px;
 
-			animation: slide-up-mobile 1s ease 0.5s;
+			animation: slide-up-mobile3 1s ease 0.5s;
 			animation-fill-mode: forwards;
 			visibility: hidden;
 
@@ -162,8 +162,31 @@ const SliderLayout = styled.div`
 			top: 40%;
 		}
 	}
+	//600-900
+	@keyframes slide-up-mobile1 {
+		0% {
+			visibility: visible;
+			top: 23rem;
+		}
+		100% {
+			visibility: visible;
+			top: 50%;
+		}
+	}
+	//600-300
+	@keyframes slide-up-mobile2 {
+		0% {
+			visibility: visible;
+			top: 23rem;
+		}
+		100% {
+			visibility: visible;
+			top: 30%;
+		}
+	}
 
-	@keyframes slide-up-mobile {
+	//under 300
+	@keyframes slide-up-mobile3 {
 		0% {
 			visibility: visible;
 			top: 23rem;
@@ -228,7 +251,7 @@ const SliderLayout = styled.div`
 
 	@media screen and (max-width: 900px) {
 		//height: 80vh;
-		height: 300px;
+		height: 500px;
 		overflow: hidden;
 	}
 `;

@@ -67,13 +67,70 @@ export const WrapTop = styled.article`
 	word-break: keep-all;
 `;
 
-//common Wrap title
+// //common Wrap title
 export const WrapTitle = styled.h2`
+	display: none;
 	font-size: ${cssUnit.fontSize.medium};
+	font-family: ${cssUnit.fontFamily.GowunBT};
 
 	word-break: keep-all;
 
 	color: ${(props) => {
 		return props.color ? props.color : cssUnit.colors.Black;
 	}};
+
+	@media screen and (max-width: 450px) {
+		display: block;
+	}
+`;
+
+//css ani
+export const WrapTitleFirst = styled.h2`
+	font-size: ${cssUnit.fontSize.medium};
+	font-family: ${cssUnit.fontFamily.GowunBT};
+
+	word-break: keep-all;
+
+	color: ${(props) => {
+		return props.color ? props.color : cssUnit.colors.Black;
+	}};
+
+	display: grid;
+	place-items: center;
+
+	.full {
+		width: 33ch;
+		animation: typing 2s
+				steps(
+					${(props) => {
+						return props.steps ? props.steps : 30;
+					}}
+				),
+			blink 0.5s step-end infinite alternate;
+		white-space: nowrap;
+		overflow: hidden;
+		border-right: 3px solid;
+		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-size: 24;
+
+		overflow-x: hidden;
+	}
+
+	@keyframes typing {
+		from {
+			width: 0;
+		}
+	}
+
+	@keyframes blink {
+		50% {
+			border-color: transparent;
+		}
+	}
+
+	@media screen and (max-width: 450px) {
+		.full {
+			display: none;
+		}
+	}
 `;

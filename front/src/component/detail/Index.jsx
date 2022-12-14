@@ -147,6 +147,7 @@ const IndexStyle = styled.div`
 		width: 100%;
 	}
 	.col-1 {
+		display: flex;
 		margin: 0 auto;
 		margin-bottom: 10px;
 
@@ -162,7 +163,8 @@ const IndexStyle = styled.div`
 		font-family: ${cssUnit.fontFamily.NanumM};
 		font-weight: 600;
 		line-height: 150%;
-		text-align: justify;
+		text-align: start;
+
 		color: ${cssUnit.colors.DeepBlack};
 
 		@media screen and (max-width: 1200px) {

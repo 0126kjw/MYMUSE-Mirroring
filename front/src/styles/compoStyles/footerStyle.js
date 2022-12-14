@@ -45,6 +45,8 @@ export const FooterTitleBox = styled.div`
 
 		width: 300px;
 		height: 100px;
+
+		overflow-x: hidden;
 	}
 	/* not working: ... */
 	span {

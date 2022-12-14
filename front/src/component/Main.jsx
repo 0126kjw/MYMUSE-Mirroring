@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import cssUnit from 'src/lib/cssUnit';
 //styling
-import { Section, Wrap, WrapTop, WrapTitle } from 'src/styles/common';
+import { Section, Wrap, WrapTop, WrapTitle, WrapTitleFirst } from 'src/styles/common';
 import {
 	MainContainer,
 	MainTitleContainer,
@@ -70,7 +70,10 @@ const Main = () => {
 
 				<Section color={cssUnit.backgroundColors.White}>
 					<Wrap>
-						<WrapTitle>대표적인 박물관과 미술관들을 둘러보세요</WrapTitle>
+						<WrapTitleFirst steps={22}>
+							<div className='full'>대표적인 박물관과 미술관들을 둘러보세요.</div>
+						</WrapTitleFirst>
+						<WrapTitle>대표적인 박물관과 미술관들을 둘러보세요.</WrapTitle>
 						<SilderContainer>
 							<Slider />
 						</SilderContainer>
@@ -79,11 +82,10 @@ const Main = () => {
 
 				<Section color={cssUnit.backgroundColors.Gray}>
 					<Wrap>
-						<WrapTitle>
-							내 주변에 어떤 박물관/미술관이 있을까?
-							<br />
-							지도에 표시하며 살펴보세요
-						</WrapTitle>
+						<WrapTitleFirst steps={22}>
+							<div className='full'>내 주변에 어떤 박물관/미술관이 있을까?</div>
+						</WrapTitleFirst>
+						<WrapTitle>내 주변에 어떤 박물관/미술관이 있을까?</WrapTitle>
 						<MapContainer>
 							<SeoulZidoMain />
 						</MapContainer>
@@ -92,6 +94,9 @@ const Main = () => {
 
 				<Section color={cssUnit.backgroundColors.LightBlack}>
 					<Wrap>
+						<WrapTitleFirst steps={21} color={cssUnit.backgroundColors.White}>
+							<div className='full'>직접 검색하거나 Ai에게 물어볼 수 있어요</div>
+						</WrapTitleFirst>
 						<WrapTitle color={cssUnit.colors.White}>
 							직접 검색하거나
 							<br />

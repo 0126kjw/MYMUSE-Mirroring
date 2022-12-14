@@ -4,6 +4,7 @@ const cssUnit = {
 		NanumM: `'Nanum Myeongjo',serif`,
 		Hahmlet: `'Hahmlet',serif`,
 		GothicAi: `'Gothic A1', sans-serif`,
+		GowunBT: `'Gowun Batang', serif`,
 	},
 	fontSize: {
 		title: '40px',

@@ -34,7 +34,9 @@ const AIBotLayout = styled.div`
 	@media screen and (max-width: 599px) {
 		right: 5%;
 		bottom: 5%;
+		overflow-x: hidden;
 	}
+	overflow-x: hidden;
 `;
 
 export default AIBotLayout;
