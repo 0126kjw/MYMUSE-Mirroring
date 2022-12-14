@@ -12,11 +12,12 @@ import SearchCategoryState from 'src/state/searchCategory';
 
 // style
 import cssUnit from 'src/lib/cssUnit';
+import { SearchWrapTitle, SearchResultCard } from 'src/styles/pageStyles/searchStyle';
 import { PageLayout } from 'src/styles/compoStyles/cardlistStyle';
 import { ListSection } from 'src/styles/compoStyles/cardlistStyle';
 
 //for page common section
-import { Wrap, WrapTitle } from 'src/styles/common';
+import { Section, Wrap, WrapTitle } from 'src/styles/common';
 import TitleSection from 'src/component/common/TitleSection';
 import { SearchSection } from 'src/styles/pageStyles/searchStyle';
 
@@ -54,7 +55,9 @@ const Search = () => {
 			<PageLayout>
 				<TitleSection color={cssUnit.backgroundColors.Black} size={50}>
 					<Wrap>
-						<WrapTitle color={cssUnit.colors.White}>박물관/전시회 검색</WrapTitle>
+						<SearchWrapTitle color={cssUnit.colors.White}>
+							<li>박물관/전시회 검색</li>
+						</SearchWrapTitle>
 					</Wrap>
 				</TitleSection>
 				<SearchSection>
@@ -70,10 +73,20 @@ const Search = () => {
 						setIsFetching={setIsFetching}
 					/>
 				</SearchSection>
+				{!searchRes ? (
+					<>
+						{/* <Section color={`${cssUnit.backgroundColors.Black}`} size={'700px'} /> */}
+					</>
+				) : (
+					<></>
+				)}
 				{isFetching && serchResNeeded && <div className='searchRes'> 검색중... </div>}
 
 				{!isFetching && serchResNeeded && (
-					<div className='searchRes'> '{searchRes}' 검색결과</div>
+					<div className='searchRes'>
+						{' '}
+						<span>{searchRes}</span>검색결과
+					</div>
 				)}
 
 				{!isFetching && (

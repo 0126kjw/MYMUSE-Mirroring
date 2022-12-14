@@ -1,14 +1,29 @@
 import styled from '@emotion/styled';
+import cssUnit from 'src/lib/cssUnit';
 
 export const RecommendedListStyle = styled.div`
-	width: 250px;
-	z-index: 2;
+	width: 300px;
+	z-index: 20;
 	background-color: white;
-	color: black;
+	color: ${cssUnit.colors.DeepBlack};
 	position: relative;
-	border-radius: 10px;
-	padding: 3px;
+	//border-radius: 10px;
+	padding: 3px 0 0 0;
 	border: solid 1px black;
+
+	position: absolute;
+
+	height: 300px;
+	overflow-y: auto;
+
+	//
+
+	font-size: ${cssUnit.fontSize.normal};
+	font-family: ${cssUnit.fontFamily.GothicAi};
+	font-weight: 500;
+
+	//top: 8px;
+
 	ul {
 		list-style: none;
 		/* margin: 10px; */
@@ -18,17 +33,24 @@ export const RecommendedListStyle = styled.div`
 	}
 	li {
 		list-style: none;
-		margin: 10px;
+		//margin: 10px;
+		padding: 10px;
 		cursor: pointer;
 		&:hover {
-			color: red;
+			color: ${cssUnit.colors.DeepBlack};
+			background-color: ${cssUnit.colors.LightGray};
+		}
+		:nth-last-of-type(1) {
+			padding-bottom: 0px;
 		}
 	}
-
 	@media screen and (max-width: 900px) {
 		position: absolute;
-		width: 35%;
-		margin-top: 50px;
+		width: 39.5%;
+		//padding-right: 5px;
+		//padding-left: 5px;
+		//margin-top: 50px;
+		//padding: 5px;
 	}
 `;
 

@@ -19,95 +19,48 @@ export const SearchSection = styled.div`
 	}
 `;
 
-// export const SearchpageLayout = styled.div`
-// 	background-color: ${cssUnit.colors.White};
+//Wrap title
+export const SearchWrapTitle = styled.h2`
+	position: relative;
+	width: 100%;
 
-// 	margin: 0px auto;
+	list-style: none;
 
-// 	font-family: 'Noto serif KR', sans-serif;
-// 	font-weight: bold;
-// 	font-size: 25px;
+	padding-top: 10px;
+	padding-bottom: 15px;
 
-// 	.subTitle {
-// 		padding-top: 50px;
-// 	}
+	margin: 0;
 
-// 	.allLists {
-// 		width: 1000px;
-// 		background-color: gray;
+	color: ${cssUnit.colors.White};
+	font-size: ${cssUnit.fontSize.medium};
+	text-align: center;
+	line-height: 50px;
 
-// 		display: grid;
-// 		grid-template-columns: repeat(3, 1fr);
+	background-color: ${cssUnit.colors.DeepBlack};
+	list-style: none;
 
-// 		margin: 0px auto;
-// 		margin-top: 50px;
+	font-family: ${cssUnit.fontFamily.NotoKR};
+	font-weight: 600;
 
-// 		row-gap: 50px;
-// 		column-gap: 10px;
-// 		padding: 45px;
-// 		padding-top: 100px;
-// 		border: 10px solid gray;
+	li {
+		//position: relative;
 
-// 		li {
-// 			width: 300px;
-// 			height: 450px;
-// 			list-style: none;
-// 			cursor: default;
+		:after {
+			content: '';
+			display: block;
+			position: absolute;
 
-// 			.eachImg {
-// 				width: 290px;
-// 				background-color: #1e88e5;
-// 				background-color: #82b1ff;
-// 				background-color: #448aff;
-// 				background-color: #42a5f5;
+			width: 20vw;
+			height: 0.5px;
 
-// 				position: relative;
-// 				margin: 0 auto;
-// 				padding: 0px;
-// 				height: 210px;
-// 				cursor: pointer;
-// 				border: solid 5px #4d4d4d;
-// 			}
+			top: 75%;
+			left: 40%;
 
-// 			.textSection {
-// 				position: absolute;
-// 				background-color: aliceblue;
-// 				width: 290px;
-// 				height: 195px;
-// 				font-size: 18px;
-// 				z-index: 99;
-// 				line-height: 22px;
-// 				border-left: solid 5px #4d4d4d;
-// 				border-right: solid 5px #4d4d4d;
-// 				border-bottom: solid 5px #4d4d4d;
+			border-bottom: 5px solid ${cssUnit.colors.DarkGold};
+		}
+	}
 
-// 				.div1 {
-// 					display: flex;
-// 					justify-content: center;
-// 					align-items: center;
-// 					border-bottom: solid 2px dimgray;
-// 					border-top: solid 2px dimgray;
-// 					height: 75px;
-// 				}
-// 				.div2 {
-// 					display: flex;
-// 					justify-content: center;
-// 					align-items: center;
-// 					border-bottom: solid 2px dimgray;
-// 					border-top: solid 2px dimgray;
-// 					height: 40px;
-// 				}
-// 				.div3 {
-// 					display: flex;
-// 					justify-content: center;
-// 					align-items: center;
-// 					border-bottom: solid 2px dimgray;
-// 					border-top: solid 2px dimgray;
-// 					height: 70px;
-// 				}
-// 				.sub {
-// 				}
-// 			}
-// 		}
-// 	}
-// `;
+	color: ${(props) => {
+		return props.color ? props.color : cssUnit.colors.Black;
+	}};
+`;

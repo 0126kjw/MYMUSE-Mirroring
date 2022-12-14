@@ -10,8 +10,9 @@ export const FooterContainer = styled.footer`
 	align-items: center;
 
 	width: 100%;
-	height: 150px;
+	height: 100px;
 	padding-top: 30px;
+	padding-bottom: 15px;
 
 	background-color: ${cssUnit.backgroundColors.Black};
 	color: ${cssUnit.colors.White};
