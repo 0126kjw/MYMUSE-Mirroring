@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import OuterModal from 'src/styles/compoStyles/OuterModalStyle';
 import { useState, useEffect } from 'react';
+import enterImg from '../../../../public/images/enter.png';
+import Image from 'next/legacy/image';
 //import axios from 'axios';
 
 //api from src/util/api.js
@@ -34,12 +36,19 @@ const FeedBackModalLayout = styled.div`
 		text-align: center;
 		textarea {
 			width: 500px;
-			height: 220px;
+			height: 200px;
 			margin-bottom: 10px;
 			border: solid 1px black;
 			font-weight: bold;
 			font-size: 25px;
+			resize: none;
 		}
+	}
+	button {
+		margin-top: -10px;
+		background-color: white;
+		border: 1px solid white;
+		cursor: pointer;
 	}
 `;
 
@@ -70,6 +79,10 @@ const FeedBackModal = ({ setIsFeedBackModalOn }) => {
 		setInputValue(e.target.value);
 	};
 	const feedbackSubmit = async () => {
+		if (inputValue == '') {
+			alert('값을 입력해 주세요');
+			return;
+		}
 		const obj = { feedback: inputValue };
 		try {
 			// const res = await axios.post('http://localhost:3001/chatbots/feedback', obj);
@@ -103,7 +116,9 @@ const FeedBackModal = ({ setIsFeedBackModalOn }) => {
 					<form>
 						<textarea value={inputValue} onChange={onChange} />
 					</form>
-					<button onClick={onClick}>보내기</button>
+					<button onClick={onClick}>
+						<Image src={enterImg} alt='enterImage' width='50' height='50'></Image>
+					</button>
 				</div>
 			</FeedBackModalLayout>
 		</>
