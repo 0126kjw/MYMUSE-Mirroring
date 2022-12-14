@@ -6,6 +6,10 @@ class MyDocument extends Document {
 			<Html lang='ko'>
 				<Head>
 					<meta httpEquiv='X-UA-Compatible' content='IE=edge' />
+					<script
+						defer
+						src='https://t1.kakaocdn.net/kakao_js_sdk/2.0.1/kakao.min.js'
+					></script>
 					{/* web font by link */}
 					<link rel='preconnect' href='https://fonts.googleapis.com' />
 					<link rel='preconnect' href='https://fonts.gstatic.com' />
