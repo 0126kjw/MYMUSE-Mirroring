@@ -14,7 +14,9 @@ import { GetSearach } from 'src/utils/api';
 
 // state
 import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import SearchCategoryState from 'src/state/searchCategory';
+import SearchAgainState from 'src/state/searchAgain';
 
 //style
 import { SearchBarLayout } from 'src/styles/compoStyles/searchBarStyle';
@@ -32,15 +34,21 @@ const SearchBar = ({
 	isFetching,
 	setIsFetching,
 }) => {
+	// [id].jsx에서 뒤로가기로 돌아오면 재검색
+	const [searchAgain, setSearchAgain] = useRecoilState(SearchAgainState);
+	useEffect(() => {
+		if (searchAgain.needed == true) {
+			showSearchResultsToLists(searchAgain.lastWord);
+		}
+	}, [searchAgain]);
+
 	// 드롭다운 모달처리
 	const dropDownRef = useRef();
-
 	const modalCloseHandler = ({ target }) => {
 		if (catSelector && !dropDownRef.current.contains(target)) {
 			setCatSelector('closed');
 		}
 	};
-
 	useEffect(() => {
 		window.addEventListener('click', modalCloseHandler);
 		return () => {
@@ -72,7 +80,9 @@ const SearchBar = ({
 				}
 			});
 			setRecList([...tempArr]);
-			setModal('on');
+			if (recList.length > 0) {
+				setModal('on');
+			}
 		} else {
 			setModal('off');
 		}
@@ -112,8 +122,14 @@ const SearchBar = ({
 		await setIsFetching(false);
 		setList(() => [...data]);
 
-		// 검색창 비움
-		setKeyword('');
+		if (searchAgain.needed == false) {
+			setKeyword('');
+		}
+
+		setSearchAgain({
+			lastWord: keyword,
+			needed: false,
+		});
 	};
 
 	return (

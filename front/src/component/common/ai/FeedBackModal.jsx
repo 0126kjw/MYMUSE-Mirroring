@@ -80,7 +80,7 @@ const FeedBackModal = ({ setIsFeedBackModalOn }) => {
 	};
 	const feedbackSubmit = async () => {
 		if (inputValue == '') {
-			alert('값을 입력해 주세요');
+			alert('피드백을 입력해 주세요');
 			return;
 		}
 		const obj = { feedback: inputValue };

@@ -29,9 +29,9 @@ import withGetServerSideProps from 'src/hocs/withServersideProps';
 
 const Search = () => {
 	// 지도 outer 상태로 지정
-	const [mapState, setMapState] = useRecoilState(currentMapState);
+	const [currentMap, setCurrentMap] = useRecoilState(currentMapState);
 	useEffect(() => {
-		setMapState({
+		setCurrentMap({
 			mapKind: 'outer',
 			name: '',
 		});
