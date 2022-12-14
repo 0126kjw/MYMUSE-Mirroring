@@ -20,7 +20,7 @@ const DataTable_Agency = ({
 			</div> */}
 			<div className='col-2'>
 				<div className='rcol'>홈페이지</div>
-				<div>
+				<div style={{ textOverflow: 'ellipsis' }}>
 					<a href={website}>{website}</a>
 				</div>
 			</div>
@@ -44,11 +44,11 @@ const DataTable_Agency = ({
 			</div>
 			<div className='col-2'>
 				<div className='rcol'>도로명 주소</div>
-				<div>{newAddress}</div>
+				<div style={{ textOverflow: 'ellipsis' }}>{newAddress}</div>
 			</div>
 			<div className='col-2'>
 				<div className='rcol'>지번 주소</div>
-				<div>{oldAddress}</div>
+				<div style={{ textOverflow: 'ellipsis' }}>{oldAddress}</div>
 			</div>
 			<div className='col-2'>
 				<div className='rcol'>편의시설</div>

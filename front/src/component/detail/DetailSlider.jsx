@@ -73,9 +73,25 @@ const DetailSliderLayout = styled.div`
 	}
 	.prev {
 		left: 10%;
+		@media screen and (max-width: 600px) {
+			width: 2.5em;
+			height: 2.5rem;
+		}
+		@media screen and (max-width: 300px) {
+			width: 1.5em;
+			height: 1.5rem;
+		}
 	}
 	.next {
 		right: 10%;
+		@media screen and (max-width: 600px) {
+			width: 2.5em;
+			height: 2.5rem;
+		}
+		@media screen and (max-width: 300px) {
+			width: 1.5em;
+			height: 1.5rem;
+		}
 	}
 
 	@keyframes arrow-wave {

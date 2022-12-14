@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const IndexStyle = styled.div`
+	word-break: keep-all;
 	.bkgroundColor {
 		background-color: ${cssUnit.backgroundColors.White};
 		font-size: 20px;
@@ -60,6 +61,8 @@ const IndexStyle = styled.div`
 		animation-name: animate-fade;
 		animation-timing-function: cubic-bezier(0.26, 0.53, 0.74, 1.48);
 		animation-fill-mode: backwards;
+
+		//text-overflow: ellipsis;
 
 		@keyframes animate-fade {
 			0% {
@@ -126,7 +129,7 @@ const IndexStyle = styled.div`
 		} */
 
 		@media screen and (max-width: 1200px) {
-			width: 80%;
+			width: 90%;
 		}
 	}
 	.subTitle {
@@ -226,10 +229,10 @@ const IndexStyle = styled.div`
 			overflow: hidden;
 			font-weight: 300;
 		}
-	}
 
-	@media screen and (max-width: 1200px) {
-		width: 90%;
+		@media screen and (max-width: 1200px) {
+			width: 80%;
+		}
 	}
 
 	.close {
@@ -245,7 +248,7 @@ const IndexStyle = styled.div`
 			font-weight: 500;
 		}
 		@media screen and (max-width: 1200px) {
-			width: 90%;
+			width: 80%;
 		}
 	}
 	.open {
@@ -266,7 +269,7 @@ const IndexStyle = styled.div`
 			color: ${cssUnit.colors.LightBlack};
 		}
 		@media screen and (max-width: 1200px) {
-			width: 90%;
+			width: 80%;
 		}
 	}
 	.NaverMapCompStyle {
