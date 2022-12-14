@@ -13,7 +13,7 @@ import template_address from 'src/component/common/ai/ai_util/template_address';
 
 const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 	if (inputValue == '') {
-		alert('값을 입력해 주세요');
+		alert('피드백을 입력해 주세요!');
 		return;
 	}
 	const AIsec2 = document.querySelector('.AIsec2');
