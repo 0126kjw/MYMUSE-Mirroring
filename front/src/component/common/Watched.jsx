@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import styled from '@emotion/styled';
-import rightArrow from '../../../public/images/right-arrow.png';
 import Image from 'next/legacy/image';
 import cssUnit from 'src/lib/cssUnit';
 import { IdBook } from 'src/data/idBook';
@@ -106,17 +105,6 @@ const Watched = ({ setIsWatchedOn }) => {
 					  })
 					: null}
 			</WatchedStyle>
-			{/* <RightArrow>
-				<Image
-					src={rightArrow}
-					onClick={() => {
-						setIsWatchedOn(false);
-					}}
-					alt='openWatched'
-					width='25'
-					height='25'
-				/>
-			</RightArrow> */}
 		</>
 	);
 };

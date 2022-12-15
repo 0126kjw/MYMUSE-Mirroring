@@ -13,7 +13,7 @@ const Footer = () => {
 								src={logo}
 								alt='logo'
 								width={300}
-								height={50}
+								height={44}
 								style={{ objectFit: 'contain', layout: 'fill' }}
 							/>
 						</div>
