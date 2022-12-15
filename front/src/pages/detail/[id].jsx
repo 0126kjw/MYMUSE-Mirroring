@@ -121,23 +121,25 @@ const Detail = ({ item }) => {
 
 	const history = createBrowserHistory();
 	useEffect(() => {
-		// 뒤로가기 시 전역값 설정함
-		const listenBackEvent = () => {
-			// 뒤로가기 할 때 수행할 동작
-			if (history.location.pathname == '/search') {
-				// 돌아갈 페이지가 search면 글로벌 스테이트 주기
-				setSearchAgain({
-					...searchAgain,
-					needed: true,
-				});
-			}
-		};
-		const unlistenHistoryEvent = history.listen(({ action }) => {
-			if (action === 'POP') {
-				listenBackEvent();
-			}
-		});
-		return unlistenHistoryEvent;
+		if (typeof window !== 'undefined') {
+			// 뒤로가기 시 전역값 설정함
+			const listenBackEvent = () => {
+				// 뒤로가기 할 때 수행할 동작
+				if (history.location.pathname == '/search') {
+					// 돌아갈 페이지가 search면 글로벌 스테이트 주기
+					setSearchAgain({
+						...searchAgain,
+						needed: true,
+					});
+				}
+			};
+			const unlistenHistoryEvent = history.listen(({ action }) => {
+				if (action === 'POP') {
+					listenBackEvent();
+				}
+			});
+			return unlistenHistoryEvent;
+		}
 	}, []);
 
 	// 최근 페이지
