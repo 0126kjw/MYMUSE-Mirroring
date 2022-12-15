@@ -13,6 +13,7 @@ const ShareToTwitter = () => {
 				style={{
 					width: '67px',
 					borderRadius: '10px',
+					cursor: 'pointer',
 				}}
 			></img>
 		</div>

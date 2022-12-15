@@ -12,6 +12,7 @@ const ShareToFacebook = () => {
 				style={{
 					width: '67px',
 					borderRadius: '10px',
+					cursor: 'pointer',
 				}}
 			></img>
 		</div>
