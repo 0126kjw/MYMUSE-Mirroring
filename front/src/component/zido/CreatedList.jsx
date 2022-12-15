@@ -1,7 +1,7 @@
 import { IdBook } from 'src/data/idBook';
 import { useRouter } from 'next/router';
 
-export default function CreatedList({ pins, currentMap, hoverPin }) {
+const CreatedList = ({ pins, currentMap, hoverPin }) => {
 	const router = useRouter();
 	const moveToDetail = (museName) => {
 		let ID = '';
@@ -28,7 +28,7 @@ export default function CreatedList({ pins, currentMap, hoverPin }) {
 									}}
 								>
 									<div>
-										<p>{x.name}</p>
+										<h1>{x.name}</h1>
 										<p>{x.address}</p>
 									</div>
 								</div>
@@ -59,4 +59,5 @@ export default function CreatedList({ pins, currentMap, hoverPin }) {
 			)}
 		</>
 	);
-}
+};
+export default CreatedList;

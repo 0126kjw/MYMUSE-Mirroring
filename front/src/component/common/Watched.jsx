@@ -12,17 +12,19 @@ const WatchedStyle = styled.div`
 	top: 45vh;
 	margin: 0px auto;
 
-	background-color: aliceblue;
-	border: 1px solid brown;
+	background-color: ${cssUnit.colors.White};
+	border: 2px solid ${cssUnit.colors.DarkGold};
 	padding: 10px;
 	margin: 10px;
 	border-radius: 5px;
 	z-index: 2;
 
+	font-family: ${cssUnit.fontFamily.NotoKR_G};
+
 	p {
-		background-color: aliceblue;
-		border-top: 1px solid brown;
-		border-bottom: 1px solid brown;
+		background-color: ${cssUnit.colors.White};
+		border-top: 1px solid ${cssUnit.colors.DarkGold};
+		border-bottom: 1px solid ${cssUnit.colors.DarkGold};
 		padding: 3px;
 		margin: 0px;
 		:hover {
@@ -35,7 +37,7 @@ const WatchedStyle = styled.div`
 		text-align: center;
 		font-weight: bold;
 		span {
-			color: brown;
+			color: ${cssUnit.colors.DarkGold};
 			cursor: pointer;
 		}
 	}

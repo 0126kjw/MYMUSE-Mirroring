@@ -22,9 +22,10 @@ const SubZidoLayout = styled.div`
 		line-height: 50px;
 		background-color: ${cssUnit.colors.White};
 
-		padding-bottom: 80px;
+		//padding-bottom: 80px;
+		padding-bottom: 40px;
 
-		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-family: ${cssUnit.fontFamily.NotoKR_G};
 		font-size: ${cssUnit.fontSize.large};
 
 		//background-color: ${cssUnit.colors.DeepBlack};
@@ -35,7 +36,7 @@ const SubZidoLayout = styled.div`
 
 	.react-simple-maps {
 		width: 800px;
-		background-color: ${cssUnit.colors.White};
+		background-color: ${cssUnit.colors.LightGray};
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 		}
@@ -44,7 +45,7 @@ const SubZidoLayout = styled.div`
 	.pinListUps {
 		width: 100%;
 		margin: 0px auto;
-		background-color: gray;
+		background-color: ${cssUnit.colors.White};
 		padding-top: 20px;
 		padding-bottom: 20px;
 		font-size: 20px;
@@ -54,18 +55,21 @@ const SubZidoLayout = styled.div`
 			div {
 				margin-bottom: 20px;
 			}
+			h1 {
+				font-family: ${cssUnit.fontFamily.Hahmlet};
+			}
 		}
 
 		.basic {
 			position: relative;
-			background-color: aliceblue;
+			background-color: ${cssUnit.colors.RealLightGray};
 			width: calc(100% - 40px);
 			height: 150px;
-			border: solid 5px aliceblue;
+			border: solid 3px ${cssUnit.colors.LightGray};
 			overflow: hidden;
 
 			&:hover {
-				background-color: pink;
+				background-color: ${cssUnit.colors.LightGray};
 				font-weight: bold;
 				cursor: pointer;
 			}
@@ -73,15 +77,16 @@ const SubZidoLayout = styled.div`
 
 		.borderRed {
 			position: relative;
-			background-color: aliceblue;
+			background-color: ${cssUnit.colors.LightGold};
 			width: calc(100% - 40px);
 			height: 150px;
-			border: solid 5px red;
+			border: solid 5px ${cssUnit.colors.DarkGold};
 			overflow: hidden;
 
 			&:hover {
-				background-color: pink;
-				font-weight: bold;
+				background-color: ${cssUnit.colors.DarkGold};
+				color: aliceblue;
+				//font-weight: bold;
 				cursor: pointer;
 			}
 		}
@@ -114,7 +119,7 @@ const SubZidoLayout = styled.div`
 		position: relative;
 		background-color: ${cssUnit.colors.White};
 		color: ${cssUnit.colors.DarkGold};
-		font-family: ${cssUnit.fontFamily.Hahmlet};
+		font-family: ${cssUnit.fontFamily.GowunBT};
 		font-size: 30px;
 		margin-top: 40px;
 		margin-bottom: 40px;
@@ -146,7 +151,8 @@ const SubZidoLayout = styled.div`
 
 	.dataFetchingMsg {
 		margin-top: 250px;
-		color: red;
+		color: ${cssUnit.colors.DeepBlack};
+		font-family: ${cssUnit.fontFamily.NotoKR_G};
 		font-size: 25px;
 	}
 `;
