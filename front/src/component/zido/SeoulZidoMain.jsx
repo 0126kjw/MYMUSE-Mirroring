@@ -69,6 +69,7 @@ export default function SeoulZido() {
 												fill: 'fff',
 												outline: '#333',
 											},
+											zIndex: '2',
 										}}
 									/>
 								);
