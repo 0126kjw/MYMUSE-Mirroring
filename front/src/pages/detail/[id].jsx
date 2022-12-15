@@ -14,7 +14,7 @@ import SearchAgainState from 'src/state/searchAgain';
 
 import { createBrowserHistory } from 'history';
 
-import { useRouter } from 'next/router';
+import { useRouter, history } from 'next/router';
 import { useEffect } from 'react';
 //import axios from 'axios';
 //import { Get } from 'src/utils/api';
@@ -97,8 +97,6 @@ const Detail = ({ item }) => {
 	const [currentMap, setCurrentMap] = useRecoilState(CurrentMapState);
 	const [searchAgain, setSearchAgain] = useRecoilState(SearchAgainState);
 
-	const history = createBrowserHistory();
-
 	useEffect(() => {
 		// 지도 처리
 		setLoc(router.pathname);
@@ -121,24 +119,27 @@ const Detail = ({ item }) => {
 		}
 	}, []);
 
+	const history = createBrowserHistory();
 	useEffect(() => {
-		// 뒤로가기 시 전역값 설정함
-		const listenBackEvent = () => {
-			// 뒤로가기 할 때 수행할 동작
-			if (history.location.pathname == '/search') {
-				// 돌아갈 페이지가 search면 글로벌 스테이트 주기
-				setSearchAgain({
-					...searchAgain,
-					needed: true,
-				});
-			}
-		};
-		const unlistenHistoryEvent = history.listen(({ action }) => {
-			if (action === 'POP') {
-				listenBackEvent();
-			}
-		});
-		return unlistenHistoryEvent;
+		if (typeof window !== 'undefined') {
+			// 뒤로가기 시 전역값 설정함
+			const listenBackEvent = () => {
+				// 뒤로가기 할 때 수행할 동작
+				if (history.location.pathname == '/search') {
+					// 돌아갈 페이지가 search면 글로벌 스테이트 주기
+					setSearchAgain({
+						...searchAgain,
+						needed: true,
+					});
+				}
+			};
+			const unlistenHistoryEvent = history.listen(({ action }) => {
+				if (action === 'POP') {
+					listenBackEvent();
+				}
+			});
+			return unlistenHistoryEvent;
+		}
 	}, []);
 
 	// 최근 페이지
@@ -203,6 +204,8 @@ const Detail = ({ item }) => {
 export default Detail;
 
 export const getServerSideProps = withGetServerSideProps(async (context) => {
+	// const id = context.resolvedUrl
+
 	return {
 		props: {},
 	};
