@@ -9,8 +9,6 @@ import { useState, useEffect, createElement } from 'react';
 import { useRouter } from 'next/router';
 // image
 import logoImg from '../../../../public/images/siteLogo.png';
-import closeImg from '../../../../public/images/closeImg.png';
-import InfoImg from '../../../../public/images/info.png';
 import enterImg from '../../../../public/images/enter.png';
 
 // util
@@ -62,7 +60,7 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 		}
 	}, [botMode]);
 
-	// chatRoom 창을 반영한 제어창 위치 조정
+	// chatRoom 창을 반영한 제어창, 입력창, 내부 목록값들 크기 조정
 	useEffect(() => {
 		// modalTopSection
 		const modalTopSection = document.querySelector('.modalTopSection');

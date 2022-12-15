@@ -17,6 +17,17 @@ const InfoModalLayout = styled.div`
 
 	margin: 0 auto;
 	padding: 10px;
+	overflow: scroll;
+	overflow-x: hidden;
+
+	@media screen and (max-width: 750px) {
+		width: 90%;
+	}
+	@media screen and (max-width: 500px) {
+		hr {
+			display: none;
+		}
+	}
 
 	.titleSection {
 		margin-top: 15px;
@@ -31,12 +42,20 @@ const InfoModalLayout = styled.div`
 		line-height: 15px;
 		padding-left: 20px;
 		font-weight: bold;
+
+		@media screen and (max-width: 520px) {
+			padding-left: 3px;
+		}
+
 		.question {
 			color: black;
 		}
 		.example {
 			padding-left: 60px;
 			color: brown;
+			@media screen and (max-width: 520px) {
+				padding-left: 0px;
+			}
 		}
 	}
 `;
