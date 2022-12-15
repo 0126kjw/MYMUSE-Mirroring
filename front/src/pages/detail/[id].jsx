@@ -5,11 +5,14 @@ import { Wrap } from 'src/styles/common';
 import { UnderDevSection } from 'src/styles/compoStyles/underDev';
 import Index from 'src/component/detail/Index';
 
-// recoil state
+// state
 import { useSetRecoilState } from 'recoil';
 import { useRecoilState } from 'recoil';
 import { currentLoc } from 'src/state/navibar';
-import currentMapState from 'src/state/currentMap';
+import CurrentMapState from 'src/state/currentMap';
+import SearchAgainState from 'src/state/searchAgain';
+
+import { createBrowserHistory } from 'history';
 
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -82,64 +85,29 @@ const DetailContainer = styled.div`
 	font-weight: bold;
 	font-size: 25px;
 
-	/* .detailTitle {
-		position: relative;
-		text-align: center;
-		line-height: 50px;
-		padding-top: 50px;
-		padding-bottom: 50px;
-
-		color: ${cssUnit.colors.White};
-
-		width: 100%;
-		font-size: ${cssUnit.fontSize.title};
-
-		list-style: none;
-
-		position: sticky;
-		top: 4px;
-
-		//font-family: ${cssUnit.fontFamily.NanumM};
-		//font-weight: 700;
-
-		li {
-			//position: relative;
-
-			:after {
-				content: '';
-				display: block;
-				position: absolute;
-
-				width: 20vw;
-				height: 0.5px;
-
-				top: 70%;
-				left: 40%;
-
-				border-bottom: 5px solid ${cssUnit.colors.DarkGold};
-			}
-		}
-	} */
 	.detailBackground {
 		background-color: ${cssUnit.backgroundColors.White};
 	}
 `;
 
 const Detail = ({ item }) => {
-	//console.log('디테일에서 item', item);
+	//console.log ('디테일에서 item', item);
 	const router = useRouter();
 	const setLoc = useSetRecoilState(currentLoc);
-	const [mapState, setMapState] = useRecoilState(currentMapState);
+	const [currentMap, setCurrentMap] = useRecoilState(CurrentMapState);
+	const [searchAgain, setSearchAgain] = useRecoilState(SearchAgainState);
+
+	const history = createBrowserHistory();
 
 	useEffect(() => {
 		// 지도 처리
 		setLoc(router.pathname);
-		setMapState({
+		setCurrentMap({
 			mapKind: 'outer',
 			name: '',
 		});
 
-		// //item이 없거나 404를 보낼 때 (=쿼리가 제대로 된 범위에 없을 때 item은 withSer..에서 404를 받는다.)
+		// item이 없거나 404를 보낼 때 (=쿼리가 제대로 된 범위에 없을 때 item은 withSer..에서 404를 받는다.)
 		if (!item || item === '404') {
 			router.push(`/404`);
 			return;
@@ -151,6 +119,26 @@ const Detail = ({ item }) => {
 			renewWatched();
 			return;
 		}
+	}, []);
+
+	useEffect(() => {
+		// 뒤로가기 시 전역값 설정함
+		const listenBackEvent = () => {
+			// 뒤로가기 할 때 수행할 동작
+			if (history.location.pathname == '/search') {
+				// 돌아갈 페이지가 search면 글로벌 스테이트 주기
+				setSearchAgain({
+					...searchAgain,
+					needed: true,
+				});
+			}
+		};
+		const unlistenHistoryEvent = history.listen(({ action }) => {
+			if (action === 'POP') {
+				listenBackEvent();
+			}
+		});
+		return unlistenHistoryEvent;
 	}, []);
 
 	// 최근 페이지
