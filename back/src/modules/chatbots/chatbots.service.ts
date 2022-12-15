@@ -34,7 +34,7 @@ export class ChatbotService {
     //   console.log(data.toString());
     // });
 
-    this.chatbotModel.create({ feedback, sentiment: Number });
+    this.chatbotModel.create({ feedback, sentiment: -1 });
   }
 
   async findSatisfaction(): Promise<any> {
