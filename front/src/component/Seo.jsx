@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 
 const ogImageSrc =
 	'https://res.cloudinary.com/dtq075vja/image/upload/v1669879703/9gle/ogImage_uki29n.png';
@@ -51,6 +52,11 @@ const Seo = ({ pagePath, pageTitle, pageDesc }) => {
 			<meta name='twitter:description' content={seoDesc} />
 			<meta name='twitter:url' content={seoPath} />
 			<meta name='twitter:image' content={ogImageSrc} />
+			<Script
+				src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOSHARE_API_KEY}&libraries=services,clusterer&autoload=false`}
+				defer
+				async
+			/>
 		</Head>
 	);
 };

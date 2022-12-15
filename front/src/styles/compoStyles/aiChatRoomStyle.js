@@ -4,18 +4,18 @@ import styled from '@emotion/styled';
 const aiChatRoomStyle = styled.div`
 	.modalTopSection {
 		width: 450px;
+		max-width: 80%;
 		position: fixed;
-		/* bottom: 550px; */
-		bottom: 600px;
 		right: 30px;
 
 		background-color: #222222;
 		color: white;
-		/* border-left: solid 3px ${cssUnit.colors.Gray};
-		border-right: solid 3px ${cssUnit.colors.Gray}; */
 		border-left: solid 3px gray;
 		border-right: solid 3px gray;
 		border-radius: 10px 10px 0px 0px;
+
+		/* @media screen and (max-width: 500px) {
+		} */
 
 		.topInnerSection {
 			margin: 0 auto;
@@ -79,6 +79,7 @@ const aiChatRoomStyle = styled.div`
 
 		height: 350px;
 		width: 450px;
+		max-width: 80%;
 
 		margin: 0 auto;
 		background-color: #d9d9d9;
@@ -86,6 +87,10 @@ const aiChatRoomStyle = styled.div`
 		border-right: solid 3px ${cssUnit.colors.Gray}; */
 		border-left: solid 3px gray;
 		border-right: solid 3px gray;
+
+		@media screen and (max-width: 500px) {
+			width: 90%;
+		}
 	}
 
 	.AImodal-Inner {
@@ -152,12 +157,11 @@ const aiChatRoomStyle = styled.div`
 		right: 30px;
 		width: 450px;
 		height: 70px;
+		max-width: 80%;
 
 		background-color: ${cssUnit.colors.DarkGold};
 		background-color: #654321;
 		background-color: gray;
-		/* border-left: solid 3px ${cssUnit.colors.Gray};
-		border-right: solid 3px ${cssUnit.colors.Gray}; */
 		border-left: solid 3px gray;
 		border-right: solid 3px gray;
 		border-radius: 0px 0px 10px 10px;
@@ -179,7 +183,6 @@ const aiChatRoomStyle = styled.div`
 				border: solid 1px #d9d9d9;
 				width: 95%;
 				height: 30px;
-				/* padding: 0px; */
 			}
 		}
 	}

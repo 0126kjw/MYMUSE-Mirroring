@@ -290,17 +290,17 @@ const IndexStyle = styled.div`
 const Index = ({ pageData }) => {
 	const { item, sliderimgs } = pageData;
 	//console.log('index의 item', item);
-	useEffect(() => {
-		// src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&libraries=services,clusterer&autoload=false`}
-		if (item === '404') {
-			return;
-		}
-		const kakaosdk = document.createElement('script');
-		kakaosdk.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOSHARE_API_KEY}&libraries=services,clusterer&autoload=false`;
-		kakaosdk.defer = true;
-		kakaosdk.async = true;
-		document.head.appendChild(kakaosdk);
-	}, []);
+	// useEffect(() => {
+	// 	// src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&libraries=services,clusterer&autoload=false`}
+	// 	if (item === '404') {
+	// 		return;
+	// 	}
+	// 	const kakaosdk = document.createElement('script');
+	// 	kakaosdk.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOSHARE_API_KEY}&libraries=services,clusterer&autoload=false`;
+	// 	kakaosdk.defer = true;
+	// 	kakaosdk.async = true;
+	// 	document.head.appendChild(kakaosdk);
+	// }, []);
 
 	let ID = null;
 	//item이 404인 경우(hocs에서 404로 보낸 경우)

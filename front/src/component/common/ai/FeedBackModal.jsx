@@ -24,16 +24,27 @@ const FeedBackModalLayout = styled.div`
 	margin: 0 auto;
 	padding: 0px;
 
+	@media screen and (max-width: 650px) {
+		width: 90%;
+	}
+
 	.titleSection {
 		width: 100%;
 		height: 100px;
 		text-align: center;
 		line-height: 20px;
+		@media screen and (max-width: 650px) {
+			width: 90%;
+			font-size: 15px;
+			margin: 5px;
+			line-height: 15px;
+		}
 	}
 	.feedbackSection {
 		width: 100%;
 		height: 300px;
 		text-align: center;
+
 		textarea {
 			width: 500px;
 			height: 200px;
@@ -42,6 +53,10 @@ const FeedBackModalLayout = styled.div`
 			font-weight: bold;
 			font-size: 25px;
 			resize: none;
+			@media screen and (max-width: 650px) {
+				width: 90%;
+				font-size: 20px;
+			}
 		}
 	}
 	button {

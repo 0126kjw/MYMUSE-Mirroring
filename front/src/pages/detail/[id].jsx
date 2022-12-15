@@ -14,7 +14,7 @@ import SearchAgainState from 'src/state/searchAgain';
 
 import { createBrowserHistory } from 'history';
 
-import { useRouter } from 'next/router';
+import { useRouter, history } from 'next/router';
 import { useEffect } from 'react';
 //import axios from 'axios';
 //import { Get } from 'src/utils/api';
@@ -98,8 +98,6 @@ const Detail = ({ pageData }) => {
 	const [currentMap, setCurrentMap] = useRecoilState(CurrentMapState);
 	const [searchAgain, setSearchAgain] = useRecoilState(SearchAgainState);
 
-	const history = createBrowserHistory();
-
 	useEffect(() => {
 		// 지도 처리
 		setLoc(router.pathname);
@@ -122,6 +120,7 @@ const Detail = ({ pageData }) => {
 		}
 	}, []);
 
+	const history = createBrowserHistory();
 	useEffect(() => {
 		// 뒤로가기 시 전역값 설정함
 		const listenBackEvent = () => {
@@ -204,6 +203,8 @@ const Detail = ({ pageData }) => {
 export default Detail;
 
 export const getServerSideProps = withGetServerSideProps(async (context) => {
+	// const id = context.resolvedUrl
+
 	return {
 		props: {},
 	};
