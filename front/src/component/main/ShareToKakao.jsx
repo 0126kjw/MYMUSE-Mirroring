@@ -1,4 +1,4 @@
-const KakaoBtn = () => {
+const ShareToKakao = () => {
 	const onClick = () => {
 		const { Kakao } = window;
 		Kakao.Share.sendDefault({
@@ -40,4 +40,4 @@ const KakaoBtn = () => {
 	);
 };
 
-export default KakaoBtn;
+export default ShareToKakao;

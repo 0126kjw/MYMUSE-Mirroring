@@ -17,17 +17,23 @@ import {
 	AiBubble,
 	SearchBarLayout,
 } from 'src/styles/pageStyles/mainStyle';
-import logo from '../../public/images/siteLogo.png';
+import logo from '../../../public/images/siteLogo.png';
 import { useState } from 'react';
 
 // component
 import Slider from './Slider';
-import SeoulZidoMain from './zido/SeoulZidoMain';
-import TitleSection from './common/TitleSection';
+import SeoulZidoMain from 'src/component/zido/SeoulZidoMain';
+import TitleSection from 'src/component/common/TitleSection';
 import InfoModal from 'src/component/common/ai/InfoModal';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import KakaoBtn from './detail/KakaoShare';
+import ShareToKakao from './ShareToKakao';
+import ShareToTwitter from './ShareToTwitter';
+import ShareToFacebook from './ShareToFacebook';
+
+// import KakaoBtn from './KakaoShare';
+// import KakaoBtn from './KakaoShare';
+// import KakaoBtn from './KakaoShare';
 
 const Main = () => {
 	const router = useRouter();
@@ -145,7 +151,19 @@ const Main = () => {
 							<br />
 							카카오톡으로 공유해보세요
 						</WrapTitle>
-						<KakaoBtn />
+
+						<div
+							style={{
+								display: 'flex',
+								width: '250px',
+								padding: '10px',
+								justifyContent: 'space-between',
+							}}
+						>
+							<ShareToKakao />
+							<ShareToTwitter />
+							<ShareToFacebook />
+						</div>
 					</Wrap>
 				</Section>
 			</MainContainer>

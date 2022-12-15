@@ -1,4 +1,4 @@
-import Main from '../component/Main';
+import Main from '../component/main/Main';
 import Head from 'next/head';
 import { useRecoilState } from 'recoil';
 import SelectedMapState from 'src/state/currentMap';
