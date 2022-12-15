@@ -44,29 +44,40 @@ const SearchBar = ({
 
 	// 드롭다운 모달처리
 	const dropDownRef = useRef();
-	const modalCloseHandler = ({ target }) => {
-		if (catSelector && !dropDownRef.current.contains(target)) {
+	const recListRef = useRef();
+
+	const dropDownModalCloseHandler = ({ target }) => {
+		if (catSelector == 'opened' && !dropDownRef.current.contains(target)) {
 			setCatSelector('closed');
 		}
 	};
+	const recListRefModalCloseHandler = ({ target }) => {
+		if (modal == 'on' && !recListRef.current.contains(target)) {
+			setModal('off');
+		}
+	};
+
+	const [modal, setModal] = useState('off'); // 추천 검색어 모달
+	const [catSelector, setCatSelector] = useState('closed'); // 박물관/전시관 셀릭터 모달
+
 	useEffect(() => {
-		window.addEventListener('click', modalCloseHandler);
+		window.addEventListener('click', dropDownModalCloseHandler);
 		return () => {
-			window.removeEventListener('click', modalCloseHandler);
+			window.removeEventListener('click', dropDownModalCloseHandler);
 		};
 	});
-
-	// 박물관/전시관 셀릭터 오픈
-	const [catSelector, setCatSelector] = useState('closed');
+	useEffect(() => {
+		window.addEventListener('click', recListRefModalCloseHandler);
+		return () => {
+			window.removeEventListener('click', recListRefModalCloseHandler);
+		};
+	});
 
 	// 실시간 검색결과를 바탕으로 추천어 목록 생성
 	const [recList, setRecList] = useState([]);
 
 	// 검색 카테고리 (전역값)
 	const searchCategory = useRecoilValue(SearchCategoryState);
-
-	// 추천 검색어 모달 on/off
-	const [modal, setModal] = useState('off');
 
 	// 실시간 검색
 	const realTimeSearch = async (keyword) => {
@@ -80,7 +91,7 @@ const SearchBar = ({
 				}
 			});
 			setRecList([...tempArr]);
-			if (recList.length > 0) {
+			if (tempArr.length > 0) {
 				setModal('on');
 			}
 		} else {
@@ -93,9 +104,10 @@ const SearchBar = ({
 		setKeyword(keywordValue);
 		if (keywordValue !== '') {
 			realTimeSearch(keywordValue);
-		} else {
-			setModal('off');
 		}
+		// else {
+		// 	setModal('off');
+		// }
 	};
 
 	const onClick = () => {
@@ -132,6 +144,10 @@ const SearchBar = ({
 		});
 	};
 
+	const inputWindowClick = () => {
+		setModal('on');
+	};
+
 	return (
 		<SearchBarLayout>
 			<div className='layout'>
@@ -154,9 +170,6 @@ const SearchBar = ({
 						/>
 					)}
 				</div>
-
-				{/* <div ref={testRef}></div> */}
-
 				<form onSubmit={onSubmit}>
 					<div className={keyword ? 'inputDiv-typing' : 'inputDiv-nontyping'}>
 						<input
@@ -172,6 +185,7 @@ const SearchBar = ({
 								fontFamily: `${cssUnit.fontFamily.GothicAi}`,
 								fontSize: '18px',
 							}}
+							onClick={inputWindowClick}
 						/>
 						<MobileButton onClick={onClick}>
 							<div className='search'>
@@ -180,15 +194,16 @@ const SearchBar = ({
 							</div>
 						</MobileButton>
 					</div>
-					{modal == 'on' && (
-						<RecommendedList
-							recList={recList}
-							showSearchResultsToLists={showSearchResultsToLists}
-							setModal={setModal}
-						/>
-					)}
+					<div ref={recListRef}>
+						{modal == 'on' && searchCategory == '박물관' && recList.length > 0 && (
+							<RecommendedList
+								recList={recList}
+								showSearchResultsToLists={showSearchResultsToLists}
+								setModal={setModal}
+							/>
+						)}
+					</div>
 				</form>
-				{/* <button >🔍</button> */}
 			</div>
 		</SearchBarLayout>
 	);
