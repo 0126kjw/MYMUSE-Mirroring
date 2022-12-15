@@ -31,6 +31,7 @@ import { useEffect, useRef } from 'react';
 import ShareToKakao from './ShareToKakao';
 import ShareToTwitter from './ShareToTwitter';
 import ShareToFacebook from './ShareToFacebook';
+import AutoTyper from './AutoTyper';
 
 // import KakaoBtn from './KakaoShare';
 // import KakaoBtn from './KakaoShare';
@@ -54,14 +55,14 @@ const Main = () => {
 		};
 	});
 
-	const getSatisfaction = async () => {
-		const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chatbots/satisfaction`;
-		const res = await axios.get(url);
-		setSatisfaction(res.data.goodFeeling);
-	};
-	useEffect(() => {
-		getSatisfaction();
-	}, []);
+	// const getSatisfaction = async () => {
+	// 	const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chatbots/satisfaction`;
+	// 	const res = await axios.get(url);
+	// 	setSatisfaction(res.data.goodFeeling);
+	// };
+	// useEffect(() => {
+	// 	getSatisfaction();
+	// }, []);
 
 	return (
 		<>
@@ -87,10 +88,10 @@ const Main = () => {
 
 				<Section color={cssUnit.backgroundColors.White}>
 					<Wrap>
-						<WrapTitleFirst steps={22}>
-							<div className='full'>대표적인 박물관과 미술관들을 둘러보세요.</div>
-						</WrapTitleFirst>
-						<WrapTitle>대표적인 박물관과 미술관들을 둘러보세요.</WrapTitle>
+						<AutoTyper
+							sentence={`대표적인 박물관과 미술관들을 둘러보세요.`}
+							color={cssUnit.backgroundColors.Black}
+						/>
 						<SilderContainer>
 							<Slider />
 						</SilderContainer>
@@ -99,10 +100,10 @@ const Main = () => {
 
 				<Section color={cssUnit.backgroundColors.Gray}>
 					<Wrap>
-						<WrapTitleFirst steps={22}>
-							<div className='full'>내 주변에 어떤 박물관/미술관이 있을까?</div>
-						</WrapTitleFirst>
-						<WrapTitle>내 주변에 어떤 박물관/미술관이 있을까?</WrapTitle>
+						<AutoTyper
+							sentence={`내 주변에 어떤 박물관/미술관이 있을까?`}
+							color={cssUnit.backgroundColors.Black}
+						/>
 						<MapContainer>
 							<SeoulZidoMain />
 						</MapContainer>
@@ -111,15 +112,10 @@ const Main = () => {
 
 				<Section color={cssUnit.backgroundColors.LightBlack}>
 					<Wrap>
-						<WrapTitleFirst steps={21} color={cssUnit.backgroundColors.White}>
-							<div className='full'>
-								직접 검색하거나 <br />
-								<br />
-								사용자 {satisfaction}% 가 만족하고 있는 <br />
-								AI에게 물어볼 수 있어요
-							</div>
-						</WrapTitleFirst>
-
+						<AutoTyper
+							sentence={`직접 검색하거나 사용자 ${satisfaction}%가 만족하고 있는 AI에게 물어볼 수 있어요`}
+							color={cssUnit.backgroundColors.White}
+						/>
 						<AiContainer>
 							<SerachBarContainer>
 								<SearchBarLayout>
