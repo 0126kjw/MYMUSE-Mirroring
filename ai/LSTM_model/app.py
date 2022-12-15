@@ -16,12 +16,12 @@ CORS(app)
 
 
 @api.route('/api/predict')
-class GRU_model(Resource):
+class LSTM_model(Resource):
     def get(self):
         feedback = request.args.get('feedback')
         loaded_model = load_model('lstm_best_model.h5')
 
-        with open('lstm_tokenizer.pickle', 'rb') as handle:
+        with open('tokenizer_lstm.pickle', 'rb') as handle:
             tokenizer = pickle.load(handle)
 
         max_len = 30
