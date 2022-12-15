@@ -90,7 +90,8 @@ const DetailContainer = styled.div`
 	}
 `;
 
-const Detail = ({ item }) => {
+const Detail = ({ pageData }) => {
+	const { item, sliderimgs } = pageData;
 	//console.log ('디테일에서 item', item);
 	const router = useRouter();
 	const setLoc = useSetRecoilState(currentLoc);
@@ -189,7 +190,7 @@ const Detail = ({ item }) => {
 						<div className='detailBackground'>
 							<Wrap>
 								<UnderDevSection>
-									<Index item={item} />
+									<Index pageData={pageData} />
 								</UnderDevSection>
 							</Wrap>
 						</div>

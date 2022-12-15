@@ -107,13 +107,11 @@ const DetailSliderLayout = styled.div`
 	}
 `;
 
-const DetailSlider = ({ _id, imgSrcUrl, srcName, srcUrl, ID }) => {
+const DetailSlider = ({ sliderimgs }) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
+	console.log('sliderimgs', sliderimgs);
 	//useMemo 의미 없음
-	const sliderData = [
-		`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ID}_image01.jpg`,
-		`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ID}_image02.jpg`,
-	];
+	const sliderData = sliderimgs;
 	const slideLength = sliderData.length;
 
 	// //방법1 로더로 불러오기 => map으로 어떻게 돌리지?

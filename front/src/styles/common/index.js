@@ -99,21 +99,34 @@ export const WrapTitleFirst = styled.h2`
 	place-items: center;
 
 	.full {
-		width: 33ch;
+		width: ${(props) => {
+			return props.steps ? `${props.steps + 5}ch` : `33ch`;
+		}};
+
 		animation: typing 2s
 				steps(
 					${(props) => {
 						return props.steps ? props.steps : 30;
 					}}
 				),
-			blink 0.5s step-end infinite alternate;
+			blink 0.5s step-end
+				${(props) => {
+					return props.stop ? `${props.stop}` : `infinite`;
+				}}
+				alternate;
 		white-space: nowrap;
 		overflow: hidden;
 		border-right: 3px solid;
 		font-family: ${cssUnit.fontFamily.GowunBT};
 		font-size: 24;
 
+		border-color: ${(props) => {
+			return props.cursorColorOff ? `${props.cursorColorOff}` : `transparent`;
+		}};
+
 		overflow-x: hidden;
+
+		animation-delay: ${(props) => (props.timer ? `${props.timer}s` : `0`)};
 	}
 
 	@keyframes typing {
@@ -123,8 +136,8 @@ export const WrapTitleFirst = styled.h2`
 	}
 
 	@keyframes blink {
-		50% {
-			border-color: transparent;
+		100% {
+			border-color: ${(props) => (props.cursorColoron ? `${props.cursorColoron}` : `white`)};
 		}
 	}
 
@@ -133,4 +146,50 @@ export const WrapTitleFirst = styled.h2`
 			display: none;
 		}
 	}
+`;
+
+//Wrap title
+export const MapWrapTitle = styled.h2`
+	position: relative;
+	width: 100%;
+
+	list-style: none;
+
+	padding-top: 10px;
+	padding-bottom: 15px;
+
+	margin: 0;
+
+	color: ${cssUnit.colors.White};
+	font-size: ${cssUnit.fontSize.medium};
+	text-align: center;
+	line-height: 50px;
+
+	background-color: ${cssUnit.colors.DeepBlack};
+	list-style: none;
+
+	font-family: ${cssUnit.fontFamily.NotoKR};
+	font-weight: 600;
+
+	li {
+		//position: relative;
+
+		:after {
+			content: '';
+			display: block;
+			position: absolute;
+
+			width: 20vw;
+			height: 0.5px;
+
+			top: 75%;
+			left: 40%;
+
+			border-bottom: 5px solid ${cssUnit.colors.DarkGold};
+		}
+	}
+
+	color: ${(props) => {
+		return props.color ? props.color : cssUnit.colors.Black;
+	}};
 `;

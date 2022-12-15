@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 const SubZidoLayout = styled.div`
 	position: relative;
-	background-color: ${cssUnit.backgroundColors.Gray};
+	background-color: ${cssUnit.colors.White};
 	margin: 0px auto;
 	margin-top: 120px;
 	padding: 0px;
@@ -16,11 +16,18 @@ const SubZidoLayout = styled.div`
 	.mapDescBox {
 		position: relative;
 		width: 800px;
-		color: brown;
+		color: ${cssUnit.colors.DarkGold};
+
 		height: 50px;
 		line-height: 50px;
-		background-color: aliceblue;
+		background-color: ${cssUnit.colors.White};
 
+		padding-bottom: 80px;
+
+		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-size: ${cssUnit.fontSize.large};
+
+		//background-color: ${cssUnit.colors.DeepBlack};
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 		}
@@ -28,7 +35,7 @@ const SubZidoLayout = styled.div`
 
 	.react-simple-maps {
 		width: 800px;
-		background-color: gray;
+		background-color: ${cssUnit.colors.White};
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 		}
@@ -105,7 +112,10 @@ const SubZidoLayout = styled.div`
 
 	.guideText {
 		position: relative;
-		background-color: gray;
+		background-color: ${cssUnit.colors.White};
+		color: ${cssUnit.colors.DarkGold};
+		font-family: ${cssUnit.fontFamily.Hahmlet};
+		font-size: 30px;
 		margin-top: 40px;
 		margin-bottom: 40px;
 		padding-top: 20px;

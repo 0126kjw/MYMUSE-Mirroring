@@ -287,7 +287,8 @@ const IndexStyle = styled.div`
 	}
 `;
 
-const Index = ({ item }) => {
+const Index = ({ pageData }) => {
+	const { item, sliderimgs } = pageData;
 	//console.log('index의 item', item);
 	useEffect(() => {
 		// src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&libraries=services,clusterer&autoload=false`}
@@ -319,7 +320,7 @@ const Index = ({ item }) => {
 				<div className='museData'>
 					<DetailSlider
 						_id={item._id}
-						ID={ID}
+						sliderimgs={sliderimgs}
 						imgSrcUrl={item.imgSrcUrl}
 						srcName={item.srcName}
 						srcUrl={item.srcUrl}
