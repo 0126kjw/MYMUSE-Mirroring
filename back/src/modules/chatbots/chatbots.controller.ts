@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { GetChatbotDto } from './dto/getchatbot.dto';
 import { ChatbotService } from './chatbots.service';
@@ -8,6 +8,18 @@ import { CreateChatbotFeedbackDto } from './dto/createChatbotFeedback.dto';
 @Controller('chatbots')
 export class ChatbotController {
   constructor(private readonly chatbotService: ChatbotService) {}
+
+  /**
+   * Chatbot 사용 만족도
+   */
+  @ApiOkResponse({
+    description: '검색한 정보에 맞게 데이터를 반환합니다.',
+  })
+  @ApiNotFoundResponse({ description: 'NotFound' })
+  @Get('satisfaction')
+  async getSatisfactionResults(): Promise<any> {
+    return this.chatbotService.findSatisfaction();
+  }
 
   /**
    * Chatbot 검색

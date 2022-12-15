@@ -34,7 +34,22 @@ export class ChatbotService {
     //   console.log(data.toString());
     // });
 
-    this.chatbotModel.create({ feedback, sentiment: '' });
+    this.chatbotModel.create({ feedback, sentiment: Number });
+  }
+
+  async findSatisfaction(): Promise<any> {
+    const result = await this.chatbotModel
+      .find({ sentiment: { $gte: 0 } })
+      .lean();
+
+    console.log('성공');
+    console.log(result);
+    // console.log(result.length);
+
+    result.map((data) => {
+      console.log(data.sentiment);
+    });
+    return result;
   }
 
   async findAll(text: string): Promise<any> {
