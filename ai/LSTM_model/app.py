@@ -3,6 +3,7 @@ from flask import request
 from flask_cors import CORS
 from flask_restx import Api, Resource
 import numpy as np
+import jpype 
 import re
 import pickle
 from konlpy.tag import Okt
@@ -26,6 +27,9 @@ class LSTM_model(Resource):
 
         max_len = 30
         okt = Okt()
+
+        if jpype.isJVMStarted():
+            jpype.attachThreadToJVM()
 
         stop_words = ['도', '는', '다', '의', '가', '이', '은', '한', '에', '하',
                       '고', '을', '를', '인', '듯', '과', '와', '네', '들', '듯', '지', '임', '게']
