@@ -5,6 +5,7 @@ import { IdBook } from 'src/data/idBook';
 import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import cssUnit from 'src/lib/cssUnit';
+import { CircleInside, CircleOut } from 'src/styles/compoStyles/sliderStyle';
 
 const SliderLayout = styled.div`
 	cursor: pointer;
@@ -52,7 +53,7 @@ const SliderLayout = styled.div`
 		margin-top: 15%;
 		opacity: 0;
 		width: 76%;
-		height: 30%;
+		height: 50%;
 		left: 10%;
 		bottom: 200px;
 		padding: 2%;
@@ -71,21 +72,25 @@ const SliderLayout = styled.div`
 			font-family: ${cssUnit.fontFamily.NotoKR};
 
 			display: -webkit-box;
-			//-webkit-line-clamp: 2; // 원하는 라인수
+			-webkit-line-clamp: 3; // 원하는 라인수
 			-webkit-box-orient: vertical;
 			text-overflow: ellipsis;
 
-			padding: 20px;
+			text-overflow: ellipsis;
+			overflow: hidden;
 			word-break: keep-all;
 		}
 
 		@media screen and (max-width: 900px) {
-			height: 500px;
+			height: 50%;
+			padding-bottom: 70px;
 			//height: 80vh;
 
 			animation: slide-up-mobile1 1s ease 0.5s;
 			animation-fill-mode: forwards;
 			visibility: hidden;
+
+			//overflow: hidden;
 
 			p {
 				text-overflow: ellipsis;
@@ -103,7 +108,7 @@ const SliderLayout = styled.div`
 
 		@media screen and (max-width: 600px) {
 			//height: 80vh;
-			height: 600px;
+			height: 70%;
 
 			animation: slide-up-mobile2 1s ease 0.5s;
 			animation-fill-mode: forwards;
@@ -125,7 +130,7 @@ const SliderLayout = styled.div`
 
 		@media screen and (max-width: 300px) {
 			//height: 80vh;
-			height: 150px;
+			height: 20%;
 
 			animation: slide-up-mobile3 1s ease 0.5s;
 			animation-fill-mode: forwards;
@@ -136,13 +141,17 @@ const SliderLayout = styled.div`
 			justify-content: center;
 			align-items: center;
 
+			overflow: hidden;
+
 			h2 {
-				overflow: hidden;
 				word-break: break-all;
-				padding: 10px;
+				//: 10px;
+				//z-index: 10;
+				//text-overflow: ellipsis;
+				font-size: large;
 
 				display: -webkit-box;
-				-webkit-line-clamp: 3; // 원하는 라인수
+				-webkit-line-clamp: 1; // 원하는 라인수
 				-webkit-box-orient: vertical;
 			}
 
@@ -205,6 +214,10 @@ const SliderLayout = styled.div`
 	.current {
 		opacity: 1;
 		transform: translateX(0);
+
+		@media screen and (max-width: 300px) {
+			overflow: hidden;
+		}
 	}
 
 	.current .content {
@@ -335,8 +348,18 @@ const Slider = () => {
 						</div>
 					);
 				})}
-				<AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
-				<AiOutlineArrowRight className='arrow next' onClick={nextSlide} />
+				<CircleOut className='arrow prev'>
+					<CircleInside>
+						<AiOutlineArrowLeft onClick={prevSlide} />
+					</CircleInside>
+				</CircleOut>
+				<CircleOut className='arrow next'>
+					<CircleInside>
+						<AiOutlineArrowRight onClick={nextSlide} />
+					</CircleInside>
+				</CircleOut>
+				{/* <AiOutlineArrowLeft className='arrow prev' onClick={prevSlide} />
+				<AiOutlineArrowRight className='arrow next' onClick={nextSlide} /> */}
 			</div>
 		</SliderLayout>
 	);
