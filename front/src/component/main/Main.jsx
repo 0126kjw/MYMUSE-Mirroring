@@ -19,6 +19,7 @@ import {
 } from 'src/styles/pageStyles/mainStyle';
 import logo from '../../../public/images/siteLogo.png';
 import { useState } from 'react';
+import axios from 'axios';
 
 // component
 import Slider from './Slider';
@@ -37,6 +38,7 @@ import ShareToFacebook from './ShareToFacebook';
 
 const Main = () => {
 	const router = useRouter();
+	const [satisfaction, setSatisfaction] = useState(0);
 	// InfoModal on off 처리
 	const InfoModalRef = useRef();
 	const [isInfoModalOn, setIsInfoModalOn] = useState(false);
@@ -51,6 +53,15 @@ const Main = () => {
 			window.removeEventListener('click', modalCloseHandler);
 		};
 	});
+
+	const getSatisfaction = async () => {
+		const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chatbots/satisfaction`;
+		const res = await axios.get(url);
+		setSatisfaction(res.data.goodFeeling);
+	};
+	useEffect(() => {
+		getSatisfaction();
+	}, []);
 
 	return (
 		<>
@@ -101,16 +112,14 @@ const Main = () => {
 				<Section color={cssUnit.backgroundColors.LightBlack}>
 					<Wrap>
 						<WrapTitleFirst steps={21} color={cssUnit.backgroundColors.White}>
-							<div className='full'>직접 검색하거나 Ai에게 물어볼 수 있어요</div>
+							<div className='full'>
+								직접 검색하거나 <br />
+								<br />
+								사용자 {satisfaction}% 가 만족하고 있는 <br />
+								AI에게 물어볼 수 있어요
+							</div>
 						</WrapTitleFirst>
-						<WrapTitle color={cssUnit.colors.White}>
-							직접 검색하거나
-							<br />
-							<br />
-							사용자 _% 가 만족하고 있는 AI봇에게
-							<br />
-							물어볼 수 있어요!
-						</WrapTitle>
+
 						<AiContainer>
 							<SerachBarContainer>
 								<SearchBarLayout>
