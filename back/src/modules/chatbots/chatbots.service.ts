@@ -38,18 +38,26 @@ export class ChatbotService {
   }
 
   async findSatisfaction(): Promise<any> {
-    const result = await this.chatbotModel
-      .find({ sentiment: { $gte: 0 } })
+    const sentiment = await this.chatbotModel
+      .find({ sentiment: { $gte: 0 } }, 'sentiment')
       .lean();
 
-    console.log('성공');
-    console.log(result);
-    // console.log(result.length);
-
-    result.map((data) => {
+    const goodFeelings = sentiment.filter((data) => {
       console.log(data.sentiment);
+      return data.sentiment === 1;
     });
-    return result;
+
+    const goodFeeling = (goodFeelings.length / sentiment.length)
+      .toFixed(2)
+      .slice(-2);
+    const badFeeling = (1 - goodFeelings.length / sentiment.length)
+      .toFixed(2)
+      .slice(-2);
+
+    return {
+      goodFeeling,
+      badFeeling,
+    };
   }
 
   async findAll(text: string): Promise<any> {
