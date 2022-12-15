@@ -1,7 +1,8 @@
-import { css } from '@emotion/react';
+import { useRouter } from 'next/router';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import cssUnit from 'src/lib/cssUnit';
 //styling
+import cssUnit from 'src/lib/cssUnit';
 import { Section, Wrap, WrapTop, WrapTitle, WrapTitleFirst } from 'src/styles/common';
 import {
 	MainContainer,
@@ -16,22 +17,23 @@ import {
 	HumanBubble,
 	AiBubble,
 	SearchBarLayout,
+	SNSTitle,
+	SNSSpaceLayout,
 } from 'src/styles/pageStyles/mainStyle';
 import logo from '../../../public/images/siteLogo.png';
 import { useState } from 'react';
-import axios from 'axios';
-
 // component
 import Slider from './Slider';
 import SeoulZidoMain from 'src/component/zido/SeoulZidoMain';
 import TitleSection from 'src/component/common/TitleSection';
 import InfoModal from 'src/component/common/ai/InfoModal';
-import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
+// for kakao
 import ShareToKakao from './ShareToKakao';
 import ShareToTwitter from './ShareToTwitter';
 import ShareToFacebook from './ShareToFacebook';
 import AutoTyper from './AutoTyper';
+//api
+import { Get } from 'src/utils/api';
 
 // import KakaoBtn from './KakaoShare';
 // import KakaoBtn from './KakaoShare';
@@ -56,9 +58,8 @@ const Main = () => {
 	});
 
 	const getSatisfaction = async () => {
-		const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chatbots/satisfaction`;
-		const res = await axios.get(url);
-		setSatisfaction(res.data.goodFeeling);
+		const res = await Get(['chatbots', 'satisfaction']);
+		setSatisfaction(res.goodFeeling);
 	};
 	useEffect(() => {
 		getSatisfaction();
@@ -85,7 +86,6 @@ const Main = () => {
 						</MainTitleContainer>
 					</WrapTop>
 				</TitleSection>
-
 				<Section color={cssUnit.backgroundColors.White}>
 					<Wrap>
 						<AutoTyper
@@ -97,7 +97,6 @@ const Main = () => {
 						</SilderContainer>
 					</Wrap>
 				</Section>
-
 				<Section color={cssUnit.backgroundColors.Gray}>
 					<Wrap>
 						<AutoTyper
@@ -109,7 +108,6 @@ const Main = () => {
 						</MapContainer>
 					</Wrap>
 				</Section>
-
 				<Section color={cssUnit.backgroundColors.LightBlack}>
 					<Wrap>
 						<AutoTyper
@@ -152,23 +150,18 @@ const Main = () => {
 						</AiContainer>
 					</Wrap>
 					<Wrap>
-						<WrapTitle color={cssUnit.colors.White}>
+						<SNSTitle color={cssUnit.colors.White}>
 							<br />
-							카카오톡으로 공유해보세요
-						</WrapTitle>
+							SNS으로 공유해보세요
+						</SNSTitle>
 
-						<div
-							style={{
-								display: 'flex',
-								width: '250px',
-								padding: '10px',
-								justifyContent: 'space-between',
-							}}
-						>
-							<ShareToKakao />
-							<ShareToTwitter />
-							<ShareToFacebook />
-						</div>
+						<SNSSpaceLayout>
+							<div>
+								<ShareToKakao />
+								<ShareToTwitter className='sns' />
+								<ShareToFacebook className='sns' />
+							</div>
+						</SNSSpaceLayout>
 					</Wrap>
 				</Section>
 			</MainContainer>

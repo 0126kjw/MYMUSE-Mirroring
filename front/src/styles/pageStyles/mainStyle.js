@@ -120,6 +120,12 @@ export const SearchBarLayout = styled.div`
 			cursor: pointer;
 		}
 
+		input[value='국립중앙박물관'] {
+			font-family: ${cssUnit.fontFamily.NotoKR_G};
+			font-size: 20px;
+			color: ${cssUnit.colors.DarkGray};
+		}
+
 		/* span {
 			cursor: pointer;
 			&:hover {
@@ -138,8 +144,9 @@ export const AiExContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	width: 100%;
-	max-width: 500px;
+	width: 60%;
+
+	max-width: 400px;
 	/* height: 500px; */
 
 	background-color: white;
@@ -168,7 +175,7 @@ export const AiChatRoomBox = styled.div`
 `;
 
 export const HumanBubble = styled.div`
-	text-align: left;
+	text-align: right;
 
 	width: 60%;
 	max-width: 400px;
@@ -178,7 +185,8 @@ export const HumanBubble = styled.div`
 
 	font-size: ${cssUnit.fontSize.small};
 	/* line-height: 60px; */
-	padding: 10px;
+	padding: 10px 10px 10px 10px;
+	margin-right: -55px;
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
@@ -194,12 +202,13 @@ export const AiBubble = styled.div`
 	width: 80%;
 	max-width: 350px;
 
-	margin: 4% 14% 4% 6%;
-	padding: 10px;
+	margin: 4% 11% 4% 4%;
+	padding: 10px 5px 10px 10px;
 
 	background-color: ${cssUnit.colors.White};
 
-	font-family: ${cssUnit.fontFamily.GothicAi};
+	font-family: ${cssUnit.fontFamily.NotoKR_G};
+	font-weight: 300;
 
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -240,17 +249,24 @@ export const AiChatButton = styled.button`
 	font-size: ${cssUnit.fontSize.medium};
 	color: ${cssUnit.colors.White};
 
-	font-family: 'Noto serif KR', sans-serif;
-	font-weight: 400;
+	font-family: ${cssUnit.fontFamily.Hahmlet};
+	font-weight: 600;
 	border-radius: 0px 0px 10px 10px;
 
 	&:hover {
 		cursor: pointer;
+		background-color: ${cssUnit.colors.LightGold};
+		color: ${cssUnit.colors.Black};
 	}
 
 	@media screen and (max-width: 400px) {
 		text-overflow: ellipsis;
 		overflow: hidden;
+
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
 	}
 `;
 
@@ -262,5 +278,40 @@ export const Logosection = styled.section`
 
 	&:hover {
 		cursor: pointer;
+	}
+`;
+
+// //common Wrap title
+export const SNSTitle = styled.h2`
+	display: block;
+	font-size: ${cssUnit.fontSize.medium};
+	font-family: ${cssUnit.fontFamily.NotoKR_G};
+	font-weight: 300;
+
+	word-break: keep-all;
+
+	color: ${(props) => {
+		return props.color ? props.color : cssUnit.colors.Black;
+	}};
+`;
+
+export const SNSSpaceLayout = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 222px;
+	div {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 10px;
+
+		justify-content: space-between;
+
+		@media screen and (max-width: 400px) {
+			height: 242px;
+			grid-template-columns: repeat(1, 1fr);
+			column-gap: 10px;
+		}
 	}
 `;

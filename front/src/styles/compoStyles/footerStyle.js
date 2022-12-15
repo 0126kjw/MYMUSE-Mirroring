@@ -18,6 +18,18 @@ export const FooterContainer = styled.footer`
 	color: ${cssUnit.colors.White};
 
 	overflow-x: hidden;
+
+	/* not working: ... */
+	span {
+		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-weight: 100;
+		color: ${cssUnit.colors.LightGray};
+		font-weight: 400;
+
+		:nth-last-of-type(1) {
+			font-size: 14px;
+		}
+	}
 `;
 export const FooterWrapper = styled.div`
 	position: relative;
@@ -47,10 +59,9 @@ export const FooterTitleBox = styled.div`
 		height: 100px;
 
 		overflow-x: hidden;
-	}
-	/* not working: ... */
-	span {
-		font-family: 'Courier New', Courier, monospace;
-		font-weight: 100;
+
+		:hover {
+			cursor: pointer;
+		}
 	}
 `;
