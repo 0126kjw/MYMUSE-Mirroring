@@ -9,7 +9,7 @@ export class Chatbot {
   feedback: string;
 
   @Prop()
-  sentiment: string;
+  sentiment: number;
 
   @Prop()
   createdAt: Date;

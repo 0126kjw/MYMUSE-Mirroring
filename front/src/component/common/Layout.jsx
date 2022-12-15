@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import KakaoBtn from '../detail/KakaoShare';
+import ShareToKakao from '../main/ShareToKakao';
 
 const Layout = ({ children }) => {
 	useEffect(() => {

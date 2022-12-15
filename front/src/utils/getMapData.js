@@ -37,7 +37,7 @@ const getMapData = async (
 					setIsMapFetching(false);
 				})
 				.catch((err) => {
-					console.log(err);
+					console.log('err', err);
 				});
 		}
 	}

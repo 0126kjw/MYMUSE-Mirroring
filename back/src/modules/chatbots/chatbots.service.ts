@@ -34,7 +34,30 @@ export class ChatbotService {
     //   console.log(data.toString());
     // });
 
-    this.chatbotModel.create({ feedback, sentiment: '' });
+    this.chatbotModel.create({ feedback, sentiment: -1 });
+  }
+
+  async findSatisfaction(): Promise<any> {
+    const sentiment = await this.chatbotModel
+      .find({ sentiment: { $gte: 0 } }, 'sentiment')
+      .lean();
+
+    const goodFeelings = sentiment.filter((data) => {
+      console.log(data.sentiment);
+      return data.sentiment === 1;
+    });
+
+    const goodFeeling = (goodFeelings.length / sentiment.length)
+      .toFixed(2)
+      .slice(-2);
+    const badFeeling = (1 - goodFeelings.length / sentiment.length)
+      .toFixed(2)
+      .slice(-2);
+
+    return {
+      goodFeeling,
+      badFeeling,
+    };
   }
 
   async findAll(text: string): Promise<any> {
