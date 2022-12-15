@@ -24,6 +24,10 @@ const FeedBackModalLayout = styled.div`
 	margin: 0 auto;
 	padding: 0px;
 
+	@media screen and (max-width: 600px) {
+		width: 90%;
+	}
+
 	.titleSection {
 		width: 100%;
 		height: 100px;
