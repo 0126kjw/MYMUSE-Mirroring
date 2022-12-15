@@ -7,7 +7,7 @@ export default function Geographies_Outer({
 	mapData,
 	outerMap,
 }) {
-	console.log('mapData', mapData);
+	//console.log('mapData', mapData);
 	return (
 		<>
 			{currentMap.mapKind == 'outer' ? (

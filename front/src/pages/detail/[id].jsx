@@ -120,9 +120,9 @@ const Detail = ({ pageData }) => {
 		}
 	}, []);
 
-	const history = createBrowserHistory();
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
+			const history = createBrowserHistory();
 			// 뒤로가기 시 전역값 설정함
 			const listenBackEvent = () => {
 				// 뒤로가기 할 때 수행할 동작

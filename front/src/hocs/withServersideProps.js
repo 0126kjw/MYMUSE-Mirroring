@@ -67,27 +67,34 @@ const withGetServerSideProps = (getServerSideProps) => {
 
 				//[3] 검증을 통과하면 여기서 get으로 정보를 받아온다.
 				return await getServerSideProps(context).then(async (res) => {
-					const item = await Get(['museums', intDetailQueryId]);
-					const pagePath = `detail/${intDetailQueryId}`;
-					const pageTitle = item.name;
-					const pageDesc = `${item.name}의 상세 페이지입니다.`;
+					try {
+						const item = await Get(['museums', intDetailQueryId]);
+						const pagePath = `detail/${intDetailQueryId}`;
+						const pageTitle = item.name;
+						const pageDesc = `${item.name}의 상세 페이지입니다.`;
 
-					const sliderimgs = [
-						`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${intDetailQueryId}_image01.jpg`,
-						`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${intDetailQueryId}_image02.jpg`,
-					];
+						const sliderimgs = [
+							`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${intDetailQueryId}_image01.jpg`,
+							`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${intDetailQueryId}_image02.jpg`,
+						];
 
-					const pageData = { item, sliderimgs };
+						const pageData = { item, sliderimgs };
 
-					return {
-						...res,
-						props: {
-							pagePath,
-							pageTitle,
-							pageDesc,
-							pageData,
-						},
-					};
+						return {
+							...res,
+							props: {
+								pagePath,
+								pageTitle,
+								pageDesc,
+								pageData,
+							},
+						};
+					} catch (err) {
+						console.log(err);
+						return {
+							props: {},
+						};
+					}
 				});
 			} else {
 				//[3]쿼리가 존재하며 정수이지만 범위가 올바르지 않을 때(음의 정수/오버된 쿼리 처리)
@@ -135,15 +142,19 @@ const withGetServerSideProps = (getServerSideProps) => {
 			//console.log('detail/[id]외의 페이지로 가므로 undefined가 떠야 정상 ', detailQueryId);
 			return await getServerSideProps(context).then((res) => {
 				//console.log('context', context);
-				return {
-					...res,
-					props: {
-						...res.props,
-						pagePath,
-						pageTitle: getTitleByPath[pagePath],
-						pageDesc: getDescByPath[pagePath],
-					},
-				};
+				try {
+					return {
+						...res,
+						props: {
+							...res.props,
+							pagePath,
+							pageTitle: getTitleByPath[pagePath],
+							pageDesc: getDescByPath[pagePath],
+						},
+					};
+				} catch (err) {
+					console.log(err);
+				}
 			});
 		}
 	};

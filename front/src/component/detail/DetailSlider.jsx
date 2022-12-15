@@ -114,14 +114,6 @@ const DetailSlider = ({ sliderimgs }) => {
 	const sliderData = sliderimgs;
 	const slideLength = sliderData.length;
 
-	// //방법1 로더로 불러오기 => map으로 어떻게 돌리지?
-	// const FirstImgLoader=({ID})=>{
-	// 	return `https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ID}_image01.jpg/${src}?w=${width}&q=${quality||100}`
-	// }
-	// const SecondImgLoader=({ID})=>{
-	// 	return `https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ID}_image02.jpg/${src}?w=${width}&q=${quality||100}`
-	// }
-
 	const nextSlide = useCallback(() => {
 		return setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
 	}, [currentSlide]);
@@ -154,6 +146,7 @@ const DetailSlider = ({ sliderimgs }) => {
 												objectFit: 'cover',
 												layout: 'fill',
 											}}
+											//priority='true'
 										/>
 									</>
 								)}
