@@ -55,14 +55,14 @@ const Main = () => {
 		};
 	});
 
-	// const getSatisfaction = async () => {
-	// 	const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chatbots/satisfaction`;
-	// 	const res = await axios.get(url);
-	// 	setSatisfaction(res.data.goodFeeling);
-	// };
-	// useEffect(() => {
-	// 	getSatisfaction();
-	// }, []);
+	const getSatisfaction = async () => {
+		const url = `${process.env.NEXT_PUBLIC_BASE_URL}/chatbots/satisfaction`;
+		const res = await axios.get(url);
+		setSatisfaction(res.data.goodFeeling);
+	};
+	useEffect(() => {
+		getSatisfaction();
+	}, []);
 
 	return (
 		<>
@@ -113,7 +113,7 @@ const Main = () => {
 				<Section color={cssUnit.backgroundColors.LightBlack}>
 					<Wrap>
 						<AutoTyper
-							sentence={`직접 검색하거나 사용자 ${satisfaction}%가 만족하고 있는 AI에게 물어볼 수 있어요`}
+							sentence={`직접 검색하거나 ${satisfaction}%의 긍정 후기를 받은 AI에게 모르는 부분을 물어보세요!`}
 							color={cssUnit.backgroundColors.White}
 						/>
 						<AiContainer>
