@@ -23,9 +23,6 @@ export class ChatbotScheduler {
         `http://127.0.0.1:5000/api/predict?feedback=${chatbot.feedback}`,
       );
 
-      console.log(chatbot.id);
-      console.log(getSentiment.data);
-
       await this.chatbotModel.updateOne(
         { _id: chatbot.id },
         { sentiment: getSentiment.data },
