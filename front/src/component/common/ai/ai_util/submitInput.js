@@ -75,7 +75,12 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 	const userQuestion = { text: inputValue };
 	let data = null;
 	try {
-		const res = await axios.get(`http://localhost:3001/chatbots?text=${inputValue}`);
+		const res = await axios.get(
+			`${process.env.NEXT_PUBLIC_BASE_URL}/chatbots?text=${inputValue}`,
+		);
+
+		process.env.NEXT_PUBLIC_OGURL_URL;
+
 		data = res.data;
 		//console.log('data', data);
 		// data = await PostUserQuestion(userQuestion);
