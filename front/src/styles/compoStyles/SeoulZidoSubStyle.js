@@ -36,7 +36,7 @@ const SubZidoLayout = styled.div`
 
 	.react-simple-maps {
 		width: 800px;
-		padding-bottom: 10px;
+		/* padding-bottom: 10px; */
 		background-color: ${cssUnit.colors.LightGray};
 		@media screen and (max-width: 1000px) {
 			width: 100%;
@@ -152,7 +152,9 @@ const SubZidoLayout = styled.div`
 	}
 	.tooltipStyle {
 		color: red;
-		font-size: 25px;
+		font-size: 20px;
+		/* background-color: ${cssUnit.colors.White}; */
+		font-family: ${cssUnit.fontFamily.NotoKR_G};
 	}
 
 	.dataFetchingMsg {
