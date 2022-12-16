@@ -37,7 +37,7 @@ export const Card_Muse_Layout = styled.div`
 			font-family: ${cssUnit.fontFamily.NanumM};
 			font-weight: 600;
 			line-height: 150%;
-			text-align: justify;
+			text-align: left;
 
 			text-overflow: ellipsis;
 			overflow: hidden;
