@@ -33,7 +33,7 @@ export const NavBarLayout = styled.div`
 	justify-content: space-around;
 	text-align: center;
 
-	//font-family: ${cssUnit.fontFamily.GowunBT};
+	font-family: ${cssUnit.fontFamily.NotoKR_G};
 
 	ul {
 		display: flex;

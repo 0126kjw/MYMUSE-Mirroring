@@ -105,13 +105,14 @@ const withGetServerSideProps = (getServerSideProps) => {
 					const pagePath = `/404`;
 					const pageTitle = 'Page Not Found';
 					const pageDesc = `에러 페이지 입니다.`;
+					const pageData = { item };
 
 					return {
 						props: {
 							pagePath,
 							pageTitle,
 							pageDesc,
-							item,
+							pageData,
 						},
 					};
 				});
@@ -125,23 +126,20 @@ const withGetServerSideProps = (getServerSideProps) => {
 				const pagePath = `/404`;
 				const pageTitle = 'Page Not Found';
 				const pageDesc = `에러 페이지 입니다.`;
+				const pageData = { item };
 
 				return {
 					props: {
 						pagePath,
 						pageTitle,
 						pageDesc,
-						item,
+						pageData,
 					},
 				};
 			});
 		}
-
-		//쿼리가 없을 때 -> 일반 페이지들(detail 빼고?)
 		if (detailQueryId === undefined) {
-			//console.log('detail/[id]외의 페이지로 가므로 undefined가 떠야 정상 ', detailQueryId);
 			return await getServerSideProps(context).then((res) => {
-				//console.log('context', context);
 				try {
 					return {
 						...res,

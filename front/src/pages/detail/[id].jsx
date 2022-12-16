@@ -91,6 +91,7 @@ const DetailContainer = styled.div`
 `;
 
 const Detail = ({ pageData }) => {
+	//console.log(pageData);
 	const { item, sliderimgs } = pageData;
 	//console.log ('디테일에서 item', item);
 	const router = useRouter();
