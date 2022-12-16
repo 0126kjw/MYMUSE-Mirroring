@@ -80,7 +80,7 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		);
 
 		data = res.data;
-		console.log('data', data);
+		// console.log('data', data);
 		// data = await PostUserQuestion(userQuestion);
 
 		// console.log(data);
