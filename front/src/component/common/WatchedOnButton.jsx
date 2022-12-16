@@ -29,17 +29,17 @@ const WatchedOnButtonStyle = styled.div`
 
 	@keyframes pulse {
 		0% {
-			transform: scale(0.95);
+			//transform: scale(0.95);
 			box-shadow: 0 0 0 0 rgba(229, 211, 184, 0.7);
 		}
 
 		70% {
-			transform: scale(1);
+			//transform: scale(1);
 			box-shadow: 0 0 0 30px rgba(229, 211, 184, 0);
 		}
 
 		100% {
-			transform: scale(0.95);
+			//transform: scale(0.95);
 			box-shadow: 0 0 0 0 rgba(229, 211, 184, 0);
 		}
 	}
