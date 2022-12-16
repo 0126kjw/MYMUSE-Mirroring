@@ -21,7 +21,9 @@ const DataTable_Agency = ({
 			<div className='col-2'>
 				<div className='rcol'>홈페이지</div>
 				<div style={{ textOverflow: 'ellipsis' }}>
-					<a href={website}>{website}</a>
+					<a href={website} target='_blank'>
+						{website}
+					</a>
 				</div>
 			</div>
 			<div className='col-2'>

@@ -37,7 +37,11 @@ const DataTable_Schedule = ({ mon, tue, thu, wed, fri, sat, sun, offday, website
 			<div className='col-2'>
 				<div className='rcol'>주의사항</div>
 				<div>
-					자세한 사항은 <a href={website}>홈페이지</a>에서 확인하시기 바랍니다.
+					자세한 사항은{' '}
+					<a href={website} target='_blank'>
+						홈페이지
+					</a>
+					에서 확인하시기 바랍니다.
 				</div>
 			</div>
 		</div>
