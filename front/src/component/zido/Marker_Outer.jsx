@@ -1,5 +1,6 @@
 import { Marker } from 'react-simple-maps';
-export default function Marker_Outer({ markers, currentMap, setIsMapFetching, setCurrentMap }) {
+import cssUnit from 'src/lib/cssUnit';
+const Marker_Outer = ({ markers, currentMap, setIsMapFetching, setCurrentMap }) => {
 	return (
 		<>
 			{currentMap.mapKind == 'outer'
@@ -19,7 +20,7 @@ export default function Marker_Outer({ markers, currentMap, setIsMapFetching, se
 								textAnchor='middle'
 								y={markerOffset}
 								style={{
-									fontFamily: 'system-ui',
+									fontFamily: `${cssUnit.fontFamily.GowunBT}`,
 									fontSize: '18',
 									fontWeight: 'bold',
 									cursor: 'pointer',
@@ -32,4 +33,5 @@ export default function Marker_Outer({ markers, currentMap, setIsMapFetching, se
 				: null}
 		</>
 	);
-}
+};
+export default Marker_Outer;

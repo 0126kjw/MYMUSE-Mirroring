@@ -36,6 +36,7 @@ const SubZidoLayout = styled.div`
 
 	.react-simple-maps {
 		width: 800px;
+		padding-bottom: 10px;
 		background-color: ${cssUnit.colors.LightGray};
 		@media screen and (max-width: 1000px) {
 			width: 100%;
@@ -120,7 +121,7 @@ const SubZidoLayout = styled.div`
 		background-color: ${cssUnit.colors.White};
 		color: ${cssUnit.colors.DarkGold};
 		font-family: ${cssUnit.fontFamily.GowunBT};
-		font-size: 30px;
+		font-size: 25px;
 		margin-top: 40px;
 		margin-bottom: 40px;
 		padding-top: 20px;
@@ -139,6 +140,11 @@ const SubZidoLayout = styled.div`
 		margin-bottom: 40px;
 		padding-top: 20px;
 		padding-bottom: 20px;
+
+		background-color: ${cssUnit.colors.LightGray};
+		color: ${cssUnit.colors.Black};
+		font-family: ${cssUnit.fontFamily.GothicAi};
+
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 			font-size: 20px;

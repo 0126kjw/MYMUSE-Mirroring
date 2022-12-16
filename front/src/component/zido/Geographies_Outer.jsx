@@ -1,12 +1,6 @@
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
-
-export default function Geographies_Outer({
-	currentMap,
-	setCurrentMap,
-	setIsMapFetching,
-	mapData,
-	outerMap,
-}) {
+import cssUnit from 'src/lib/cssUnit';
+const Geographies_Outer = ({ currentMap, setCurrentMap, setIsMapFetching, mapData, outerMap }) => {
 	//console.log('mapData', mapData);
 	return (
 		<>
@@ -17,8 +11,8 @@ export default function Geographies_Outer({
 							return (
 								<Geography
 									fill={'cornflowerblue'}
-									stroke={'#2D2D2D'}
-									strokeWidth={0.4}
+									stroke={`${cssUnit.colors.LightGray}`}
+									strokeWidth={0.6}
 									onClick={() => {
 										setIsMapFetching(true);
 										setCurrentMap({
@@ -52,4 +46,6 @@ export default function Geographies_Outer({
 			) : null}
 		</>
 	);
-}
+};
+
+export default Geographies_Outer;

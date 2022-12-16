@@ -1,8 +1,9 @@
 import { Marker } from 'react-simple-maps';
 import { IdBook } from 'src/data/idBook';
 import { useRouter } from 'next/router';
+import cssUnit from 'src/lib/cssUnit';
 
-export default function Marker_Inner({ currentMap, pins, setTooltipName, setHoverPin }) {
+const Marker_Inner = ({ currentMap, pins, setTooltipName, setHoverPin }) => {
 	const router = useRouter();
 	const moveToDetail = (museName) => {
 		let ID = '';
@@ -34,7 +35,7 @@ export default function Marker_Inner({ currentMap, pins, setTooltipName, setHove
 							}}
 							style={{
 								default: {
-									fill: 'rgba(172, 232, 207, .9)',
+									fill: `${cssUnit.colors.RealGold}`,
 								},
 								hover: {
 									fill: 'rgba(172, 232, 207, .9)',
@@ -45,12 +46,17 @@ export default function Marker_Inner({ currentMap, pins, setTooltipName, setHove
 								},
 							}}
 						>
-							<circle r={5} fill='#F00' stroke='#fff' strokeWidth={1} />
+							<circle
+								r={5}
+								fill={`${cssUnit.colors.RealGold}`}
+								stroke='#fff'
+								strokeWidth={1}
+							/>
 							<text
 								textAnchor='middle'
 								y='-2'
 								style={{
-									fontFamily: 'system-ui',
+									fontFamily: `${cssUnit.fontFamily.GowunBT}`,
 									fontSize: '1.6',
 									fontWeight: 'bold',
 									cursor: 'pointer',
@@ -61,4 +67,5 @@ export default function Marker_Inner({ currentMap, pins, setTooltipName, setHove
 				: null}
 		</>
 	);
-}
+};
+export default Marker_Inner;

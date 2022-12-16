@@ -17,7 +17,8 @@ import cssUnit from 'src/lib/cssUnit';
 export const SubTitle = styled.div`
 	font-size: ${cssUnit.fontSize.small};
 	font-weight: 100;
-	color: ${cssUnit.colors.Gray};
+	color: ${cssUnit.colors.DarkGray};
+	font-family: ${cssUnit.fontFamily.Hahmlet};
 `;
 //Base layout for all page
 export const PageLayout = styled.div`

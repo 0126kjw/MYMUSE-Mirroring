@@ -9,6 +9,7 @@ import DownButton from '../DownButton';
 //import Card compo
 import Card from './Cards';
 import { AllListUl } from 'src/styles/compoStyles/cardlistStyle';
+import Loading from '../common/Loading';
 
 const AllCardsList = ({ category }) => {
 	const [list, setList] = useState([]);
@@ -29,17 +30,27 @@ const AllCardsList = ({ category }) => {
 		getData();
 	}, [bundleIdx]);
 
+	const isListExist = list.length;
+
 	return (
 		<>
-			<div>
-				<AllListUl>
-					{list &&
-						list.map((data, idx) => {
-							return <Card x={data} key={idx} />;
-						})}
-				</AllListUl>
-				<DownButton getMoreList={getMoreListMemo} />
-			</div>
+			{isListExist === 0 ? (
+				<>
+					<Loading />
+				</>
+			) : (
+				<>
+					<div>
+						<AllListUl>
+							{list &&
+								list.map((data, idx) => {
+									return <Card x={data} key={idx} />;
+								})}
+						</AllListUl>
+						<DownButton getMoreList={getMoreListMemo} />
+					</div>
+				</>
+			)}
 		</>
 	);
 };

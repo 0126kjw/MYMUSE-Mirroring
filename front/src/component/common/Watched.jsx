@@ -27,6 +27,9 @@ const WatchedStyle = styled.div`
 		border-bottom: 1px solid ${cssUnit.colors.DarkGold};
 		padding: 3px;
 		margin: 0px;
+
+		font-family: ${cssUnit.fontFamily.Hahmlet};
+
 		:hover {
 			color: ${cssUnit.backgroundColors.White};
 			background-color: ${cssUnit.backgroundColors.LightBlack};
