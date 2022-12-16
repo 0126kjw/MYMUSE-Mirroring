@@ -27,7 +27,7 @@ const getMapData = async (
 		if (foundGu != '') {
 			await Promise.allSettled(promiseArray)
 				.then((res) => {
-					console.log('res', res);
+					// console.log('res', res);
 					let centerValue = zoomMap[foundGu.name];
 					setMapCenter(centerValue['center']);
 					setMapScale(260000);

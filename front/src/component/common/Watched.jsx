@@ -74,7 +74,7 @@ const Watched = ({ setIsWatchedOn }) => {
 		if (museumIndex && 1 <= museumIndex && museumIndex <= 127) {
 			changeDetailList();
 		}
-		console.log(nowPath);
+		// console.log(nowPath);
 	}, [router.asPath]);
 
 	const moveToDetail = (museName) => {

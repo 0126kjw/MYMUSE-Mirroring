@@ -17,6 +17,9 @@ const Footer = () => {
 								width={300}
 								height={44}
 								style={{ objectFit: 'contain', layout: 'fill' }}
+								onClick={() => {
+									router.push(`/`);
+								}}
 							/>
 						</div>
 					</FooterTitleBox>
