@@ -282,6 +282,7 @@ const aiChatRoomStyle = styled.div`
 		display: flex;
 		overflow: scroll;
 		background-color: #d9d9d9;
+		border-radius: 10px;
 
 		/* 가로 스크롤 */
 		overflow: auto;
@@ -289,10 +290,11 @@ const aiChatRoomStyle = styled.div`
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
+
 		/* 스크롤 없애기 */
 		/* -ms-overflow-style: none; */
 		/* scrollbar-width: none; */
-		border-radius: 10px;
+
 		/* 
 		//챗봇 모바일버전? 그리드로 처리하는 코드
 		display: grid;
