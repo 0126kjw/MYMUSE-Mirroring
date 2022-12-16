@@ -167,7 +167,10 @@ export class ChatbotService {
       case 'exhibitionDateSearch':
         const endDate = await this.searchSpecificDate(fields, queryText);
 
-        return this.exhibitionService.findRightItems(endDate, 'title href');
+        return this.exhibitionService.findRightItems(
+          endDate,
+          'title imgSrc href',
+        );
     }
   }
 
