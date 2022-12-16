@@ -80,7 +80,7 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		);
 
 		data = res.data;
-		//console.log('data', data);
+		console.log('data', data);
 		// data = await PostUserQuestion(userQuestion);
 
 		// console.log(data);
@@ -254,7 +254,7 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 			InnerlistElement.innerHTML = `
                 <div className='imgBox'>
                     <a target=_blank href=https://tickets.interpark.com/goods/${ans[i].href}> 
-                            <img src=http://ticketimage.interpark.com/rz/image/play/goods/poster/22/${ans[i].href}_p_s.jpg>
+                            <img src=${ans[i].imgSrc}>
                         <p>${ans[i].title}</p>
                     </a>
                 </div>
