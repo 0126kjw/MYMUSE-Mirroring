@@ -12,6 +12,8 @@ const KakaoMap = ({ latitude, longitude, name }) => {
 		paddingValue = 25;
 	} else if (nameLength == 6) {
 		paddingValue = 19;
+	} else if (nameLength == 7) {
+		paddingValue = 10;
 	}
 
 	const loadedKakaoSdk = () => {
