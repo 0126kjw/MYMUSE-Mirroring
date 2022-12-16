@@ -26,6 +26,7 @@ import Marker_Outer from 'src/component/zido/Marker_Outer';
 import Geographies_Inner from 'src/component/zido/Geographies_Inner';
 import Geographies_Outer from 'src/component/zido/Geographies_Outer';
 import TopDescription from 'src/component/zido/TopDescription';
+import Loading from '../common/Loading';
 
 export default function SeoulZido() {
 	const [isMapFetching, setIsMapFetching] = useRecoilState(IsMapFetchingState);
@@ -108,7 +109,8 @@ export default function SeoulZido() {
 						<CreatedList currentMap={currentMap} pins={pins} hoverPin={hoverPin} />
 					</>
 				) : (
-					<div className='dataFetchingMsg'>데이터를 가져오는 중입니다</div>
+					// <div className='dataFetchingMsg'>데이터를 가져오는 중입니다</div>
+					<Loading />
 				)}
 			</SeoulZidoSubStyle>
 		</>

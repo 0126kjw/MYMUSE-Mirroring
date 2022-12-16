@@ -52,11 +52,10 @@ export const Optionlist = styled.ul`
 
 	background-color: white;
 
-	top: 30px;
 	padding-inline-start: 0;
 
 	left: 10px;
-	top: 40px;
+	top: 30px;
 
 	border-bottom-left-radius: 0.4rem;
 	border-bottom-right-radius: 0.4rem;

@@ -15,6 +15,7 @@ import cssUnit from 'src/lib/cssUnit';
 import { SearchWrapTitle, SearchResultCard } from 'src/styles/pageStyles/searchStyle';
 import { PageLayout } from 'src/styles/compoStyles/cardlistStyle';
 import { ListSection } from 'src/styles/compoStyles/cardlistStyle';
+import { SubTitle } from 'src/styles/compoStyles/cardlistStyle';
 
 //for page common section
 import { Section, Wrap, WrapTitle } from 'src/styles/common';
@@ -58,6 +59,7 @@ const Search = () => {
 						<SearchWrapTitle color={cssUnit.colors.White}>
 							<li>박물관/전시회 검색</li>
 						</SearchWrapTitle>
+						<SubTitle>박물관과 전시관 검색하기</SubTitle>
 					</Wrap>
 				</TitleSection>
 				<SearchSection>
