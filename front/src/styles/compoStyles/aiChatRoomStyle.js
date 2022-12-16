@@ -290,8 +290,8 @@ const aiChatRoomStyle = styled.div`
 		flex-wrap: nowrap;
 		justify-content: flex-start;
 		/* 스크롤 없애기 */
-		-ms-overflow-style: none;
-		scrollbar-width: none;
+		/* -ms-overflow-style: none; */
+		/* scrollbar-width: none; */
 		border-radius: 10px;
 		/* 
 		//챗봇 모바일버전? 그리드로 처리하는 코드
@@ -308,7 +308,7 @@ const aiChatRoomStyle = styled.div`
 
 	.horListBox::-webkit-scrollbar {
 		/* 스크롤 없애기 */
-		display: none;
+		/* display: none; */
 	}
 
 	.horList {

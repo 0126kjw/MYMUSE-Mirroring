@@ -212,7 +212,7 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		scrollGuide.innerHTML = `
             <span class='tip'>
                 <span class='tipspan'>TIP</span> : 
-                PC에서는 반환받은 목록에 마우스를 두고 shift + scroll시 우측으로 스크롤 할 수 있습니다.
+                (PC) 반환받은 목록에 마우스를 두고 shift + scroll시 우측으로 스크롤 할 수 있습니다.
             </span>
         `;
 		AIsec2.appendChild(scrollGuide);
@@ -277,7 +277,7 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		scrollGuide.innerHTML = `
             <span class='tip'>
                 <span class='tipspan'>TIP</span> : 
-                PC에서는 반환받은 목록에 마우스를 두고 shift + scroll시 우측으로 스크롤 할 수 있습니다.
+                (PC) 반환받은 목록에 마우스를 두고 shift + scroll시 우측으로 스크롤 할 수 있습니다.
             </span>
         `;
 		AIsec2.appendChild(scrollGuide);
