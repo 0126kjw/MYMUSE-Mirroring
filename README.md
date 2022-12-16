@@ -1,12 +1,10 @@
 # MY MUSE
 
----
 
 문화 활동을 좋아하는 사람들을 위해 박물관, 미술관, 전시관 등에 대한 정보를 알려주는 서비스
 
 ## 1. 개요
 
----
 
 - 서비스명 : MY MUSE
 - 개발 기간 : 2022.11.14 ~ 2022.12.16(5주)
@@ -17,7 +15,6 @@
 
 ## 2. 팀원 소개
 
----
 
 | 이름 | 기능 구현 파트 |
 | --- | --- |
@@ -30,7 +27,6 @@
 
 ## 3. 서비스 설명
 
----
 
 ### 3-1. 기획 의도
 
@@ -69,11 +65,11 @@
 ---
 
 - 와이어프레임
-    - ([완성본](https://www.figma.com/file/xUpYp3ZPgtP6ADakcWJHIz/%EB%AC%B8%ED%99%94%EC%98%88%EC%88%A0-%EA%B4%80%EA%B4%91-%ED%94%8C%EB%9E%AB%ED%8F%BC?node-id=0%3A1))
-    - ([초안](https://www.figma.com/file/f6jBN0vKnA24rsIQpCDbAr/9gle?node-id=0%3A1&t=I6kS7uY0JdM56gkA-0))
+    - [완성본](https://www.figma.com/file/xUpYp3ZPgtP6ADakcWJHIz/%EB%AC%B8%ED%99%94%EC%98%88%EC%88%A0-%EA%B4%80%EA%B4%91-%ED%94%8C%EB%9E%AB%ED%8F%BC?node-id=0%3A1)
+    - [초안](https://www.figma.com/file/f6jBN0vKnA24rsIQpCDbAr/9gle?node-id=0%3A1&t=I6kS7uY0JdM56gkA-0)
 - 사이트맵
-    
-    ![9gle.drawio.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4bc50b94-acd8-4618-8904-78dd91fb6056/9gle.drawio.png)
+    <br />
+    <img src="/uploads/55899764e430464ac87d9af59934ccfa/9gle.drawio.png" width="619.5" height="504">
     
 
 ## 4. 기술
