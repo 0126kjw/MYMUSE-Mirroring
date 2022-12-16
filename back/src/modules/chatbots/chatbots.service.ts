@@ -6,6 +6,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Chatbot } from './schemas/chatbot.schema';
 import { format, subDays, add } from 'date-fns';
+import { Museum } from '../museums/schemas/museum.schema';
+import { Exhibition } from '../exhibitions/schemas/exhibition.schema';
 
 @Injectable()
 export class ChatbotService {
@@ -17,23 +19,6 @@ export class ChatbotService {
   ) {}
 
   async create(feedback: string): Promise<void> {
-    console.log(feedback);
-    // const spawn = require('child_process').spawn;
-    // const result = spawn('python', [
-    //   './src/modules/chatbots/python/emotePredict.py',
-    //   feedback,
-    // ]);
-
-    // result.stdout.on('data', function (data: { toString: () => any }) {
-    //   console.log('성공');
-    //   console.log(data.toString());
-    // });
-
-    // result.stderr.on('data', function (data: { toString: () => any }) {
-    //   console.log('오류');
-    //   console.log(data.toString());
-    // });
-
     this.chatbotModel.create({ feedback, sentiment: -1 });
   }
 
@@ -60,7 +45,9 @@ export class ChatbotService {
     };
   }
 
-  async findAll(text: string): Promise<any> {
+  async findAll(
+    text: string,
+  ): Promise<Museum | Museum[] | Exhibition | Exhibition[]> {
     const sessionId = process.env.DIALOGFLOW_SESSION_ID;
     const projectId = process.env.GOOGLE_PROJECT_ID;
     const sessionClient = new dialogflow.SessionsClient();
@@ -88,7 +75,9 @@ export class ChatbotService {
     console.log(`  Response: ${result.fulfillmentText}`);
 
     // dialogflow에서 평일을 월~일로 인식하기 때문에 강제로 2일 줄여주는 로직 구성
-    const editWeekdayText = async (fulfillmentText: string) => {
+    const editWeekdayText = async (
+      fulfillmentText: string,
+    ): Promise<string> => {
       const endDate = fulfillmentText.slice(11, 21);
       const [year, month, day] = endDate.split('-');
       const date = new Date(
@@ -98,9 +87,7 @@ export class ChatbotService {
       );
       const newEndDate = format(subDays(date, 2), 'yyyy-MM-dd');
 
-      fulfillmentText = fulfillmentText.replace(endDate, newEndDate);
-
-      return fulfillmentText;
+      return fulfillmentText.replace(endDate, newEndDate);
     };
 
     if (queryText.indexOf('평일') >= 0) {
@@ -184,7 +171,7 @@ export class ChatbotService {
     }
   }
 
-  async searchSpecificDate(fields: any, queryText: string): Promise<any> {
+  async searchSpecificDate(fields: any, queryText: string): Promise<Date> {
     const dateTime = fields['date-time'];
     let date = null;
     let endDate = null;
