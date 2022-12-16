@@ -135,7 +135,8 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		infoGuide = defaultGuidance;
 		if (ans.isFree == true) {
 			template = `${ans.name}(은/는) 무료입장이 가능합니다.`;
-			scrollPoint = 1;
+			// scrollPoint = 1;
+			scrollPoint = 2;
 		} else {
 			template = template_ticket(
 				ans.name,
