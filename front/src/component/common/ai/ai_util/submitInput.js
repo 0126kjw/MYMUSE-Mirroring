@@ -79,8 +79,6 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 			`${process.env.NEXT_PUBLIC_BASE_URL}/chatbots?text=${inputValue}`,
 		);
 
-		// process.env.NEXT_PUBLIC_OGURL_URL;
-
 		data = res.data;
 		//console.log('data', data);
 		// data = await PostUserQuestion(userQuestion);

@@ -3,8 +3,7 @@ import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 're
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 
-// etc
-import SelectedMapState from 'src/state/currentMap';
+// style
 import cssUnit from 'src/lib/cssUnit';
 import styled from '@emotion/styled';
 
@@ -14,6 +13,7 @@ import { markers } from 'src/data/basicMarkers';
 
 // state
 import IsMapFetchingState from 'src/state/isMapFetching';
+import SelectedMapState from 'src/state/currentMap';
 
 export const MainZidoLayout = styled.div`
 	background-color: ${cssUnit.backgroundColors.Gray};

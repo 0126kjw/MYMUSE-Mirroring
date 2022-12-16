@@ -7,10 +7,12 @@ const SubZidoLayout = styled.div`
 	margin: 0px auto;
 	margin-top: 120px;
 	padding: 0px;
-	width: 800px;
+
+	max-width: 800px;
+	width: 100%;
 
 	@media screen and (max-width: 1000px) {
-		width: 90%;
+		width: 96%;
 	}
 
 	.mapDescBox {
@@ -22,13 +24,11 @@ const SubZidoLayout = styled.div`
 		line-height: 50px;
 		background-color: ${cssUnit.colors.White};
 
-		//padding-bottom: 80px;
 		padding-bottom: 40px;
 
 		font-family: ${cssUnit.fontFamily.NotoKR_G};
 		font-size: ${cssUnit.fontSize.large};
 
-		//background-color: ${cssUnit.colors.DeepBlack};
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 		}
@@ -37,7 +37,9 @@ const SubZidoLayout = styled.div`
 	.react-simple-maps {
 		width: 800px;
 		/* padding-bottom: 10px; */
+
 		background-color: ${cssUnit.colors.LightGray};
+		/* border: solid 5px gray; */
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 		}
