@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
 import cssUnit from 'src/lib/cssUnit';
@@ -62,6 +62,21 @@ const RightArrow = styled.div`
 
 const Watched = ({ setIsWatchedOn }) => {
 	const router = useRouter();
+	const [detailList, setDetailList] = useState(
+		localStorage.getItem('watched') ? JSON.parse(localStorage.getItem('watched')) : [],
+	);
+
+	useEffect(() => {
+		const nowPath = router.asPath;
+		const museumIndex = nowPath.split('detail/')[1]
+			? Number(nowPath.split('detail/')[1])
+			: null;
+		if (museumIndex && 1 <= museumIndex && museumIndex <= 127) {
+			changeDetailList();
+		}
+		console.log(nowPath);
+	}, [router.asPath]);
+
 	const moveToDetail = (museName) => {
 		let ID = '';
 		IdBook.forEach((v) => {
@@ -72,13 +87,17 @@ const Watched = ({ setIsWatchedOn }) => {
 		router.push(`/detail/${ID}`);
 	};
 
-	let detail_list = null;
-	if (typeof window !== 'undefined') {
-		detail_list = JSON.parse(localStorage.getItem('watched'));
-	}
-	useEffect(() => {
-		detail_list === null ? localStorage.setItem('watched', JSON.stringify([])) : null;
-	}, []);
+	// let detail_list = null;
+	// if (typeof window !== 'undefined') {
+	//     detail_list = JSON.parse(localStorage.getItem('watched'));
+	// }
+
+	const changeDetailList = () => {
+		if (typeof window === 'undefined') return;
+		if (!localStorage.getItem('watched')) return;
+		const savedDetailList = JSON.parse(localStorage.getItem('watched'));
+		setDetailList(savedDetailList);
+	};
 
 	return (
 		<>
@@ -93,17 +112,17 @@ const Watched = ({ setIsWatchedOn }) => {
 						&nbsp;✖
 					</span>
 				</div>
-				{detail_list !== null
-					? detail_list.map((a, i) => {
+				{detailList !== null
+					? detailList.map((a, i) => {
 							return (
 								<div
 									key={i}
 									onClick={() => {
-										moveToDetail(detail_list[i]);
+										moveToDetail(detailList[i]);
 									}}
 								>
 									<p className='watched_list' style={{ marginTop: '10px' }}>
-										{detail_list[i]}
+										{detailList[i]}
 									</p>
 								</div>
 							);
