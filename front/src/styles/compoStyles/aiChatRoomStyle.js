@@ -2,6 +2,10 @@ import cssUnit from 'src/lib/cssUnit';
 import styled from '@emotion/styled';
 
 const aiChatRoomStyle = styled.div`
+	td {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 	.modalTopSection {
 		width: 450px;
 		max-width: 80%;

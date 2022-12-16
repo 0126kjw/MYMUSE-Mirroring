@@ -13,7 +13,6 @@ import enterImg from '../../../../public/images/enter.png';
 
 // util
 import submitInput from 'src/component/common/ai/ai_util/submitInput';
-
 import cssUnit from 'src/lib/cssUnit';
 
 const AIChatRoom = ({ setBotMode, botMode }) => {

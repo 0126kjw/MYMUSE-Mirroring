@@ -1,11 +1,11 @@
 const facilityOpeningHoursTemp = (name, mon, tue, wed, thu, fri, sat, sun, offday) => {
-	return `<table border="1" bordercolor="brown" width="400" height="400" align="center" style="border-collapse:collapse;" >
-    <tr bgcolor="#D9BC8C" align="center">
+	return `<table border="1" bordercolor="#676767" max-width="400" height="400" align="center" style="border-collapse:collapse;" >
+    <tr bgcolor="#997A4C" align="center">
         <p>
-            <td colspan="2" span style="color:black; font-weight:bold">${name} 요일별 운영시간</td>
+            <td colspan="2" style="color:white; font-weight:bold">${name} 요일별 운영시간</td>
         </p>
     </tr>
-    <tr align="center" bgcolor="beige">
+    <tr align="center" bgcolor="#E5D3B8">
         <td>요일</td>
         <td>운영시간</td>
     </tr>
@@ -37,9 +37,9 @@ const facilityOpeningHoursTemp = (name, mon, tue, wed, thu, fri, sat, sun, offda
         <td>일요일</td>
         <td>${sun}</td>
     </tr>
-    <tr bgcolor="#D9BC8C" align="center">
+    <tr bgcolor="#997A4C" align="center">
         <p>
-            <td colspan="2" span style="color:black; font-weight:bold">기타 휴관일정보</td>
+            <td colspan="2" style="color:white; font-weight:bold">기타 휴관일정보</td>
         </p>
     </tr>
     <tr>

@@ -110,6 +110,9 @@ export const SearchBarLayout = styled.div`
 
 		border-radius: 10px;
 		background-color: #f6f6f6;
+		@media screen and (max-width: 300px) {
+			width: 120px;
+		}
 
 		input {
 			width: 150px;
@@ -124,6 +127,9 @@ export const SearchBarLayout = styled.div`
 			font-family: ${cssUnit.fontFamily.NotoKR_G};
 			font-size: 20px;
 			color: ${cssUnit.colors.DarkGray};
+			@media screen and (max-width: 300px) {
+				font-size: 15px;
+			}
 		}
 
 		/* span {
@@ -134,9 +140,9 @@ export const SearchBarLayout = styled.div`
 		} */
 	}
 
-	@media screen and (max-width: 300px) {
+	/* @media screen and (max-width: 300px) {
 		display: none;
-	}
+	} */
 `;
 export const AiExContainer = styled.div`
 	display: flex;
@@ -156,6 +162,9 @@ export const AiExContainer = styled.div`
 	text-overflow: ellipsis;
 	overflow: hidden;
 	word-break: keep-all;
+	@media screen and (max-width: 500px) {
+		width: 95%;
+	}
 `;
 
 //Ai chat example css
@@ -194,6 +203,7 @@ export const HumanBubble = styled.div`
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;
+		font-size: 12px;
 	}
 `;
 
@@ -213,6 +223,10 @@ export const AiBubble = styled.div`
 	text-overflow: ellipsis;
 	overflow: hidden;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+	@media screen and (max-width: 500px) {
+		font-size: 12px;
+	}
 
 	@media screen and (max-width: 400px) {
 		text-overflow: ellipsis;
@@ -267,6 +281,7 @@ export const AiChatButton = styled.button`
 		display: -webkit-box;
 		-webkit-line-clamp: 1;
 		-webkit-box-orient: vertical;
+		font-size: 18px;
 	}
 `;
 

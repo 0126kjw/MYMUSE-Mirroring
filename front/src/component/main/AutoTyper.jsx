@@ -38,4 +38,8 @@ const TypingSentence = styled.h2`
 	color: ${(props) => {
 		return props.color ? props.color : cssUnit.colors.Black;
 	}};
+
+	@media screen and (max-width: 599px) {
+		font-size: 15px;
+	}
 `;

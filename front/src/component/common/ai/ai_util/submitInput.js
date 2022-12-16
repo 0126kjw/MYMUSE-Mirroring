@@ -10,6 +10,7 @@ import { PostUserQuestion } from 'src/utils/api';
 import template_open from 'src/component/common/ai/ai_util/template_open';
 import template_ticket from 'src/component/common/ai/ai_util/template_ticket';
 import template_address from 'src/component/common/ai/ai_util/template_address';
+import axios from 'axios';
 
 const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 	if (inputValue == '') {
@@ -75,11 +76,12 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 	const userQuestion = { text: inputValue };
 	let data = null;
 	try {
-		//const post = await axios.post('http://localhost:3001/chatbots', userQuestion);
-		//data = post.data;
+		const res = await axios.get(`http://localhost:3001/chatbots?text=${inputValue}`);
+		data = res.data;
 		//console.log('data', data);
-		data = await PostUserQuestion(userQuestion);
-		console.log(data);
+		// data = await PostUserQuestion(userQuestion);
+
+		// console.log(data);
 	} catch {
 		console.log('posting error');
 	}
@@ -201,6 +203,22 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		}
 		AIsec2.appendChild(TempElement);
 
+		// 목록 스크롤 안내
+		const scrollGuide = document.createElement('div');
+		scrollGuide.classList.add('msgFromAI');
+		scrollGuide.innerHTML = `
+            <span class='tip'>
+                <span class='tipspan'>TIP</span> : 
+                PC에서는 반환받은 목록에 마우스를 두고 shift + scroll시 우측으로 스크롤 할 수 있습니다.
+            </span>
+        `;
+		AIsec2.appendChild(scrollGuide);
+
+		// 개행
+		const emptyBox = document.createElement('div');
+		emptyBox.classList.add('emptyBox');
+		AIsec2.appendChild(emptyBox);
+
 		// 개수 표현
 		const TempElement2 = document.createElement('div');
 		TempElement2.classList.add('msgFromAI');
@@ -208,9 +226,10 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		AIsec2.appendChild(TempElement2);
 
 		// 개행
-		const emptyBox = document.createElement('div');
-		emptyBox.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox);
+		const emptyBox2 = document.createElement('div');
+		emptyBox2.classList.add('emptyBox');
+		AIsec2.appendChild(emptyBox2);
+
 		TempElement2.scrollIntoView({
 			behavior: 'smooth',
 			block: 'end',
@@ -249,6 +268,22 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		}
 		AIsec2.appendChild(TempElement);
 
+		// 목록 스크롤 안내
+		const scrollGuide = document.createElement('div');
+		scrollGuide.classList.add('msgFromAI');
+		scrollGuide.innerHTML = `
+            <span class='tip'>
+                <span class='tipspan'>TIP</span> : 
+                PC에서는 반환받은 목록에 마우스를 두고 shift + scroll시 우측으로 스크롤 할 수 있습니다.
+            </span>
+        `;
+		AIsec2.appendChild(scrollGuide);
+
+		// 개행
+		const emptyBox2 = document.createElement('div');
+		emptyBox2.classList.add('emptyBox');
+		AIsec2.appendChild(emptyBox2);
+
 		// 개수 표현
 		const TempElement2 = document.createElement('div');
 		TempElement2.classList.add('msgFromAI');
@@ -259,6 +294,8 @@ const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
 		const emptyBox = document.createElement('div');
 		emptyBox.classList.add('emptyBox');
 		AIsec2.appendChild(emptyBox);
+
+		// smooth scroll
 		TempElement2.scrollIntoView({
 			behavior: 'smooth',
 			block: 'end',

@@ -1,9 +1,9 @@
 const facilityAddressTemp = (name, newAddress, oldAddress) => {
 	return `
-    <table border="1" bordercolor="#676767" width="400" height="200" align="center" style="border-collapse:collapse;" >
+    <table border="1" bordercolor="#676767" max-width="400" height="200" align="center" style="border-collapse:collapse;" >
         <tr bgcolor="#997A4C" align="center">
             <p>
-                <td colspan="3" span style="color:white; font-weight:bold">${name} 주소</td>
+                <td colspan="3" style="color:white; font-weight:bold">${name} 주소</td>
             </p>
         </tr>
         <tr align="center" bgcolor="#E5D3B8">

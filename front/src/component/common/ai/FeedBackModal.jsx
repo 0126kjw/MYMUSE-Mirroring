@@ -92,9 +92,19 @@ const FeedBackModalLayout = styled.div`
 			resize: none;
 
 			padding: 30px;
+
 			@media screen and (max-width: 650px) {
-				width: 90%;
+				width: 300px;
 				font-size: 20px;
+			}
+			@media screen and (max-width: 450px) {
+				width: 200px;
+			}
+			@media screen and (max-width: 350px) {
+				width: 150px;
+			}
+			@media screen and (max-width: 300px) {
+				width: 100px;
 			}
 		}
 	}

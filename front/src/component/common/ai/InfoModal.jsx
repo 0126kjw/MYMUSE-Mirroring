@@ -25,11 +25,6 @@ const InfoModalLayout = styled.div`
 	@media screen and (max-width: 750px) {
 		width: 90%;
 	}
-	@media screen and (max-width: 500px) {
-		hr {
-			display: none;
-		}
-	}
 
 	.titleSection {
 		display: flex;
@@ -51,6 +46,9 @@ const InfoModalLayout = styled.div`
 			padding-top: 40px;
 			padding-bottom: 10px;
 			border-bottom: 1px solid ${cssUnit.colors.DeepBlack};
+			@media screen and (max-width: 500px) {
+				border-bottom: none;
+			}
 		}
 
 		span {

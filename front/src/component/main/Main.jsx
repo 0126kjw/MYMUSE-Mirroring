@@ -152,7 +152,7 @@ const Main = () => {
 					<Wrap>
 						<SNSTitle color={cssUnit.colors.White}>
 							<br />
-							SNS으로 공유해보세요
+							SNS로 공유해보세요
 						</SNSTitle>
 
 						<SNSSpaceLayout>
