@@ -1,5 +1,5 @@
 const facilityOpeningHoursTemp = (name, mon, tue, wed, thu, fri, sat, sun, offday) => {
-	return `<table border="1" bordercolor="#676767" max-width="400" height="400" align="center" style="border-collapse:collapse;" >
+	return `<table border="1" bordercolor="#676767" height="400" align="center" style="border-collapse:collapse;" >
     <tr bgcolor="#997A4C" align="center">
         <p>
             <td colspan="2" style="color:white; font-weight:bold">${name} 요일별 운영시간</td>

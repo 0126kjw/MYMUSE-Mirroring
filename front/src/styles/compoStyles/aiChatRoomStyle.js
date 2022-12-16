@@ -173,8 +173,8 @@ const aiChatRoomStyle = styled.div`
 			font-family: ${cssUnit.fontFamily.NotoKR};
 			letter-spacing: -1px;
 
-			max-width: 250px;
-			max-width: 60%;
+			/* max-width: 250px; */
+			/* max-width: 60%; */
 
 			word-break: keep-all;
 
@@ -187,7 +187,7 @@ const aiChatRoomStyle = styled.div`
 			}
 
 			p {
-				line-height: 10px;
+				line-height: 21px;
 				font-family: ${cssUnit.fontFamily.GowunBT};
 				color: ${cssUnit.colors.DarkGray};
 			}
@@ -220,7 +220,7 @@ const aiChatRoomStyle = styled.div`
 			border-radius: 10px;
 			text-align: left;
 
-			max-width: 60%;
+			/* max-width: 60%; */
 
 			word-break: keep-all;
 

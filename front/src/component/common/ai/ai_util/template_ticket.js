@@ -1,6 +1,6 @@
 const template_ticket = (name, adultFee, youthFee, childFee, feeUrl) => {
 	return `
-    <table border="1" bordercolor="#676767" max-width="400" height="300" align="center" style="border-collapse:collapse;">
+    <table border="1" bordercolor="#676767" height="300" align="center" style="border-collapse:collapse;">
         <tr bgcolor="#997A4C" align="center">
             <p>
                 <td colspan="2" span style="color:white; font-weight:bold">${name} 입장료</td>
