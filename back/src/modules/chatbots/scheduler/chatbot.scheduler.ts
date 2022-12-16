@@ -13,7 +13,7 @@ export class ChatbotScheduler {
     private readonly httpService: HttpService,
   ) {}
 
-  // @Cron('22 * * * * *')
+  @Cron('59 59 23 * * *')
   async chatbotCron(): Promise<void> {
     const chatbots = await this.chatbotModel.find({ sentiment: -1 });
 

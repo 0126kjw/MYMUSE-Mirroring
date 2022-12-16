@@ -28,9 +28,14 @@ export const ImageWraper = styled.div`
 	.bgImg {
 		background-color: ${cssUnit.backgroundColors.DeepBlack};
 		border: 0.1px solid #111111;
-
-		// filter: brightness(50%) blur(0.5px);
-
+		width: 100%;
+		height: 100%;
+		img {
+			width: 100%;
+			height: 230px;
+			object-fit: cover;
+			filter: brightness(70%);
+		}
 		&:hover {
 			cursor: pointer;
 		}

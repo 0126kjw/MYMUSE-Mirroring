@@ -14,7 +14,10 @@ export class ExhibitionService {
     return this.exhibitionModel.findOne({ id }).lean();
   }
 
-  async findRightItems(endDate: Date, reponseInfo: string): Promise<any> {
+  async findRightItems(
+    endDate: Date,
+    reponseInfo: string,
+  ): Promise<Exhibition | Exhibition[]> {
     return this.exhibitionModel
       .find(
         {
