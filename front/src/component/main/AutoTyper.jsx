@@ -2,23 +2,6 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import cssUnit from 'src/lib/cssUnit';
 
-const TypingSentence = styled.h2`
-	font-size: ${cssUnit.fontSize.medium};
-	font-family: ${cssUnit.fontFamily.GowunBT};
-
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	text-overflow: ellipsis;
-
-	overflow: hidden;
-	word-break: keep-all;
-
-	color: ${(props) => {
-		return props.color ? props.color : cssUnit.colors.Black;
-	}};
-`;
-
 const AutoTyper = ({ sentence, color }) => {
 	const [text, setText] = useState('');
 	const [idx, setIdx] = useState(0);
@@ -39,3 +22,24 @@ const AutoTyper = ({ sentence, color }) => {
 };
 
 export default AutoTyper;
+
+const TypingSentence = styled.h2`
+	font-size: ${cssUnit.fontSize.medium};
+	font-family: ${cssUnit.fontFamily.GowunBT};
+
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+
+	overflow: hidden;
+	word-break: keep-all;
+
+	color: ${(props) => {
+		return props.color ? props.color : cssUnit.colors.Black;
+	}};
+
+	@media screen and (max-width: 599px) {
+		font-size: 15px;
+	}
+`;

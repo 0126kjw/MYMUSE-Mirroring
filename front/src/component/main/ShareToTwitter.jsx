@@ -6,17 +6,16 @@ const ShareToTwitter = () => {
 	};
 
 	return (
-		<div>
-			<img
-				src='https://cdn-icons-png.flaticon.com/512/124/124021.png'
-				onClick={sendTwitter}
-				style={{
-					width: '67px',
-					borderRadius: '10px',
-					cursor: 'pointer',
-				}}
-			></img>
-		</div>
+		<img
+			src='https://cdn-icons-png.flaticon.com/512/124/124021.png'
+			onClick={sendTwitter}
+			style={{
+				width: '67px',
+				borderRadius: '10px',
+				cursor: 'pointer',
+			}}
+			title={'트위터로 로그인하여 공유하기'}
+		></img>
 	);
 };
 export default ShareToTwitter;

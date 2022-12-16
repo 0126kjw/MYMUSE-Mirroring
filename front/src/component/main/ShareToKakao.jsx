@@ -38,6 +38,7 @@ const ShareToKakao = () => {
 					cursor: 'pointer',
 				}}
 				onClick={onClick}
+				title={'카카오톡으로 공유하기'}
 			/>
 		</>
 	);

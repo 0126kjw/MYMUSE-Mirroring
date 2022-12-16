@@ -1,5 +1,5 @@
 import { Geographies, Geography } from 'react-simple-maps';
-
+import cssUnit from 'src/lib/cssUnit';
 export default function Geographies_Outer({ mapData, currentMap }) {
 	return (
 		<>
@@ -10,8 +10,8 @@ export default function Geographies_Outer({ mapData, currentMap }) {
 							return (
 								<Geography
 									// fill={'cornflowerblue'}
-									stroke={'#2D2D2D'}
-									strokeWidth={0.7}
+									stroke={`${cssUnit.colors.LightGray}`}
+									strokeWidth={0.6}
 									key={geo.rsmKey}
 									geography={geo}
 									style={{

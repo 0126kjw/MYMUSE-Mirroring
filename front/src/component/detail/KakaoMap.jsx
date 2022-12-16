@@ -14,7 +14,7 @@ const KakaoMap = ({ latitude, longitude, name }) => {
 		// if (item === '404') {
 		// 	return;
 		// }
-		console.log('typeof window', typeof window);
+		// console.log('typeof window', typeof window);
 		if (typeof window !== 'undefined') {
 			const kakaosdk = document.createElement('script');
 			kakaosdk.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOSHARE_API_KEY}&libraries=services,clusterer&autoload=false`;

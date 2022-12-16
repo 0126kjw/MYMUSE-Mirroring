@@ -109,7 +109,7 @@ const DetailSliderLayout = styled.div`
 
 const DetailSlider = ({ sliderimgs }) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
-	console.log('sliderimgs', sliderimgs);
+
 	//useMemo 의미 없음
 	const sliderData = sliderimgs;
 	const slideLength = sliderData.length;

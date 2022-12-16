@@ -70,9 +70,11 @@ const SliderLayout = styled.div`
 			font-size: 20px;
 			line-height: 30px;
 			font-family: ${cssUnit.fontFamily.NotoKR};
+			font-family: ${cssUnit.fontFamily.GowunBT};
+			font-weight: 300;
 
 			display: -webkit-box;
-			-webkit-line-clamp: 3; // 원하는 라인수
+			-webkit-line-clamp: 3;
 			-webkit-box-orient: vertical;
 			text-overflow: ellipsis;
 

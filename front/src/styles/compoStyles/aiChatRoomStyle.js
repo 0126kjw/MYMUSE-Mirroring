@@ -2,16 +2,21 @@ import cssUnit from 'src/lib/cssUnit';
 import styled from '@emotion/styled';
 
 const aiChatRoomStyle = styled.div`
+	td {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 	.modalTopSection {
 		width: 450px;
 		max-width: 80%;
 		position: fixed;
 		right: 30px;
 
-		background-color: #222222;
+		background-color: ${cssUnit.colors.DeepBlack};
 		color: white;
-		border-left: solid 3px gray;
-		border-right: solid 3px gray;
+		border-left: solid 2px ${cssUnit.colors.DarkGold};
+		border-right: solid 2px ${cssUnit.colors.DarkGold};
+		border-top: solid 2px ${cssUnit.colors.DarkGold};
 		border-radius: 10px 10px 0px 0px;
 
 		/* @media screen and (max-width: 500px) {
@@ -26,6 +31,7 @@ const aiChatRoomStyle = styled.div`
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			width: 100%;
 			height: 50px;
 			margin-top: 5px;
 		}
@@ -34,7 +40,8 @@ const aiChatRoomStyle = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			border: solid 5px aliceblue;
+			border-radius: 5px;
+			border: solid 5px ${cssUnit.colors.Black};
 			/* box-shadow: 15px 15px 15px 15px; */
 
 			background-color: white;
@@ -42,26 +49,62 @@ const aiChatRoomStyle = styled.div`
 			color: black;
 
 			/* padding: 5px; */
-			margin: 5%;
+			//margin: 5%;
+			margin: auto;
 			margin-top: 0px;
 			margin-bottom: 25px;
-			width: 90%;
+			width: 89%;
 			height: 30px;
 			padding: 0px;
+
+			background-color: ${cssUnit.colors.DarkGold};
+
+			font-family: ${cssUnit.fontFamily.GowunBT};
+			color: ${cssUnit.colors.LightGray};
 
 			-webkit-transition: box-shadow 0.5s;
 			transition: box-shadow 0.5s;
 
 			p {
 				font-weight: bold;
+
+				@media screen and (max-width: 500px) {
+					word-break: keep-all;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical;
+				}
 			}
 			&:hover {
 				cursor: pointer;
-				box-shadow: 15px 15px 15px 15px black;
+				//box-shadow: 15px 15px 15px 15px ${cssUnit.colors.White};
+
+				animation: pulse-black 2s infinite;
+				color: black;
 			}
 			&:active {
 				cursor: pointer;
 				box-shadow: 3px 3px 3px 3px gray inset;
+			}
+
+			@keyframes pulse-black {
+				0% {
+					transform: scale(0.95);
+					box-shadow: 0 0 0 0 rgba(250, 250, 250, 0.7);
+				}
+
+				70% {
+					transform: scale(1);
+					box-shadow: 0 0 0 40px rgba(250, 250, 250, 0);
+				}
+
+				100% {
+					transform: scale(0.95);
+					box-shadow: 0 0 0 0 rgba(250, 250, 250, 0);
+				}
 			}
 		}
 	}
@@ -85,8 +128,8 @@ const aiChatRoomStyle = styled.div`
 		background-color: #d9d9d9;
 		/* border-left: solid 3px ${cssUnit.colors.Gray};
 		border-right: solid 3px ${cssUnit.colors.Gray}; */
-		border-left: solid 3px gray;
-		border-right: solid 3px gray;
+		border-left: solid 2px ${cssUnit.colors.DarkGold};
+		border-right: solid 2px ${cssUnit.colors.DarkGold};
 
 		@media screen and (max-width: 500px) {
 			width: 90%;
@@ -118,33 +161,80 @@ const aiChatRoomStyle = styled.div`
 
 		.msgFromAI {
 			float: left;
-			background-color: #ffffff;
-			margin: 1%;
+			background-color: ${cssUnit.colors.White};
+			margin: 1% 2% 0 2%;
 			margin-bottom: 10px;
-			padding: 1%;
+			padding: 2%;
 			text-align: left;
 			min-height: 20px;
 			border-radius: 10px;
 			font-size: 18px;
-			line-height: 30px;
+			line-height: 25px;
+			font-family: ${cssUnit.fontFamily.NotoKR};
+			letter-spacing: -1px;
+
+			/* max-width: 250px; */
+			/* max-width: 60%; */
+
+			word-break: keep-all;
+
+			overflow: auto;
+
+			h3 {
+				font-family: ${cssUnit.fontFamily.Hahmlet};
+				color: ${cssUnit.colors.DarkGray};
+				font-size: 18px;
+			}
+
 			p {
-				line-height: 20px;
+				line-height: 21px;
+				font-family: ${cssUnit.fontFamily.GowunBT};
+				color: ${cssUnit.colors.DarkGray};
+			}
+			.mm {
+				font-family: ${cssUnit.fontFamily.GothicAi};
+			}
+			.gold {
+				color: ${cssUnit.colors.DarkGold};
+			}
+			.tip {
+			}
+			.tipspan {
+				color: ${cssUnit.colors.DarkGold};
+				font-weight: bold;
+				border-bottom: 1px dotted ${cssUnit.colors.DarkGold};
+			}
+			a {
+				text-decoration: none;
+				font-family: ${cssUnit.fontFamily.NotoKR_G};
+				color: ${cssUnit.colors.DarkGold};
 			}
 		}
 		.msgFromHuman {
 			float: right;
 			background-color: ${cssUnit.colors.DarkGold};
-			color: white;
+			color: ${cssUnit.colors.White};
 			margin: 1%;
-			padding: 1%;
+			padding: 2%;
 			min-height: 20px;
 			border-radius: 10px;
 			text-align: left;
+
+			/* max-width: 60%; */
+
+			word-break: keep-all;
+
+			font-size: 18px;
+			line-height: 25px;
+			font-family: ${cssUnit.fontFamily.NotoKR_G};
+			letter-spacing: -1px;
 		}
 
 		.emptyBox {
 			width: 100%;
 			clear: both;
+			height: 6px;
+			//background-color: red;
 		}
 	}
 	.AIsec2::-webkit-scrollbar {
@@ -159,11 +249,11 @@ const aiChatRoomStyle = styled.div`
 		height: 70px;
 		max-width: 80%;
 
+		//background-color: #654321;
+		//background-color: gray;
 		background-color: ${cssUnit.colors.DarkGold};
-		background-color: #654321;
-		background-color: gray;
-		border-left: solid 3px gray;
-		border-right: solid 3px gray;
+		border-left: solid 2px ${cssUnit.colors.DarkGold};
+		border-right: solid 2px ${cssUnit.colors.DarkGold};
 		border-radius: 0px 0px 10px 10px;
 
 		display: flex;
@@ -192,6 +282,7 @@ const aiChatRoomStyle = styled.div`
 		display: flex;
 		overflow: scroll;
 		background-color: #d9d9d9;
+		border-radius: 10px;
 
 		/* 가로 스크롤 */
 		overflow: auto;
@@ -199,10 +290,18 @@ const aiChatRoomStyle = styled.div`
 		flex-direction: row;
 		flex-wrap: nowrap;
 		justify-content: flex-start;
+
 		/* 스크롤 없애기 */
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-		border-radius: 10px;
+		/* -ms-overflow-style: none; */
+		/* scrollbar-width: none; */
+
+		/* 
+		//챗봇 모바일버전? 그리드로 처리하는 코드
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		row-gap: 0.5em;
+		column-gap: 0.1em; */
+
 		a {
 			text-decoration: none;
 			color: black;
@@ -211,7 +310,7 @@ const aiChatRoomStyle = styled.div`
 
 	.horListBox::-webkit-scrollbar {
 		/* 스크롤 없애기 */
-		display: none;
+		/* display: none; */
 	}
 
 	.horList {
@@ -235,7 +334,7 @@ const aiChatRoomStyle = styled.div`
 		overflow: hidden;
 
 		&:hover {
-			background-color: beige;
+			background-color: ${cssUnit.colors.RealLightGray};
 			cursor: pointer;
 		}
 		img {
@@ -267,45 +366,61 @@ const aiChatRoomStyle = styled.div`
 			height: 150px;
 			object-fit: cover;
 		}
+
+		a {
+			text-decoration: none;
+			color: black;
+		}
 	}
 
 	.infoButton {
-		background-color: #d9d9d9;
-		border: solid 1px beige;
-		color: #997a4c;
+		background-color: ${cssUnit.colors.LightGray};
+		border: solid 1px ${cssUnit.colors.DarkGold};
+		color: ${cssUnit.colors.DarkGold};
 		font-size: 20px;
 		font-weight: bold;
 		width: 50px;
 		height: 35px;
 		font-style: italic;
 		border-radius: 50px;
-		margin: 10px;
+		margin: 10px 0 10px 10px;
 		cursor: pointer;
 		:hover {
-			color: brown;
+			background-color: ${cssUnit.colors.Black};
+			color: ${cssUnit.colors.DarkGold};
 		}
 	}
 
 	.closeButton {
-		background-color: #222222;
+		display: inline-block;
+		//background-color: #222222;
 		color: #997a4c;
-		border: solid 1px #222222;
-		border-radius: 50px;
+		//border: solid 1px #222222;
+		//border-radius: 50px;
+		background-color: ${cssUnit.colors.Black};
 		cursor: pointer;
-		font-size: 20px;
+		font-size: 10px;
 		font-weight: bold;
-		height: 35px;
+		height: 25px;
+		outline: 0;
+		border: 0.5px solid ${cssUnit.colors.DarkGray};
+		margin-bottom: 10px;
+
 		:hover {
-			color: red;
+			background-color: ${cssUnit.colors.DarkGold};
+			color: ${cssUnit.colors.Black};
 		}
 	}
 	.enterButton {
 		margin-top: 3px;
-		margin-right: 5px;
-		margin-left: 5px;
+		margin-right: 10px;
+		//margin-left: 5px;
 		padding: 0px;
-		border: solid 1px gray;
-		background-color: gray;
+		//border: solid 1px gray;
+		//border: solid 1px ${cssUnit.colors.LightBlack};
+		//background-color: gray;
+		border: 0;
+		background-color: ${cssUnit.colors.DarkGold};
 		font-size: 20px;
 		cursor: pointer;
 	}

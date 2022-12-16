@@ -49,6 +49,14 @@ export const Wrap = styled.article`
 
 	margin: 0px auto;
 	text-align: center;
+
+	/* .sns {
+		border: 2px solid black;
+		border-radius: 25%;
+		:hover {
+			border: 2px solid red;
+		}
+	} */
 `;
 
 //common Wrap
@@ -69,7 +77,7 @@ export const WrapTop = styled.article`
 
 // //common Wrap title
 export const WrapTitle = styled.h2`
-	display: none;
+	display: block;
 	font-size: ${cssUnit.fontSize.medium};
 	font-family: ${cssUnit.fontFamily.GowunBT};
 
@@ -78,10 +86,6 @@ export const WrapTitle = styled.h2`
 	color: ${(props) => {
 		return props.color ? props.color : cssUnit.colors.Black;
 	}};
-
-	@media screen and (max-width: 450px) {
-		display: block;
-	}
 `;
 
 //css ani

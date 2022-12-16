@@ -7,6 +7,7 @@ import cssUnit from 'src/lib/cssUnit';
 // font-family: 'Nanum Myeongjo', serif;
 // font-family: 'Noto Serif KR', serif; (기본) (light 300, semibold 600)
 // font-family: 'Gowun Batang', serif
+//font-family: 'Noto Sans KR', sans-serif;
 
 export const GlobalStyles = (
 	<Global

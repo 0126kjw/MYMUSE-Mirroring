@@ -3,10 +3,12 @@ import OuterModal from 'src/styles/compoStyles/OuterModalStyle';
 import { useState, useEffect } from 'react';
 import enterImg from '../../../../public/images/enter.png';
 import Image from 'next/legacy/image';
-//import axios from 'axios';
 
+//import axios from 'axios';
+import Xmark from '../Xmark';
 //api from src/util/api.js
 import { PostFeedback } from 'src/utils/api';
+import cssUnit from 'src/lib/cssUnit';
 
 const FeedBackModalLayout = styled.div`
 	position: fixed;
@@ -28,16 +30,51 @@ const FeedBackModalLayout = styled.div`
 		width: 90%;
 	}
 
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
 	.titleSection {
-		width: 100%;
+		width: 40%;
 		height: 100px;
 		text-align: center;
-		line-height: 20px;
+		//line-height: 100px;
+
+		word-break: keep-all;
+
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+
+		justify-content: center;
+		align-items: center;
+
+		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-weight: bold;
+
+		.gold {
+			color: ${cssUnit.colors.DarkGold};
+		}
+		.ui {
+			position: absolute;
+			margin-left: auto;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			top: -4px;
+			right: 10px;
+
+			//bottom: 30px;
+		}
+
 		@media screen and (max-width: 650px) {
 			width: 90%;
 			font-size: 15px;
 			margin: 5px;
-			line-height: 15px;
+			//line-height: 100px;
+
+			justify-content: center;
+			align-items: center;
 		}
 	}
 	.feedbackSection {
@@ -46,16 +83,28 @@ const FeedBackModalLayout = styled.div`
 		text-align: center;
 
 		textarea {
-			width: 500px;
-			height: 200px;
+			width: 400px;
+			height: 140px;
 			margin-bottom: 10px;
-			border: solid 1px black;
+			border: solid 1px ${cssUnit.colors.Gray};
 			font-weight: bold;
 			font-size: 25px;
 			resize: none;
+
+			padding: 30px;
+
 			@media screen and (max-width: 650px) {
-				width: 90%;
+				width: 300px;
 				font-size: 20px;
+			}
+			@media screen and (max-width: 450px) {
+				width: 200px;
+			}
+			@media screen and (max-width: 350px) {
+				width: 150px;
+			}
+			@media screen and (max-width: 300px) {
+				width: 100px;
 			}
 		}
 	}
@@ -124,12 +173,23 @@ const FeedBackModal = ({ setIsFeedBackModalOn }) => {
 				}}
 			>
 				<div className='titleSection'>
-					<h3>AI챗봇 서비스 품질 향상을 위해 </h3>
-					<h3>고객님의 만족도를 간략히 남겨주세요! </h3>
+					<div className='ui'>
+						<Xmark setIsInfoModalOn={setIsFeedBackModalOn} />
+					</div>
+					AI챗봇 서비스 품질 향상을 위해 <span className='gold'>고객님의 만족도</span>를
+					간략히 남겨주세요!
 				</div>
 				<div className='feedbackSection'>
 					<form>
-						<textarea value={inputValue} onChange={onChange} />
+						<textarea
+							value={inputValue}
+							onChange={onChange}
+							style={{
+								outline: 'none',
+								fontFamily: `${cssUnit.fontFamily.GothicAi}`,
+								fontSize: '18px',
+							}}
+						/>
 					</form>
 					<button onClick={onClick}>
 						<Image src={enterImg} alt='enterImage' width='50' height='50'></Image>

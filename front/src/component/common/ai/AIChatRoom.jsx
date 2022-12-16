@@ -13,6 +13,7 @@ import enterImg from '../../../../public/images/enter.png';
 
 // util
 import submitInput from 'src/component/common/ai/ai_util/submitInput';
+import cssUnit from 'src/lib/cssUnit';
 
 const AIChatRoom = ({ setBotMode, botMode }) => {
 	const router = useRouter();
@@ -107,20 +108,22 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 							setIsFeedBackModalOn(true);
 						}}
 					>
-						<p> AI Bot 피드백 작성 </p>
+						<p> AI 피드백 작성하기 </p>
 					</div>
 				</div>
 				<div className='AImodal-Outer'>
 					<div className='AImodal-Inner'>
 						<div className='AIsec2'>
 							<div className='msgFromAI'>
-								MYMUSE에 오신 것을 환영합니다. <br></br>
+								<span className='mm'>
+									MY<span className='gold'>MUSE</span>
+								</span>
+								에 오신 것을 환영합니다. <br></br>
 								궁금한 부분을 질문해주세요!
 							</div>
 							<div className='emptyBox'></div>
 							<div className='msgFromAI'>
-								<p>다음과 같은 대화와 안내가 가능합니다!</p>
-								<hr></hr>
+								<h3>다음과 같은 대화와 안내가 가능합니다</h3>
 								<p>- 간단한 인사</p>
 								<p>- 진행중인 전시회 일정 안내</p>
 								<p>- 구 별 박물관/미술관 안내</p>
@@ -132,7 +135,11 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 							</div>
 							<div className='emptyBox'></div>
 							<div className='msgFromAI'>
-								(팁) 화면 좌상단에서 채팅봇 크기 조정이 가능합니다
+								<span className='tip'>
+									<span className='tipspan'>TIP</span> : 화면 좌상단(
+									<span className='tipspan'>↖</span>)에서 챗봇 창의 크기 조정이
+									가능합니다
+								</span>
 							</div>
 							<div className='emptyBox'></div>
 						</div>
@@ -141,10 +148,19 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 
 				<div className='formDiv'>
 					<button className='infoButton' onClick={openInfoModal}>
-						<span>Info</span>
+						<span>?</span>
 					</button>
 					<form onSubmit={submitByEnter}>
-						<input type='text' value={inputValue} onChange={onChangeHandler} />
+						<input
+							type='text'
+							value={inputValue}
+							onChange={onChangeHandler}
+							style={{
+								outline: 'none',
+								fontFamily: `${cssUnit.fontFamily.GothicAi}`,
+								fontSize: '18px',
+							}}
+						/>
 					</form>
 					<button className='enterButton' onClick={submitByClick}>
 						<Image src={enterImg} alt='enterImage' width='50' height='50'></Image>

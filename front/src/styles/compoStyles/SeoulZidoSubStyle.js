@@ -7,10 +7,12 @@ const SubZidoLayout = styled.div`
 	margin: 0px auto;
 	margin-top: 120px;
 	padding: 0px;
-	width: 800px;
+
+	max-width: 800px;
+	width: 100%;
 
 	@media screen and (max-width: 1000px) {
-		width: 90%;
+		width: 96%;
 	}
 
 	.mapDescBox {
@@ -22,12 +24,11 @@ const SubZidoLayout = styled.div`
 		line-height: 50px;
 		background-color: ${cssUnit.colors.White};
 
-		padding-bottom: 80px;
+		padding-bottom: 40px;
 
-		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-family: ${cssUnit.fontFamily.NotoKR_G};
 		font-size: ${cssUnit.fontSize.large};
 
-		//background-color: ${cssUnit.colors.DeepBlack};
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 		}
@@ -35,7 +36,10 @@ const SubZidoLayout = styled.div`
 
 	.react-simple-maps {
 		width: 800px;
-		background-color: ${cssUnit.colors.White};
+		/* padding-bottom: 10px; */
+
+		background-color: ${cssUnit.colors.LightGray};
+		/* border: solid 5px gray; */
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 		}
@@ -44,7 +48,7 @@ const SubZidoLayout = styled.div`
 	.pinListUps {
 		width: 100%;
 		margin: 0px auto;
-		background-color: gray;
+		background-color: ${cssUnit.colors.White};
 		padding-top: 20px;
 		padding-bottom: 20px;
 		font-size: 20px;
@@ -54,18 +58,21 @@ const SubZidoLayout = styled.div`
 			div {
 				margin-bottom: 20px;
 			}
+			h1 {
+				font-family: ${cssUnit.fontFamily.Hahmlet};
+			}
 		}
 
 		.basic {
 			position: relative;
-			background-color: aliceblue;
+			background-color: ${cssUnit.colors.RealLightGray};
 			width: calc(100% - 40px);
 			height: 150px;
-			border: solid 5px aliceblue;
+			border: solid 3px ${cssUnit.colors.LightGray};
 			overflow: hidden;
 
 			&:hover {
-				background-color: pink;
+				background-color: ${cssUnit.colors.LightGray};
 				font-weight: bold;
 				cursor: pointer;
 			}
@@ -73,15 +80,16 @@ const SubZidoLayout = styled.div`
 
 		.borderRed {
 			position: relative;
-			background-color: aliceblue;
+			background-color: ${cssUnit.colors.LightGold};
 			width: calc(100% - 40px);
 			height: 150px;
-			border: solid 5px red;
+			border: solid 5px ${cssUnit.colors.DarkGold};
 			overflow: hidden;
 
 			&:hover {
-				background-color: pink;
-				font-weight: bold;
+				background-color: ${cssUnit.colors.DarkGold};
+				color: aliceblue;
+				//font-weight: bold;
 				cursor: pointer;
 			}
 		}
@@ -114,8 +122,8 @@ const SubZidoLayout = styled.div`
 		position: relative;
 		background-color: ${cssUnit.colors.White};
 		color: ${cssUnit.colors.DarkGold};
-		font-family: ${cssUnit.fontFamily.Hahmlet};
-		font-size: 30px;
+		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-size: 25px;
 		margin-top: 40px;
 		margin-bottom: 40px;
 		padding-top: 20px;
@@ -134,6 +142,11 @@ const SubZidoLayout = styled.div`
 		margin-bottom: 40px;
 		padding-top: 20px;
 		padding-bottom: 20px;
+
+		background-color: ${cssUnit.colors.LightGray};
+		color: ${cssUnit.colors.Black};
+		font-family: ${cssUnit.fontFamily.GothicAi};
+
 		@media screen and (max-width: 1000px) {
 			width: 100%;
 			font-size: 20px;
@@ -141,12 +154,15 @@ const SubZidoLayout = styled.div`
 	}
 	.tooltipStyle {
 		color: red;
-		font-size: 25px;
+		font-size: 20px;
+		/* background-color: ${cssUnit.colors.White}; */
+		font-family: ${cssUnit.fontFamily.NotoKR_G};
 	}
 
 	.dataFetchingMsg {
 		margin-top: 250px;
-		color: red;
+		color: ${cssUnit.colors.DeepBlack};
+		font-family: ${cssUnit.fontFamily.NotoKR_G};
 		font-size: 25px;
 	}
 `;

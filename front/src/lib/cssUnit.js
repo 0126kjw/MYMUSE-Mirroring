@@ -1,6 +1,7 @@
 const cssUnit = {
 	fontFamily: {
 		NotoKR: `'Noto Serif KR', serif`,
+		NotoKR_G: `'Noto Sans KR', sans-serif`,
 		NanumM: `'Nanum Myeongjo',serif`,
 		Hahmlet: `'Hahmlet',serif`,
 		GothicAi: `'Gothic A1', sans-serif`,
@@ -32,6 +33,10 @@ const cssUnit = {
 		White: '#FAFAFA',
 
 		DarkGold: '#997A4C',
+
+		LightGold: '#E5D3B8',
+
+		RealGold: '#FFD119',
 	},
 
 	backgroundColors: {

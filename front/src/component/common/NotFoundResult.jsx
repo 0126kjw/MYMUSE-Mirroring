@@ -4,7 +4,7 @@ import AutoTyper from '../main/AutoTyper';
 
 const LoadingLayout = styled.div`
 	//margin-top: 250px;
-	color: ${cssUnit.colors.DeepBlack};
+	color: ${cssUnit.colors.Black};
 	font-family: ${cssUnit.fontFamily.NotoKR_G};
 	font-size: 25px;
 	/* width: 100vw;
@@ -26,7 +26,19 @@ const LoadingLayout = styled.div`
 
 	h1 {
 		margin: 50px 0 0px 0;
-		font-size: 32px;
+		font-size: 28px;
+
+		padding-bottom: 10px;
+		border-bottom: 2px solid ${cssUnit.colors.DarkGold};
+
+		.keyword {
+			color: ${cssUnit.colors.DarkGold};
+		}
+	}
+	h4 {
+		font-family: ${cssUnit.fontFamily.NanumM};
+		color: ${cssUnit.colors.DarkGray};
+		margin-top: 15px;
 	}
 `;
 
@@ -43,31 +55,6 @@ const SpinnerLayout = styled.div`
 	align-items: center;
 	flex-direction: column;
 
-	.spinner {
-		box-sizing: border-box;
-		/* position: absolute;
-		top: 50%;
-		left: 50%; */
-		width: 64px;
-		height: 64px;
-		//margin-top: -32px;
-		//margin-left: -32px;
-		border-radius: 50%;
-		border: 8px solid transparent;
-		border-top-color: ${cssUnit.colors.DarkGold};
-		border-bottom-color: ${cssUnit.colors.DarkGold};
-		animation: spinner 0.8s ease infinite;
-
-		@keyframes spinner {
-			from {
-				transform: rotate(0deg);
-			}
-			to {
-				transform: rotate(360deg);
-			}
-		}
-	}
-
 	.pulse {
 		height: 100px;
 		width: 100px;
@@ -82,26 +69,26 @@ const SpinnerLayout = styled.div`
 	.pulse::before {
 		content: '';
 		position: absolute;
-		border: 1px solid ${cssUnit.colors.DarkGold};
-		width: calc(100% + 40px);
-		height: calc(100% + 40px);
-		border-radius: 50%;
-		animation: pulse 1s linear infinite;
-	}
-
-	.pulse::after {
-		content: '';
-		position: absolute;
-		border: 1px solid ${cssUnit.colors.DarkGold};
+		border: 1px solid ${cssUnit.colors.LightBlack};
 		width: calc(100% + 40px);
 		height: calc(100% + 40px);
 		border-radius: 50%;
 		animation: pulse 1s linear infinite;
 		animation-delay: 0.3s;
 	}
+
+	.pulse::after {
+		content: '';
+		position: absolute;
+		border: 1px solid ${cssUnit.colors.LightBlack};
+		width: calc(100% + 40px);
+		height: calc(100% + 40px);
+		border-radius: 50%;
+		animation: pulse 1s linear infinite;
+	}
 	@keyframes pulse {
 		0% {
-			transform: scale(0.5);
+			transform: scale(1.3);
 			opacity: 0;
 		}
 
@@ -111,25 +98,27 @@ const SpinnerLayout = styled.div`
 		}
 
 		100% {
-			transform: scale(1.3);
+			transform: scale(0.5);
 			opacity: 0;
 		}
 	}
 `;
-const Loading = () => {
+const NotFoundResult = () => {
 	return (
 		<>
 			<LoadingLayout>
 				{/* <AutoTyper sentence={`데이터를 가져오는 중입니다...`} color={'black'} /> */}
-				{/* <h1>데이터를 가져오는 중입니다...</h1> */}
+				<h1>
+					{/* <span className='keyword'>{searchKeyword} </span>에 대한 */}
+					검색 결과가 존재하지 않습니다.
+				</h1>
+				<h4>다른 키워드로 검색해주세요</h4>
 				<SpinnerLayout>
-					<div className='pulse'>
-						<div className='spinner' />
-					</div>
+					<div className='pulse'></div>
 				</SpinnerLayout>
 			</LoadingLayout>
 		</>
 	);
 };
 
-export default Loading;
+export default NotFoundResult;

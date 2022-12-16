@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import rightArrow from '../../../public/images/right-arrow.png';
 import Image from 'next/legacy/image';
 import cssUnit from 'src/lib/cssUnit';
 import { IdBook } from 'src/data/idBook';
@@ -13,19 +12,24 @@ const WatchedStyle = styled.div`
 	top: 45vh;
 	margin: 0px auto;
 
-	background-color: aliceblue;
-	border: 1px solid brown;
+	background-color: ${cssUnit.colors.White};
+	border: 2px solid ${cssUnit.colors.DarkGold};
 	padding: 10px;
 	margin: 10px;
 	border-radius: 5px;
 	z-index: 2;
 
+	font-family: ${cssUnit.fontFamily.NotoKR_G};
+
 	p {
-		background-color: aliceblue;
-		border-top: 1px solid brown;
-		border-bottom: 1px solid brown;
+		background-color: ${cssUnit.colors.White};
+		border-top: 1px solid ${cssUnit.colors.DarkGold};
+		border-bottom: 1px solid ${cssUnit.colors.DarkGold};
 		padding: 3px;
 		margin: 0px;
+
+		font-family: ${cssUnit.fontFamily.Hahmlet};
+
 		:hover {
 			color: ${cssUnit.backgroundColors.White};
 			background-color: ${cssUnit.backgroundColors.LightBlack};
@@ -36,7 +40,7 @@ const WatchedStyle = styled.div`
 		text-align: center;
 		font-weight: bold;
 		span {
-			color: brown;
+			color: ${cssUnit.colors.DarkGold};
 			cursor: pointer;
 		}
 	}
@@ -58,6 +62,21 @@ const RightArrow = styled.div`
 
 const Watched = ({ setIsWatchedOn }) => {
 	const router = useRouter();
+	const [detailList, setDetailList] = useState(
+		localStorage.getItem('watched') ? JSON.parse(localStorage.getItem('watched')) : [],
+	);
+
+	useEffect(() => {
+		const nowPath = router.asPath;
+		const museumIndex = nowPath.split('detail/')[1]
+			? Number(nowPath.split('detail/')[1])
+			: null;
+		if (museumIndex && 1 <= museumIndex && museumIndex <= 127) {
+			changeDetailList();
+		}
+		// console.log(nowPath);
+	}, [router.asPath]);
+
 	const moveToDetail = (museName) => {
 		let ID = '';
 		IdBook.forEach((v) => {
@@ -68,13 +87,17 @@ const Watched = ({ setIsWatchedOn }) => {
 		router.push(`/detail/${ID}`);
 	};
 
-	let detail_list = null;
-	if (typeof window !== 'undefined') {
-		detail_list = JSON.parse(localStorage.getItem('watched'));
-	}
-	useEffect(() => {
-		detail_list === null ? localStorage.setItem('watched', JSON.stringify([])) : null;
-	}, []);
+	// let detail_list = null;
+	// if (typeof window !== 'undefined') {
+	//     detail_list = JSON.parse(localStorage.getItem('watched'));
+	// }
+
+	const changeDetailList = () => {
+		if (typeof window === 'undefined') return;
+		if (!localStorage.getItem('watched')) return;
+		const savedDetailList = JSON.parse(localStorage.getItem('watched'));
+		setDetailList(savedDetailList);
+	};
 
 	return (
 		<>
@@ -89,34 +112,23 @@ const Watched = ({ setIsWatchedOn }) => {
 						&nbsp;✖
 					</span>
 				</div>
-				{detail_list !== null
-					? detail_list.map((a, i) => {
+				{detailList !== null
+					? detailList.map((a, i) => {
 							return (
 								<div
 									key={i}
 									onClick={() => {
-										moveToDetail(detail_list[i]);
+										moveToDetail(detailList[i]);
 									}}
 								>
 									<p className='watched_list' style={{ marginTop: '10px' }}>
-										{detail_list[i]}
+										{detailList[i]}
 									</p>
 								</div>
 							);
 					  })
 					: null}
 			</WatchedStyle>
-			{/* <RightArrow>
-				<Image
-					src={rightArrow}
-					onClick={() => {
-						setIsWatchedOn(false);
-					}}
-					alt='openWatched'
-					width='25'
-					height='25'
-				/>
-			</RightArrow> */}
 		</>
 	);
 };

@@ -15,7 +15,7 @@ class MyDocument extends Document {
 					<link rel='preconnect' href='https://fonts.gstatic.com' />
 					{/* <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin /> */}
 					<link
-						href='https://fonts.googleapis.com/css2?family=Gothic+A1&family=Gowun+Batang&family=Hahmlet&family=Nanum+Myeongjo&family=Noto+Serif+KR:wght@300;600&display=swap'
+						href='https://fonts.googleapis.com/css2?family=Gothic+A1&family=Gowun+Batang&family=Hahmlet&family=Nanum+Myeongjo&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@300;600&display=swap'
 						rel='stylesheet'
 					/>
 					{/* icons */}
