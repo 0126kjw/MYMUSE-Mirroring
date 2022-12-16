@@ -1,5 +1,6 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useEffect, useState } from 'react';
+import cssUnit from 'src/lib/cssUnit';
 
 const KakaoMap = ({ latitude, longitude, name }) => {
 	const [isMounted, setIsMounted] = useState(false);
@@ -37,15 +38,39 @@ const KakaoMap = ({ latitude, longitude, name }) => {
 							width: '100%',
 							height: '360px',
 						}}
+						level={4}
 					>
 						<MapMarker position={{ lat: latitude, lng: longitude }}>
-							<span
+							<div
 								style={{
+									padding: '5px',
 									color: '#000',
+									alignItems: 'center',
+									fontFamily: `${cssUnit.fontFamily.NotoKR_G}`,
 								}}
 							>
-								{name}
-							</span>
+								{name} <br />
+								<a
+									href={`https://map.kakao.com/link/map/${name},${latitude},${longitude}`}
+									style={{
+										color: 'blue',
+										textDecoration: 'none',
+									}}
+									target='_blank'
+									rel='noreferrer'
+								>
+									큰지도보기
+								</a>
+								<br />
+								<a
+									href={`https://map.kakao.com/link/to/${name},${latitude},${longitude}`}
+									style={{ color: 'blue', textDecoration: 'none' }}
+									target='_blank'
+									rel='noreferrer'
+								>
+									길찾기
+								</a>
+							</div>
 						</MapMarker>
 					</Map>
 				</div>

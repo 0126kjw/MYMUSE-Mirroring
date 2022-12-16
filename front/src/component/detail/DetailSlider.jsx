@@ -53,7 +53,7 @@ const DetailSliderLayout = styled.div`
 		height: 5rem;
 
 		//top: 480px;
-		top: 70%;
+		top: 45%;
 
 		border: 1px solid white;
 		color: ${cssUnit.colors.DeepBlack};
@@ -72,7 +72,7 @@ const DetailSliderLayout = styled.div`
 		animation: arrow-wave 1.6s infinite;
 	}
 	.prev {
-		left: 10%;
+		left: 5%;
 		@media screen and (max-width: 600px) {
 			width: 2.5em;
 			height: 2.5rem;
@@ -83,7 +83,7 @@ const DetailSliderLayout = styled.div`
 		}
 	}
 	.next {
-		right: 10%;
+		right: 5%;
 		@media screen and (max-width: 600px) {
 			width: 2.5em;
 			height: 2.5rem;
