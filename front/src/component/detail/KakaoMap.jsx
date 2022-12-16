@@ -4,6 +4,15 @@ import cssUnit from 'src/lib/cssUnit';
 
 const KakaoMap = ({ latitude, longitude, name }) => {
 	const [isMounted, setIsMounted] = useState(false);
+	const nameLength = name.length;
+	let paddingValue = 0; // nameLength
+	if (nameLength == 4) {
+		paddingValue = 27;
+	} else if (nameLength == 5) {
+		paddingValue = 25;
+	} else if (nameLength == 6) {
+		paddingValue = 19;
+	}
 
 	const loadedKakaoSdk = () => {
 		setIsMounted(true);
@@ -37,15 +46,17 @@ const KakaoMap = ({ latitude, longitude, name }) => {
 						style={{
 							width: '100%',
 							height: '360px',
+							margin: '0 auto',
 						}}
 						level={4}
 					>
 						<MapMarker position={{ lat: latitude, lng: longitude }}>
 							<div
 								style={{
-									padding: '5px',
+									// textAlign: 'center',
+									paddingLeft: `${paddingValue}px`,
 									color: '#000',
-									alignItems: 'center',
+									// alignItems: 'center',
 									fontFamily: `${cssUnit.fontFamily.NotoKR_G}`,
 								}}
 							>
