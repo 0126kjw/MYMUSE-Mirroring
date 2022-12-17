@@ -69,8 +69,9 @@ const SliderLayout = styled.div`
 		p {
 			font-size: 20px;
 			line-height: 30px;
-			font-family: ${cssUnit.fontFamily.NotoKR};
+
 			font-family: ${cssUnit.fontFamily.GowunBT};
+			font-family: ${cssUnit.fontFamily.PreTended};
 			font-weight: 300;
 
 			display: -webkit-box;

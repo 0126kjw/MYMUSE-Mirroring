@@ -196,4 +196,15 @@ export const MapWrapTitle = styled.h2`
 	color: ${(props) => {
 		return props.color ? props.color : cssUnit.colors.Black;
 	}};
+
+	@media screen and (max-width: 500px) {
+		font-size: 18px;
+		/* word-break: keep-all;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical; */
+	}
 `;

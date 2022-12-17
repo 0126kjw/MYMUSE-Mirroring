@@ -31,4 +31,8 @@ const MarkButton = styled.button`
 		background-color: ${cssUnit.colors.Black};
 		color: ${cssUnit.colors.LightGold};
 	}
+
+	@media screen and (max-width: 650px) {
+		height: 20px;
+	}
 `;

@@ -199,6 +199,13 @@ export const MobileButton = styled.div`
 	margin: 0 auto;
 
 	//background-color: gray;
+
+	@media screen and (max-width: 600px) {
+		width: 25px;
+		height: 25px;
+		top: -40px;
+		left: 50px;
+	}
 	.search {
 		position: relative;
 
@@ -210,11 +217,28 @@ export const MobileButton = styled.div`
 		padding: 10px 0;
 		text-align: center;
 
+		@media screen and (max-width: 600px) {
+			left: 2.5px;
+			top: -2.5;
+
+			width: 20px;
+			//height: 30px;
+			padding: 5px 0;
+			text-align: center;
+		}
+
 		.s_circle {
 			width: 20px;
 			height: 20px;
 			border: 5px solid ${cssUnit.colors.Gray};
 			border-radius: 50%;
+
+			@media screen and (max-width: 600px) {
+				width: 10px;
+				height: 10px;
+				border: 2.5px solid ${cssUnit.colors.Gray};
+				border-radius: 50%;
+			}
 		}
 		.s_rectangle {
 			position: absolute;
@@ -225,6 +249,17 @@ export const MobileButton = styled.div`
 			border: 3px solid ${cssUnit.colors.Gray};
 			border-top-right-radius: 12px;
 			border-bottom-right-radius: 12px;
+
+			@media screen and (max-width: 600px) {
+				position: absolute;
+				right: 0;
+				bottom: 3px;
+				width: 7px;
+				transform: rotate(45deg);
+				border: 2px solid ${cssUnit.colors.Gray};
+				border-top-right-radius: 6px;
+				border-bottom-right-radius: 6px;
+			}
 		}
 	}
 

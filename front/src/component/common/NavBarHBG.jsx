@@ -134,6 +134,8 @@ const MenuTogglerLayout = styled.div`
 		padding: 10px 0;
 		font-size: 25px;
 		font-weight: bold;
+
+		//border: 3px solid ${cssUnit.colors.LightGray};
 	}
 
 	// slide it in from the left

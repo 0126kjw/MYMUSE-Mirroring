@@ -18,6 +18,11 @@ class MyDocument extends Document {
 						href='https://fonts.googleapis.com/css2?family=Gothic+A1&family=Gowun+Batang&family=Hahmlet&family=Nanum+Myeongjo&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@300;600&display=swap'
 						rel='stylesheet'
 					/>
+					<link
+						rel='stylesheet'
+						type='text/css'
+						href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css'
+					/>
 					{/* icons */}
 					<link rel='shortcut icon' href='/favicon.ico' />
 					<link rel='apple-touch-icon' sizes='57x57' href='/apple-icon-57x57.png' />

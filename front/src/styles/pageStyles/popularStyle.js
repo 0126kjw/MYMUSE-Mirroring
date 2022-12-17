@@ -43,4 +43,15 @@ export const PopWrapTitle = styled.h2`
 			border-bottom: 5px solid ${cssUnit.colors.DarkGold};
 		}
 	}
+
+	@media screen and (max-width: 500px) {
+		font-size: 18px;
+		/* word-break: keep-all;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical; */
+	}
 `;

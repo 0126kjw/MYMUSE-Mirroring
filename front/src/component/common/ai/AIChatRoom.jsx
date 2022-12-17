@@ -157,7 +157,7 @@ const AIChatRoom = ({ setBotMode, botMode }) => {
 							onChange={onChangeHandler}
 							style={{
 								outline: 'none',
-								fontFamily: `${cssUnit.fontFamily.GothicAi}`,
+								fontFamily: `${cssUnit.fontFamily.PreTended}`,
 								fontSize: '18px',
 							}}
 						/>

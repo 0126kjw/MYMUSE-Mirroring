@@ -58,6 +58,10 @@ export const PageLayout = styled.div`
 			padding: 5px 15px 5px 15px;
 			//background-color: ${cssUnit.colors.DarkGold};
 		}
+
+		@media screen and (max-width: 600px) {
+			font-size: ${cssUnit.fontSize.normal};
+		}
 	}
 `;
 //Base layout for list section

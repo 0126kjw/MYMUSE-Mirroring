@@ -7,17 +7,23 @@ const aiChatRoomStyle = styled.div`
 		padding-right: 15px;
 	}
 	.modalTopSection {
+		position: fixed;
+
 		width: 450px;
 		max-width: 80%;
-		position: fixed;
+
 		right: 30px;
 
-		background-color: ${cssUnit.colors.DeepBlack};
-		color: white;
 		border-left: solid 2px ${cssUnit.colors.DarkGold};
 		border-right: solid 2px ${cssUnit.colors.DarkGold};
 		border-top: solid 2px ${cssUnit.colors.DarkGold};
 		border-radius: 10px 10px 0px 0px;
+
+		background-color: ${cssUnit.colors.DeepBlack};
+
+		color: white;
+
+		overflow: hidden;
 
 		/* @media screen and (max-width: 500px) {
 		} */
@@ -31,8 +37,10 @@ const aiChatRoomStyle = styled.div`
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+
 			width: 100%;
 			height: 50px;
+
 			margin-top: 5px;
 		}
 
@@ -40,22 +48,17 @@ const aiChatRoomStyle = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			border-radius: 5px;
-			border: solid 5px ${cssUnit.colors.Black};
-			/* box-shadow: 15px 15px 15px 15px; */
 
-			background-color: white;
-			/* border: solid 5px lightgray; */
-			color: black;
+			width: 89%;
+			height: 30px;
 
-			/* padding: 5px; */
-			//margin: 5%;
 			margin: auto;
 			margin-top: 0px;
 			margin-bottom: 25px;
-			width: 89%;
-			height: 30px;
 			padding: 0px;
+
+			border-radius: 5px;
+			border: solid 5px ${cssUnit.colors.Black};
 
 			background-color: ${cssUnit.colors.DarkGold};
 
@@ -65,10 +68,13 @@ const aiChatRoomStyle = styled.div`
 			-webkit-transition: box-shadow 0.5s;
 			transition: box-shadow 0.5s;
 
+			overflow: hidden;
+
 			p {
 				font-weight: bold;
 
 				@media screen and (max-width: 500px) {
+					font-size: 12px;
 					word-break: keep-all;
 					text-overflow: ellipsis;
 					overflow: hidden;
@@ -79,11 +85,10 @@ const aiChatRoomStyle = styled.div`
 				}
 			}
 			&:hover {
+				color: black;
 				cursor: pointer;
-				//box-shadow: 15px 15px 15px 15px ${cssUnit.colors.White};
 
 				animation: pulse-black 2s infinite;
-				color: black;
 			}
 			&:active {
 				cursor: pointer;
@@ -126,8 +131,7 @@ const aiChatRoomStyle = styled.div`
 
 		margin: 0 auto;
 		background-color: #d9d9d9;
-		/* border-left: solid 3px ${cssUnit.colors.Gray};
-		border-right: solid 3px ${cssUnit.colors.Gray}; */
+
 		border-left: solid 2px ${cssUnit.colors.DarkGold};
 		border-right: solid 2px ${cssUnit.colors.DarkGold};
 
@@ -138,18 +142,17 @@ const aiChatRoomStyle = styled.div`
 
 	.AImodal-Inner {
 		transform: rotateZ(180deg);
+
 		width: 100%;
 		height: 100%;
+
 		overflow: auto;
-		/* -ms-overflow-style: none; */
 	}
 
 	.AImodal-Inner::-webkit-scrollbar {
-		/* display: none; */
 	}
 
 	.AIsec2 {
-		/* min-height: 400px; */
 		min-height: 450px;
 		overflow: scroll;
 
@@ -162,22 +165,23 @@ const aiChatRoomStyle = styled.div`
 		.msgFromAI {
 			float: left;
 			background-color: ${cssUnit.colors.White};
+
 			margin: 1% 2% 0 2%;
 			margin-bottom: 10px;
 			padding: 2%;
+
+			border-radius: 20px;
+			border-end-start-radius: 0px;
+
 			text-align: left;
 			min-height: 20px;
-			border-radius: 10px;
+
 			font-size: 18px;
 			line-height: 25px;
 			font-family: ${cssUnit.fontFamily.NotoKR};
 			letter-spacing: -1px;
 
-			/* max-width: 250px; */
-			/* max-width: 60%; */
-
 			word-break: keep-all;
-
 			overflow: auto;
 
 			h3 {
@@ -209,32 +213,55 @@ const aiChatRoomStyle = styled.div`
 				font-family: ${cssUnit.fontFamily.NotoKR_G};
 				color: ${cssUnit.colors.DarkGold};
 			}
+
+			@media screen and (max-width: 500px) {
+				font-size: 12px;
+				/* word-break: keep-all;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical; */
+			}
 		}
 		.msgFromHuman {
 			float: right;
-			background-color: ${cssUnit.colors.DarkGold};
-			color: ${cssUnit.colors.White};
+
 			margin: 1%;
 			padding: 2%;
 			min-height: 20px;
-			border-radius: 10px;
-			text-align: left;
 
-			/* max-width: 60%; */
+			border-radius: 20px;
+			border-end-end-radius: 0px;
+
+			background-color: ${cssUnit.colors.DarkGold};
 
 			word-break: keep-all;
+			text-align: left;
 
 			font-size: 18px;
 			line-height: 25px;
 			font-family: ${cssUnit.fontFamily.NotoKR_G};
 			letter-spacing: -1px;
+			color: ${cssUnit.colors.White};
+
+			@media screen and (max-width: 500px) {
+				font-size: 12px;
+				/* word-break: keep-all;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical; */
+			}
 		}
 
 		.emptyBox {
 			width: 100%;
 			clear: both;
 			height: 6px;
-			//background-color: red;
 		}
 	}
 	.AIsec2::-webkit-scrollbar {
@@ -243,53 +270,72 @@ const aiChatRoomStyle = styled.div`
 
 	.formDiv {
 		position: fixed;
-		bottom: 30px;
-		right: 30px;
-		width: 450px;
-		height: 70px;
-		max-width: 80%;
-
-		//background-color: #654321;
-		//background-color: gray;
-		background-color: ${cssUnit.colors.DarkGold};
-		border-left: solid 2px ${cssUnit.colors.DarkGold};
-		border-right: solid 2px ${cssUnit.colors.DarkGold};
-		border-radius: 0px 0px 10px 10px;
 
 		display: flex;
 		justify-content: center;
 		align-items: center;
 
+		bottom: 30px;
+		right: 30px;
+
+		width: 450px;
+		height: 70px;
+		max-width: 80%;
+
+		background-color: ${cssUnit.colors.DarkGold};
+
+		border-left: solid 2px ${cssUnit.colors.DarkGold};
+		border-right: solid 2px ${cssUnit.colors.DarkGold};
+		border-radius: 0px 0px 10px 10px;
+
 		form {
-			width: 85%;
-			height: 80%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+
+			width: 85%;
+			height: 80%;
+
 			input {
 				flex-direction: row;
+
+				width: 95%;
+				height: 30px;
+
 				background-color: #ffffff;
 				border-radius: 5px;
 				border: solid 1px #d9d9d9;
-				width: 95%;
-				height: 30px;
+
+				@media screen and (max-width: 500px) {
+					font-size: 12px;
+					/* word-break: keep-all;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical; */
+				}
 			}
 		}
 	}
 	.horListBox {
-		/* max-width: 100%; */
-		width: 100%;
 		display: flex;
+
+		width: 100%;
 		overflow: scroll;
+
 		background-color: #d9d9d9;
 		border-radius: 10px;
 
 		/* 가로 스크롤 */
-		overflow: auto;
+
 		display: flex;
 		flex-direction: row;
-		flex-wrap: nowrap;
 		justify-content: flex-start;
+		flex-wrap: nowrap;
+
+		overflow: auto;
 
 		/* 스크롤 없애기 */
 		/* -ms-overflow-style: none; */
@@ -381,13 +427,27 @@ const aiChatRoomStyle = styled.div`
 		font-weight: bold;
 		width: 50px;
 		height: 35px;
-		font-style: italic;
+		//font-style: italic;
 		border-radius: 50px;
 		margin: 10px 0 10px 10px;
 		cursor: pointer;
 		:hover {
 			background-color: ${cssUnit.colors.Black};
 			color: ${cssUnit.colors.DarkGold};
+		}
+
+		@media screen and (max-width: 200px) {
+			font-size: 12px;
+			width: 25px;
+			height: 17px;
+
+			/* word-break: keep-all;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical; */
 		}
 	}
 

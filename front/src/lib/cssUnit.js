@@ -1,6 +1,8 @@
 const cssUnit = {
 	fontFamily: {
 		NotoKR: `'Noto Serif KR', serif`,
+		//NotoKR: `'Pretendard',sans-serif;`,
+		PreTended: `'Pretendard',sans-serif;`,
 		NotoKR_G: `'Noto Sans KR', sans-serif`,
 		NanumM: `'Nanum Myeongjo',serif`,
 		Hahmlet: `'Hahmlet',serif`,

@@ -32,10 +32,16 @@ export const Card_Muse_Layout = styled.div`
 			margin: 10px;
 			font-size: ${cssUnit.fontSize.medium};
 			font-family: ${cssUnit.fontFamily.Hahmlet};
+
+			@media screen and (max-width: 600px) {
+				//width: 90%;
+
+				word-break: keep-all;
+			}
 		}
 		.museDesc {
-			font-family: ${cssUnit.fontFamily.NanumM};
-			font-weight: 600;
+			font-family: ${cssUnit.fontFamily.PreTended};
+			font-weight: 300;
 			line-height: 150%;
 			text-align: left;
 
@@ -47,8 +53,12 @@ export const Card_Muse_Layout = styled.div`
 			word-break: keep-all;
 
 			display: -webkit-box;
-			-webkit-line-clamp: 3; // 원하는 라인수
+			-webkit-line-clamp: 3;
 			-webkit-box-orient: vertical;
+
+			@media screen and (max-width: 600px) {
+				width: 90%;
+			}
 		}
 	}
 	@media screen and (max-width: 1600px) {

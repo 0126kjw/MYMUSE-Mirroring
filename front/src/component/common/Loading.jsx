@@ -28,6 +28,10 @@ const LoadingLayout = styled.div`
 		margin: 50px 0 0px 0;
 		font-size: 32px;
 	}
+	//반응형
+	@media screen and (max-width: 900px) {
+		width: 100%;
+	}
 `;
 
 const SpinnerLayout = styled.div`
@@ -115,13 +119,16 @@ const SpinnerLayout = styled.div`
 			opacity: 0;
 		}
 	}
+
+	//반응형
+	@media screen and (max-width: 900px) {
+		width: 100%;
+	}
 `;
 const Loading = () => {
 	return (
 		<>
 			<LoadingLayout>
-				{/* <AutoTyper sentence={`데이터를 가져오는 중입니다...`} color={'black'} /> */}
-				{/* <h1>데이터를 가져오는 중입니다...</h1> */}
 				<SpinnerLayout>
 					<div className='pulse'>
 						<div className='spinner' />

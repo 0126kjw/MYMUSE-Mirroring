@@ -8,6 +8,7 @@ import cssUnit from 'src/lib/cssUnit';
 // font-family: 'Noto Serif KR', serif; (기본) (light 300, semibold 600)
 // font-family: 'Gowun Batang', serif
 //font-family: 'Noto Sans KR', sans-serif;
+//font-family: 'Pretendard'
 
 export const GlobalStyles = (
 	<Global
@@ -19,12 +20,9 @@ export const GlobalStyles = (
 				padding: 0px;
 
 				background-color: ${cssUnit.backgroundColors.Black};
-				//background-color: black;
+				font-family: 'Pretendard', sans-serif;
 
-				font-family: 'Gothic A1', sans-serif;
-				font-family: 'Noto Serif KR', serif;
-
-				font-weight: 300;
+				font-weight: 400;
 				font-size: ${cssUnit.fontSize.normal};
 			}
 		`}

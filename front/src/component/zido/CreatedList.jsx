@@ -17,6 +17,12 @@ const CreatedList = ({ pins, currentMap, hoverPin }) => {
 		<>
 			{currentMap.mapKind == 'inner' && pins && pins.length > 0 && (
 				<div className='pinListUps'>
+					{currentMap.mapKind == 'inner' && (
+						<div className='guideText3'>
+							<p>박물관 위치가 겹치는 경우 지도에서 확인이 어려울 수 있습니다.</p>
+						</div>
+					)}
+
 					<ul>
 						{pins.map((x) => {
 							return (
@@ -38,17 +44,17 @@ const CreatedList = ({ pins, currentMap, hoverPin }) => {
 				</div>
 			)}
 
-			{currentMap.mapKind == 'inner' && pins && pins.length == 0 && (
-				<div className='guideText2'>
-					<p>{currentMap.name}는 등록된 박물관이 없습니다.</p>
-				</div>
-			)}
-
-			{currentMap.mapKind == 'inner' && (
+			{/* {currentMap.mapKind == 'inner' && (
 				<div className='guideText'>
 					<p>
 						박물관 위치가 겹치는 경우<br></br> 지도에서 확인이 어려울 수 있습니다.
 					</p>
+				</div>
+			)} */}
+
+			{currentMap.mapKind == 'inner' && pins && pins.length == 0 && (
+				<div className='guideText2'>
+					<p>{currentMap.name}는 등록된 박물관이 없습니다.</p>
 				</div>
 			)}
 

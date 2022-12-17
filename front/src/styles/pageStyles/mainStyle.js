@@ -164,6 +164,7 @@ export const AiExContainer = styled.div`
 	word-break: keep-all;
 	@media screen and (max-width: 500px) {
 		width: 95%;
+		height: 80%;
 	}
 `;
 
@@ -178,6 +179,7 @@ export const AiChatRoomBox = styled.div`
 
 	width: 100%;
 	max-width: 500px;
+	height: 100%;
 
 	background-color: ${cssUnit.colors.Gray};
 	border-radius: 10px 10px 0px 0px;
@@ -190,16 +192,19 @@ export const HumanBubble = styled.div`
 	max-width: 400px;
 
 	margin: 4% 4% 4% 11%;
-	background-color: ${cssUnit.colors.White};
+	margin-right: -55px;
+	padding: 10px 10px 10px 10px;
 
+	border-radius: 20px;
+	border-end-end-radius: 0px;
+
+	background-color: ${cssUnit.colors.White};
 	font-size: ${cssUnit.fontSize.small};
 	/* line-height: 60px; */
-	padding: 10px 10px 10px 10px;
-	margin-right: -55px;
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-	@media screen and (max-width: 400px) {
+	@media screen and (max-width: 700px) {
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;
@@ -215,6 +220,9 @@ export const AiBubble = styled.div`
 	margin: 4% 11% 4% 4%;
 	padding: 10px 5px 10px 10px;
 
+	border-radius: 20px;
+	border-end-start-radius: 0px;
+
 	background-color: ${cssUnit.colors.White};
 
 	font-family: ${cssUnit.fontFamily.NotoKR_G};
@@ -224,11 +232,11 @@ export const AiBubble = styled.div`
 	overflow: hidden;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
-	@media screen and (max-width: 500px) {
-		font-size: 12px;
-	}
+	font-size: 16px;
 
-	@media screen and (max-width: 400px) {
+	@media screen and (max-width: 700px) {
+		font-size: 11px;
+
 		text-overflow: ellipsis;
 		overflow: hidden;
 		//white-space: nowrap;
@@ -248,6 +256,9 @@ export const AiBubble = styled.div`
 			-webkit-line-clamp: 1;
 			-webkit-box-orient: vertical;
 		}
+	}
+
+	@media screen and (max-width: 400px) {
 	}
 `;
 
