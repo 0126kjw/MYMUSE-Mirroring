@@ -18,13 +18,9 @@ export class ChatbotScheduler {
     const chatbots = await this.chatbotModel.find({ sentiment: -1 });
 
     chatbots.map(async (chatbot) => {
-      console.log(chatbot.feedback);
       const getSentiment = await this.httpService.axiosRef.get(
         `http://127.0.0.1:5000/api/predict?feedback=${chatbot.feedback}`,
       );
-
-      console.log(chatbot.id);
-      console.log(getSentiment.data);
 
       await this.chatbotModel.updateOne(
         { _id: chatbot.id },
