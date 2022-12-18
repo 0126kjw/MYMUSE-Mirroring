@@ -94,8 +94,8 @@ export default function SeoulZido() {
 								textAnchor='middle'
 								y={markerOffset}
 								style={{
-									fontFamily: 'system-ui',
-									fontSize: '18',
+									fontFamily: `${cssUnit.fontFamily.GowunBT}`,
+									fontSize: '21',
 									fontWeight: 'bold',
 									cursor: 'pointer',
 								}}

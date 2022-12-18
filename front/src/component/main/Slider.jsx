@@ -270,6 +270,18 @@ const SliderLayout = styled.div`
 		height: 500px;
 		overflow: hidden;
 	}
+
+	@media screen and (max-width: 400px) {
+		//height: 80vh;
+		height: 300px;
+		overflow: hidden;
+	}
+
+	@media screen and (max-width: 300px) {
+		//height: 80vh;
+		height: 150px;
+		overflow: hidden;
+	}
 `;
 
 const Slider = () => {

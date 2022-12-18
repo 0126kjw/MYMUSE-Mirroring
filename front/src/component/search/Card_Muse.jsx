@@ -22,6 +22,9 @@ export const Card_Muse_Layout = styled.div`
 			height: 200px;
 			object-fit: fill;
 		}
+		@media screen and (max-width: 600px) {
+			overflow: hidden;
+		}
 	}
 	.TextSection {
 		//width: calc(100% - 300px);
@@ -58,6 +61,7 @@ export const Card_Muse_Layout = styled.div`
 
 			@media screen and (max-width: 600px) {
 				width: 90%;
+				margin: 50px 10px 30px 10px;
 			}
 		}
 	}

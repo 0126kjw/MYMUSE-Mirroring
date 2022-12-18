@@ -53,14 +53,23 @@ export const PageLayout = styled.div`
 
 		span {
 			color: ${cssUnit.colors.DarkGold};
-			font-size: ${cssUnit.fontSize.large};
+			font-size: 25px;
 			margin: 5px;
 			padding: 5px 15px 5px 15px;
 			//background-color: ${cssUnit.colors.DarkGold};
+
+			@media screen and (max-width: 600px) {
+				font-size: ${cssUnit.fontSize.normal};
+				padding: 5px 5px 5px 5px;
+			}
 		}
 
 		@media screen and (max-width: 600px) {
 			font-size: ${cssUnit.fontSize.normal};
+		}
+
+		@media screen and (max-width: 400px) {
+			font-size: 16px;
 		}
 	}
 `;

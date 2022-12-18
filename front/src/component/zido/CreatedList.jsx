@@ -18,9 +18,15 @@ const CreatedList = ({ pins, currentMap, hoverPin }) => {
 			{currentMap.mapKind == 'inner' && pins && pins.length > 0 && (
 				<div className='pinListUps'>
 					{currentMap.mapKind == 'inner' && (
-						<div className='guideText3'>
-							<p>박물관 위치가 겹치는 경우 지도에서 확인이 어려울 수 있습니다.</p>
-						</div>
+						<>
+							<div className='guideText'>
+								<p>박물관 위치가 겹치는 경우 지도에서 확인이 어려울 수 있습니다.</p>
+							</div>
+
+							<div className='guideTextFold'>
+								<p>박물관 위치가 겹치는 경우 지도에서 확인이 어려울 수 있습니다.</p>
+							</div>
+						</>
 					)}
 
 					<ul>
@@ -59,9 +65,20 @@ const CreatedList = ({ pins, currentMap, hoverPin }) => {
 			)}
 
 			{currentMap.mapKind == 'outer' && (
-				<div className='guideText'>
-					<p>박물관 목록에서 상세 페이지로 이동할 수 있습니다.</p>
-				</div>
+				<>
+					<div className='guideText'>
+						<p>박물관 목록에서 상세 페이지로 이동할 수 있습니다.</p>
+					</div>
+					<div className='guideTextFold'>
+						<p>
+							박물관 목록에서
+							<br />
+							상세 페이지로
+							<br />
+							이동할 수 있습니다.
+						</p>
+					</div>
+				</>
 			)}
 		</>
 	);

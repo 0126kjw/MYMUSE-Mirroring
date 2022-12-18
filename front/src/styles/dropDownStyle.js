@@ -43,6 +43,10 @@ export const DropDownLabel = styled.div`
 	@media screen and (max-width: 900px) {
 		width: 100%;
 	}
+
+	@media screen and (max-width: 500px) {
+		font-size: 16px;
+	}
 `;
 
 export const Optionlist = styled.ul`
@@ -65,6 +69,10 @@ export const Optionlist = styled.ul`
 	@media screen and (max-width: 900px) {
 		width: 100%;
 		top: 32px;
+	}
+
+	@media screen and (max-width: 500px) {
+		font-size: 16px;
 	}
 `;
 

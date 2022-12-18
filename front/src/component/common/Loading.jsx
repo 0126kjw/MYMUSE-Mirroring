@@ -32,6 +32,11 @@ const LoadingLayout = styled.div`
 	@media screen and (max-width: 900px) {
 		width: 100%;
 	}
+
+	@media screen and (max-width: 300px) {
+		width: 100%;
+		height: 400px;
+	}
 `;
 
 const SpinnerLayout = styled.div`

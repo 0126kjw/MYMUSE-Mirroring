@@ -15,6 +15,12 @@ const SubZidoLayout = styled.div`
 		width: 96%;
 	}
 
+	@media screen and (max-width: 600px) {
+		width: 96%;
+
+		margin-top: 60px;
+	}
+
 	.mapDescBox {
 		position: relative;
 		width: 800px;
@@ -31,6 +37,11 @@ const SubZidoLayout = styled.div`
 
 		@media screen and (max-width: 1000px) {
 			width: 100%;
+		}
+
+		@media screen and (max-width: 300px) {
+			width: 100%;
+			font-size: 20px;
 		}
 	}
 
@@ -148,6 +159,11 @@ const SubZidoLayout = styled.div`
 			font-size: 19px;
 			word-break: keep-all;
 		} */
+
+		@media screen and (max-width: 300px) {
+			margin: 0;
+			padding: 0;
+		}
 	}
 
 	.circlePinViewer {
@@ -191,6 +207,50 @@ const SubZidoLayout = styled.div`
 		margin-bottom: 40px;
 		padding-top: 20px;
 		padding-bottom: 20px;
+
+		@media screen and (max-width: 300px) {
+			//height: 80vh;
+			display: none;
+			width: 80%;
+			left: 10%;
+		}
+	}
+
+	.guideTextFold {
+		display: none;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		position: relative;
+		background-color: ${cssUnit.colors.White};
+		color: gray;
+		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-weight: 400;
+		word-spacing: -2px;
+		font-size: 23px;
+
+		margin-top: 40px;
+		margin-bottom: 40px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+
+		@media screen and (max-width: 300px) {
+			//height: 80vh;
+			display: block;
+
+			width: 80%;
+			left: 10%;
+
+			font-size: 16px;
+
+			margin-top: 5px;
+			margin-bottom: 10px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
 	}
 	.guideText2 {
 		position: relative;
@@ -240,6 +300,7 @@ const SubZidoLayout = styled.div`
 			padding: 0;
 		}
 	}
+
 	.tooltipStyle {
 		color: red;
 		font-size: 20px;

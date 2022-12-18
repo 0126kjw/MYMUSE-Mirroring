@@ -164,7 +164,7 @@ const SearchBar = ({
 							style={{
 								position: 'absolute',
 								marginTop: '3px',
-								marginLeft: '100px',
+								marginLeft: '85px',
 								color: 'black',
 								fontSize: '25px',
 							}}

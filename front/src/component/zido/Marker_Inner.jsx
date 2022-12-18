@@ -57,7 +57,7 @@ const Marker_Inner = ({ currentMap, pins, setTooltipName, setHoverPin }) => {
 								y='-2'
 								style={{
 									fontFamily: `${cssUnit.fontFamily.GowunBT}`,
-									fontSize: '1.6',
+									fontSize: '25',
 									fontWeight: 'bold',
 									cursor: 'pointer',
 								}}

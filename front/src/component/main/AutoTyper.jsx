@@ -28,9 +28,9 @@ const TypingSentence = styled.h2`
 	font-family: ${cssUnit.fontFamily.GowunBT};
 
 	display: -webkit-box;
-	-webkit-line-clamp: 3;
+	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
-	text-overflow: ellipsis;
+	//text-overflow: ellipsis;
 
 	overflow: hidden;
 	word-break: keep-all;
@@ -41,6 +41,11 @@ const TypingSentence = styled.h2`
 
 	@media screen and (max-width: 850px) {
 		width: 80%;
+		//font-size: 15px;
+	}
+
+	@media screen and (max-width: 500px) {
+		width: 50%;
 		//font-size: 15px;
 	}
 `;

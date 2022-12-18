@@ -205,10 +205,21 @@ export const HumanBubble = styled.div`
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 	@media screen and (max-width: 700px) {
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
+		//text-overflow: ellipsis;
+		//overflow: hidden;
+		//white-space: nowrap;
 		font-size: 12px;
+	}
+
+	@media screen and (max-width: 280px) {
+		//text-overflow: ellipsis;
+		//overflow: hidden;
+		//white-space: nowrap;
+		font-size: 11px;
+
+		display: -webkit-box;
+		-webkit-line-clamp: 7;
+		-webkit-box-orient: vertical;
 	}
 `;
 

@@ -21,7 +21,7 @@ const Marker_Outer = ({ markers, currentMap, setIsMapFetching, setCurrentMap }) 
 								y={markerOffset}
 								style={{
 									fontFamily: `${cssUnit.fontFamily.GowunBT}`,
-									fontSize: '18',
+									fontSize: '25',
 									fontWeight: 'bold',
 									cursor: 'pointer',
 								}}
