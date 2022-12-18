@@ -24,7 +24,11 @@ const CreatedList = ({ pins, currentMap, hoverPin }) => {
 							</div>
 
 							<div className='guideTextFold'>
-								<p>박물관 위치가 겹치는 경우 지도에서 확인이 어려울 수 있습니다.</p>
+								<p>
+									박물관 위치가 겹치는 경우
+									<br />
+									지도에서 확인이 어려울 수 있습니다.
+								</p>
 							</div>
 						</>
 					)}

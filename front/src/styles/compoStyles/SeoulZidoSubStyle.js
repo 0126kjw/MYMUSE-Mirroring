@@ -208,7 +208,7 @@ const SubZidoLayout = styled.div`
 		padding-top: 20px;
 		padding-bottom: 20px;
 
-		@media screen and (max-width: 300px) {
+		@media screen and (max-width: 650px) {
 			//height: 80vh;
 			display: none;
 			width: 80%;
@@ -219,7 +219,7 @@ const SubZidoLayout = styled.div`
 	.guideTextFold {
 		display: none;
 
-		display: flex;
+		//display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
@@ -237,7 +237,7 @@ const SubZidoLayout = styled.div`
 		padding-top: 20px;
 		padding-bottom: 20px;
 
-		@media screen and (max-width: 300px) {
+		@media screen and (max-width: 590px) {
 			//height: 80vh;
 			display: block;
 
