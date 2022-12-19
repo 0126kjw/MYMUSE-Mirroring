@@ -1,6 +1,6 @@
 // library
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 
 // style
@@ -22,8 +22,8 @@ export const MainZidoLayout = styled.div`
 export default function SeoulZido() {
 	const router = useRouter();
 
-	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
-	const [isMapFetching, setIsMapFetching] = useRecoilState(IsMapFetchingState);
+	const setSelectedMapState = useSetRecoilState(SelectedMapState);
+	const setIsMapFetching = useSetRecoilState(IsMapFetchingState);
 
 	return (
 		<div>

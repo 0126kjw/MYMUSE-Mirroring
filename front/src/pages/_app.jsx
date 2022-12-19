@@ -12,6 +12,7 @@ import Loading from 'src/component/common/Loading';
 import Seo from 'src/component/Seo';
 
 import Layout from 'src/component/common/Layout';
+import ErrorPage from 'src/component/Error';
 
 function MyApp({ Component, pageProps }) {
 	//console.log('페이지프롭스?', pageProps);
@@ -21,7 +22,7 @@ function MyApp({ Component, pageProps }) {
 		<>
 			{GlobalStyles}
 			<RecoilRoot>
-				<ErrorBoundary>
+				<ErrorBoundary FallbackComponent={ErrorPage}>
 					<Suspense faillback={<Loading />}>
 						<Seo pagePath={pagePath} pageTitle={pageTitle} pageDesc={pageDesc} />
 						<AppLayout>
