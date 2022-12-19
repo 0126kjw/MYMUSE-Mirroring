@@ -24,10 +24,14 @@ export const FooterContainer = styled.footer`
 		font-family: ${cssUnit.fontFamily.GowunBT};
 		font-weight: 100;
 		color: ${cssUnit.colors.LightGray};
-		font-weight: 400;
+		//font-weight: 400;
 
 		:nth-last-of-type(1) {
-			font-size: 14px;
+			font-weight: 100;
+
+			@media screen and (max-width: 300px) {
+				font-size: 14px;
+			}
 		}
 	}
 `;

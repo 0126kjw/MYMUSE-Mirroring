@@ -57,6 +57,7 @@ const Seo = ({ pagePath, pageTitle, pageDesc }) => {
 				defer
 				async
 			/>
+			<title>MYMUSE | {seoTitle}</title>
 		</Head>
 	);
 };

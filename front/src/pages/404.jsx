@@ -13,17 +13,25 @@ const FourZeroFourLayout = styled.div`
 	padding: 150px 0 200px 0;
 
 	background-color: ${cssUnit.backgroundColors.Black};
-	font-family: 'Noto serif KR', sans-serif;
-	font-weight: bold;
+	font-family: ${cssUnit.fontFamily.PreTended};
+	font-weight: 400;
 	font-size: 25px;
 
 	main {
 		text-align: center;
 	}
+
+	@media screen and (max-width: 300px) {
+		font-size: 17px;
+	}
 `;
 const ErrorMessage = styled.span`
 	color: ${cssUnit.colors.Gray};
 	font-weight: 100px;
+
+	@media screen and (max-width: 300px) {
+		font-size: 17px;
+	}
 `;
 const ErrorClick = styled(Link)`
 	width: 300px;
@@ -37,9 +45,17 @@ const ErrorClick = styled(Link)`
 	text-decoration: none;
 	color: ${cssUnit.colors.DarkGold};
 
+	word-break: keep-all;
+
 	:hover {
 		background-color: ${cssUnit.colors.Gray};
 		color: ${cssUnit.colors.Black};
+		word-break: keep-all;
+	}
+
+	@media screen and (max-width: 450px) {
+		width: 60%;
+		height: 50px;
 	}
 `;
 
