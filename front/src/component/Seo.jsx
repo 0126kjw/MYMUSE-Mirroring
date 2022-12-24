@@ -1,26 +1,45 @@
 import Head from 'next/head';
+import Script from 'next/script';
 
 const ogImageSrc =
-	'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/07da70fe-2c9b-4f57-931c-5fde28a98939/Frame_11_%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221130%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221130T175257Z&X-Amz-Expires=86400&X-Amz-Signature=d7eadc4094f7415aa9fda411fbd95bf7d7859cbffcbe730f4e9094917bb424a1&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Frame%252011%2520%281%29.png%22&x-id=GetObject';
+	'https://res.cloudinary.com/dtq075vja/image/upload/v1669879703/9gle/ogImage_uki29n.png';
+const Seo = ({ pagePath, pageTitle, pageDesc }) => {
+	//console.log('pagePath', pagePath);
+	let seoPath;
+	let seoTitle;
+	let seoDesc;
+	let appName;
+	//deatil에서 에러처리로 404로 보내는 경우
+	if (pagePath === undefined && pageTitle === undefined && pageDesc === undefined) {
+		seoPath = process.env.NEXT_PUBLIC_OGURL_URL;
+		seoTitle = `MYMUSE Error`;
+		seoDesc = '에러 페이지 입니다';
+		appName = 'MYMUSE';
+		//detail에 있는 페이지 or 모든 합법적인
+	} else {
+		seoPath = process.env.NEXT_PUBLIC_OGURL_URL + pagePath;
+		seoTitle = pageTitle;
+		seoDesc = pageDesc;
+		appName = `MYMUSE ${pageTitle}`;
+	}
+	//console.log('SEO, ', seoPath, seoTitle, seoDesc);
 
-const Seo = ({ title, description, ogUrl }) => {
-	const appName = `MYMUSE ${title}`;
 	return (
 		<Head>
 			<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 			<link rel='canonical' href='http://www.mysite.com/article/article1.html' />
 			<meta name='keywords' content='박물관, 전시관, 미술관' />
-			<meta name='description' content={description} />
+			<meta name='description' content={seoDesc} />
 
 			<meta name='application-name' content={appName} />
 			<meta name='msapplication-tooltip' content='MYMUSE' />
-			<meta name='msapplication-starturl' content={ogUrl} />
+			<meta name='msapplication-starturl' content={seoPath} />
 
 			{/* Open Graph (Naver & Kakao*/}
-			<meta property='og:title' content={title} />
+			<meta property='og:title' content={seoTitle} />
 			<meta property='og:site_name' content='MYMUSE' />
-			<meta property='og:description' content={description} />
-			<meta property='og:url' content={ogUrl} />
+			<meta property='og:description' content={pageDesc} />
+			<meta property='og:url' content={seoPath} />
 			<meta property='og:locale' content='en_US' />
 			<meta property='og:locale' content='ko_KR' />
 			<meta property='og:type' content='website' />
@@ -29,10 +48,16 @@ const Seo = ({ title, description, ogUrl }) => {
 			<meta property='og:image:height' content='600' />
 			{/* OP: Twitter */}
 			<meta name='twitter:card' content='summary' />
-			<meta name='twitter:title' content={title} />
-			<meta name='twitter:description' content={description} />
-			<meta name='twitter:url' content={ogUrl} />
+			<meta name='twitter:title' content={seoTitle} />
+			<meta name='twitter:description' content={seoDesc} />
+			<meta name='twitter:url' content={seoPath} />
 			<meta name='twitter:image' content={ogImageSrc} />
+			<Script
+				src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOSHARE_API_KEY}&libraries=services,clusterer&autoload=false`}
+				defer
+				async
+			/>
+			<title>MYMUSE | {seoTitle}</title>
 		</Head>
 	);
 };

@@ -14,12 +14,11 @@ const AIBotLayout = styled.div`
 		position: fixed;
 
 		right: 30px;
-		bottom: 30px;
+		bottom: 50px;
 
 		justify-content: center;
 		width: 100px;
 		height: 100px;
-		background-color: ${cssUnit.colors.DarkGold};
 		border-radius: 50%;
 		line-height: 100px;
 		text-align: center;
@@ -35,7 +34,9 @@ const AIBotLayout = styled.div`
 	@media screen and (max-width: 599px) {
 		right: 5%;
 		bottom: 5%;
+		overflow-x: hidden;
 	}
+	overflow-x: hidden;
 `;
 
 export default AIBotLayout;

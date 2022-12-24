@@ -5,6 +5,9 @@ import { MuseumService } from '../museums/museums.service';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Chatbot } from './schemas/chatbot.schema';
+import { format, subDays, add } from 'date-fns';
+import { Museum } from '../museums/schemas/museum.schema';
+import { Exhibition } from '../exhibitions/schemas/exhibition.schema';
 
 @Injectable()
 export class ChatbotService {
@@ -15,11 +18,36 @@ export class ChatbotService {
     private readonly museumService: MuseumService,
   ) {}
 
-  async create(feedback: string): Promise<any> {
-    return await this.chatbotModel.create(feedback);
+  async create(feedback: string): Promise<void> {
+    this.chatbotModel.create({ feedback, sentiment: -1 });
   }
 
-  async findAll(text: string): Promise<any> {
+  async findSatisfaction(): Promise<any> {
+    const sentiment = await this.chatbotModel
+      .find({ sentiment: { $gte: 0 } }, 'sentiment')
+      .lean();
+
+    const goodFeelings = sentiment.filter((data) => {
+      console.log(data.sentiment);
+      return data.sentiment === 1;
+    });
+
+    const goodFeeling = (goodFeelings.length / sentiment.length)
+      .toFixed(2)
+      .slice(-2);
+    const badFeeling = (1 - goodFeelings.length / sentiment.length)
+      .toFixed(2)
+      .slice(-2);
+
+    return {
+      goodFeeling,
+      badFeeling,
+    };
+  }
+
+  async findAll(
+    text: string,
+  ): Promise<Museum | Museum[] | Exhibition | Exhibition[]> {
     const sessionId = process.env.DIALOGFLOW_SESSION_ID;
     const projectId = process.env.GOOGLE_PROJECT_ID;
     const sessionClient = new dialogflow.SessionsClient();
@@ -38,28 +66,28 @@ export class ChatbotService {
     };
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
-    const queryText = result.queryText;
-    const displayName = result.intent.displayName;
-    const fields = result.parameters.fields;
-    let fulfillmentText = result.fulfillmentText.trim();
+    const queryText = result?.queryText;
+    const displayName = result?.intent?.displayName;
+    const fields = result?.parameters?.fields;
+    let fulfillmentText = result?.fulfillmentText.trim();
     console.log('Detected intent');
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
 
     // dialogflow에서 평일을 월~일로 인식하기 때문에 강제로 2일 줄여주는 로직 구성
-    const editWeekdayText = async (fulfillmentText: string) => {
+    const editWeekdayText = async (
+      fulfillmentText: string,
+    ): Promise<string> => {
       const endDate = fulfillmentText.slice(11, 21);
-      const endDateArr = endDate.split('-');
-      const year = Number.parseInt(endDateArr[0]);
-      const month = Number.parseInt(endDateArr[1]);
-      const day = Number.parseInt(endDateArr[2]);
-      const newEndDate = new Date(year, month, day - 1)
-        .toISOString()
-        .slice(0, 10);
+      const [year, month, day] = endDate.split('-');
+      const date = new Date(
+        Number.parseInt(year),
+        Number.parseInt(month),
+        Number.parseInt(day),
+      );
+      const newEndDate = format(subDays(date, 2), 'yyyy-MM-dd');
 
-      fulfillmentText = fulfillmentText.replace(endDate, newEndDate);
-
-      return fulfillmentText;
+      return fulfillmentText.replace(endDate, newEndDate);
     };
 
     if (queryText.indexOf('평일') >= 0) {
@@ -67,17 +95,24 @@ export class ChatbotService {
     }
 
     if (result.intent) {
-      let intetedAnswers = await this.getIntentedAnswer(
+      let intendedAnswer = await this.getIntentedAnswer(
         fields,
         displayName,
         queryText,
       );
 
-      intetedAnswers = { intetedAnswers, displayName, fulfillmentText };
+      if (fields?.facilityName?.stringValue === '') {
+        fulfillmentText = '데이터에 없는 정보 입니다.';
+        intendedAnswer = { displayName, fulfillmentText };
+      } else if (intendedAnswer) {
+        intendedAnswer = { intendedAnswer, displayName, fulfillmentText };
+      } else {
+        intendedAnswer = { displayName, fulfillmentText };
+      }
 
-      return intetedAnswers;
+      return intendedAnswer;
     } else {
-      return { errorMessage: 'No intent matched.' };
+      throw new Error('Chatbot intent error');
     }
   }
 
@@ -87,92 +122,86 @@ export class ChatbotService {
     queryText: string,
   ): Promise<any> {
     const facilityName = fields?.facilityName?.stringValue;
+    const area = fields?.location?.structValue?.fields;
     const category = fields?.facilityCategory?.stringValue;
     let address = null;
-    if (fields?.location?.structValue?.fields?.['subadmin-area']) {
-      address =
-        fields?.location?.structValue?.fields?.['subadmin-area']?.stringValue;
-    } else if (fields?.location?.structValue?.fields?.['street-address']) {
-      address =
-        fields?.location?.structValue?.fields?.['street-address']?.stringValue;
+
+    if (area?.['subadmin-area']) {
+      address = area?.['subadmin-area']?.stringValue;
+    } else if (area?.['street-address']) {
+      address = area?.['street-address']?.stringValue;
     }
 
     switch (displayName) {
       case 'facilityContact':
-        const contactInfo = await this.museumService.findOne(
-          facilityName,
-          'contactInfo',
-        );
-
-        return contactInfo;
+        return this.museumService.findOne(facilityName, 'name contactInfo');
 
       case 'facilityAddress':
-        const addressInfo = await this.museumService.findOne(
+        return this.museumService.findOne(
           facilityName,
-          'newAddress oldAddress',
+          'name newAddress oldAddress',
         );
-
-        return addressInfo;
 
       case 'facilityOpeningHours':
-        const openingHours = await this.museumService.findOne(
+        return this.museumService.findOne(
           facilityName,
-          'mon tue wed thu fri sat sun offday',
+          'name mon tue wed thu fri sat sun offday',
         );
 
-        return openingHours;
-
       case 'facilityTicket':
-        return await this.museumService.findOne(
+        return this.museumService.findOne(
           facilityName,
-          'isFree adultFee youthFee childFee',
+          'name isFree adultFee youthFee childFee feeUrl',
         );
 
       case 'facilityOthers':
-        return await this.museumService.findOne(facilityName, 'website');
+        return this.museumService.findOne(facilityName, 'name website');
 
       case 'facilityAreaSearch':
-        return await this.museumService.findRightItems(
+        return this.museumService.findRightItems(
           address,
           category,
-          'website',
+          'id name website',
         );
 
       case 'exhibitionDateSearch':
-        const endDate = await this.SearchSpecificDate(fields, queryText);
-        const dateSearch = await this.exhibitionService.findRightItems(
-          endDate,
-          'title period href',
-        );
+        const endDate = await this.searchSpecificDate(fields, queryText);
 
-        return dateSearch;
+        return this.exhibitionService.findRightItems(
+          endDate,
+          'title imgSrc href',
+        );
     }
   }
 
-  async SearchSpecificDate(fields: any, queryText: string): Promise<any> {
+  async searchSpecificDate(fields: any, queryText: string): Promise<Date> {
     const dateTime = fields['date-time'];
+    let date = null;
+    let endDate = null;
 
     if (dateTime?.structValue?.fields) {
       const period = dateTime.structValue.fields;
-      let endDate = null;
 
       if (queryText.indexOf('평일') >= 0) {
-        endDate = queryText.slice(0, 10).split('-');
-        endDate[2] -= 2;
-        endDate = endDate.join('-');
-        endDate = new Date(`${endDate}T23:59:59+00:00`);
+        date = new Date(period?.endDate?.stringValue);
+        endDate = format(subDays(date, 2), 'yyyy-MM-dd HH:mm:ss.SSS');
+
+        return new Date(endDate);
       } else {
-        endDate = new Date(period?.endDate?.stringValue);
+        return new Date(period?.endDate?.stringValue);
       }
-      const date = new Date('2001-11-23');
-
-      return endDate;
     } else {
-      const period = dateTime.stringValue;
-      const date = period.slice(0, 10);
-      const endDate = new Date(`${date}T23:59:59+00:00`);
+      date = new Date(dateTime.stringValue);
+      endDate = format(
+        add(date, {
+          hours: 23,
+          minutes: 59,
+          seconds: 59,
+        }),
+        'yyyy-MM-dd HH:mm:ss.SSS',
+      );
 
-      return endDate;
+      return new Date(endDate);
     }
   }
 }

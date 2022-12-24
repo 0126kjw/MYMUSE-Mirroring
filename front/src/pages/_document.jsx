@@ -6,13 +6,22 @@ class MyDocument extends Document {
 			<Html lang='ko'>
 				<Head>
 					<meta httpEquiv='X-UA-Compatible' content='IE=edge' />
+					<script
+						defer
+						src='https://t1.kakaocdn.net/kakao_js_sdk/2.0.1/kakao.min.js'
+					></script>
 					{/* web font by link */}
 					<link rel='preconnect' href='https://fonts.googleapis.com' />
 					<link rel='preconnect' href='https://fonts.gstatic.com' />
 					{/* <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin /> */}
 					<link
-						href='https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Serif+KR:wght@300&display=swap'
+						href='https://fonts.googleapis.com/css2?family=Gothic+A1&family=Gowun+Batang&family=Hahmlet&family=Nanum+Myeongjo&family=Noto+Sans+KR&family=Noto+Serif+KR:wght@300;600&display=swap'
 						rel='stylesheet'
+					/>
+					<link
+						rel='stylesheet'
+						type='text/css'
+						href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css'
 					/>
 					{/* icons */}
 					<link rel='shortcut icon' href='/favicon.ico' />

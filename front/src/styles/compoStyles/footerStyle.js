@@ -10,11 +10,30 @@ export const FooterContainer = styled.footer`
 	align-items: center;
 
 	width: 100%;
-	height: 150px;
+	height: 100px;
 	padding-top: 30px;
+	padding-bottom: 15px;
 
 	background-color: ${cssUnit.backgroundColors.Black};
 	color: ${cssUnit.colors.White};
+
+	overflow-x: hidden;
+
+	/* not working: ... */
+	span {
+		font-family: ${cssUnit.fontFamily.GowunBT};
+		font-weight: 100;
+		color: ${cssUnit.colors.LightGray};
+		//font-weight: 400;
+
+		:nth-last-of-type(1) {
+			font-weight: 100;
+
+			@media screen and (max-width: 300px) {
+				font-size: 14px;
+			}
+		}
+	}
 `;
 export const FooterWrapper = styled.div`
 	position: relative;
@@ -42,10 +61,11 @@ export const FooterTitleBox = styled.div`
 
 		width: 300px;
 		height: 100px;
-	}
-	/* not working: ... */
-	span {
-		font-family: 'Courier New', Courier, monospace;
-		font-weight: 100;
+
+		overflow-x: hidden;
+
+		:hover {
+			cursor: pointer;
+		}
 	}
 `;

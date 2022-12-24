@@ -11,12 +11,14 @@ export class ExhibitionService {
   ) {}
 
   async findById(id: string): Promise<Exhibition> {
-    const exhibition = await this.exhibitionModel.findOne({ id });
-    return exhibition;
+    return this.exhibitionModel.findOne({ id }).lean();
   }
 
-  async findRightItems(endDate: Date, reponseInfo: string): Promise<any> {
-    let date = await this.exhibitionModel
+  async findRightItems(
+    endDate: Date,
+    reponseInfo: string,
+  ): Promise<Exhibition | Exhibition[]> {
+    return this.exhibitionModel
       .find(
         {
           'period.0': {
@@ -29,39 +31,27 @@ export class ExhibitionService {
         reponseInfo,
       )
       .lean();
-
-    date = date.filter((date) => {
-      date.website = `https://tickets.interpark.com/goods/${date.href}`;
-
-      delete date.period;
-
-      return date;
-    });
-
-    return date;
   }
 
-  async pagination(page: number) {
+  async pagination(page: number): Promise<Exhibition[]> {
     const perPage = 9;
-    // const total = await this.exhibitionModel.countDocuments({});
-    const exhibitions = await this.exhibitionModel
-      .find({})
-      // .sort({ createdAt: 1 })
+    return this.exhibitionModel
+      .find()
       .skip(perPage * (page - 1))
-      .limit(perPage);
-
-    return exhibitions;
+      .limit(perPage)
+      .lean();
   }
 
-  async searchExhibition(keyword: string) {
+  async searchExhibition(keyword: string): Promise<Exhibition[]> {
     const options = [
       { title: new RegExp(keyword) },
       { place: new RegExp(keyword) },
     ];
-    const exhibitionResults = await this.exhibitionModel.find({
-      $or: options,
-    });
 
-    return exhibitionResults;
+    return this.exhibitionModel
+      .find({
+        $or: options,
+      })
+      .lean();
   }
 }

@@ -1,10 +1,10 @@
-export default function TopDescription({ selectedMapState }) {
+const TopDescription = ({ currentMap }) => {
 	return (
 		<>
-			{selectedMapState.mapKind == 'inner' && (
-				<div className='mapDescBox'>{selectedMapState.name}</div>
-			)}
-			{selectedMapState.mapKind == 'outer' && <div className='mapDescBox'>서울시</div>}
+			{currentMap.mapKind == 'inner' && <div className='mapDescBox'>{currentMap.name}</div>}
+			{currentMap.mapKind == 'outer' && <div className='mapDescBox'>서울시</div>}
 		</>
 	);
-}
+};
+
+export default TopDescription;

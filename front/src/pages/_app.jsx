@@ -8,37 +8,33 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { RecoilRoot } from 'recoil';
 //for loading
 import Loading from 'src/component/common/Loading';
+//for seo
+import Seo from 'src/component/Seo';
+
+import Layout from 'src/component/common/Layout';
+import ErrorPage from 'src/component/Error';
 
 function MyApp({ Component, pageProps }) {
+	//console.log('페이지프롭스?', pageProps);
+	//console.log('compo?', Component);
+	const { pagePath, pageTitle, pageDesc, item } = pageProps;
 	return (
 		<>
 			{GlobalStyles}
-			<ErrorBoundary>
-				<RecoilRoot>
+			<RecoilRoot>
+				<ErrorBoundary FallbackComponent={ErrorPage}>
 					<Suspense faillback={<Loading />}>
+						<Seo pagePath={pagePath} pageTitle={pageTitle} pageDesc={pageDesc} />
 						<AppLayout>
-							<Component {...pageProps} />
+							<Layout>
+								<Component {...pageProps} item={item} />
+							</Layout>
 						</AppLayout>
 					</Suspense>
-				</RecoilRoot>
-			</ErrorBoundary>
+				</ErrorBoundary>
+			</RecoilRoot>
 		</>
 	);
 }
 
-MyApp.getInitialProps = async (context) => {
-	const { ctx, Component } = context;
-
-	let pageProps = {};
-
-	//console.log(ctx);
-
-	if (Component.getInitialProps) {
-		pageProps = await Component.getInitialProps(ctx);
-	}
-	return { pageProps };
-};
-
 export default MyApp;
-
-//<ErrorBoundary faillback={<div>Loading...</div>}>

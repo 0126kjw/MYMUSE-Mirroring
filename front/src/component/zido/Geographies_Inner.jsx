@@ -1,24 +1,26 @@
 import { Geographies, Geography } from 'react-simple-maps';
-
-export default function Geographies_Outer({ selectedMapState, mapState }) {
+import cssUnit from 'src/lib/cssUnit';
+export default function Geographies_Outer({ mapData, currentMap }) {
 	return (
 		<>
-			{selectedMapState.mapKind == 'inner' ? (
-				<Geographies geography={mapState.map}>
+			{currentMap.mapKind == 'inner' ? (
+				<Geographies geography={mapData}>
 					{({ geographies }) =>
 						geographies.map((geo) => {
 							return (
 								<Geography
-									fill={'cornflowerblue'}
-									stroke={'#F5F5F5'}
-									strokeWidth={mapState.isZoom ? 0 : 0.4}
+									// fill={'cornflowerblue'}
+									stroke={`${cssUnit.colors.LightGray}`}
+									strokeWidth={0.6}
 									key={geo.rsmKey}
 									geography={geo}
 									style={{
 										default: {
 											outline: 'none',
+											fill: '#c09f6e',
 										},
 										hover: {
+											fill: '#c09f6e',
 											outline: 'none',
 										},
 										pressed: {

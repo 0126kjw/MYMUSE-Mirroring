@@ -4,40 +4,41 @@ import zoomMap from 'src/data/zoomMap.json';
 import axios from 'axios';
 
 const getMapData = async (
-	setMapState,
+	currentMap,
 	setPins,
-	selectedMapState,
-	isMapFetching,
 	setIsMapFetching,
+	setMapScale,
+	setMapCenter,
+	setMapData,
+	outerMap,
 ) => {
-	if (selectedMapState.mapKind == 'outer') {
-		setMapState({
-			map: outerMap,
-			zoom: 2.2,
-			center: [126.986, 37.57],
-		});
+	if (currentMap.mapKind == 'outer') {
+		await setMapCenter([126.986, 37.57]);
+		await setMapScale(100000);
+		await setMapData(outerMap);
+		await setIsMapFetching(false);
 	} else {
-		const foundGu = guId.find((v) => v.name === selectedMapState.name);
-		const mapDataUrl = `https://qrcavwxubm.us16.qoddiapp.com/map/${foundGu._id}`;
-		const pinDataUrl = `https://qrcavwxubm.us16.qoddiapp.com/map/${foundGu._id}/pins`;
+		const foundGu = guId.find((v) => v.name === currentMap.name);
+		const mapDataUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/map/${foundGu._id}`;
+		const pinDataUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/map/${foundGu._id}/pins`;
 		const fetchURL = (url) => axios.get(url);
 		const promiseArray = [mapDataUrl, pinDataUrl].map(fetchURL);
 
 		if (foundGu != '') {
-			Promise.allSettled(promiseArray)
+			await Promise.allSettled(promiseArray)
 				.then((res) => {
-					setMapState({
-						map: res[0].value.data,
-						zoom: 7,
-						center: centerValue['center'],
-					});
+					// console.log('res', res);
+					let centerValue = zoomMap[foundGu.name];
+					setMapCenter(centerValue['center']);
+					setMapScale(260000);
+					setMapData(res[0].value.data);
+
 					setPins(res[0].value.data.pins);
 					setIsMapFetching(false);
 				})
 				.catch((err) => {
-					alert(err);
+					console.log('err', err);
 				});
-			let centerValue = zoomMap[foundGu.name];
 		}
 	}
 };

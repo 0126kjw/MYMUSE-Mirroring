@@ -119,6 +119,8 @@ export const Label = styled.div`
 		@media screen and (max-width: 300px) {
 			overflow: auto;
 		}
+
+		font-family: ${cssUnit.fontFamily.PreTended};
 	}
 	:nth-last-of-type(1) {
 		border-bottom: solid 2px ${cssUnit.colors.Gray};
@@ -130,6 +132,8 @@ export const Label = styled.div`
 			font-size: ${cssUnit.fontSize.small};
 			overflow: auto;
 		}
+
+		font-family: ${cssUnit.fontFamily.PreTended};
 	}
 	//75px;
 	@media screen and (max-width: 190px) {

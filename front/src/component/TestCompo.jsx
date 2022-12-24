@@ -1,12 +1,11 @@
 //import { getMuseumLists } from 'pages/api/museum';
 import { useEffect } from 'react';
-import API from 'src/utils/api';
-const { GetSearach } = API();
+import { GetSearach } from 'src/utils/api';
 const TestCompo = () => {
 	useEffect(() => {
 		const getData = async () => {
 			const data = await GetSearach('exhibition', '국립중앙');
-			console.log('search: ', data);
+			//console.log('search: ', data);
 			//return result.data;
 		};
 		getData();

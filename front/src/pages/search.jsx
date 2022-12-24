@@ -7,35 +7,34 @@ import SearchList_Muse from 'src/component/search/SearchList_Muse';
 
 // state
 import { useRecoilState, useRecoilValue } from 'recoil';
-import SelectedMapState from 'src/state/selectedMap';
+import currentMapState from 'src/state/currentMap';
 import SearchCategoryState from 'src/state/searchCategory';
 
 // style
 import cssUnit from 'src/lib/cssUnit';
+import { SearchWrapTitle, SearchResultCard } from 'src/styles/pageStyles/searchStyle';
 import { PageLayout } from 'src/styles/compoStyles/cardlistStyle';
 import { ListSection } from 'src/styles/compoStyles/cardlistStyle';
+import { SubTitle } from 'src/styles/compoStyles/cardlistStyle';
 
 //for page common section
-import { Wrap, WrapTitle } from 'src/styles/common';
+import { Section, Wrap, WrapTitle } from 'src/styles/common';
 import TitleSection from 'src/component/common/TitleSection';
 import { SearchSection } from 'src/styles/pageStyles/searchStyle';
 
 // API
-import API from 'src/utils/api';
-const { GetSearach } = API();
+import { GetSearach } from 'src/utils/api';
 
 // Seo
-import SeoData from 'src/lib/seoData';
-import Seo from 'src/component/Seo';
+import withGetServerSideProps from 'src/hocs/withServersideProps';
+import Loading from 'src/component/common/Loading';
+import NotFoundResult from 'src/component/common/NotFoundResult';
 
 const Search = () => {
-	//seo Data
-	const PageData = SeoData.Search;
-
 	// 지도 outer 상태로 지정
-	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
+	const [currentMap, setCurrentMap] = useRecoilState(currentMapState);
 	useEffect(() => {
-		setSelectedMapState({
+		setCurrentMap({
 			mapKind: 'outer',
 			name: '',
 		});
@@ -54,13 +53,17 @@ const Search = () => {
 	// 카테고리
 	const searchCategory = useRecoilValue(SearchCategoryState);
 
+	const isListExist = list.length;
+
 	return (
 		<>
-			<Seo title={PageData.title} description={PageData.description} ogUrl={PageData.ogUrl} />
 			<PageLayout>
 				<TitleSection color={cssUnit.backgroundColors.Black} size={50}>
 					<Wrap>
-						<WrapTitle color={cssUnit.colors.White}>박물관/전시회 검색</WrapTitle>
+						<SearchWrapTitle color={cssUnit.colors.White}>
+							<li>박물관/전시회 검색</li>
+						</SearchWrapTitle>
+						<SubTitle>박물관과 전시관 검색하기</SubTitle>
 					</Wrap>
 				</TitleSection>
 				<SearchSection>
@@ -76,32 +79,63 @@ const Search = () => {
 						setIsFetching={setIsFetching}
 					/>
 				</SearchSection>
-				{isFetching && serchResNeeded && <div className='searchRes'> 검색중... </div>}
-
-				{!isFetching && serchResNeeded && (
-					<div className='searchRes'> '{searchRes}' 검색결과</div>
-				)}
-
+				{/* 데이터가 로딩되고 있을 때 & 검색결과가 필요할 때 */}
+				{isFetching && serchResNeeded && <Loading />}
+				{/*  */}
 				{!isFetching && (
-					<ListSection
-						color={cssUnit.backgroundColors.White}
-						size={900}
-						className={`page`}
-					>
-						<Wrap>
-							{ouputNeeded && searchCategory == '박물관' && (
-								<SearchList_Muse list={list} />
+					<>
+						{!isFetching && serchResNeeded && (
+							<div className='searchRes'>
+								{' '}
+								{searchRes === '' ? (
+									<>
+										전체 <span>{searchCategory}</span> 검색결과
+									</>
+								) : (
+									<>
+										<span>{searchRes}</span>검색결과
+									</>
+								)}
+							</div>
+						)}
+						{/* 검색결과 로딩을 했는데 값이 없을 때 */}
+						{isListExist === 0 && !isFetching && serchResNeeded && (
+							<>
+								{' '}
+								<NotFoundResult />
+							</>
+						)}
+
+						<ListSection
+							color={cssUnit.backgroundColors.White}
+							size={900}
+							className={`page`}
+						>
+							{/* 카테고리 있을 때 */}
+							{isListExist != 0 && (
+								<>
+									<Wrap>
+										{ouputNeeded && searchCategory == '박물관' && (
+											<SearchList_Muse list={list} />
+										)}
+										{ouputNeeded && searchCategory == '전시회' && (
+											<SearchList_Exhi list={list} />
+										)}
+									</Wrap>
+								</>
 							)}
-						</Wrap>
-					</ListSection>
+						</ListSection>
+					</>
 				)}
 			</PageLayout>
-
-			{!isFetching && ouputNeeded && searchCategory == '전시회' && (
-				<SearchList_Exhi list={list} />
-			)}
 		</>
 	);
 };
 
 export default Search;
+
+export const getServerSideProps = withGetServerSideProps(async (context) => {
+	return {
+		props: {},
+	};
+});

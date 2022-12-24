@@ -11,7 +11,7 @@ import getData from 'src/utils/getMapData';
 import SeoulZidoSubStyle from 'src/styles/compoStyles/SeoulZidoSubStyle';
 
 // State
-import SelectedMapState from 'src/state/selectedMap';
+import CurrentMapState from 'src/state/currentMap';
 import IsMapFetchingState from 'src/state/isMapFetching';
 
 // data
@@ -26,30 +26,37 @@ import Marker_Outer from 'src/component/zido/Marker_Outer';
 import Geographies_Inner from 'src/component/zido/Geographies_Inner';
 import Geographies_Outer from 'src/component/zido/Geographies_Outer';
 import TopDescription from 'src/component/zido/TopDescription';
+import Loading from '../common/Loading';
 
 export default function SeoulZido() {
-	// global state
-	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 	const [isMapFetching, setIsMapFetching] = useRecoilState(IsMapFetchingState);
+	const [currentMap, setCurrentMap] = useRecoilState(CurrentMapState);
 
 	// state
 	const [tooltipName, setTooltipName] = useState('');
 	const [isMounted, setIsMounted] = useState(false); // Need this for the react-tooltip
 	const [pins, setPins] = useState([]);
 	const [hoverPin, setHoverPin] = useState('');
-	const [mapState, setMapState] = useState({
-		map: outerMap,
-		zoom: 2.2,
-		center: [126.986, 37.57],
-	});
+
+	const [mapCenter, setMapCenter] = useState([126.986, 37.57]);
+	const [mapScale, setMapScale] = useState(100000);
+	const [mapData, setMapData] = useState(outerMap);
 
 	// useEffect
 	useEffect(() => {
 		setIsMounted(true);
 	}, []);
 	useEffect(() => {
-		getData(setMapState, setPins, selectedMapState, isMapFetching, setIsMapFetching);
-	}, [selectedMapState]);
+		getData(
+			currentMap,
+			setPins,
+			setIsMapFetching,
+			setMapScale,
+			setMapCenter,
+			setMapData,
+			outerMap,
+		);
+	}, [currentMap]);
 
 	return (
 		<>
@@ -60,65 +67,50 @@ export default function SeoulZido() {
 							{tooltipName}
 						</ReactTooltip>
 
-						{/*  react-simple-maps */}
-
 						<div className='react-simple-maps'>
-							<TopDescription selectedMapState={selectedMapState} />
+							<TopDescription currentMap={currentMap} />
 							<ComposableMap
 								projection='geoMercator'
 								projectionConfig={{
-									rotate: [-60, 0, 5],
-									scale: 38000,
+									center: mapCenter,
+									scale: mapScale,
 								}}
 								data-tip=''
 							>
-								<ZoomableGroup
-									center={mapState.center}
-									zoom={mapState.zoom}
-									minZoom={mapState.zoom}
-									maxZoom={mapState.zoom}
-								>
-									<Geographies_Outer
-										selectedMapState={selectedMapState}
-										setSelectedMapState={setSelectedMapState}
-										mapState={mapState}
-										setIsMapFetching={setIsMapFetching}
-									/>
+								<Geographies_Outer
+									currentMap={currentMap}
+									setCurrentMap={setCurrentMap}
+									setIsMapFetching={setIsMapFetching}
+									mapData={mapData}
+									outerMap={outerMap}
+								/>
 
-									<Geographies_Inner
-										selectedMapState={selectedMapState}
-										setSelectedMapState={setSelectedMapState}
-										mapState={mapState}
-									/>
+								<Geographies_Inner mapData={mapData} currentMap={currentMap} />
 
-									<Marker_Outer
-										markers={markers}
-										selectedMapState={selectedMapState}
-									/>
-									<Marker_Inner
-										selectedMapState={selectedMapState}
-										pins={pins}
-										setTooltipName={setTooltipName}
-										setHoverPin={setHoverPin}
-									/>
-								</ZoomableGroup>
+								<Marker_Outer
+									markers={markers}
+									currentMap={currentMap}
+									setIsMapFetching={setIsMapFetching}
+									setCurrentMap={setCurrentMap}
+								/>
+								<Marker_Inner
+									currentMap={currentMap}
+									pins={pins}
+									setTooltipName={setTooltipName}
+									setHoverPin={setHoverPin}
+								/>
 							</ComposableMap>
 							<LeftArrow
-								selectedMapState={selectedMapState}
-								setMapState={setMapState}
+								currentMap={currentMap}
 								setPins={setPins}
-								setSelectedMapState={setSelectedMapState}
-								outerMap={outerMap}
+								setCurrentMap={setCurrentMap}
 							/>
 						</div>
-						<CreatedList
-							selectedMapState={selectedMapState}
-							pins={pins}
-							hoverPin={hoverPin}
-						/>
+						<CreatedList currentMap={currentMap} pins={pins} hoverPin={hoverPin} />
 					</>
 				) : (
-					<div className='dataFetchingMsg'>데이터를 가져오는 중입니다</div>
+					// <div className='dataFetchingMsg'>데이터를 가져오는 중입니다</div>
+					<Loading />
 				)}
 			</SeoulZidoSubStyle>
 		</>

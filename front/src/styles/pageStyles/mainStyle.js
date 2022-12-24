@@ -26,14 +26,21 @@ export const MainTitleContainer = styled.div`
 	}
 
 	// 한곳에서 보는 온라인 AI 전시정보 팜플렛
-	.logoText {
-		height: 80px;
+	h2 {
+		//height: 80px;
 		line-height: 30px;
 
 		color: white;
 		font-family: 'Gothic A1';
-		font-weight: 600;
+		//font-weight: 600;
 		font-size: 20px;
+		word-break: keep-all;
+
+		//padding: 0 0 40px 0;
+
+		@media screen and (max-width: 400px) {
+			display: none;
+		}
 	}
 `;
 
@@ -65,12 +72,16 @@ export const AiContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	// width: 100%;
-	// max-width: 850px;
-	// height: 600px;
+	width: 100%;
+	max-width: 850px;
+	height: 500px;
 
-	margin: 0 auto;
+	margin: 0px auto;
 	padding: 0px;
+
+	@media screen and (max-width: 550px) {
+		width: 80vw;
+	}
 `;
 
 export const SerachBarContainer = styled.div`
@@ -81,6 +92,10 @@ export const SerachBarContainer = styled.div`
 
 	width: 100%;
 	height: 100px;
+
+	@media screen and (max-width: 550px) {
+		width: 80vw;
+	}
 `;
 
 export const SearchBarLayout = styled.div`
@@ -91,9 +106,13 @@ export const SearchBarLayout = styled.div`
 		width: 100%;
 		padding: 2px;
 		margin: 0px;
+		cursor: pointer;
 
 		border-radius: 10px;
 		background-color: #f6f6f6;
+		@media screen and (max-width: 300px) {
+			width: 120px;
+		}
 
 		input {
 			width: 150px;
@@ -101,15 +120,29 @@ export const SearchBarLayout = styled.div`
 			border-radius: 15px;
 			border: solid rgba(255, 255, 255, 0);
 			background-color: transparent;
+			cursor: pointer;
 		}
 
-		span {
+		input[value='국립중앙박물관'] {
+			font-family: ${cssUnit.fontFamily.NotoKR_G};
+			font-size: 20px;
+			color: ${cssUnit.colors.DarkGray};
+			@media screen and (max-width: 300px) {
+				font-size: 15px;
+			}
+		}
+
+		/* span {
 			cursor: pointer;
 			&:hover {
 				cursor: pointer;
 			}
-		}
+		} */
 	}
+
+	/* @media screen and (max-width: 300px) {
+		display: none;
+	} */
 `;
 export const AiExContainer = styled.div`
 	display: flex;
@@ -117,13 +150,22 @@ export const AiExContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	width: 100%;
-	max-width: 500px;
+	width: 60%;
+
+	max-width: 400px;
 	/* height: 500px; */
 
 	background-color: white;
 
 	border-radius: 10px;
+
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: keep-all;
+	@media screen and (max-width: 500px) {
+		width: 95%;
+		height: 80%;
+	}
 `;
 
 //Ai chat example css
@@ -137,25 +179,48 @@ export const AiChatRoomBox = styled.div`
 
 	width: 100%;
 	max-width: 500px;
+	height: 100%;
 
 	background-color: ${cssUnit.colors.Gray};
 	border-radius: 10px 10px 0px 0px;
 `;
 
 export const HumanBubble = styled.div`
-	text-align: left;
+	text-align: right;
 
-	width: 80%;
+	width: 60%;
 	max-width: 400px;
 
 	margin: 4% 4% 4% 11%;
-	background-color: ${cssUnit.colors.White};
+	margin-right: -55px;
+	padding: 10px 10px 10px 10px;
 
+	border-radius: 20px;
+	border-end-end-radius: 0px;
+
+	background-color: ${cssUnit.colors.White};
 	font-size: ${cssUnit.fontSize.small};
 	/* line-height: 60px; */
-	padding: 10px;
 
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+	@media screen and (max-width: 700px) {
+		//text-overflow: ellipsis;
+		//overflow: hidden;
+		//white-space: nowrap;
+		font-size: 12px;
+	}
+
+	@media screen and (max-width: 280px) {
+		//text-overflow: ellipsis;
+		//overflow: hidden;
+		//white-space: nowrap;
+		font-size: 11px;
+
+		display: -webkit-box;
+		-webkit-line-clamp: 7;
+		-webkit-box-orient: vertical;
+	}
 `;
 
 export const AiBubble = styled.div`
@@ -163,12 +228,49 @@ export const AiBubble = styled.div`
 	width: 80%;
 	max-width: 350px;
 
-	margin: 4% 14% 4% 6%;
-	padding: 0 0 0 10px;
+	margin: 4% 11% 4% 4%;
+	padding: 10px 5px 10px 10px;
+
+	border-radius: 20px;
+	border-end-start-radius: 0px;
 
 	background-color: ${cssUnit.colors.White};
 
+	font-family: ${cssUnit.fontFamily.NotoKR_G};
+	font-weight: 300;
+
+	text-overflow: ellipsis;
+	overflow: hidden;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+	font-size: 16px;
+
+	@media screen and (max-width: 700px) {
+		font-size: 11px;
+
+		text-overflow: ellipsis;
+		overflow: hidden;
+		//white-space: nowrap;
+
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+
+		p {
+			margin: 5px;
+			//line-height: 20px;
+			//padding-bottom: 43px;
+			overflow: hidden;
+
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+	}
 `;
 
 export const AiChatButton = styled.button`
@@ -183,12 +285,25 @@ export const AiChatButton = styled.button`
 	font-size: ${cssUnit.fontSize.medium};
 	color: ${cssUnit.colors.White};
 
-	font-family: 'Noto serif KR', sans-serif;
-	font-weight: 400;
+	font-family: ${cssUnit.fontFamily.Hahmlet};
+	font-weight: 600;
 	border-radius: 0px 0px 10px 10px;
 
 	&:hover {
 		cursor: pointer;
+		background-color: ${cssUnit.colors.LightGold};
+		color: ${cssUnit.colors.Black};
+	}
+
+	@media screen and (max-width: 400px) {
+		text-overflow: ellipsis;
+		overflow: hidden;
+
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		font-size: 18px;
 	}
 `;
 
@@ -200,5 +315,40 @@ export const Logosection = styled.section`
 
 	&:hover {
 		cursor: pointer;
+	}
+`;
+
+// //common Wrap title
+export const SNSTitle = styled.h2`
+	display: block;
+	font-size: ${cssUnit.fontSize.medium};
+	font-family: ${cssUnit.fontFamily.NotoKR_G};
+	font-weight: 300;
+
+	word-break: keep-all;
+
+	color: ${(props) => {
+		return props.color ? props.color : cssUnit.colors.Black;
+	}};
+`;
+
+export const SNSSpaceLayout = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 222px;
+	div {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 10px;
+
+		justify-content: space-between;
+
+		@media screen and (max-width: 400px) {
+			height: 242px;
+			grid-template-columns: repeat(1, 1fr);
+			column-gap: 10px;
+		}
 	}
 `;

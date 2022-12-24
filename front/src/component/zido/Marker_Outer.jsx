@@ -1,18 +1,29 @@
 import { Marker } from 'react-simple-maps';
-export default function Marker_Outer({ markers, selectedMapState }) {
+import cssUnit from 'src/lib/cssUnit';
+const Marker_Outer = ({ markers, currentMap, setIsMapFetching, setCurrentMap }) => {
 	return (
 		<>
-			{selectedMapState.mapKind == 'outer'
+			{currentMap.mapKind == 'outer'
 				? markers.map(({ name, coordinates, markerOffset }) => (
-						<Marker key={name} coordinates={coordinates}>
+						<Marker
+							key={name}
+							coordinates={coordinates}
+							onClick={async () => {
+								setIsMapFetching(true);
+								setCurrentMap({
+									mapKind: 'inner',
+									name: name + '구',
+								});
+							}}
+						>
 							<text
 								textAnchor='middle'
 								y={markerOffset}
 								style={{
-									fontFamily: 'system-ui',
-									fontSize: '8',
+									fontFamily: `${cssUnit.fontFamily.GowunBT}`,
+									fontSize: '25',
 									fontWeight: 'bold',
-									cursor: 'default',
+									cursor: 'pointer',
 								}}
 							>
 								{name}
@@ -22,4 +33,5 @@ export default function Marker_Outer({ markers, selectedMapState }) {
 				: null}
 		</>
 	);
-}
+};
+export default Marker_Outer;

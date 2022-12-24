@@ -17,7 +17,8 @@ import cssUnit from 'src/lib/cssUnit';
 export const SubTitle = styled.div`
 	font-size: ${cssUnit.fontSize.small};
 	font-weight: 100;
-	color: ${cssUnit.colors.Gray};
+	color: ${cssUnit.colors.DarkGray};
+	font-family: ${cssUnit.fontFamily.Hahmlet};
 `;
 //Base layout for all page
 export const PageLayout = styled.div`
@@ -36,15 +37,40 @@ export const PageLayout = styled.div`
 		padding-top: 50px;
 	}
 	.searchRes {
-		margin: 40px auto;
+		//margin: 40px auto;
 		font-size: 25px;
-		border-radius: 10px;
+		//border-radius: 10px;
 		width: 300px;
 		height: 120px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: solid 1px black;
+		border: solid 1px ${cssUnit.colors.Gray};
+
+		width: 100%;
+		background-color: ${cssUnit.colors.LightGray};
+		font-family: ${cssUnit.fontFamily.GothicAi};
+
+		span {
+			color: ${cssUnit.colors.DarkGold};
+			font-size: 25px;
+			margin: 5px;
+			padding: 5px 15px 5px 15px;
+			//background-color: ${cssUnit.colors.DarkGold};
+
+			@media screen and (max-width: 600px) {
+				font-size: ${cssUnit.fontSize.normal};
+				padding: 5px 5px 5px 5px;
+			}
+		}
+
+		@media screen and (max-width: 600px) {
+			font-size: ${cssUnit.fontSize.normal};
+		}
+
+		@media screen and (max-width: 400px) {
+			font-size: 16px;
+		}
 	}
 `;
 //Base layout for list section

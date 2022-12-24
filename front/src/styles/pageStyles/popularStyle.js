@@ -1,95 +1,57 @@
-// import styled from '@emotion/styled';
-// import cssUnit from 'src/lib/cssUnit';
+import styled from '@emotion/styled';
+import cssUnit from 'src/lib/cssUnit';
 
-// export const PopularLayout = styled.div`
-// 	background-color: ${cssUnit.colors.White};
+// Wrap title
+export const PopWrapTitle = styled.h2`
+	position: sticky;
+	top: 0px;
 
-// 	margin: 0px auto;
+	width: 100%;
 
-// 	font-family: 'Noto serif KR', sans-serif;
-// 	font-weight: bold;
-// 	font-size: 25px;
+	list-style: none;
 
-// 	.subTitle {
-// 		padding-top: 50px;
-// 	}
+	padding-top: 10px;
+	padding-bottom: 15px;
 
-// 	.allLists {
-// 		width: 1000px;
-// 		background-color: gray;
+	margin: 0;
 
-// 		display: grid;
-// 		grid-template-columns: repeat(3, 1fr);
+	color: ${cssUnit.colors.White};
+	font-size: ${cssUnit.fontSize.medium};
+	text-align: center;
+	line-height: 50px;
 
-// 		margin: 0px auto;
-// 		margin-top: 50px;
+	background-color: ${cssUnit.colors.DeepBlack};
+	list-style: none;
 
-// 		row-gap: 50px;
-// 		column-gap: 10px;
-// 		padding: 45px;
-// 		padding-top: 100px;
-// 		border: 10px solid gray;
+	font-family: ${cssUnit.fontFamily.NotoKR};
+	font-weight: 600;
 
-// 		li {
-// 			width: 300px;
-// 			height: 450px;
-// 			list-style: none;
-// 			cursor: default;
+	li {
+		//position: relative;
 
-// 			.eachImg {
-// 				width: 290px;
-// 				background-color: #1e88e5;
-// 				background-color: #82b1ff;
-// 				background-color: #448aff;
-// 				background-color: #42a5f5;
+		:after {
+			content: '';
+			display: block;
+			position: absolute;
 
-// 				position: relative;
-// 				margin: 0 auto;
-// 				padding: 0px;
-// 				height: 210px;
-// 				cursor: pointer;
-// 				border: solid 5px #4d4d4d;
-// 			}
+			width: 20vw;
+			height: 0.5px;
 
-// 			.textSection {
-// 				position: absolute;
-// 				background-color: aliceblue;
-// 				width: 290px;
-// 				height: 195px;
-// 				font-size: 18px;
-// 				z-index: 99;
-// 				line-height: 22px;
-// 				border-left: solid 5px #4d4d4d;
-// 				border-right: solid 5px #4d4d4d;
-// 				border-bottom: solid 5px #4d4d4d;
+			top: 75%;
+			left: 40%;
 
-// 				.div1 {
-// 					display: flex;
-// 					justify-content: center;
-// 					align-items: center;
-// 					border-bottom: solid 2px dimgray;
-// 					border-top: solid 2px dimgray;
-// 					height: 75px;
-// 				}
-// 				.div2 {
-// 					display: flex;
-// 					justify-content: center;
-// 					align-items: center;
-// 					border-bottom: solid 2px dimgray;
-// 					border-top: solid 2px dimgray;
-// 					height: 40px;
-// 				}
-// 				.div3 {
-// 					display: flex;
-// 					justify-content: center;
-// 					align-items: center;
-// 					border-bottom: solid 2px dimgray;
-// 					border-top: solid 2px dimgray;
-// 					height: 70px;
-// 				}
-// 				.sub {
-// 				}
-// 			}
-// 		}
-// 	}
-// `;
+			border-bottom: 5px solid ${cssUnit.colors.DarkGold};
+		}
+	}
+
+	@media screen and (max-width: 500px) {
+		font-size: 18px;
+		/* word-break: keep-all;
+					text-overflow: ellipsis;
+					overflow: hidden;
+
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical; */
+	}
+`;

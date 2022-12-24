@@ -1,13 +1,25 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { ChatbotDto } from './dto/chatbot.dto';
+import { GetChatbotDto } from './dto/getchatbot.dto';
 import { ChatbotService } from './chatbots.service';
-import { SaveChatbotFeedbackDto } from './dto/saveChatbotFeedback.dto';
+import { CreateChatbotFeedbackDto } from './dto/createChatbotFeedback.dto';
 
 @ApiTags('Chatbot')
 @Controller('chatbots')
 export class ChatbotController {
   constructor(private readonly chatbotService: ChatbotService) {}
+
+  /**
+   * Chatbot 사용 만족도
+   */
+  @ApiOkResponse({
+    description: '긍정 및 부정 퍼센트 정보를 반환합니다. ',
+  })
+  @ApiNotFoundResponse({ description: 'NotFound' })
+  @Get('satisfaction')
+  async getSatisfactionResults(): Promise<any> {
+    return this.chatbotService.findSatisfaction();
+  }
 
   /**
    * Chatbot 검색
@@ -16,9 +28,13 @@ export class ChatbotController {
     description: '검색한 정보에 맞게 데이터를 반환합니다.',
   })
   @ApiNotFoundResponse({ description: 'NotFound' })
-  @Post()
-  async getChatbotResponse(@Body() chatbotDto: ChatbotDto): Promise<any> {
-    const answeredChatbot = await this.chatbotService.findAll(chatbotDto.text);
+  @Get()
+  async getChatbotResponse(
+    @Query() getChatbotDto: GetChatbotDto,
+  ): Promise<any> {
+    const answeredChatbot = await this.chatbotService.findAll(
+      getChatbotDto.text,
+    );
     return answeredChatbot;
   }
 
@@ -26,15 +42,15 @@ export class ChatbotController {
    * Chatbot 피드백 저장
    */
   @ApiOkResponse({
-    description: '검색한 정보에 맞게 데이터를 반환합니다.',
+    description: '피드백 내용 저장합니다.',
   })
   @ApiNotFoundResponse({ description: 'NotFound' })
   @Post('feedback')
-  async saveChatbotFeedback(
-    @Body() chatbotDto: SaveChatbotFeedbackDto,
+  async createChatbotFeedback(
+    @Body() createChatbotDto: CreateChatbotFeedbackDto,
   ): Promise<any> {
-    const createdFeedback = await this.chatbotService.create(
-      chatbotDto.feedback,
+    const createdFeedback = this.chatbotService.create(
+      createChatbotDto.feedback,
     );
     return createdFeedback;
   }

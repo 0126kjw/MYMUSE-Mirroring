@@ -32,13 +32,7 @@ const Header = () => {
 						</div>
 					</HeaderUpper>
 					<div className='bgImg'>
-						<Image
-							onClick={() => router.push('/')}
-							src={bgImgSrc}
-							alt='wallpaper'
-							layout='fill'
-							objectFit='cover'
-						/>
+						<img onClick={() => router.push('/')} src={bgImgSrc} alt='wallpaper' />
 					</div>
 				</ImageWraper>
 			</HeaderContainer>

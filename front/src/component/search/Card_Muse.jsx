@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { IdBook } from 'src/data/idBook';
 import styled from '@emotion/styled';
+import cssUnit from 'src/lib/cssUnit';
 
 export const Card_Muse_Layout = styled.div`
 	width: 900px;
@@ -9,9 +10,11 @@ export const Card_Muse_Layout = styled.div`
 	background-color: whitesmoke;
 	padding: 10px;
 
-	border: solid 3px black;
+	border: solid 2px ${cssUnit.colors.Gray};
 	margin: 50px auto;
 	display: flex;
+
+	word-break: keep-all;
 
 	.ImgSection {
 		img {
@@ -19,20 +22,51 @@ export const Card_Muse_Layout = styled.div`
 			height: 200px;
 			object-fit: fill;
 		}
+		@media screen and (max-width: 600px) {
+			overflow: hidden;
+		}
 	}
 	.TextSection {
-		width: calc(100% - 300px);
+		//width: calc(100% - 300px);
+		width: 900px;
 		overflow: hidden;
+
 		.museName {
 			margin: 10px;
-			font-size: 20px;
+			font-size: ${cssUnit.fontSize.medium};
+			font-family: ${cssUnit.fontFamily.Hahmlet};
+
+			@media screen and (max-width: 600px) {
+				//width: 90%;
+
+				word-break: keep-all;
+			}
 		}
 		.museDesc {
-			margin: 10px;
+			font-family: ${cssUnit.fontFamily.PreTended};
+			font-weight: 300;
+			line-height: 150%;
+			text-align: left;
+
+			text-overflow: ellipsis;
+			overflow: hidden;
+
+			margin: 50px 30px 30px 30px;
+
+			word-break: keep-all;
+
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+
+			@media screen and (max-width: 600px) {
+				width: 90%;
+				margin: 50px 10px 30px 10px;
+			}
 		}
 	}
 	@media screen and (max-width: 1600px) {
-		width: 85%;
+		//width: 85%;
 		margin: 30px auto;
 	}
 
@@ -61,6 +95,12 @@ export const Card_Muse_Layout = styled.div`
 		width: 85%;
 		height: 200%;
 	}
+
+	:hover {
+		border: solid 2px ${cssUnit.colors.DarkGold};
+		background-color: ${cssUnit.colors.RealLightGray};
+		padding: 10px;
+	}
 `;
 
 const Card_Muse = ({ x }) => {
@@ -81,7 +121,7 @@ const Card_Muse = ({ x }) => {
 
 	return (
 		<>
-			<Card_Muse_Layout key={x._id}>
+			<Card_Muse_Layout key={x._id} onClick={moveToDetail} style={{ cursor: 'pointer' }}>
 				<div className='ImgSection'>
 					<img
 						src={`https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ID}_image01.jpg`}
@@ -91,7 +131,7 @@ const Card_Muse = ({ x }) => {
 				</div>
 				<div className='TextSection'>
 					<div className='museName'>{x.name}</div>
-					<div className='museDesc'>{x.description}</div>
+					<p className='museDesc'>{x.description}</p>
 				</div>
 			</Card_Muse_Layout>
 		</>

@@ -1,5 +1,3 @@
-//for link
-import Link from 'next/link';
 //for style
 import styled from '@emotion/styled';
 import cssUnit from 'src/lib/cssUnit';
@@ -35,6 +33,8 @@ export const NavBarLayout = styled.div`
 	justify-content: space-around;
 	text-align: center;
 
+	font-family: ${cssUnit.fontFamily.NotoKR_G};
+
 	ul {
 		display: flex;
 		justify-content: space-around;
@@ -46,16 +46,69 @@ export const NavBarLayout = styled.div`
 		padding: 0px;
 		line-height: 50px;
 
+		list-style: none;
+
 		div {
 			text-decoration: none;
 			width: 300px;
 		}
 
-		.brown {
+		/* .brown {
 			color: yellow;
 		}
 		.white {
 			color: white;
+		} */
+
+		.selectedColor {
+			font-weight: 600;
+
+			color: ${cssUnit.colors.DarkGold};
+			background-color: ${cssUnit.backgroundColors.DeepBlack};
+
+			li {
+				position: relative;
+
+				:after {
+					content: '';
+					display: block;
+					position: absolute;
+
+					width: 50%;
+					height: 0.5px;
+
+					top: 80%;
+					left: 25%;
+
+					border-bottom: 1px solid ${cssUnit.colors.DarkGold};
+
+					transition: all 0.3s ease-in;
+				}
+			}
+		}
+
+		.defaultColor {
+			font-weight: 300;
+			color: ${cssUnit.colors.White};
+			background-color: ${cssUnit.backgroundColors.Black};
+
+			li {
+				:after {
+					content: '';
+					display: block;
+					position: absolute;
+
+					left: 50%;
+
+					width: 0%;
+					height: 0.7px;
+
+					//margin-top: 3px;
+					//border-bottom: 2px solid ${cssUnit.colors.DarkGold};
+
+					transition: all 0.3s ease;
+				}
+			}
 		}
 
 		@media (max-width: 1500px) {
@@ -66,19 +119,19 @@ export const NavBarLayout = styled.div`
 		}
 	}
 `;
-//styling Link/next
-// export const LinkButton = styled(Link)`
-// 	display: inline-block;
-// 	list-style: none;
 
-// 	&:hover {
-// 		cursor: pointer;
-// 		background-color: ${cssUnit.backgroundColors.DeepBlack};
-// 		border: ${cssUnit.backgroundColors.Black};
-// 	}
+export const MenuLinkText = styled.div`
+	text-decoration: none;
+	color: ${cssUnit.colors.DarkGold};
+	.selectedColor {
+		font-weight: 600;
+		color: ${cssUnit.colors.White};
+		color: ${cssUnit.colors.DarkGold};
+		background-color: ${cssUnit.backgroundColors.DeepBlack};
+	}
 
-// 	background-color: ${(prop) => {
-// 		return prop.selected ? `${cssUnit.backgroundColors.DeepBlack}` : '';
-// 		// return prop.selected ? `${cssUnit.Colors.DeepBlack}` : '';
-// 	}};
-// `;
+	.defaultColor {
+		color: ${cssUnit.colors.White};
+		background-color: ${cssUnit.backgroundColors.Black};
+	}
+`;

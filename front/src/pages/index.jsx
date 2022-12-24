@@ -1,14 +1,12 @@
-import Main from '../component/Main';
+import Main from '../component/main/Main';
 import Head from 'next/head';
 import { useRecoilState } from 'recoil';
-import SelectedMapState from 'src/state/selectedMap';
+import SelectedMapState from 'src/state/currentMap';
 import { useEffect } from 'react';
 //for Seo
-import SeoData from 'src/lib/seoData';
-import Seo from 'src/component/Seo';
 
+import withGetServerSideProps from 'src/hocs/withServersideProps';
 const Home = () => {
-	const PageData = SeoData.Main;
 	const [selectedMapState, setSelectedMapState] = useRecoilState(SelectedMapState);
 	useEffect(() => {
 		setSelectedMapState({
@@ -19,10 +17,15 @@ const Home = () => {
 
 	return (
 		<>
-			<Seo title={PageData.title} description={PageData.description} ogUrl={PageData.ogUrl} />
 			<Main />
 		</>
 	);
 };
 
 export default Home;
+
+export const getServerSideProps = withGetServerSideProps(async (context) => {
+	return {
+		props: {},
+	};
+});
