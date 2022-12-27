@@ -7,6 +7,5 @@ export class GetExhibitionDto {
    * @example '6386bc3ac151f331566bc59a'
    */
   @IsString()
-  @Type(() => String)
   id: string;
 }
