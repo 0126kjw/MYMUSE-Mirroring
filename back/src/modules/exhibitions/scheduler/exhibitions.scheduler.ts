@@ -16,6 +16,6 @@ export class ExhibitionScheduler {
   async handleCron(): Promise<void> {
     const list = await crawlExhibitions();
 
-    this.exhibitionModel.create(list);
+    await this.exhibitionModel.create(list);
   }
 }
