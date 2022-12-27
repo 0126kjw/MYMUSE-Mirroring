@@ -322,19 +322,18 @@ const aiChatRoomStyle = styled.div`
 	.horListBox {
 		display: flex;
 
-		width: 100%;
+		/* width: 100%; */
+		/* width: 360px; */
 		overflow: scroll;
 
 		background-color: #d9d9d9;
 		border-radius: 10px;
 
 		/* 가로 스크롤 */
-
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
 		flex-wrap: nowrap;
-
 		overflow: auto;
 
 		/* 스크롤 없애기 */

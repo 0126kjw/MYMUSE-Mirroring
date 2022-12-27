@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { IdBook } from 'src/data/idBook';
 import styled from '@emotion/styled';
 import cssUnit from 'src/lib/cssUnit';
+import goToDetailPage from 'src/utils/goToDetailPage';
 
 export const Card_Muse_Layout = styled.div`
 	width: 900px;
@@ -105,16 +106,7 @@ export const Card_Muse_Layout = styled.div`
 
 const Card_Muse = ({ x }) => {
 	const router = useRouter();
-
-	// get ID
-	let ID = '';
-	IdBook.forEach((v) => {
-		if (v.name == x.name) {
-			ID = v.id;
-		}
-	});
-
-	// 상세 페이지로
+	const ID = IdBook.find((val) => val.name === x.name).id;
 	const moveToDetail = () => {
 		router.push(`/detail/${ID}`);
 	};

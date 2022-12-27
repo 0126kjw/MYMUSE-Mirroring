@@ -133,7 +133,6 @@ const SearchBar = ({
 		const data = await GetSearach(searchCategory, keyword);
 		await setIsFetching(false);
 		setList(() => [...data]);
-		// console.log('search data check', data);
 
 		if (searchAgain.needed == false) {
 			setKeyword('');

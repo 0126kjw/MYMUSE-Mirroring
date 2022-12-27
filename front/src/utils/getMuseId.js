@@ -1,11 +1,7 @@
 import { IdBook } from 'src/data/idBook';
 
 const getMuseId = (museName) => {
-	IdBook.forEach((v) => {
-		if (v.name == museName) {
-			return v.id;
-		}
-	});
+	return IdBook.find((v) => v.name == museName).id;
 };
 
 export default getMuseId;

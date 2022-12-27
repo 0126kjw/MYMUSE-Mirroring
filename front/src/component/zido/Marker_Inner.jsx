@@ -2,18 +2,10 @@ import { Marker } from 'react-simple-maps';
 import { IdBook } from 'src/data/idBook';
 import { useRouter } from 'next/router';
 import cssUnit from 'src/lib/cssUnit';
+import goToDetailPage from 'src/utils/goToDetailPage';
 
 const Marker_Inner = ({ currentMap, pins, setTooltipName, setHoverPin }) => {
 	const router = useRouter();
-	const moveToDetail = (museName) => {
-		let ID = '';
-		IdBook.forEach((v) => {
-			if (v.name == museName) {
-				ID = v.id;
-			}
-		});
-		router.push(`/detail/${ID}`);
-	};
 
 	return (
 		<>
@@ -24,7 +16,7 @@ const Marker_Inner = ({ currentMap, pins, setTooltipName, setHoverPin }) => {
 							key={_id}
 							coordinates={coordinates}
 							onClick={() => {
-								moveToDetail(name);
+								goToDetailPage(name, router);
 							}}
 							onMouseEnter={() => {
 								setTooltipName(name);

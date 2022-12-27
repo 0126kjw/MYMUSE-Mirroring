@@ -1,7 +1,6 @@
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
 import cssUnit from 'src/lib/cssUnit';
 const Geographies_Outer = ({ currentMap, setCurrentMap, setIsMapFetching, mapData, outerMap }) => {
-	//console.log('mapData', mapData);
 	return (
 		<>
 			{currentMap.mapKind == 'outer' ? (

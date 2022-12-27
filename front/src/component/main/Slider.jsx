@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import cssUnit from 'src/lib/cssUnit';
 import { CircleInside, CircleOut } from 'src/styles/compoStyles/sliderStyle';
+import goToDetailPage from 'src/utils/goToDetailPage';
 
 const SliderLayout = styled.div`
 	cursor: pointer;
@@ -318,19 +319,9 @@ const Slider = () => {
 		return () => clearInterval(slideInterval);
 	}, [currentSlide]);
 
-	const moveToDetail = (museName) => {
-		let ID = '';
-		IdBook.forEach((v) => {
-			if (v.name == museName) {
-				ID = v.id;
-			}
-		});
-		router.push(`/detail/${ID}`);
-	};
-
 	const headingToDetail = () => {
 		const museName = sliderData[currentSlide].heading;
-		moveToDetail(museName);
+		goToDetailPage(museName, router);
 	};
 
 	return (

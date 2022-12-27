@@ -1,339 +1,146 @@
 // library
-import chat_question from 'src/component/common/ai/ai_util/chat_question';
-import goToDetail from 'src/component/common/ai/ai_util/goToDetail';
 import { IdBook } from 'src/data/idBook';
-//import axios from 'axios';
 
 import { PostUserQuestion } from 'src/utils/api';
 
-// template
-import template_open from 'src/component/common/ai/ai_util/template_open';
-import template_ticket from 'src/component/common/ai/ai_util/template_ticket';
-import template_address from 'src/component/common/ai/ai_util/template_address';
+// 유저 질문 템플릿
+import Temp_UserMsg from './templates/Temp_UserMsg';
+
+// 챗봇 답변 탬플릿
+import Temp_singleMuseum from './templates/Temp_singleMuseum';
+import Temp_Addr from 'src/component/common/ai/ai_util/templates/Temp_Addr';
+import Temp_Hello from 'src/component/common/ai/ai_util/templates/Temp_Hello';
+import Temp_Contact from 'src/component/common/ai/ai_util/templates/Temp_Contact';
+import Temp_Open from 'src/component/common/ai/ai_util/templates/Temp_Open';
+import Temp_Fee from 'src/component/common/ai/ai_util/templates/Temp_Fee';
+import Temp_Others from 'src/component/common/ai/ai_util/templates/Temp_Others';
+import Temp_Area from 'src/component/common/ai/ai_util/templates/Temp_Area';
+import Temp_Exhi from 'src/component/common/ai/ai_util/templates/Temp_Exhi';
 import axios from 'axios';
 
-const submitInput = async (inputValue, setInputValue, router, setBotMode) => {
+// util
+import moveScrollPoint from './moveScrollPoint';
+
+const submitInput = async (
+	inputValue,
+	setInputValue,
+	router,
+	setBotMode,
+	chatElems,
+	setChatElems,
+	chatRoomWidth,
+) => {
+	// 1. 빈 값은 바로 리턴
 	if (inputValue == '') {
 		alert('값을 입력해 주세요!');
 		return;
 	}
-	const AIsec2 = document.querySelector('.AIsec2');
 
-	// 유저 질문 띄우기
-	chat_question(AIsec2, inputValue);
+	// 2. 유저 질문
+	const userQuestion = Temp_UserMsg(inputValue);
 
-	// 개행 (float 때문에 필요)
-	const emptyBox = document.createElement('div');
-	emptyBox.classList.add('emptyBox');
-	AIsec2.appendChild(emptyBox);
-
-	// id book확인 후 단일 값은 그냥 카드 띄우기
+	// 3. 챗봇 답변
+	// 3-1 특정 박물관 입력
 	let checkId = '';
+
+	// 3-1.1 : id 값 확인
 	for (const ele of IdBook) {
 		if (ele.name == inputValue) {
 			checkId = ele.id;
 			break;
 		}
 	}
+	// 3-1.2 : id 값에 해당하는 박물관 정보 띄우기
 	if (checkId !== '') {
-		// 단일 카드 띄우고 종료
-		const TempElement = document.createElement('div');
-		TempElement.classList.add('msgFromAI');
-		TempElement.innerText = `${inputValue}을 찾으셨나요?`;
-		AIsec2.appendChild(TempElement);
-
-		// 개행
-		const emptyBox2 = document.createElement('div');
-		emptyBox2.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox2);
-
-		const singleOne = document.createElement('div');
-		singleOne.classList.add('singleOne');
-		singleOne.innerHTML = `
-                <div className='imgBox'>
-                    <img src=https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${checkId}_image01.jpg>
-                    <p>${inputValue}</p>
-                </div>
-            `;
-		singleOne.addEventListener('click', function () {
-			router.push(`/detail/${checkId}`);
-			setBotMode('off');
-			document.querySelector('#AImodalOnBtn').style.display = 'block';
-			document.querySelector('.logoTest').style.display = 'none';
-		});
-
-		AIsec2.appendChild(singleOne);
-
-		const emptyBox = document.createElement('div');
-		emptyBox.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox);
-		singleOne.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+		const tempEle = Temp_singleMuseum(checkId, inputValue, router, setBotMode);
+		setChatElems(chatElems.concat([userQuestion, tempEle]));
+		setTimeout(function () {
+			moveScrollPoint();
+		}, 300);
 		return;
 	}
 
-	// API : 유저 질문 보내고 그에 대한 response 받기
-	const userQuestion = { text: inputValue };
+	// 3-2 : 그 외 모든 질문 처리
 	let data = null;
 	try {
 		const res = await axios.get(
 			`${process.env.NEXT_PUBLIC_BASE_URL}/chatbots?text=${inputValue}`,
 		);
-
 		data = res.data;
-		// console.log('data', data);
-		// data = await PostUserQuestion(userQuestion);
-
-		// console.log(data);
 	} catch {
 		console.log('posting error');
 	}
 
-	// API 리턴값 축약
-	const defaultGuidance = data.fulfillmentText;
+	// 3-2.1 변수 설정
+	// ... API 리턴값 축약
+	const guide = data.fulfillmentText;
 	const classification = data.displayName;
 	const ans = data.intendedAnswer;
+	// ... 답변 저장용 템플릿
+	let AIanswer = null;
 
-	// 답변 저장용 변수
-	let infoGuide = null;
-	let template = null;
-	// scroll
-	let scrollPoint = 0;
-
-	// 답변 분류
-	if (classification == 'DefaultFallback') {
-		// 알 수 없는 질문
-		infoGuide = defaultGuidance;
-		scrollPoint = 1;
-	} else if (classification == 'defaultWelcome') {
-		// 인사
-		infoGuide = defaultGuidance;
-		scrollPoint = 1;
-	} else if (classification == 'facilityContact') {
-		// '쉼박물관 연락처 좀 줘'
-		infoGuide = defaultGuidance;
-		template = `${ans.contactInfo}`;
-		scrollPoint = 2;
-	} else if (classification == 'facilityAddress') {
-		// '경운박물관 어디에 있어'
-		infoGuide = defaultGuidance;
-		template = template_address(ans.name, ans.newAddress, ans.oldAddress);
-		scrollPoint = 2;
-	} else if (classification == 'facilityOpeningHours') {
-		// '경운박물관 언제 문 닫아'
-		infoGuide = defaultGuidance;
-		template = template_open(
-			ans.name,
-			ans.mon,
-			ans.tue,
-			ans.wed,
-			ans.thu,
-			ans.fri,
-			ans.sat,
-			ans.sun,
-			ans.offday,
-		);
-		scrollPoint = 2;
-	} else if (classification == 'facilityTicket') {
-		// '경운박물관 입장료 얼마야'
-		infoGuide = defaultGuidance;
-		if (ans.isFree == true) {
-			template = `${ans.name}(은/는) 무료입장이 가능합니다.`;
-			// scrollPoint = 1;
-			scrollPoint = 2;
-		} else {
-			template = template_ticket(
+	// 3-2.2 분류한 질문에 대한 답변 템플릿 생성
+	switch (classification) {
+		case 'DefaultFallback':
+			AIanswer = <div>{guide}</div>;
+			break;
+		case 'defaultWelcome':
+			AIanswer = Temp_Hello(guide);
+			break;
+		case 'facilityContact':
+			AIanswer = Temp_Contact(guide, ans.contactInfo);
+			break;
+		case 'facilityAddress':
+			AIanswer = Temp_Addr(guide, ans.name, ans.newAddress, ans.oldAddress);
+			break;
+		case 'facilityOpeningHours':
+			AIanswer = Temp_Open(
+				guide,
+				ans.name,
+				ans.mon,
+				ans.tue,
+				ans.wed,
+				ans.thu,
+				ans.fri,
+				ans.sat,
+				ans.sun,
+				ans.offday,
+			);
+			break;
+		case 'facilityTicket':
+			AIanswer = Temp_Fee(
+				guide,
+				ans.isFree,
 				ans.name,
 				ans.adultFee,
 				ans.youthFee,
 				ans.childFee,
 				ans.feeUrl,
 			);
-			scrollPoint = 2;
-		}
-	} else if (classification == 'facilityOthers') {
-		infoGuide = `${ans.name}에 대해 자세히 알아볼 수 있는 페이지를 보여드릴게요!`;
-		template = `<a href='${ans.website}'>${ans.name} : ${ans.website}</a>`;
-		scrollPoint = 2;
-	} else if (classification == 'facilityAreaSearch') {
-		// 종로구에 미술관 있어?
-		infoGuide = defaultGuidance;
-		scrollPoint = 3;
-	} else if (classification == 'exhibitionDateSearch') {
-		// 12월 에 열리는 전시회?
-		infoGuide = defaultGuidance;
-		scrollPoint = 3;
+			break;
+		case 'facilityOthers':
+			AIanswer = Temp_Others(ans.name, ans.website);
+			break;
+		case 'facilityAreaSearch':
+			AIanswer = Temp_Area(guide, ans, router, setBotMode, chatRoomWidth);
+			break;
+		case 'exhibitionDateSearch':
+			AIanswer = Temp_Exhi(guide, ans, router, chatRoomWidth);
+			break;
+		default:
+			alert('분류할 수 없는 질문입니다.');
+			console.log('분류할 수 없는 질문입니다.');
 	}
+	// 3-2.3 유저 질문과 AI 답변 묶어서 띄우기
+	setChatElems(chatElems.concat([userQuestion, AIanswer]));
 
-	// <AI response (1)> 기본 info Guide
-	const TempElement = document.createElement('div');
-	TempElement.classList.add('msgFromAI');
-	TempElement.innerText = infoGuide;
-	AIsec2.appendChild(TempElement);
-	// 개행
-	const emptyBox2 = document.createElement('div');
-	emptyBox2.classList.add('emptyBox');
-	AIsec2.appendChild(emptyBox2);
-
-	// <AI response (2)> 지역 검색
-	// 지역 검색은 목록으로 표현된 값을 더해준다
-	if (classification == 'facilityAreaSearch') {
-		// 목록 표현
-		const TempElement = document.createElement('div');
-		TempElement.classList.add('horListBox');
-
-		for (let i = 0; i < ans.length; i++) {
-			const listElement = document.createElement('div');
-			listElement.classList.add('horList');
-
-			const InnerlistElement = document.createElement('div');
-			InnerlistElement.classList.add('innerHorList');
-
-			InnerlistElement.innerHTML = `
-                <div className='imgBox'>
-                    <img src=https://res.cloudinary.com/dtq075vja/image/upload/v1670317186/9gle/${ans[i].id}_image01.jpg>
-                    <p>${ans[i].name}</p>
-                </div>
-            `;
-			InnerlistElement.addEventListener('click', function () {
-				router.push(`/detail/${ans[i].id}`);
-				setBotMode('off');
-				document.querySelector('#AImodalOnBtn').style.display = 'block';
-				document.querySelector('.logoTest').style.display = 'none';
-			});
-
-			listElement.appendChild(InnerlistElement);
-			TempElement.appendChild(listElement);
-		}
-		AIsec2.appendChild(TempElement);
-
-		// 목록 스크롤 안내
-		const scrollGuide = document.createElement('div');
-		scrollGuide.classList.add('msgFromAI');
-		scrollGuide.innerHTML = `
-            <span class='tip'>
-                <span class='tipspan'>TIP</span> : 
-                (PC) 반환받은 목록에 마우스를 두고 shift + scroll시 우측으로 스크롤 할 수 있습니다.
-            </span>
-        `;
-		AIsec2.appendChild(scrollGuide);
-
-		// 개행
-		const emptyBox = document.createElement('div');
-		emptyBox.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox);
-
-		// 개수 표현
-		const TempElement2 = document.createElement('div');
-		TempElement2.classList.add('msgFromAI');
-		TempElement2.innerText = `${ans.length}개가 검색되었습니다.`;
-		AIsec2.appendChild(TempElement2);
-
-		// 개행
-		const emptyBox2 = document.createElement('div');
-		emptyBox2.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox2);
-
-		TempElement2.scrollIntoView({
-			behavior: 'smooth',
-			block: 'end',
-			inline: 'nearest',
-		});
-	}
-	if (classification == 'exhibitionDateSearch') {
-		// 목록 표현
-		const TempElement = document.createElement('div');
-		TempElement.classList.add('horListBox');
-
-		for (let i = 0; i < ans.length; i++) {
-			const listElement = document.createElement('div');
-			listElement.classList.add('horList');
-
-			const InnerlistElement = document.createElement('div');
-			InnerlistElement.classList.add('innerHorList');
-
-			InnerlistElement.innerHTML = `
-                <div className='imgBox'>
-                    <a target=_blank href=https://tickets.interpark.com/goods/${ans[i].href}> 
-                            <img src=${ans[i].imgSrc}>
-                        <p>${ans[i].title}</p>
-                    </a>
-                </div>
-                `;
-			InnerlistElement.addEventListener('click', function () {
-				goToDetail(ans[i].name, router);
-				setBotMode('off');
-				document.querySelector('#AImodalOnBtn').style.display = 'block';
-				document.querySelector('.logoTest').style.display = 'none';
-			});
-
-			listElement.appendChild(InnerlistElement);
-			TempElement.appendChild(listElement);
-		}
-		AIsec2.appendChild(TempElement);
-
-		// 목록 스크롤 안내
-		const scrollGuide = document.createElement('div');
-		scrollGuide.classList.add('msgFromAI');
-		scrollGuide.innerHTML = `
-            <span class='tip'>
-                <span class='tipspan'>TIP</span> : 
-                (PC) 반환받은 목록에 마우스를 두고 shift + scroll시 우측으로 스크롤 할 수 있습니다.
-            </span>
-        `;
-		AIsec2.appendChild(scrollGuide);
-
-		// 개행
-		const emptyBox2 = document.createElement('div');
-		emptyBox2.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox2);
-
-		// 개수 표현
-		const TempElement2 = document.createElement('div');
-		TempElement2.classList.add('msgFromAI');
-		TempElement2.innerText = `${ans.length}개가 검색되었습니다.`;
-		AIsec2.appendChild(TempElement2);
-
-		// 개행
-		const emptyBox = document.createElement('div');
-		emptyBox.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox);
-
-		// smooth scroll
-		TempElement2.scrollIntoView({
-			behavior: 'smooth',
-			block: 'end',
-			inline: 'nearest',
-		});
-	}
-
-	// <AI response (3)>
-	// 템플릿 값 붙여줌
-	const TempElement2 = document.createElement('div');
-	// 붙여줌
-	if (template !== null) {
-		TempElement2.classList.add('msgFromAI');
-		TempElement2.innerHTML = template;
-		AIsec2.appendChild(TempElement2);
-		// 개행
-		const emptyBox = document.createElement('div');
-		emptyBox.classList.add('emptyBox');
-		AIsec2.appendChild(emptyBox);
-	}
-
-	// 마무리 (포커스 이동)
-	if (scrollPoint == 1) {
-		TempElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-	} else if ((scrollPoint = 2)) {
-		TempElement2.scrollIntoView({
-			behavior: 'smooth',
-			block: 'end',
-			inline: 'nearest',
-		});
-	} else if ((scrollPoint = 3)) {
-		// 이전 분기에서 처리함
-	}
-
+	// 3.2.4 마무리
+	// ... 인풋창 비우기
 	setInputValue('');
+	// ... 마지막 지점으로 스크롤 이동
+	setTimeout(function () {
+		moveScrollPoint();
+	}, 300);
 	return false;
 };
 

@@ -4,6 +4,7 @@ import Image from 'next/legacy/image';
 import cssUnit from 'src/lib/cssUnit';
 import { IdBook } from 'src/data/idBook';
 import { useRouter } from 'next/router';
+import goToDetailPage from 'src/utils/goToDetailPage';
 
 const WatchedStyle = styled.div`
 	position: fixed;
@@ -77,16 +78,6 @@ const Watched = ({ setIsWatchedOn }) => {
 		// console.log(nowPath);
 	}, [router.asPath]);
 
-	const moveToDetail = (museName) => {
-		let ID = '';
-		IdBook.forEach((v) => {
-			if (v.name == museName) {
-				ID = v.id;
-			}
-		});
-		router.push(`/detail/${ID}`);
-	};
-
 	// let detail_list = null;
 	// if (typeof window !== 'undefined') {
 	//     detail_list = JSON.parse(localStorage.getItem('watched'));
@@ -118,7 +109,7 @@ const Watched = ({ setIsWatchedOn }) => {
 								<div
 									key={i}
 									onClick={() => {
-										moveToDetail(detailList[i]);
+										goToDetailPage(detailList[i], router);
 									}}
 								>
 									<p className='watched_list' style={{ marginTop: '10px' }}>
