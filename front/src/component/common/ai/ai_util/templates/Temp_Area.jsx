@@ -1,4 +1,6 @@
+import getNeededWidth from '../getNeededWidth';
 const Temp_Area = (guide, ans, router, setBotMode, chatRoomWidth) => {
+	const len = ans.length;
 	const moveToDetail = (item) => {
 		router.push(`/detail/${item.id}`);
 		setBotMode('off');
@@ -6,14 +8,15 @@ const Temp_Area = (guide, ans, router, setBotMode, chatRoomWidth) => {
 		document.querySelector('.logoTest').style.display = 'none';
 	};
 
-	// 송파구 박물관
-	// 종로구 박물관
 	return (
 		<>
 			<div className='msgFromAI'>{guide}</div>
 			<div className='emptyBox'></div>
 			<div className='msgFromAI'>
-				<div className='horListBox' style={{ width: `${chatRoomWidth - 150}px` }}>
+				<div
+					className='horListBox'
+					style={{ width: `${getNeededWidth(len, chatRoomWidth)}px` }}
+				>
 					{ans.length > 0 &&
 						ans.map((item, i) => (
 							<div className='horList' key={item._id + Math.random()}>

@@ -125,7 +125,7 @@ const submitInput = async (
 			AIanswer = Temp_Area(guide, ans, router, setBotMode, chatRoomWidth);
 			break;
 		case 'exhibitionDateSearch':
-			AIanswer = Temp_Exhi(guide, ans, router, chatRoomWidth);
+			AIanswer = Temp_Exhi(guide, ans, chatRoomWidth);
 			break;
 		default:
 			alert('분류할 수 없는 질문입니다.');
