@@ -6,12 +6,14 @@ import { MuseumModule } from './modules/museums/museums.module';
 import { MapModule } from './modules/map/map.module';
 import { SearchModule } from './modules/search/search.module';
 import { ChatbotModule } from './modules/chatbots/chatbots.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ScheduleModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGODB_URL),
     MuseumModule,
     ExhibitionModule,
