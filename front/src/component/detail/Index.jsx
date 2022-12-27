@@ -160,8 +160,8 @@ const IndexStyle = styled.div`
 		border-bottom: dotted 1px gray;
 		border-top: dotted 2px gray;
 
-		font-family: ${cssUnit.fontFamily.NanumM};
-		font-weight: 600;
+		font-family: ${cssUnit.fontFamily.PreTended};
+		font-weight: 400;
 		line-height: 150%;
 		text-align: start;
 
@@ -191,8 +191,9 @@ const IndexStyle = styled.div`
 		}
 		a {
 			//padding: 10px;
+
+			font-family: ${cssUnit.fontFamily.PreTended};
 			font-weight: 500;
-			font-family: ${cssUnit.fontFamily.NanumM};
 			color: ${cssUnit.colors.DarkGold};
 			text-decoration-line: none;
 			//cursor: pointer;
@@ -285,6 +286,8 @@ const IndexStyle = styled.div`
 		justify-content: center;
 		align-items: center;
 	}
+
+	font-family: ${cssUnit.fontFamily.PreTended};
 `;
 
 const Index = ({ pageData }) => {
