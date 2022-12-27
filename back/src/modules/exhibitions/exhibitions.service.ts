@@ -10,6 +10,10 @@ export class ExhibitionService {
     private readonly exhibitionModel: Model<Exhibition>,
   ) {}
 
+  async create(exhibitionList: any): Promise<void> {
+    this.exhibitionModel.create(exhibitionList);
+  }
+
   async findById(id: string): Promise<Exhibition> {
     return this.exhibitionModel.findOne({ id }).lean();
   }

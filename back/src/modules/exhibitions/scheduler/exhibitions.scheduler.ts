@@ -1,21 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Exhibition } from '../schemas/exhibition.schema';
 import { Cron } from '@nestjs/schedule';
 import { crawlExhibitions } from '../crawling/exhibition.crawling';
+import { ExhibitionService } from '../exhibitions.service';
 
 @Injectable()
 export class ExhibitionScheduler {
-  constructor(
-    @InjectModel(Exhibition.name)
-    private readonly exhibitionModel: Model<Exhibition>,
-  ) {}
+  constructor(private readonly exhibitionService: ExhibitionService) {}
 
-  @Cron('59 59 23 * * *')
+  @Cron('0 0 0 * * *')
   async handleCron(): Promise<void> {
-    const list = await crawlExhibitions();
+    const exhibitionList = await crawlExhibitions();
 
-    await this.exhibitionModel.create(list);
+    await this.exhibitionService.create(exhibitionList);
   }
 }
