@@ -8,6 +8,7 @@ import { Chatbot } from './schemas/chatbot.schema';
 import { format, subDays, add } from 'date-fns';
 import { Museum } from '../museums/schemas/museum.schema';
 import { Exhibition } from '../exhibitions/schemas/exhibition.schema';
+import { HttpService } from '@nestjs/axios';
 
 @Injectable()
 export class ChatbotService {
@@ -16,10 +17,19 @@ export class ChatbotService {
     private readonly chatbotModel: Model<Chatbot>,
     private readonly exhibitionService: ExhibitionService,
     private readonly museumService: MuseumService,
+    private readonly httpService: HttpService,
   ) {}
 
   async create(feedback: string): Promise<void> {
     this.chatbotModel.create({ feedback, sentiment: -1 });
+  }
+
+  async findBySantiment(EMPTY_SENTIMENT: Number): Promise<any | any[]> {
+    const chatbots = await this.chatbotModel
+      .find({ sentiment: EMPTY_SENTIMENT })
+      .lean();
+
+    return chatbots;
   }
 
   async findSatisfaction(): Promise<any> {
@@ -203,5 +213,20 @@ export class ChatbotService {
 
       return new Date(endDate);
     }
+  }
+
+  async updateChatbotSentiment(emptySentiment: any): Promise<void> {
+    await Promise.all(
+      emptySentiment.map(async (chatbot: { feedback: string; _id: string }) => {
+        const getSentiment = await this.httpService.axiosRef.get(
+          `http://127.0.0.1:5000/api/predict?feedback=${chatbot.feedback}`,
+        );
+
+        await this.chatbotModel.updateOne(
+          { _id: chatbot._id },
+          { sentiment: getSentiment.data },
+        );
+      }),
+    );
   }
 }

@@ -1,31 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { Cron } from '@nestjs/schedule';
-import { Chatbot } from '../schemas/chatbot.schema';
-import { HttpService } from '@nestjs/axios';
+import { ChatbotService } from '../chatbots.service';
 
 @Injectable()
 export class ChatbotScheduler {
-  constructor(
-    @InjectModel(Chatbot.name)
-    private readonly chatbotModel: Model<Chatbot>,
-    private readonly httpService: HttpService,
-  ) {}
+  constructor(private readonly chatbotService: ChatbotService) {}
 
-  @Cron('22 * * * * *')
+  @Cron('33 * * * * *')
   async chatbotCron(): Promise<void> {
-    const chatbots = await this.chatbotModel.find({ sentiment: -1 });
+    const EMPTY_SENTIMENT = -1;
+    const emptySentiment = await this.chatbotService.findBySantiment(
+      EMPTY_SENTIMENT,
+    );
 
-    chatbots.map(async (chatbot) => {
-      const getSentiment = await this.httpService.axiosRef.get(
-        `http://127.0.0.1:5000/api/predict?feedback=${chatbot.feedback}`,
-      );
-
-      await this.chatbotModel.updateOne(
-        { _id: chatbot.id },
-        { sentiment: getSentiment.data },
-      );
-    });
+    if (!emptySentiment) {
+    } else {
+      await this.chatbotService.updateChatbotSentiment(emptySentiment);
+    }
   }
 }
