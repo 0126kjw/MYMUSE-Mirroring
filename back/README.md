@@ -1,73 +1,87 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# MYMUSE BACKEND
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 파일 구조
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+```
+src
+┣ modules
+┃ ┣ chatbots
+┃ ┃ ┣ dto
+┃ ┃ ┣ scheduler
+┃ ┃ ┗ schemas
+┃ ┣ exhibitions
+┃ ┃ ┣ crawling
+┃ ┃ ┣ dto
+┃ ┃ ┣ scheduler
+┃ ┃ ┗ schemas
+┃ ┣ map
+┃ ┃ ┣ dto
+┃ ┃ ┗ schemas
+┃ ┣ museums
+┃ ┃ ┣ dto
+┃ ┃ ┗ schemas
+┃ ┣ search
+┃ ┃ ┗ dto
 ```
 
-## Running the app
+## 실행 방법
+
+### 1. MongoDB 서버 구축
+
+---
+
+- Local
+    
+    [문서](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)를 따라 서버 구축
+    
+- Atlas
+    
+    [Atlas](https://www.mongodb.com/atlas)에 가입하여 무료 클러스터 생성
+    
+
+### 2. Environment variable
+
+---
+
+./.env 파일 생성 후 MONGODB_URL 설정
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+MONGODB_URL="mongodb://localhost:27017/myDB" (로컬 서버의 경우 예시)
+MONGODB_URL="mongodb+srv://<name>:<password>@simple-board-cluster.2vbg4.mongodb.net/" (Atlas 서버의 경우)
 ```
 
-## Test
+> Atlas 서버의 경우, 자신이 설정했던 name, password로 수정
+> 
+
+### 3. 라이브러리 설치
+
+---
+
+package.json에 있는 라이브러리들을 설치
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
+# or
+npm i
 ```
 
-## Support
+### 4. Dialogflow key 실행
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+---
 
-## Stay in touch
+Dialogflow key를 받아서 back폴더 안에 삽입 후 export 실행
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS=<경로>/<파일명.json>
+```
 
-## License
+> 💡**중요** - **실행 시 학습된 DialogFlow 모델이 존재해야 합니다.**
+>
 
-  Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### 5. NestJS 실행
+
+---
+
+```bash
+npm run start:debug
+```
